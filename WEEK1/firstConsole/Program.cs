@@ -34,6 +34,17 @@ class Program
         int age = 5;
         Console.WriteLine(age);
 
+        //numeric type conversion, explicit and implicit
+        double someDecimal = 4.4;
+        int someInteger = (int)someDecimal;
+        //this explicit conversion will lose everything to the right of the decimal and C# will force you to include this conversion
+        int someOtherInteger = 5;
+        double someOtherDecimal = someOtherInteger;
+        //this implicit conversion does not need a function as there is no data loss
+        //generally, if you will lose precision or data, you must be explicit
+        //however, not all types can be explicity converted between and you will need to use the convert method
+
+
         string name; //Values can be declared at a later time
         name = "Ron"; //And the value is then declared using the assignment operator
         //Strings can be either null or empty -- it is empty if you assign it to be "", null if value is undeclared or specifically declared null. This can matter if you're looking for specific states
@@ -41,8 +52,68 @@ class Program
         bool condition =true;
         condition = false;
         
-        Console.WriteLine("Your age is ",age,"correct?");
+        // This is code with an error
+        //char conDen;
+        /*
+        Console.WriteLine(name," age is ",age,"correct?");
+        Console.WriteLine("Y for yes, N for no")
+        char conDen = Console.ReadLine();
+        if (conDen == 'Y')
+        {
+            Console.WriteLine("Great!");
+        }
+        else if (conDen == 'N')
+        {
+            Console.WriteLine("Please enter correct age");
+        }
+        else
+        {
+            Console.WriteLine("Please enter valid character");
+        }
+        */
 
+        /* 
+        Logical operators:
+        1. ||, used for logical OR operator; if either is true, evaluates true
+        2. &&, used for logical AND operator; if both are true, evaluates true
+        3. !, used for logical NOT operator; inverts condition and is placed immediately before condition/variable
+        */
+
+        /*
+        Comparison operators, returning true or false bools
+        1. ==, equal to, returns true if both are equal
+        2. !=, not equal, returns true if values are not equal
+        3. >, greater than
+        4. <, less than
+        5. >=, greater than or equal
+        6. <=, less than or equal
+        */
+
+        //control flow basics and conditional statements
+        int newInt = 4;
+        Console.WriteLine("Please provide a number");
+        //Need to understand why this doesn't work?        
+        //newInt = Convert.ChangeType(Console.ReadLine(),typeof(int));
+
+        //This takes newInt and assigns it a value from a string that is converted to an int to fit newInt
+       
+        newInt = Convert.ToInt32(Console.ReadLine());
+        //Alternate interpretation:
+        //string userInput = Console.ReadLine();
+        //int userNumber = Convert.ToInt32(userInput);
+
+        if (newInt == 4)
+        {
+            Console.WriteLine(name,", newInt equals 4!");
+        }
+        else if(newInt >= 8)
+        {
+            Console.WriteLine(name,", newInt is greater than 7!");
+        }
+        else
+        {
+            Console.WriteLine(name,", newint is either less than 4 or between 5 and 7");
+        }
     }
 
 }
