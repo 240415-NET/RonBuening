@@ -104,16 +104,81 @@ class Program
 
         if (newInt == 4)
         {
-            Console.WriteLine(name,", newInt equals 4!");
+            Console.WriteLine(name+", newInt equals 4!");
         }
         else if(newInt >= 8)
         {
-            Console.WriteLine(name,", newInt is greater than 7!");
+            Console.WriteLine(name+", newInt is greater than 7!");
         }
         else
         {
-            Console.WriteLine(name,", newint is either less than 4 or between 5 and 7");
+            Console.WriteLine(name+", newint is either less than 4 or between 5 and 7");
         }
+
+        Console.WriteLine("Enter number for switch");
+        int switchInt = Convert.ToInt32(Console.ReadLine());
+
+        //for switch statement, must use 'or' and 'and' in lieu of '||' and '&&'
+        //in if statement, must use '||' and '&&' in lieu of 'or' and 'and'
+        switch (switchInt)
+        {
+            case 1:
+                Console.WriteLine("case 1");
+                break;
+            case 2 or 0:
+                Console.WriteLine("case 2 or 0");
+                break;
+            case >= 3:
+                Console.WriteLine("case greater or equal to 3");
+                goto case 1;
+                //if you do this, be careful. Don't get too clever as it may be misunderstood and is difficult to follow
+            default:
+                Console.WriteLine("case is negative!");
+                break;
+        }
+
+        if (newInt > 3 && switchInt >3)
+        {
+            Console.WriteLine("Both variables are equal to 3");
+        }
+        else if (newInt < -2 && !(newInt ==5 || switchInt == 2))
+        {
+            Console.WriteLine("This string should be pretty rare");
+        }
+
+        //loops
+        //for loop will run based on statements in the for statement, typically for a specific defined period of time
+        for (int i = 0; i < newInt; i++)
+        {
+            //this code will run so long as the above condition is met and for as many times as the value of newInt 
+            Console.WriteLine(i+1 + ". This is from the for loop");
+        }
+
+        //while will run for whatever duration that a condition is true (possibly infinite); it may also never run
+        while (newInt > 0)
+        {
+            Console.WriteLine(newInt);
+            newInt--;
+        }
+
+        //in contrast, do-while runs at least once, then checks for validity in future runs.
+        int doDance = 0;
+        Console.WriteLine("Reenter value here");
+        newInt = Convert.ToInt32(Console.ReadLine());
+        do
+        {
+            if (doDance == 0)
+            {
+                Console.WriteLine("This will always write once");
+            }
+            else
+            {
+                Console.WriteLine("This will always write once x" + doDance);
+            }
+            doDance++;
+        }
+        while(newInt > doDance);
     }
+
 
 }
