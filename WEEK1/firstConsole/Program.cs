@@ -41,6 +41,8 @@ class Program
         bool condition =true;
         condition = false;
         
+        Console.WriteLine("Your age is ",age,"correct?");
+
     }
 
 }
