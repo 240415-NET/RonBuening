@@ -5,15 +5,21 @@ class Program
     static void Main(string[] args)
     {
         /*
-        1 - Prompts the user for some input
-        2 - Does something with that input
-        3 - Handles any exceptions that may arise during the running of the application (no hard crashing)
-        4 - Continues to run until the user quits the application, from within the application (no ctrl+c)
+        Goals:
+            1 - Prompts the user for some input
+            2 - Does something with that input
+            3 - Handles any exceptions that may arise during the running of the application (no hard crashing)
+            4 - Continues to run until the user quits the application, from within the application (no ctrl+c)
+        Program:
+            New program created that emulates a cash register transaction
+            Prompts for entry of item value or an exit
+            Increments numberItems for each successful entry and keeps running subtotal for items
+            Upon exit prompt, shows checkout total and prompts for payment
+            If needed, provides change owed or additional amount owed by customer
         */
 
         double checkoutTotal = 0;
         double itemValue = 0;
-        double amountTendered = 0;
         int numberItems = 0;
         string userInput;
         bool quit = false;
@@ -26,17 +32,7 @@ class Program
                 userInput = Console.ReadLine().ToLower();
                 if (userInput == "q" && numberItems > 0)
                 {
-                    Console.WriteLine($"${Math.Round(checkoutTotal,2)} is owed today for {numberItems} items");
-                    Console.WriteLine("Please enter amount tendered");
-                    amountTendered = Convert.ToDouble(Console.ReadLine());
-                    if (amountTendered-checkoutTotal >= 0)
-                    {
-                        Console.WriteLine($"${Math.Round(amountTendered-checkoutTotal,2)} is owed in change");
-                    }
-                    else
-                    {
-                        Console.WriteLine($"An additional {Math.Round(-(amountTendered-checkoutTotal),2)} is needed.");
-                    }
+                    endTransaction(checkoutTotal,numberItems);
                     quit = true;
                 }
                 else if (userInput == "q" && numberItems == 0)
@@ -74,5 +70,32 @@ class Program
     {
         total = total + itemValue;
         return total;
+    }
+
+    static void endTransaction (double checkoutTotal, int numberItems)
+    {
+        Console.WriteLine($"${Math.Round(checkoutTotal,2)} is owed today for {numberItems} items");
+        try
+        {
+            Console.WriteLine("Please enter amount tendered");
+            double amountTendered = Convert.ToDouble(Console.ReadLine());
+            if (amountTendered-checkoutTotal == 0)
+            {
+                Console.WriteLine("Thank you, have a great day!");
+            }
+            else if (amountTendered-checkoutTotal > 0)
+            {
+                Console.WriteLine($"${Math.Round(amountTendered-checkoutTotal,2)} is owed in change");
+            }
+            else
+            {
+                Console.WriteLine($"An additional {Math.Round(-(amountTendered-checkoutTotal),2)} is needed.");
+            }
+        }
+        catch (System.Exception e)
+        {
+            Console.WriteLine($"{e.Message} Please enter either a valid payment amount");
+        }
+       
     }
 }
