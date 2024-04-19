@@ -24,7 +24,7 @@ class Program
             {
                 Console.WriteLine("Please enter value of the item or enter 'q' to end transaction");
                 userInput = Console.ReadLine().ToLower();
-                if (userInput == "q")
+                if (userInput == "q" && numberItems > 0)
                 {
                     Console.WriteLine($"${Math.Round(checkoutTotal,2)} is owed today for {numberItems} items");
                     Console.WriteLine("Please enter amount tendered");
@@ -37,6 +37,11 @@ class Program
                     {
                         Console.WriteLine($"An additional {Math.Round(-(amountTendered-checkoutTotal),2)} is needed.");
                     }
+                    quit = true;
+                }
+                else if (userInput == "q" && numberItems == 0)
+                {
+                    Console.WriteLine("Transaction cancelled");
                     quit = true;
                 }
                 else
