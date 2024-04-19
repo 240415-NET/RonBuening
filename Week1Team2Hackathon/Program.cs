@@ -84,19 +84,27 @@ class Program
         try
         {
             Console.WriteLine("Please enter amount tendered");
-            double amountTendered = Convert.ToDouble(Console.ReadLine());
-            double balance = Math.Round(amountTendered - checkoutTotal,2);
-            if (balance == 0)
+            string checkout = Console.ReadLine().ToLower();
+            if (checkout == "e")
             {
-                Console.WriteLine("Thank you, have a great day!");
-            }
-            else if (balance > 0)
-            {
-                Console.WriteLine($"${balance} is owed in change");
+                Console.WriteLine("Transaction cancelled");
             }
             else
             {
-                Console.WriteLine($"An additional ${-(balance)} is needed.");
+                double amountTendered = Convert.ToDouble(checkout);
+                double balance = Math.Round(amountTendered - checkoutTotal,2);
+                if (balance == 0)
+                {
+                    Console.WriteLine("Thank you, have a great day!");
+                }
+                else if (balance > 0)
+                {
+                    Console.WriteLine($"${balance} is owed in change");
+                }
+                else
+                {
+                    Console.WriteLine($"An additional ${-(balance)} is needed.");
+                }
             }
         }
         catch (System.Exception e)
