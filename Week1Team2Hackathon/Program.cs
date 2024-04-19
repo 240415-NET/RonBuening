@@ -47,7 +47,7 @@ class Program
                     numberItems = ItterateNumItems(numberItems);
                     if (numberItems > 1)
                     {
-                        Console.WriteLine($"Subtotal is ${Math.Round(checkoutTotal,2)}");
+                        Console.WriteLine($"Subtotal is ${checkoutTotal}");
                     }
                 }
             }
@@ -69,6 +69,7 @@ class Program
     static double RunningTotal (double itemValue, double total)
     {
         total = total + itemValue;
+        total = Math.Truncate(100*total)/100;
         return total;
     }
 
@@ -78,18 +79,18 @@ class Program
         try
         {
             Console.WriteLine("Please enter amount tendered");
-            double amountTendered = Convert.ToDouble(Console.ReadLine());
+            double amountTendered = Math.Round(Convert.ToDouble(Console.ReadLine()),2);
             if (amountTendered-checkoutTotal == 0)
             {
                 Console.WriteLine("Thank you, have a great day!");
             }
             else if (amountTendered-checkoutTotal > 0)
             {
-                Console.WriteLine($"${Math.Round(amountTendered-checkoutTotal,2)} is owed in change");
+                Console.WriteLine($"${amountTendered-checkoutTotal} is owed in change");
             }
             else
             {
-                Console.WriteLine($"An additional {Math.Round(-(amountTendered-checkoutTotal),2)} is needed.");
+                Console.WriteLine($"An additional {-(amountTendered-checkoutTotal)} is needed.");
             }
         }
         catch (System.Exception e)
