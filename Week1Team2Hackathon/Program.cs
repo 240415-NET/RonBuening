@@ -13,6 +13,7 @@ class Program
 
         double checkoutTotal = 0;
         double itemValue = 0;
+        double amountTendered = 0;
         int numberItems = 0;
         string userInput;
         bool quit = false;
@@ -26,13 +27,27 @@ class Program
                 if (userInput == "q" || userInput == "Q")
                 {
                     Console.WriteLine($"${checkoutTotal} is owed today for {numberItems} items");
+                    Console.WriteLine("Please enter amount tendered");
+                    amountTendered = Convert.ToDouble(Console.ReadLine());
+                    if (amountTendered-checkoutTotal >= 0)
+                    {
+                        Console.WriteLine($"${amountTendered-checkoutTotal} is owed in change");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"An additional {-(amountTendered-checkoutTotal)} is needed.");
+                    }
                     quit = true;
                 }
                 else
                 {
                     itemValue = Convert.ToDouble(userInput);
-                    checkoutTotal = checkoutTotal + itemValue;
-                    numberItems++;
+                    checkoutTotal = RunningTotal(itemValue,checkoutTotal);
+                    numberItems = ItterateNumItems(numberItems);
+                    if (numberItems > 1)
+                    {
+                        Console.WriteLine($"Subtotal is ${checkoutTotal}");
+                    }
                 }
             }
             catch (Exception e)
@@ -42,5 +57,17 @@ class Program
         }
         while (quit == false);
 
+    }
+
+    static int ItterateNumItems(int numberItems)
+    {
+        int num1 = numberItems + 1;
+        return num1;
+    } 
+   
+    static double RunningTotal (double itemValue, double total)
+    {
+        total = total + itemValue;
+        return total;
     }
 }
