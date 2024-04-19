@@ -23,8 +23,8 @@ class Program
             try
             {
                 Console.WriteLine("Please enter value of the item or enter 'q' to end transaction");
-                userInput = Console.ReadLine();
-                if (userInput == "q" || userInput == "Q")
+                userInput = Console.ReadLine().ToLower();
+                if (userInput == "q")
                 {
                     Console.WriteLine($"${Math.Round(checkoutTotal,2)} is owed today for {numberItems} items");
                     Console.WriteLine("Please enter amount tendered");
