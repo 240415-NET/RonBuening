@@ -28,14 +28,19 @@ class Program
         {
             try
             {
-                Console.WriteLine("Please enter value of the item or enter 'q' to end transaction");
+                Console.WriteLine("Please enter value of the item, enter 'c' to checkout, or 'e' to end transaction");
                 userInput = Console.ReadLine().ToLower();
-                if (userInput == "q" && numberItems > 0)
+                if ((userInput == "q" || userInput == "c") && numberItems > 0)
                 {
                     endTransaction(checkoutTotal,numberItems);
                     quit = true;
                 }
-                else if (userInput == "q" && numberItems == 0)
+                else if ((userInput == "q" || userInput == "c") && numberItems == 0)
+                {
+                    Console.WriteLine("Transaction cancelled");
+                    quit = true;
+                }
+                else if (userInput == "e")
                 {
                     Console.WriteLine("Transaction cancelled");
                     quit = true;
@@ -79,23 +84,24 @@ class Program
         try
         {
             Console.WriteLine("Please enter amount tendered");
-            double amountTendered = Math.Round(Convert.ToDouble(Console.ReadLine()),2);
-            if (amountTendered-checkoutTotal == 0)
+            double amountTendered = Convert.ToDouble(Console.ReadLine());
+            double balance = Math.Round(amountTendered - checkoutTotal,2);
+            if (balance == 0)
             {
                 Console.WriteLine("Thank you, have a great day!");
             }
-            else if (amountTendered-checkoutTotal > 0)
+            else if (balance > 0)
             {
-                Console.WriteLine($"${amountTendered-checkoutTotal} is owed in change");
+                Console.WriteLine($"${balance} is owed in change");
             }
             else
             {
-                Console.WriteLine($"An additional {-(amountTendered-checkoutTotal)} is needed.");
+                Console.WriteLine($"An additional ${-(balance)} is needed.");
             }
         }
         catch (System.Exception e)
         {
-            Console.WriteLine($"{e.Message} Please enter either a valid payment amount");
+            Console.WriteLine($"{e.Message} Please enter a valid payment amount");
         }
        
     }
