@@ -8,7 +8,8 @@ class Program
         int val1 = Convert.ToInt32(Console.ReadLine());
         Console.WriteLine("Please key value 2 as int");
         int val2 = Convert.ToInt32(Console.ReadLine());
-        Console.WriteLine("The sum of the two values is " + AddTwoNumbers(val1,val2));
+        //Below uses string interpolation to insert the values and answer. Note the '$' at the beginning of the string.
+        Console.WriteLine($"The sum of {val1} and {val2} is {AddTwoNumbers(val1,val2)}");
     }
 
     //static methods vs dynamic methods will be discussed next week; these are access modifiers
