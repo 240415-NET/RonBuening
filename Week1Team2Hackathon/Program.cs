@@ -26,16 +26,16 @@ class Program
                 userInput = Console.ReadLine();
                 if (userInput == "q" || userInput == "Q")
                 {
-                    Console.WriteLine($"${checkoutTotal} is owed today for {numberItems} items");
+                    Console.WriteLine($"${Math.Round(checkoutTotal,2)} is owed today for {numberItems} items");
                     Console.WriteLine("Please enter amount tendered");
                     amountTendered = Convert.ToDouble(Console.ReadLine());
                     if (amountTendered-checkoutTotal >= 0)
                     {
-                        Console.WriteLine($"${amountTendered-checkoutTotal} is owed in change");
+                        Console.WriteLine($"${Math.Round(amountTendered-checkoutTotal,2)} is owed in change");
                     }
                     else
                     {
-                        Console.WriteLine($"An additional {-(amountTendered-checkoutTotal)} is needed.");
+                        Console.WriteLine($"An additional {Math.Round(-(amountTendered-checkoutTotal),2)} is needed.");
                     }
                     quit = true;
                 }
@@ -46,7 +46,7 @@ class Program
                     numberItems = ItterateNumItems(numberItems);
                     if (numberItems > 1)
                     {
-                        Console.WriteLine($"Subtotal is ${checkoutTotal}");
+                        Console.WriteLine($"Subtotal is ${Math.Round(checkoutTotal,2)}");
                     }
                 }
             }
