@@ -3,11 +3,11 @@ using System;
 using System.Collections.Generic;
 
 /*
-1 - Prompts the user for multiple values
-2 - Save the values to an Array
-3 - Handles any exceptions that may arise during the running of the application (no hard crashing)
-4 - Manage and update the values for the array using inputs from the User
-5 - Continues to run until the user quits the application, from within the application (no ctrl+c)
+1 - Prompts the user for multiple values -- DONE!
+2 - Save the values to an Array -- A list, but DONE!
+3 - Handles any exceptions that may arise during the running of the application (no hard crashing) -- IN PROGRESS
+4 - Manage and update the values for the array using inputs from the User -- DONE!
+5 - Continues to run until the user quits the application, from within the application (no ctrl+c) -- Done!
 */
 
 class Program
