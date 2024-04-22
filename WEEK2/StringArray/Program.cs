@@ -74,5 +74,21 @@ class Program
 
         //Remember that references (the variable names) can refer to the same data (the values), but that the data is immutable in a string.
 
+        //Contains is a method that returns a booolean based on the contents of a string or substring
+
+        Console.WriteLine("Please write your name");
+        string name = Console.ReadLine();
+
+        Console.WriteLine(name.Contains("mike"));
+
+        if (name.ToLower().Contains("Mike"))
+        {
+            Console.WriteLine("Hello Mike!");
+        }
+        else
+        {
+            Console.WriteLine("Hello " + name + '!');
+        }
+
     }
 }
