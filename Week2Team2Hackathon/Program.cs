@@ -20,7 +20,7 @@ class Program
         string userInput = Console.ReadLine().Trim();
         bool quit = false;
         int itemNum = 1;
-        int alterItem;
+        //int alterItem;
         List<string> shoppingList = new List<string>();
 
         if (userInput.ToLower() == "q" || userInput.ToLower() == "quit")
@@ -35,6 +35,7 @@ class Program
     
         while (quit == false)
         {
+            Console.Clear();
             Console.WriteLine("Please enter an item for your shopping list or type 'print' to print list");
             userInput = Console.ReadLine().Trim();
             if (userInput.ToLower() == "q" || userInput.ToLower() == "quit")
@@ -57,7 +58,7 @@ class Program
     static List<string> PrintShoppingList (List<string> printableList)
     {
         List<string> localList = printableList.ToList();
-        int itemItt = 1;
+        //int itemItt = 1;
         Console.Clear();
         
         localList.ForEach(Console.WriteLine);
@@ -130,7 +131,7 @@ class Program
                 {
                     itemComplete = Convert.ToInt32(userTicks);
                     completedItems[itemComplete-1] = true;
-                    countCompleted++;
+                    countCompleted = completedItems.Where(c => c).Count();
                     if (countCompleted == checkList.Count())
                     {
                         listComplete = true;
@@ -144,6 +145,7 @@ class Program
             }
         }
         while (listComplete == false);
+        Console.WriteLine("Congratulations, the shopping is done!");
         Environment.Exit(0);
     }
 
