@@ -90,5 +90,20 @@ class Program
             Console.WriteLine("Hello " + name + '!');
         }
 
+        //Trim removes leading and trailing whitespace
+
+        Console.WriteLine("Please write your name (again)");
+        string name2 = Console.ReadLine().Trim();
+
+        Console.WriteLine(name2);
+
+        //Replace can replace all occurrences of a substring with another substring
+
+        string text = "Hello Hello, World!";
+
+        string newText = text.Replace(" ","_");
+
+        Console.WriteLine(newText);
+
     }
 }

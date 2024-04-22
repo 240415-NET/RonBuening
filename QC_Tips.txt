@@ -1,0 +1,4 @@
+QC prefers to have both real world and programming related examples in answers to questions
+
+Make sure you recall the four pillars of object oriented programming
+
