@@ -103,18 +103,19 @@ class Program
         return existingList;
     }
 
-    static List<string> ShoppingMode (List<string> printedList)
+    static void ShoppingMode (List<string> printedList)
     {
         List<string> checkList = printedList.ToList();
         string userTicks;
         int itemComplete;
+        int countCompleted = 0;
         bool[] completedItems = new bool[checkList.Count()];
-        completedItems.foreach()
+        //completedItems.foreach()
         bool listComplete = false;
         do
         {
             Console.WriteLine("Enter index number once item has been collected, 's' to save, or 'q' to quit");
-            userTicks = Console.ReadLine().Trim().ToLower;
+            userTicks = Console.ReadLine().Trim().ToLower();
             try
             {
                 if (userTicks == "s" || userTicks == "save")
@@ -129,10 +130,35 @@ class Program
                 {
                     itemComplete = Convert.ToInt32(userTicks);
                     completedItems[itemComplete-1] = true;
+                    countCompleted++;
+                    if (countCompleted == checkList.Count())
+                    {
+                        listComplete = true;
+                    }
                 }
+                PrintTruncatedList(checkList,completedItems);
             }
-
+            catch (Exception e)
+            {
+                Console.WriteLine($"{e.Message} Please enter a valid number or option");
+            }
         }
-        
+        while (listComplete == false);
+        Environment.Exit(0);
     }
+
+    static void PrintTruncatedList (List<string> TruncatedList,bool[] omittedItems)
+    {
+        List<string> prettyPrint = TruncatedList.ToList();
+        Console.Clear();
+        for (int i = 0; i < TruncatedList.Count(); i++)
+        {
+            if (omittedItems[i] != true)
+            {
+                Console.WriteLine(prettyPrint[i]);
+            }
+        }
+    }
+        
+  
 }
