@@ -20,13 +20,14 @@ class Program
         string userInput = Console.ReadLine().Trim();
         bool quit = false;
         int itemNum = 1;
+        List<string> shoppingList = new List<string>();
+        
         if (userInput.ToLower() == "q")
         {
             quit = true;
         }
         else
         {
-            List<string> shoppingList = new List<string>();
             shoppingList.Add(itemNum + ". " + userInput);
             //shoppingList.ForEach(Console.WriteLine);
             itemNum++;
