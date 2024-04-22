@@ -25,7 +25,7 @@ class Program
 
         //to access the values in the array, you cannot simply refer to array
         //can use for loop
-
+        /*
         for (int i = 0; i < student_grades.Length; i++)
         {
             Console.WriteLine(student_grades[i]);
@@ -36,5 +36,22 @@ class Program
         {
             Console.WriteLine(grade);
         }
+        */
+
+        //a string is an array of chars
+        char[] hello_chars = {'H','e','l','l','o'};
+        string hello_string = new string(hello_chars);
+        Console.WriteLine(hello_chars);
+        Console.WriteLine(hello_string);
+
+        //.ToCharArray() method converts strings to an array of chars
+        string world_string = "world!";
+        char[] world_chars = world_string.ToCharArray();
+
+        Console.WriteLine(world_string);
+        Console.WriteLine(world_chars);
+
+        //The big difference is that since the string is also considered an object, it can also be used with methods (AKA functions). 
+
     }
 }
