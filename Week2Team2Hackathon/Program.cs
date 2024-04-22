@@ -125,6 +125,7 @@ class Program
 
     static void ShoppingMode (List<string> printedList)
     {
+        //The shopping mode method is designed to hide items from the list by marking a boolean array true in the same locations as the original list.
         List<string> checkList = printedList.ToList();
         string userTicks;
         int itemComplete;
@@ -181,6 +182,4 @@ class Program
             }
         }
     }
-        
-  
 }
