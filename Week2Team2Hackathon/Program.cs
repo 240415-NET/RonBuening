@@ -23,6 +23,7 @@ class Program
         //int alterItem;
         List<string> shoppingList = new List<string>();
 
+        //This will set up either to exit the program completely or to add the first item to the shopping list
         if (userInput.ToLower() == "q" || userInput.ToLower() == "quit")
         {
             Environment.Exit(0);
@@ -32,7 +33,8 @@ class Program
             shoppingList.Add(itemNum + ". " + userInput);
             itemNum++;
         }
-    
+
+        //This while loop will present the user with the option to add items to the list or print/view the entire list. Upon printing, a new method is called which gives additional options
         while (quit == false)
         {
             Console.Clear();
@@ -57,6 +59,7 @@ class Program
 
     static List<string> PrintShoppingList (List<string> printableList)
     {
+        //This method is called by Main and prints the currently compiled list
         List<string> localList = printableList.ToList();
         //int itemItt = 1;
         Console.Clear();
@@ -65,12 +68,27 @@ class Program
         Console.WriteLine("Do you need to add more items or change an existing item?");
         Console.WriteLine("'y' for yes, 'n' for no, 'c' to change");
         string userPrintSelect = Console.ReadLine().Trim().ToLower();
-        if (userPrintSelect == "n" || userPrintSelect == "q" || userPrintSelect == "no" || userPrintSelect == "quit")
+        //Here the user can select to exit/abort, add addition items (returning to main), or change items using another method
+        //Implemented confirmation dialog to improve UX since they've worked to get this far
+        if (userPrintSelect == "n" ||  userPrintSelect == "no")
         {
             Console.Clear();
             localList.ForEach(Console.WriteLine);
             Console.WriteLine("Ready to enter shopping mode");
             ShoppingMode(localList);
+        }
+        else if (userPrintSelect == "q" || userPrintSelect == "quit")
+        {
+            Console.WriteLine("Are you sure? Data will not be saved! Confirm by typing 'g'");
+            //quitConfirm = Console.ReadLine().ToLower();
+            if (Console.ReadLine().ToLower() == "g")
+            {
+                Environment.Exit(0);
+            }
+            else
+            {
+                Console.WriteLine("Please enter a valid selection.");
+            }
         }
         else if (userPrintSelect == "c" || userPrintSelect == "change")
         {
@@ -86,6 +104,7 @@ class Program
 
     static List<string> ChangeShoppingList (List<string> existingList2)
     {
+        //The ChangeShoppingList method allows for corrections and edits to the list, returning the user to main once the edit is complete
         List<string> existingList = existingList2.ToList();
         try
         {
@@ -151,6 +170,7 @@ class Program
 
     static void PrintTruncatedList (List<string> TruncatedList,bool[] omittedItems)
     {
+        //This method exists solely to print out the items on the list that have not been marked complete under the ShoppingMode method
         List<string> prettyPrint = TruncatedList.ToList();
         Console.Clear();
         for (int i = 0; i < TruncatedList.Count(); i++)
