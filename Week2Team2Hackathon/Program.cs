@@ -46,7 +46,7 @@ class Program
             }
             else if (userInput.ToLower() == "p" || userInput.ToLower() == "print")
             {
-                PrintShoppingList(shoppingList);
+                shoppingList = PrintShoppingList(shoppingList);
             }
             else
             {
@@ -92,7 +92,7 @@ class Program
         }
         else if (userPrintSelect == "c" || userPrintSelect == "change")
         {
-            ChangeShoppingList(localList);
+            localList = ChangeShoppingList(localList);
         }
         else
         {
