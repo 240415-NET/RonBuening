@@ -68,7 +68,8 @@ class Program
         {
             Console.Clear();
             localList.ForEach(Console.WriteLine);
-            Environment.Exit(0);
+            Console.WriteLine("Ready to enter shopping mode");
+            ShoppingMode(localList);
         }
         else if (userPrintSelect == "c" || userPrintSelect == "change")
         {
@@ -100,5 +101,38 @@ class Program
             Console.WriteLine($"{e.Message} Please enter a valid number");
         }
         return existingList;
+    }
+
+    static List<string> ShoppingMode (List<string> printedList)
+    {
+        List<string> checkList = printedList.ToList();
+        string userTicks;
+        int itemComplete;
+        bool[] completedItems = new bool[checkList.Count()];
+        completedItems.foreach()
+        bool listComplete = false;
+        do
+        {
+            Console.WriteLine("Enter index number once item has been collected, 's' to save, or 'q' to quit");
+            userTicks = Console.ReadLine().Trim().ToLower;
+            try
+            {
+                if (userTicks == "s" || userTicks == "save")
+                {
+                    Console.WriteLine("Saving is not yet implemented.");
+                }
+                else if (userTicks == "q" || userTicks == "quit")
+                {
+                    Environment.Exit(0);
+                }
+                else
+                {
+                    itemComplete = Convert.ToInt32(userTicks);
+                    completedItems[itemComplete-1] = true;
+                }
+            }
+
+        }
+        
     }
 }
