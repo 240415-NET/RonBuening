@@ -20,33 +20,55 @@ class Program
         {
             List<string> shoppingList = new List<string>();
             shoppingList.Add(itemNum + ". " + userInput);
-            Console.WriteLine(s)
+            //shoppingList.ForEach(Console.WriteLine);
+            itemNum++;
         }
-        
-
-        
-        
-/*
+    
         while (quit == false)
         {
-            Console.WriteLine("Please enter an item for your shopping list");
+            Console.WriteLine("Please enter an item for your shopping list or type 'print' to print list");
             userInput = Console.ReadLine().Trim();
             if (userInput.ToLower() == "q")
             {
                 quit = true;
             }
+            else if (userInput.ToLower() == "print")
+            {
+                shoppingList.ForEach(Console.WriteLine);
+            }
             else
             {
-                shoppingList.Add(userInput);
+                shoppingList.Add(itemNum + ". " + userInput);
+                itemNum++;
             }
-        }*/
+        }
         
     }
 
 
-/*    static void CreateShoppingList (string[] newInput, string[] existingList)
+/*    static void CreateShoppingList (string[] existingList)
     {
-        
-        return newList;
+        bool quit = false;
+        int itemNum = 2;
+        string userInput;
+
+        while (quit == false)
+        {
+            Console.WriteLine("Please enter an item for your shopping list or type 'print' to print list");
+            userInput = Console.ReadLine().Trim();
+            if (userInput.ToLower() == "q")
+            {
+                quit = true;
+            }
+            else if (userInput.ToLower() == "print")
+            {
+                shoppingList.ForEach(Console.WriteLine);
+            }
+            else
+            {
+                shoppingList.Add(itemNum + ". " + userInput);
+                itemNum++;
+            }
+        }
     }*/
 }
