@@ -5,9 +5,9 @@ using System.Collections.Generic;
 /*
 1 - Prompts the user for multiple values -- DONE!
 2 - Save the values to an Array -- A list, but DONE!
-3 - Handles any exceptions that may arise during the running of the application (no hard crashing) -- IN PROGRESS
+3 - Handles any exceptions that may arise during the running of the application (no hard crashing) -- Done (I think)
 4 - Manage and update the values for the array using inputs from the User -- DONE!
-5 - Continues to run until the user quits the application, from within the application (no ctrl+c) -- Done!
+5 - Continues to run until the user quits the application, from within the application (no ctrl+c) -- DONE!
 */
 
 class Program
@@ -57,14 +57,17 @@ class Program
     static List<string> PrintShoppingList (List<string> printableList)
     {
         List<string> localList = printableList.ToList();
-        
+        int itemItt = 1;
         Console.Clear();
+        
         localList.ForEach(Console.WriteLine);
         Console.WriteLine("Do you need to add more items or change an existing item?");
         Console.WriteLine("'y' for yes, 'n' for no, 'c' to change");
         string userPrintSelect = Console.ReadLine().Trim().ToLower();
         if (userPrintSelect == "n" || userPrintSelect == "q" || userPrintSelect == "no" || userPrintSelect == "quit")
         {
+            Console.Clear();
+            localList.ForEach(Console.WriteLine);
             Environment.Exit(0);
         }
         else if (userPrintSelect == "c" || userPrintSelect == "change")
