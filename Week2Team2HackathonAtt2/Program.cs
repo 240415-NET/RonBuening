@@ -42,7 +42,11 @@ class Program
                     itemNumber = Console.ReadLine();
                     alterItem = Convert.ToInt32(itemNumber);
                     Console.WriteLine("What item should replace it?");
-
+                    shoppingList[alterItem-1] = Console.ReadLine().Trim();
+                    foreach (string s in shoppingList)
+                    {
+                        Console.WriteLine(s);
+                    }
                 }
                 else
                 {
