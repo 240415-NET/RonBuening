@@ -65,6 +65,13 @@ class Program
             Console.WriteLine(c);
         }
 
+        for (int i = 1; i < new_word.Count(); i++)
+        {
+            Console.WriteLine(new_word[i]);
+        }
+
+        Console.WriteLine(new_word.Substring(new_word.Count()-3,3));
+
         //Remember that references (the variable names) can refer to the same data (the values), but that the data is immutable in a string.
 
     }
