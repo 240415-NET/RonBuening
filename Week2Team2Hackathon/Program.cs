@@ -20,7 +20,7 @@ class Program
         string userInput = Console.ReadLine().Trim();
         bool quit = false;
         int itemNum = 1;
-        int alterItem;
+        //int alterItem;
         List<string> shoppingList = new List<string>();
 
         if (userInput.ToLower() == "q" || userInput.ToLower() == "quit")
@@ -35,6 +35,7 @@ class Program
     
         while (quit == false)
         {
+            Console.Clear();
             Console.WriteLine("Please enter an item for your shopping list or type 'print' to print list");
             userInput = Console.ReadLine().Trim();
             if (userInput.ToLower() == "q" || userInput.ToLower() == "quit")
@@ -57,7 +58,7 @@ class Program
     static List<string> PrintShoppingList (List<string> printableList)
     {
         List<string> localList = printableList.ToList();
-        int itemItt = 1;
+        //int itemItt = 1;
         Console.Clear();
         
         localList.ForEach(Console.WriteLine);
@@ -68,7 +69,8 @@ class Program
         {
             Console.Clear();
             localList.ForEach(Console.WriteLine);
-            Environment.Exit(0);
+            Console.WriteLine("Ready to enter shopping mode");
+            ShoppingMode(localList);
         }
         else if (userPrintSelect == "c" || userPrintSelect == "change")
         {
@@ -101,4 +103,64 @@ class Program
         }
         return existingList;
     }
+
+    static void ShoppingMode (List<string> printedList)
+    {
+        List<string> checkList = printedList.ToList();
+        string userTicks;
+        int itemComplete;
+        int countCompleted = 0;
+        bool[] completedItems = new bool[checkList.Count()];
+        //completedItems.foreach()
+        bool listComplete = false;
+        do
+        {
+            Console.WriteLine("Enter index number once item has been collected, 's' to save, or 'q' to quit");
+            userTicks = Console.ReadLine().Trim().ToLower();
+            try
+            {
+                if (userTicks == "s" || userTicks == "save")
+                {
+                    Console.WriteLine("Saving is not yet implemented.");
+                }
+                else if (userTicks == "q" || userTicks == "quit")
+                {
+                    Environment.Exit(0);
+                }
+                else
+                {
+                    itemComplete = Convert.ToInt32(userTicks);
+                    completedItems[itemComplete-1] = true;
+                    countCompleted = completedItems.Where(c => c).Count();
+                    if (countCompleted == checkList.Count())
+                    {
+                        listComplete = true;
+                    }
+                }
+                PrintTruncatedList(checkList,completedItems);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"{e.Message} Please enter a valid number or option");
+            }
+        }
+        while (listComplete == false);
+        Console.WriteLine("Congratulations, the shopping is done!");
+        Environment.Exit(0);
+    }
+
+    static void PrintTruncatedList (List<string> TruncatedList,bool[] omittedItems)
+    {
+        List<string> prettyPrint = TruncatedList.ToList();
+        Console.Clear();
+        for (int i = 0; i < TruncatedList.Count(); i++)
+        {
+            if (omittedItems[i] != true)
+            {
+                Console.WriteLine(prettyPrint[i]);
+            }
+        }
+    }
+        
+  
 }
