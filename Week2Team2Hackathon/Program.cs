@@ -25,12 +25,11 @@ class Program
 
         if (userInput.ToLower() == "q" || userInput.ToLower() == "quit")
         {
-            quit = true;
+            Environment.Exit(0);
         }
         else
         {
             shoppingList.Add(itemNum + ". " + userInput);
-            //shoppingList.ForEach(Console.WriteLine);
             itemNum++;
         }
     
@@ -40,29 +39,11 @@ class Program
             userInput = Console.ReadLine().Trim();
             if (userInput.ToLower() == "q" || userInput.ToLower() == "quit")
             {
-                quit = true;
+                Environment.Exit(0);
             }
             else if (userInput.ToLower() == "p" || userInput.ToLower() == "print")
             {
-                Console.Clear();
-                shoppingList.ForEach(Console.WriteLine);
-                Console.WriteLine("Do you need to add more items or change an existing item?");
-                Console.WriteLine("'y' for yes, 'n' for no, 'c' to change");
-                userInput = Console.ReadLine().Trim().ToLower();
-                if (userInput == "n" || userInput == "q" || userInput == "no" || userInput == "quit")
-                {
-                    quit = true;
-                }
-                else if (userInput == "c" || userInput == "change")
-                {
-                    Console.WriteLine("Please enter an index to change");
-                    alterItem = Convert.ToInt32(Console.ReadLine().Trim());
-                    Console.WriteLine("What do you want to replace " + shoppingList[alterItem-1] + " with?");
-                    userInput = Console.ReadLine().Trim();
-                    shoppingList[alterItem-1] = alterItem + ". " + userInput;
-                    Console.Clear();
-                    shoppingList.ForEach(Console.WriteLine);
-                }
+                PrintShoppingList(shoppingList);
             }
             else
             {
@@ -73,30 +54,48 @@ class Program
         
     }
 
-
-/*    static void CreateShoppingList (string[] existingList)
+    static List<string> PrintShoppingList (List<string> printableList)
     {
-        bool quit = false;
-        int itemNum = 2;
-        string userInput;
-
-        while (quit == false)
+        List<string> localList = printableList.ToList();
+        
+        Console.Clear();
+        localList.ForEach(Console.WriteLine);
+        Console.WriteLine("Do you need to add more items or change an existing item?");
+        Console.WriteLine("'y' for yes, 'n' for no, 'c' to change");
+        string userPrintSelect = Console.ReadLine().Trim().ToLower();
+        if (userPrintSelect == "n" || userPrintSelect == "q" || userPrintSelect == "no" || userPrintSelect == "quit")
         {
-            Console.WriteLine("Please enter an item for your shopping list or type 'print' to print list");
-            userInput = Console.ReadLine().Trim();
-            if (userInput.ToLower() == "q")
-            {
-                quit = true;
-            }
-            else if (userInput.ToLower() == "print")
-            {
-                shoppingList.ForEach(Console.WriteLine);
-            }
-            else
-            {
-                shoppingList.Add(itemNum + ". " + userInput);
-                itemNum++;
-            }
+            Environment.Exit(0);
         }
-    }*/
+        else if (userPrintSelect == "c" || userPrintSelect == "change")
+        {
+            ChangeShoppingList(localList);
+        }
+        else
+        {
+            Console.WriteLine("Please enter valid selection.");
+        }
+
+        return localList;
+    }
+
+    static List<string> ChangeShoppingList (List<string> existingList2)
+    {
+        List<string> existingList = existingList2.ToList();
+        try
+        {
+            Console.WriteLine("Please enter an index to change");
+            int changeItem = Convert.ToInt32(Console.ReadLine().Trim());
+            Console.WriteLine("What do you want to replace " + existingList[changeItem-1] + " with?");
+            string changedItem = Console.ReadLine().Trim();
+            existingList[changeItem-1] = changeItem + ". " + changedItem;
+            Console.Clear();
+            existingList.ForEach(Console.WriteLine);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine($"{e.Message} Please enter a valid number");
+        }
+        return existingList;
+    }
 }
