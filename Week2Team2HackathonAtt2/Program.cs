@@ -29,40 +29,29 @@ class Program
         }
 
         string alterList;
+        string itemNumber;
+        int alterItem;
         
         try
             {
                 Console.WriteLine("Do you need to update your shopping list? 'y' for yes, 'n' for no.");
                 alterList = Console.ReadLine().ToLower();
-                if ((alterList == "y")
+                if (alterList == "y")
                 {
-                    Console.WriteLine("Select an item to change")
-                    
-                }
-                else if ((userInput == "q" || userInput == "c") && numberItems == 0)
-                {
-                    Console.WriteLine("Transaction cancelled");
-                    quit = true;
-                }
-                else if (userInput == "e")
-                {
-                    Console.WriteLine("Transaction cancelled");
-                    quit = true;
+                    Console.WriteLine("Select an item to change");
+                    itemNumber = Console.ReadLine();
+                    alterItem = Convert.ToInt32(itemNumber);
+                    Console.WriteLine("What item should replace it?");
+
                 }
                 else
                 {
-                    itemValue = Convert.ToDouble(userInput);
-                    checkoutTotal = RunningTotal(itemValue,checkoutTotal);
-                    numberItems = ItterateNumItems(numberItems);
-                    if (numberItems > 1)
-                    {
-                        Console.WriteLine($"Subtotal is ${checkoutTotal}");
-                    }
+                    Console.WriteLine("Please make sure to write your list on a piece of paper; it will not be retained");
                 }
             }
             catch (Exception e)
             {
-                Console.WriteLine($"{e.Message} Please enter either a valid number or q to end transaction");
+                Console.WriteLine($"{e.Message} Please enter either a valid selection or a number from 1 to 3");
             }
     }
 }
