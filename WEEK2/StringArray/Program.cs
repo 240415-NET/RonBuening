@@ -53,5 +53,19 @@ class Program
 
         //The big difference is that since the string is also considered an object, it can also be used with methods (AKA functions). 
 
+        //String methods
+        string new_word = Console.ReadLine();
+        Console.WriteLine(new_word);
+        new_word = new_word.ToUpper();
+        Console.WriteLine(new_word);
+        Console.WriteLine(new_word.ToLower());
+
+        foreach (char c in new_word)
+        {
+            Console.WriteLine(c);
+        }
+
+        //Remember that references (the variable names) can refer to the same data (the values), but that the data is immutable in a string.
+
     }
 }
