@@ -11,5 +11,6 @@ class Program
         pancake.name = "Pancake";
 
         pancake.Bark();
+        Dog.DefineDog();
     }
 }

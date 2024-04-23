@@ -21,7 +21,13 @@ public class Dog
 
     public string name {get; set;}
     public string breed {get; set;}
-    public int age {get; set;}
+
+    //The {get; set;} shorthand represents the below. This is important for private items
+    public int age 
+    {
+        get {return age;}; 
+        set {age = value};
+    }
     public string gender {get; set;}
     public double weight {get; set;}
 
@@ -30,5 +36,12 @@ public class Dog
     public void Bark()
     {
         Console.WriteLine($"{name}: Bark");
+    }
+
+    //Static methods belong to the class, not an instance
+    public static void DefineDog()
+    {
+        //An @ will give a verbatim string, including things like new lines
+        Console.WriteLine(@"A dog is a domesticated descendant of the wolf.");
     }
 }
