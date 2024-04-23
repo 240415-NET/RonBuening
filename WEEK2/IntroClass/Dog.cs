@@ -19,13 +19,16 @@ public class Dog
     //classes and methods also have access modifiers
 
 
-    public string name;
-    public string breed;
-    public int age;
-    public string gender;
-    public double weight;
+    public string name {get; set;}
+    public string breed {get; set;}
+    public int age {get; set;}
+    public string gender {get; set;}
+    public double weight {get; set;}
 
     //Methods
-
-
+    //An instance method can be called via dot notation from an instance of the class
+    public void Bark()
+    {
+        Console.WriteLine($"{name}: Bark");
+    }
 }
