@@ -43,6 +43,7 @@ class Program
             userInput = Console.ReadLine().Trim();
             if (userInput.ToLower() == "q" || userInput.ToLower() == "quit")
             {
+                quit = true;
                 Environment.Exit(0);
             }
             else if (userInput.ToLower() == "p" || userInput.ToLower() == "print")
