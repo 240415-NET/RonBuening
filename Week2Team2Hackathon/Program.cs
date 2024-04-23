@@ -13,7 +13,7 @@ using System.IO;
 
 class Program
 {
-    static void Main(string[] args)
+    public static void Main(string[] args)
     {
         Console.WriteLine("Hello, Shopper! We're ready to begin your shopping list.");
         Console.WriteLine("During any point, type 'q' to quit program without saving.");
@@ -59,7 +59,7 @@ class Program
         
     }
 
-    static List<string> PrintShoppingList (List<string> printableList)
+    public static List<string> PrintShoppingList (List<string> printableList)
     {
         //This method is called by Main and prints the currently compiled list
         List<string> localList = printableList.ToList();
@@ -77,7 +77,7 @@ class Program
             Console.Clear();
             localList.ForEach(Console.WriteLine);
             Console.WriteLine("Ready to enter shopping mode");
-            ShoppingMode(localList);
+            ShoppingMode.Shop(localList);
         }
         else if (userPrintSelect == "q" || userPrintSelect == "quit")
         {
@@ -104,7 +104,7 @@ class Program
         return localList;
     }
 
-    static List<string> ChangeShoppingList (List<string> existingList2)
+    public static List<string> ChangeShoppingList (List<string> existingList2)
     {
         //The ChangeShoppingList method allows for corrections and edits to the list, returning the user to main once the edit is complete
         List<string> existingList = existingList2.ToList();
@@ -125,7 +125,8 @@ class Program
         return existingList;
     }
 
-    static void ShoppingMode (List<string> printedList)
+    /*
+    public static void ShoppingMode (List<string> printedList)
     {
         //The shopping mode method is designed to hide items from the list by marking a boolean array true in the same locations as the original list.
         List<string> checkList = printedList.ToList();
@@ -171,7 +172,7 @@ class Program
         Environment.Exit(0);
     }
 
-    static void PrintTruncatedList (List<string> TruncatedList,bool[] omittedItems)
+    public static void PrintTruncatedList (List<string> TruncatedList,bool[] omittedItems)
     {
         //This method exists solely to print out the items on the list that have not been marked complete under the ShoppingMode method
         List<string> prettyPrint = TruncatedList.ToList();
@@ -184,8 +185,9 @@ class Program
             }
         }
     }
+    */
 
-    static void SaveList (List<string> toSave)
+    public static void SaveList (List<string> toSave)
     {
         //This method will save the file, either to a default directory and file name, or a user input one.
         Console.WriteLine("Please enter a directory and file name to save or 'd' for default");
