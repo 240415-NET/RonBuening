@@ -193,12 +193,12 @@ class Program
         try
         {
             saveLocation = Console.ReadLine();
-            if (saveLocation.ToLower() == 'd)'
+            if (saveLocation.ToLower() == "d")
             {
                 StreamWriter fileList = new StreamWriter("C:\\ShoppingList.txt");
                 saveList.ForEach(fileList.WriteLine);
                 fileList.Close();
-                Console.WriteLine("Your file has been saved in C:\\ShoppingList.txt")
+                Console.WriteLine("Your file has been saved in C:\\ShoppingList.txt");
             }
             else
             {
