@@ -13,7 +13,7 @@ using System.IO;
 
 class Program
 {
-    static void Main(string[] args)
+    public static void Main(string[] args)
     {
         Console.WriteLine("Hello, Shopper! We're ready to begin your shopping list.");
         Console.WriteLine("During any point, type 'q' to quit program without saving.");
@@ -43,6 +43,7 @@ class Program
             userInput = Console.ReadLine().Trim();
             if (userInput.ToLower() == "q" || userInput.ToLower() == "quit")
             {
+                quit = true;
                 Environment.Exit(0);
             }
             else if (userInput.ToLower() == "p" || userInput.ToLower() == "print")
@@ -58,7 +59,7 @@ class Program
         
     }
 
-    static List<string> PrintShoppingList (List<string> printableList)
+    public static List<string> PrintShoppingList (List<string> printableList)
     {
         //This method is called by Main and prints the currently compiled list
         List<string> localList = printableList.ToList();
@@ -76,7 +77,7 @@ class Program
             Console.Clear();
             localList.ForEach(Console.WriteLine);
             Console.WriteLine("Ready to enter shopping mode");
-            ShoppingMode(localList);
+            ShoppingMode.Shop(localList);
         }
         else if (userPrintSelect == "q" || userPrintSelect == "quit")
         {
@@ -103,7 +104,7 @@ class Program
         return localList;
     }
 
-    static List<string> ChangeShoppingList (List<string> existingList2)
+    public static List<string> ChangeShoppingList (List<string> existingList2)
     {
         //The ChangeShoppingList method allows for corrections and edits to the list, returning the user to main once the edit is complete
         List<string> existingList = existingList2.ToList();
@@ -122,100 +123,5 @@ class Program
             Console.WriteLine($"{e.Message} Please enter a valid number");
         }
         return existingList;
-    }
-
-    static void ShoppingMode (List<string> printedList)
-    {
-        //The shopping mode method is designed to hide items from the list by marking a boolean array true in the same locations as the original list.
-        List<string> checkList = printedList.ToList();
-        string userTicks;
-        int itemComplete;
-        int countCompleted = 0;
-        bool[] completedItems = new bool[checkList.Count()];
-        //completedItems.foreach()
-        bool listComplete = false;
-        do
-        {
-            Console.WriteLine("Enter index number once item has been collected, 's' to save and quit, or 'q' to quit");
-            userTicks = Console.ReadLine().Trim().ToLower();
-            try
-            {
-                if (userTicks == "s" || userTicks == "save")
-                {
-                    SaveList(checkList);
-                }
-                else if (userTicks == "q" || userTicks == "quit")
-                {
-                    Environment.Exit(0);
-                }
-                else
-                {
-                    itemComplete = Convert.ToInt32(userTicks);
-                    completedItems[itemComplete-1] = true;
-                    countCompleted = completedItems.Where(c => c).Count();
-                    if (countCompleted == checkList.Count())
-                    {
-                        listComplete = true;
-                    }
-                }
-                PrintTruncatedList(checkList,completedItems);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine($"{e.Message} Please enter a valid number or option");
-            }
-        }
-        while (listComplete == false);
-        Console.WriteLine("Congratulations, the shopping is done!");
-        Environment.Exit(0);
-    }
-
-    static void PrintTruncatedList (List<string> TruncatedList,bool[] omittedItems)
-    {
-        //This method exists solely to print out the items on the list that have not been marked complete under the ShoppingMode method
-        List<string> prettyPrint = TruncatedList.ToList();
-        Console.Clear();
-        for (int i = 0; i < TruncatedList.Count(); i++)
-        {
-            if (omittedItems[i] != true)
-            {
-                Console.WriteLine(prettyPrint[i]);
-            }
-        }
-    }
-
-    static void SaveList (List<string> toSave)
-    {
-        //This method will save the file, either to a default directory and file name, or a user input one.
-        Console.WriteLine("Please enter a directory and file name to save or 'd' for default");
-        string saveLocation;
-        List<string> saveList = toSave.ToList();
-
-        try
-        {
-            saveLocation = Console.ReadLine();
-            if (saveLocation.ToLower() == "d")
-            {
-                //Initial attempt showed permissions issue; may have to revise for future commits
-                StreamWriter fileList = new StreamWriter("C:\\ShoppingList.txt");
-                saveList.ForEach(fileList.WriteLine);
-                fileList.Close();
-                Console.WriteLine("Your file has been saved in C:\\ShoppingList.txt");
-            }
-            else
-            {
-                StreamWriter fileList = new StreamWriter(saveLocation);
-                saveList.ForEach(fileList.WriteLine);
-                fileList.Close();
-                Console.WriteLine("Your file has been saved in " + saveLocation);
-            }
-        }
-       catch(Exception e)
-       {
-            Console.WriteLine(e.Message + " Error in saving file. Please reattempt.");
-       }
-       Console.WriteLine("Please make sure to take your list with you!");
-       Environment.Exit(0);
-
     }
 }
