@@ -186,6 +186,7 @@ class Program
 
     static void SaveList (List<string> toSave)
     {
+        //This method will save the fil, either to a default directory and file name, or a user input one.
         Console.WriteLine("Please enter a directory and file name to save or 'd' for default");
         string saveLocation;
         List<string> saveList = toSave.ToList();
@@ -195,6 +196,7 @@ class Program
             saveLocation = Console.ReadLine();
             if (saveLocation.ToLower() == "d")
             {
+                //Initial attempt showed permissions issue; may have to revise for future commits
                 StreamWriter fileList = new StreamWriter("C:\\ShoppingList.txt");
                 saveList.ForEach(fileList.WriteLine);
                 fileList.Close();
