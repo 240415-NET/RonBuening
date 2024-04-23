@@ -1,6 +1,7 @@
 ﻿namespace Week2Team2Hackathon;
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 /*
 1 - Prompts the user for multiple values -- DONE!
@@ -135,13 +136,13 @@ class Program
         bool listComplete = false;
         do
         {
-            Console.WriteLine("Enter index number once item has been collected, 's' to save, or 'q' to quit");
+            Console.WriteLine("Enter index number once item has been collected, 's' to save and quit, or 'q' to quit");
             userTicks = Console.ReadLine().Trim().ToLower();
             try
             {
                 if (userTicks == "s" || userTicks == "save")
                 {
-                    Console.WriteLine("Saving is not yet implemented.");
+                    SaveList(checkList);
                 }
                 else if (userTicks == "q" || userTicks == "quit")
                 {
@@ -181,5 +182,38 @@ class Program
                 Console.WriteLine(prettyPrint[i]);
             }
         }
+    }
+
+    static void SaveList (List<string> toSave)
+    {
+        Console.WriteLine("Please enter a directory and file name to save or 'd' for default");
+        string saveLocation;
+        List<string> saveList = toSave.ToList();
+
+        try
+        {
+            saveLocation = Console.ReadLine();
+            if (saveLocation.ToLower() == "d")
+            {
+                StreamWriter fileList = new StreamWriter("C:\\ShoppingList.txt");
+                saveList.ForEach(fileList.WriteLine);
+                fileList.Close();
+                Console.WriteLine("Your file has been saved in C:\\ShoppingList.txt");
+            }
+            else
+            {
+                StreamWriter fileList = new StreamWriter(saveLocation);
+                saveList.ForEach(fileList.WriteLine);
+                fileList.Close();
+                Console.WriteLine("Your file has been saved in " + saveLocation);
+            }
+        }
+       catch(Exception e)
+       {
+            Console.WriteLine(e.Message + " Error in saving file. Please reattempt.");
+       }
+       Console.WriteLine("Please make sure to take your list with you!");
+       Environment.Exit(0);
+
     }
 }
