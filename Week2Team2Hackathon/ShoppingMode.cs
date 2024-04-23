@@ -23,7 +23,7 @@ class ShoppingMode
             {
                 if (userTicks == "s" || userTicks == "save")
                 {
-                    Program.SaveList(checkList);
+                    FileHandling.SaveList(checkList);
                 }
                 else if (userTicks == "q" || userTicks == "quit")
                 {
