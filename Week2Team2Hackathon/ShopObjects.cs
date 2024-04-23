@@ -7,5 +7,7 @@ class ShopObjects
 {
     public List<string> shopList = new();
     public Dictionary<string,string> shopList = new();
-    
+    public string itemName;
+    public string itemCost;
+
 }
