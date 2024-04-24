@@ -11,7 +11,7 @@ using System.IO;
 5 - Continues to run until the user quits the application, from within the application (no ctrl+c) -- DONE!
 */
 
-class StockTake
+class StockTake// : IENumerable<ShopObjects>
 {
     public static void StartStock()
     {
@@ -41,7 +41,7 @@ class StockTake
             productNameL = Program.exitChecker(Console.ReadLine());
             Console.WriteLine("Please enter stock on hand");
             stockL = Convert.ToInt32(Program.exitChecker(Console.ReadLine()));
-            localInventory.Add(new ShopObjects{itemID = itemNumL, brandNameL = brandNameL, productName = productNameL, stock = stockL});
+            localInventory.Add(new ShopObjects{itemID = itemNumL, brandName = brandNameL, productName = productNameL, stock = stockL});
             itemNumL++;
         }
         catch (Exception s)
@@ -67,7 +67,7 @@ class StockTake
                     brandNameL = Program.exitChecker(Console.ReadLine());
                     Console.WriteLine("Please enter stock on hand");
                     stockL = Convert.ToInt32(Program.exitChecker(Console.ReadLine()));
-                    localInventory.Add(new ShopObjects{itemID = itemNumL, brandNameL = brandNameL, productName = productNameL, stock = stockL});
+                    localInventory.Add(new ShopObjects{brandNameL,productNameL,stockL});
                     itemNumL++;
                 }
                 else
@@ -96,5 +96,15 @@ class StockTake
         }
         return done;
     }
+/*
+    public IEnumerator<ShopObjects> GetEnumerator()
+    {
+        return localInventory.GetEnumerator();
+    }
 
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return this.GetEnumerator();
+    }
+*/
 }

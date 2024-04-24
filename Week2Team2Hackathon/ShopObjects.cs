@@ -4,7 +4,7 @@ using System.Collections;
 
 using System.IO;
 
-class ShopObjects : IEnumerable
+class ShopObjects : IEnumerable<ShopObjects>
 {
     public string brandName {get; set;}
     public string productName {get; set;}
@@ -18,14 +18,21 @@ class ShopObjects : IEnumerable
         Console.WriteLine($"{itemID}: {brandName} {productName}; {stock} on hand");
     }
 
-    public ShopObjects (int itemID, string brandName, string productName, int stock)
+    public ShopObjects (string brandName, string productName, int stock)
     {
-        this.itemID = itemID;
+        //this.itemID = itemID;
         this.brandName = brandName;
         this.productName = productName;
         this.stock = stock;
     }
 
+    public IEnumerator<ShopObjects> GetEnumerator()
+    {
+        return localInventory.GetEnumerator();
+    }
 
-
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return this.GetEnumerator();
+    }
 }
