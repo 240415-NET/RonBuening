@@ -38,13 +38,13 @@ class StockTake// : IENumerable<ShopObjects>
         {
             try
             {
-                Console.Clear();
-                Console.WriteLine("When inventory is done, enter 'd' for done");
+                //Console.Clear();
+                //Console.WriteLine("When inventory is done, enter 'd' for done");
                 Console.WriteLine("Please enter the product name");
                 buffer = Console.ReadLine().Trim();
-                done1 = doneChecker(buffer);
-                if (done1 == false)
-                {
+                //done1 = doneChecker(buffer);
+                //if (done1 == false)
+                //{
                     productNameL = Program.exitChecker(buffer);
                     Console.WriteLine("Please enter the brand name");
                     brandNameL = Program.exitChecker(Console.ReadLine());
@@ -52,16 +52,17 @@ class StockTake// : IENumerable<ShopObjects>
                     stockL = Convert.ToInt32(Program.exitChecker(Console.ReadLine()));
                     localInventory.Add(itemNumL,new ShopObjects{itemID=itemNumL,brandName=brandNameL,productName=productNameL,stock=stockL});
                     itemNumL++;
-                }
-                else
-                {
-                    Console.Clear();
-                    for (int i = 0; i < localInventory.Count(); i++)
+                //}
+                //else
+                //{
+                    //Console.Clear();
+                     foreach(var item in localInventory)
                     {
-                        localInventory[i].WriteStock();
+                        Console.WriteLine($"{item.Key}. {item.Value.brandName} {item.Value.productName} {item.Value.stock}");  
                     }
                     Console.WriteLine("Do you need to add additional items?");
                     Console.WriteLine("'y' for yes, 'n' for no, 'c' to change existing item");
+                    buffer = Console.ReadLine().Trim();
                    /* buffer = Console.ReadLine.Trim();
                     if (buffer.ToLower == "no" || buffer.ToLower == "n")
                     {
@@ -73,7 +74,7 @@ class StockTake// : IENumerable<ShopObjects>
                     {
                         localInventory = editNeeded(localInventory);
                     }*/
-                }
+                //}
             }
             catch (Exception s)
             {
