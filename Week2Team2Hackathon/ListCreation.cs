@@ -1,4 +1,4 @@
-﻿namespace Week2Team2Hackathon;
+namespace Week2Team2Hackathon;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,40 +11,10 @@ using System.IO;
 5 - Continues to run until the user quits the application, from within the application (no ctrl+c) -- DONE!
 */
 
-class Program
+class ListCreation
 {
-    public static void Main(string[] args)
+    public static void Create()
     {
-        string userTypeSelect;
-        bool validSelect = false;
-        do
-        {
-            try
-            {
-                Console.WriteLine("Hello user! Are you an employee or a shopper?");
-                Console.WriteLine("Please enter 'e' for employee or 's'for shopper.");
-                userTypeSelect = Console.ReadLine().Trim().ToLower();
-                if (userTypeSelect == "e" || userTypeSelect == "employee")
-                {
-                    Console.WriteLine("Employee operations beginning! Ready for inventory.");
-                }
-                else if (userTypeSelect == "s" || userTypeSelect == "shopper")
-                {
-                    ListCreation.Create();
-                }
-                else
-                {
-                    Console.WriteLine("Please enter valid selection.");
-                }
-            }
-            catch(Exception f)
-            {
-                Console.WriteLine($"{f.Message} Please enter a valid selection");
-            }
-        }
-        while (validSelect == false);
-    }
-/*
         Console.WriteLine("Hello, Shopper! We're ready to begin your shopping list.");
         Console.WriteLine("During any point, type 'q' to quit program without saving.");
         Console.WriteLine("Please enter an item for your shopping list");
@@ -154,5 +124,4 @@ class Program
         }
         return existingList;
     }
-*/
 }

@@ -5,8 +5,8 @@ using System.IO;
 
 class ShopObjects
 {
-    public List<string> shopList = new();
-    public Dictionary<string,string> shopList = new();
+    public List<string> shopList0 = new();
+    public Dictionary<string,string> shopList2 = new();
     public string itemName;
     public string itemCost;
 
