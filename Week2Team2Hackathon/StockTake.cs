@@ -67,7 +67,7 @@ class StockTake// : IENumerable<ShopObjects>
                     brandNameL = Program.exitChecker(Console.ReadLine());
                     Console.WriteLine("Please enter stock on hand");
                     stockL = Convert.ToInt32(Program.exitChecker(Console.ReadLine()));
-                    localInventory.Add(new ShopObjects{itemNumL,brandNameL,productNameL,stockL});
+                    localInventory.Add(new ShopObjects{itemID=itemNumL,brandName=brandNameL,productName=productNameL,stock=stockL});
                     itemNumL++;
                 }
                 else
@@ -97,14 +97,46 @@ class StockTake// : IENumerable<ShopObjects>
         return done;
     }
 /*
+    public IEnumerator<localInventory> GetEnumerator()
+    {
+        for (int i = 0; i < Count; i++)
+        yield return localInventory[i];
+    }
+*/
+}
+class ShopObjects : IEnumerable<ShopObjects>
+{
+    public string brandName {get; set;}
+    public string productName {get; set;}
+    public string dept {get; set;}
+    public int aisle {get; set;}
+    public int stock {get; set;}
+    public int itemID {get; set;}
+
+    public void WriteStock()
+    {
+        Console.WriteLine($"{itemID}: {brandName} {productName}; {stock} on hand");
+    }
+    public ShopObjects(){}
+
+    public ShopObjects (int itemID, string brandName, string productName, int stock)
+    {
+        this.itemID = itemID;
+        this.brandName = brandName;
+        this.productName = productName;
+        this.stock = stock;
+    }
+
+
     public IEnumerator<ShopObjects> GetEnumerator()
     {
-        return localInventory.GetEnumerator();
+        for (int i = 0; i < Count; i++)
+        yield return ShopObjects[i];
     }
+
 
     IEnumerator IEnumerable.GetEnumerator()
     {
         return this.GetEnumerator();
     }
-*/
 }

@@ -4,22 +4,22 @@ using System.Collections;
 
 using System.IO;
 
-class ShopObjects : IEnumerable<ShopObjects>
+class oldShopObjects
 {
-    public string brandName {get; set;}
-    public string productName {get; set;}
-    public string dept {get; set;}
-    public int aisle {get; set;}
-    public int stock {get; set;}
-    public int itemID {get; set;}
+    private string brandName {get; set;}
+    private string productName {get; set;}
+    private string dept {get; set;}
+    private int aisle {get; set;}
+    private int stock {get; set;}
+    private int itemID {get; set;}
 
-    public void WriteStock()
+    private void WriteStock()
     {
         Console.WriteLine($"{itemID}: {brandName} {productName}; {stock} on hand");
     }
-    public ShopObjects(){}
+    public oldShopObjects(){}
 
-    public ShopObjects (int itemID, string brandName, string productName, int stock)
+    public oldShopObjects (int itemID, string brandName, string productName, int stock)
     {
         this.itemID = itemID;
         this.brandName = brandName;
@@ -27,13 +27,16 @@ class ShopObjects : IEnumerable<ShopObjects>
         this.stock = stock;
     }
 
+/*
     public IEnumerator<ShopObjects> GetEnumerator()
     {
-        return localInventory.GetEnumerator();
+        for (int i = 0; i < Count; i++)
+        yield return ShopObjects[i];
     }
 
     IEnumerator IEnumerable.GetEnumerator()
     {
         return this.GetEnumerator();
     }
+*/
 }
