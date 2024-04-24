@@ -29,25 +29,8 @@ class StockTake// : IENumerable<ShopObjects>
         string productNameL;
         string deptL;
         string buffer;
-        List<ShopObjects> localInventory = new List<ShopObjects>();
+        Dictionary<int,ShopObjects> localInventory = new Dictionary<int, ShopObjects>();
         
-
-        //This will set up either to exit the program completely or to add the first item to the inventory
-/*        try
-        {
-            Console.WriteLine("Please enter the first product brand name");
-            brandNameL = Program.exitChecker(Console.ReadLine());
-            Console.WriteLine("Please enter the product name");
-            productNameL = Program.exitChecker(Console.ReadLine());
-            Console.WriteLine("Please enter stock on hand");
-            stockL = Convert.ToInt32(Program.exitChecker(Console.ReadLine()));
-            localInventory.Add(new ShopObjects{itemID = itemNumL, brandName = brandNameL, productName = productNameL, stock = stockL});
-            itemNumL++;
-        }
-        catch (Exception s)
-        {
-            Console.WriteLine($"{s.Message}. Please enter valid input.");
-        }*/
 
 
         //This while loop will present the user with the option to add items to the list or print/view the entire list. Upon printing, a new method is called which gives additional options
@@ -67,7 +50,7 @@ class StockTake// : IENumerable<ShopObjects>
                     brandNameL = Program.exitChecker(Console.ReadLine());
                     Console.WriteLine("Please enter stock on hand");
                     stockL = Convert.ToInt32(Program.exitChecker(Console.ReadLine()));
-                    localInventory.Add(new ShopObjects{itemID=itemNumL,brandName=brandNameL,productName=productNameL,stock=stockL});
+                    localInventory.Add(itemNumL,new ShopObjects{itemID=itemNumL,brandName=brandNameL,productName=productNameL,stock=stockL});
                     itemNumL++;
                 }
                 else
@@ -95,48 +78,5 @@ class StockTake// : IENumerable<ShopObjects>
             done = true;
         }
         return done;
-    }
-/*
-    public IEnumerator<localInventory> GetEnumerator()
-    {
-        for (int i = 0; i < Count; i++)
-        yield return localInventory[i];
-    }
-*/
-}
-class ShopObjects : IEnumerable<ShopObjects>
-{
-    public string brandName {get; set;}
-    public string productName {get; set;}
-    public string dept {get; set;}
-    public int aisle {get; set;}
-    public int stock {get; set;}
-    public int itemID {get; set;}
-
-    public void WriteStock()
-    {
-        Console.WriteLine($"{itemID}: {brandName} {productName}; {stock} on hand");
-    }
-    public ShopObjects(){}
-
-    public ShopObjects (int itemID, string brandName, string productName, int stock)
-    {
-        this.itemID = itemID;
-        this.brandName = brandName;
-        this.productName = productName;
-        this.stock = stock;
-    }
-
-
-    public IEnumerator<ShopObjects> GetEnumerator()
-    {
-        for (int i = 0; i < Count; i++)
-        yield return ShopObjects[i];
-    }
-
-
-    IEnumerator IEnumerable.GetEnumerator()
-    {
-        return this.GetEnumerator();
     }
 }
