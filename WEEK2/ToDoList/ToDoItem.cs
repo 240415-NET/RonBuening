@@ -33,6 +33,7 @@ class ToDoItem
     public void SetDueDate(string dueDate){
         this.dueDate = dueDate;
     }
+    public ToDoItem(){}
     public ToDoItem(string description, int estTime, string dueDate, bool status){
         this.description = description;
         this.estTime = estTime;
