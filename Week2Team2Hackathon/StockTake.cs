@@ -17,24 +17,35 @@ class StockTake
     {
         Console.WriteLine("Employee operations beginning! Ready for inventory.");
         Console.WriteLine("During any point, type 'q' to quit program without saving.");
-
-        string userInput;
-        bool quit = false;
-        int itemNum = 1;
         
-        List<object> shoppingList = new List<object>();
 
-        //This will set up either to exit the program completely or to add the first item to the shopping list
-        if (userInput.ToLower() == "q" || userInput.ToLower() == "quit")
+        bool quit = false;
+        int itemNumL = 1;
+        int aisleL;
+        int stockL;
+        string brandNameL;
+        string productNameL;
+        string deptL;
+        
+        Dictionary<int,ShopObjects> localInventory = new();
+
+        //This will set up either to exit the program completely or to add the first item to the inventory
+        try
         {
-            Environment.Exit(0);
+            Console.WriteLine("Please enter the first product name");
+            productNameL = Program.exitChecker(Console.ReadLine());
+            Console.WriteLine("Please enter the brand name");
+            brandNameL = Program.exitChecker(Console.ReadLine());
+            Console.WriteLine("Please enter stock on hand");
+            stockL = Convert.ToInt32(Program.exitChecker(Console.ReadLine()));
+            localInventory.Add(itemNumL,new ShopObjects());
         }
-        else
+        catch (Exception s)
         {
-            shoppingList.Add(itemNum + ". " + userInput);
-            itemNum++;
+            Console.WriteLine($"{s.Message}. Please enter valid input.");
         }
 
+/*
         //This while loop will present the user with the option to add items to the list or print/view the entire list. Upon printing, a new method is called which gives additional options
         while (quit == false)
         {
@@ -56,6 +67,18 @@ class StockTake
                 itemNum++;
             }
         }
-        
+*/
     }
+
+    /*
+    public static string exitChecker (string exitCheck)
+    {
+        exitCheck = exitCheck.Trim()
+        if (userInput.ToLower() == "q" || userInput.ToLower() == "quit")
+        {
+            Environment.Exit(0);
+        }
+        return exitCheck;
+    }
+    */
 }

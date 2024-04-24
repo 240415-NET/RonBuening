@@ -27,7 +27,7 @@ class ShoppingMode
                 }
                 else if (userTicks == "q" || userTicks == "quit")
                 {
-                    Environment.Exit(0);
+                    Program.exitChecker(userTicks);
                 }
                 else
                 {

@@ -5,15 +5,16 @@ using System.IO;
 
 class ShopObjects
 {
-    public string BrandName {get; set;}
-    public string ProductName {get; set;}
+    public string brandName {get; set;}
+    public string productName {get; set;}
     public string dept {get; set;}
     public int aisle {get; set;}
     public int stock {get; set;}
+    public int itemID {get; set;}
 
     public void WriteStock()
     {
-        Console.WriteLine($"{dept} has {stock} of {BrandName} {ProductName} in aisle {aisle}");
+        Console.WriteLine($"{dept} has {stock} of {brandName} {productName} in aisle {aisle}");
     }
 
 }

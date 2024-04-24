@@ -46,6 +46,21 @@ class Program
         }
         while (validSelect == false);
     }
+
+    public static string exitChecker (string exitCheck)
+    {  
+        exitCheck = exitCheck.Trim();
+        if (exitCheck.ToLower() == "q" || exitCheck.ToLower() == "quit")
+        {
+            Console.WriteLine("Are you sure? Data will not be saved! Confirm by typing 'g'");
+            if (Console.ReadLine().ToLower() == "g")
+            {
+            Console.WriteLine("Exiting. Goodbye!");
+            Environment.Exit(0);
+            }
+        }
+    return exitCheck;
+    }
 /*
         Console.WriteLine("Hello, Shopper! We're ready to begin your shopping list.");
         Console.WriteLine("During any point, type 'q' to quit program without saving.");

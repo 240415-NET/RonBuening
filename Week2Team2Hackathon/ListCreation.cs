@@ -81,16 +81,7 @@ class ListCreation
         }
         else if (userPrintSelect == "q" || userPrintSelect == "quit")
         {
-            Console.WriteLine("Are you sure? Data will not be saved! Confirm by typing 'g'");
-            //quitConfirm = Console.ReadLine().ToLower();
-            if (Console.ReadLine().ToLower() == "g")
-            {
-                Environment.Exit(0);
-            }
-            else
-            {
-                Console.WriteLine("Please enter a valid selection.");
-            }
+            Program.exitChecker(userPrintSelect);
         }
         else if (userPrintSelect == "c" || userPrintSelect == "change")
         {
