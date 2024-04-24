@@ -27,7 +27,7 @@ class StockTake
         string productNameL;
         string deptL;
         
-        Dictionary<int,ShopObjects> localInventory = new();
+        
 
         //This will set up either to exit the program completely or to add the first item to the inventory
         try
@@ -38,20 +38,28 @@ class StockTake
             brandNameL = Program.exitChecker(Console.ReadLine());
             Console.WriteLine("Please enter stock on hand");
             stockL = Convert.ToInt32(Program.exitChecker(Console.ReadLine()));
-            localInventory.Add(itemNumL,new ShopObjects());
+
+            List<ShopObjects> localInventory = new List<ShopObjects>()
+            {
+                new ShopObjects{itemID=itemNumL, brandName=brandNameL, productName=productNameL}
+            };
         }
         catch (Exception s)
         {
             Console.WriteLine($"{s.Message}. Please enter valid input.");
         }
 
-/*
+
         //This while loop will present the user with the option to add items to the list or print/view the entire list. Upon printing, a new method is called which gives additional options
-        while (quit == false)
+/*        while (quit == false)
         {
             Console.Clear();
-            Console.WriteLine("Please enter an item for your shopping list or type 'print' to print list");
-            userInput = Console.ReadLine().Trim();
+            Console.WriteLine("Please enter the first product name");
+            productNameL = Program.exitChecker(Console.ReadLine());
+            Console.WriteLine("Please enter the brand name");
+            brandNameL = Program.exitChecker(Console.ReadLine());
+            Console.WriteLine("Please enter stock on hand");
+            stockL = Convert.ToInt32(Program.exitChecker(Console.ReadLine()));
             if (userInput.ToLower() == "q" || userInput.ToLower() == "quit")
             {
                 quit = true;
@@ -66,8 +74,7 @@ class StockTake
                 shoppingList.Add(itemNum + ". " + userInput);
                 itemNum++;
             }
-        }
-*/
+        }*/
     }
 
     /*

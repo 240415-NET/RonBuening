@@ -53,6 +53,15 @@ namespace ClassBasics.Classes
         }
 
     }
+
+public class Person
+{
+    private string FirstName = "";
+    private string LastName = "";
+    private string Email = "";
+    private int age = 18;
+    private bool onHoliday = "";
+}
 }
 
 // If a class is outside a namespace, it becomes globally accessible and will override behaviors of other classes within namespaces

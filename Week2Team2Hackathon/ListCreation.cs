@@ -15,6 +15,7 @@ class ListCreation
 {
     public static void Create()
     {
+        Console.Clear();
         Console.WriteLine("Hello, Shopper! We're ready to begin your shopping list.");
         Console.WriteLine("During any point, type 'q' to quit program without saving.");
         Console.WriteLine("Please enter an item for your shopping list");
@@ -40,23 +41,25 @@ class ListCreation
         {
             Console.Clear();
             Console.WriteLine("Please enter an item for your shopping list or type 'print' to print list");
-            userInput = Console.ReadLine().Trim();
-            if (userInput.ToLower() == "q" || userInput.ToLower() == "quit")
-            {
-                quit = true;
-                Environment.Exit(0);
-            }
-            else if (userInput.ToLower() == "p" || userInput.ToLower() == "print")
-            {
-                shoppingList = PrintShoppingList(shoppingList);
-            }
-            else
-            {
-                shoppingList.Add(itemNum + ". " + userInput);
-                itemNum++;
-            }
+            userInput = printCheckerSL(Console.ReadLine(),shoppingList);
+            shoppingList.Add(itemNum + ". " + userInput);
+            itemNum++;
         }
         
+    }
+    private static string printCheckerSL (string printCheck,List<string> printString)
+    {
+        printCheck = printCheck.Trim();
+        List<string> printStringLocal = printString.ToList();
+        if (printCheck.ToLower() == "p" || printCheck.ToLower() == "print")
+        {
+            printStringLocal = PrintShoppingList(printStringLocal);
+        }
+        else
+        {
+            printCheck = Program.exitChecker(printCheck);
+        }
+        return printCheck;
     }
 
     public static List<string> PrintShoppingList (List<string> printableList)

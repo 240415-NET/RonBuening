@@ -6,7 +6,11 @@ namespace ClassBasics
     {
         public static void Main(string[] args)
         {
-            ExampleClass exampleClass = new ExampleClass {Age = 30};
+            ExampleClass exampleClass = new ExampleClass {Age = 30}; //Declaration
+            
+            exampleClass = new ExampleClass() //Setting through instantiation
+
+            
 
             // exampleClass.Name = "    Hello   "; // this will not compile as we are accessing a private variable
 
