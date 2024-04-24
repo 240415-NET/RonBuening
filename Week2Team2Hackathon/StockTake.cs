@@ -67,7 +67,7 @@ class StockTake// : IENumerable<ShopObjects>
                     brandNameL = Program.exitChecker(Console.ReadLine());
                     Console.WriteLine("Please enter stock on hand");
                     stockL = Convert.ToInt32(Program.exitChecker(Console.ReadLine()));
-                    localInventory.Add(new ShopObjects{brandNameL,productNameL,stockL});
+                    localInventory.Add(new ShopObjects{itemNumL,brandNameL,productNameL,stockL});
                     itemNumL++;
                 }
                 else

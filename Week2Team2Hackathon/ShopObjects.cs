@@ -17,10 +17,11 @@ class ShopObjects : IEnumerable<ShopObjects>
     {
         Console.WriteLine($"{itemID}: {brandName} {productName}; {stock} on hand");
     }
+    public ShopObjects(){}
 
-    public ShopObjects (string brandName, string productName, int stock)
+    public ShopObjects (int itemID, string brandName, string productName, int stock)
     {
-        //this.itemID = itemID;
+        this.itemID = itemID;
         this.brandName = brandName;
         this.productName = productName;
         this.stock = stock;
