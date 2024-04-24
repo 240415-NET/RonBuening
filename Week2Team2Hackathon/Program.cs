@@ -26,10 +26,12 @@ class Program
                 userTypeSelect = Console.ReadLine().Trim().ToLower();
                 if (userTypeSelect == "e" || userTypeSelect == "employee")
                 {
-                    Console.WriteLine("Employee operations beginning! Ready for inventory.");
+                    validSelect = true;
+                    StockTake.StartStock();
                 }
                 else if (userTypeSelect == "s" || userTypeSelect == "shopper")
                 {
+                    validSelect = true;
                     ListCreation.Create();
                 }
                 else
