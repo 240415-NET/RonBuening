@@ -5,9 +5,12 @@ using System.IO;
 
 class ShopObjects
 {
-    public List<string> shopList0 = new();
-    public Dictionary<string,string> shopList2 = new();
-    public string itemName;
-    public string itemCost;
+    public string BrandName {get; set;};
+    public string ProductName {get; set;};
+    public string Dept {get; set;};
+    public int Aisle {get; set;};
+    public int Stock {get; set;};
+
+    
 
 }
