@@ -1,4 +1,5 @@
 namespace ToDoList;
+using System.Collections;
 
 class ToDoItem
 {
@@ -24,7 +25,7 @@ class ToDoItem
         return estTime;
     }
     public void SetEstTime(int estTime){
-        this.estTime = estTime
+        this.estTime = estTime;
     }
     public string GetDueDate(){
         return dueDate;
@@ -40,12 +41,12 @@ class ToDoItem
     }
 
     public override string ToString(){
-        string CurrentStatus = "Incomplete"
+        string CurrentStatus = "Incomplete";
         //this avoids a raw boolean in the two string, changing it based on an if statement after defaulting to false
         if (status){
-            CurrentStatus = "Complete"
+            CurrentStatus = "Complete";
         }
-        return $"{description} - {dueDate}\nEstimated Time: {estTime}\nStatus: {Current Status}";
+        return $"{description} - {dueDate}\nEstimated Time: {estTime}\nStatus: {CurrentStatus}";
     }
 
 }
