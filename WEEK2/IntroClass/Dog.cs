@@ -31,6 +31,10 @@ public class Dog
     public string gender {get; set;}
     public double weight {get; set;}
 
+    //The above are individual attributes to the instance. Use static fields to apply across all instances
+    //They are also directly accessible without instantiating the object.
+    public static int legs = 4;
+
     //Methods
     //An instance method can be called via dot notation from an instance of the class
     public void Bark()
