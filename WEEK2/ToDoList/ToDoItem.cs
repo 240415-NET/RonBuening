@@ -32,9 +32,20 @@ class ToDoItem
     public void SetDueDate(string dueDate){
         this.dueDate = dueDate;
     }
+    public ToDoItem(string description, int estTime, string dueDate, bool status){
+        this.description = description;
+        this.estTime = estTime;
+        this.dueDate = dueDate;
+        this.status = status;
+    }
 
     public override string ToString(){
-        return base.ToString();
+        string CurrentStatus = "Incomplete"
+        //this avoids a raw boolean in the two string, changing it based on an if statement after defaulting to false
+        if (status){
+            CurrentStatus = "Complete"
+        }
+        return $"{description} - {dueDate}\nEstimated Time: {estTime}\nStatus: {Current Status}";
     }
 
 }
