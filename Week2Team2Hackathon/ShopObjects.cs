@@ -1,9 +1,10 @@
 namespace Week2Team2Hackathon;
 using System;
-using System.Collections.Generic;
+using System.Collections;
+
 using System.IO;
 
-class ShopObjects
+class ShopObjects : IEnumerable
 {
     public string brandName {get; set;}
     public string productName {get; set;}
@@ -14,7 +15,17 @@ class ShopObjects
 
     public void WriteStock()
     {
-        Console.WriteLine($"{dept} has {stock} of {brandName} {productName} in aisle {aisle}");
+        Console.WriteLine($"{itemID}: {brandName} {productName}; {stock} on hand");
     }
+
+    public ShopObjects (int itemID, string brandName, string productName, int stock)
+    {
+        this.itemID = itemID;
+        this.brandName = brandName;
+        this.productName = productName;
+        this.stock = stock;
+    }
+
+
 
 }

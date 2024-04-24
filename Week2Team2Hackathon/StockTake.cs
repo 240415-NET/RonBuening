@@ -1,6 +1,6 @@
 namespace Week2Team2Hackathon;
 using System;
-using System.Collections.Generic;
+using System.Collections;
 using System.IO;
 
 /*
@@ -34,13 +34,13 @@ class StockTake
         //This will set up either to exit the program completely or to add the first item to the inventory
         try
         {
-            Console.WriteLine("Please enter the first product name");
-            productNameL = Program.exitChecker(Console.ReadLine());
-            Console.WriteLine("Please enter the brand name");
+            Console.WriteLine("Please enter the first product brand name");
             brandNameL = Program.exitChecker(Console.ReadLine());
+            Console.WriteLine("Please enter the product name");
+            productNameL = Program.exitChecker(Console.ReadLine());
             Console.WriteLine("Please enter stock on hand");
             stockL = Convert.ToInt32(Program.exitChecker(Console.ReadLine()));
-            localInventory.Add(new ShopObjects{itemID=itemNumL, brandName=brandNameL, productName=productNameL});
+            localInventory.Add(new ShopObjects{itemNumL,brandNameL,productNameL,stockL});
             itemNumL++;
         }
         catch (Exception s)
@@ -64,7 +64,7 @@ class StockTake
                 brandNameL = Program.exitChecker(Console.ReadLine());
                 Console.WriteLine("Please enter stock on hand");
                 stockL = Convert.ToInt32(Program.exitChecker(Console.ReadLine()));
-                localInventory.Add(new ShopObjects{itemID=itemNumL, brandName=brandNameL, productName=productNameL});
+                localInventory.Add(new ShopObjects{itemNumL,brandNameL,productNameL,stockL});
                 itemNumL++;
             }
             else
@@ -88,4 +88,5 @@ class StockTake
         }
         return done;
     }
+
 }
