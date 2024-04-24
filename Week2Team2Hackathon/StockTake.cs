@@ -26,6 +26,7 @@ class StockTake
         string brandNameL;
         string productNameL;
         string deptL;
+        string buffer;
         
         
 
@@ -51,41 +52,39 @@ class StockTake
 
 
         //This while loop will present the user with the option to add items to the list or print/view the entire list. Upon printing, a new method is called which gives additional options
-/*        while (quit == false)
+        while (quit == false)
         {
             Console.Clear();
-            Console.WriteLine("Please enter the first product name");
-            productNameL = Program.exitChecker(Console.ReadLine());
-            Console.WriteLine("Please enter the brand name");
-            brandNameL = Program.exitChecker(Console.ReadLine());
-            Console.WriteLine("Please enter stock on hand");
-            stockL = Convert.ToInt32(Program.exitChecker(Console.ReadLine()));
-            if (userInput.ToLower() == "q" || userInput.ToLower() == "quit")
+            Console.WriteLine("When inventory is done, enter 'd' for done")
+            Console.WriteLine("Please enter the product name");
+            buffer = Console.ReadLine();
+            quit = doneChecker(buffer);
+            if (quit == false)
             {
-                quit = true;
-                Environment.Exit(0);
-            }
-            else if (userInput.ToLower() == "p" || userInput.ToLower() == "print")
-            {
-                shoppingList = PrintShoppingList(shoppingList);
+                productNameL = Program.exitChecker(buffer);
+                Console.WriteLine("Please enter the brand name");
+                brandNameL = Program.exitChecker(Console.ReadLine());
+                Console.WriteLine("Please enter stock on hand");
+                stockL = Convert.ToInt32(Program.exitChecker(Console.ReadLine()));
             }
             else
             {
                 shoppingList.Add(itemNum + ". " + userInput);
                 itemNum++;
             }
-        }*/
+        }
     }
 
-    /*
-    public static string exitChecker (string exitCheck)
+    private static bool doneChecker(quit)
     {
-        exitCheck = exitCheck.Trim()
-        if (userInput.ToLower() == "q" || userInput.ToLower() == "quit")
+        if (printCheck.ToLower() == "p" || printCheck.ToLower() == "print")
         {
-            Environment.Exit(0);
+            printStringLocal = PrintShoppingList(printStringLocal);
         }
-        return exitCheck;
+        else
+        {
+            printCheck = Program.exitChecker(printCheck);
+        }
+        return printCheck;
     }
-    */
 }

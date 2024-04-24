@@ -62,6 +62,15 @@ public class Person
     private int age = 18;
     private bool onHoliday = "";
 }
+
+public class Person(string FirstName, string LastName, string Email,int Age, bool OnHoliday)
+{
+    this.FirstName = FirstName;
+    this.LastName = LastName;
+    this.Email = Email;
+    this.Age = Age;
+    this.OnHoliday = OnHoliday;
+}
 }
 
 // If a class is outside a namespace, it becomes globally accessible and will override behaviors of other classes within namespaces
