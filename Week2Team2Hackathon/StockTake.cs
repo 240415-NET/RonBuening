@@ -20,6 +20,7 @@ class StockTake
         
 
         bool quit = false;
+        bool done = false;
         int itemNumL = 1;
         int aisleL;
         int stockL;
@@ -27,7 +28,7 @@ class StockTake
         string productNameL;
         string deptL;
         string buffer;
-        
+        List<ShopObjects> localInventory = new List<ShopObjects>();
         
 
         //This will set up either to exit the program completely or to add the first item to the inventory
@@ -39,11 +40,8 @@ class StockTake
             brandNameL = Program.exitChecker(Console.ReadLine());
             Console.WriteLine("Please enter stock on hand");
             stockL = Convert.ToInt32(Program.exitChecker(Console.ReadLine()));
-
-            List<ShopObjects> localInventory = new List<ShopObjects>()
-            {
-                new ShopObjects{itemID=itemNumL, brandName=brandNameL, productName=productNameL}
-            };
+            localInventory.Add(new ShopObjects{itemID=itemNumL, brandName=brandNameL, productName=productNameL});
+            itemNumL++;
         }
         catch (Exception s)
         {
@@ -55,36 +53,39 @@ class StockTake
         while (quit == false)
         {
             Console.Clear();
-            Console.WriteLine("When inventory is done, enter 'd' for done")
+            Console.WriteLine("When inventory is done, enter 'd' for done");
             Console.WriteLine("Please enter the product name");
-            buffer = Console.ReadLine();
-            quit = doneChecker(buffer);
-            if (quit == false)
+            buffer = Console.ReadLine().Trim();
+            done = doneChecker(buffer);
+            if (done == false)
             {
                 productNameL = Program.exitChecker(buffer);
                 Console.WriteLine("Please enter the brand name");
                 brandNameL = Program.exitChecker(Console.ReadLine());
                 Console.WriteLine("Please enter stock on hand");
                 stockL = Convert.ToInt32(Program.exitChecker(Console.ReadLine()));
+                localInventory.Add(new ShopObjects{itemID=itemNumL, brandName=brandNameL, productName=productNameL});
+                itemNumL++;
             }
             else
             {
-                shoppingList.Add(itemNum + ". " + userInput);
-                itemNum++;
+                Console.Clear();
+                for (int i = 0; i < localInventory.Count(); i++)
+                {
+                    localInventory[i].WriteStock();
+                }
+                quit = true;
             }
         }
     }
 
-    private static bool doneChecker(quit)
+    private static bool doneChecker(string doneCheck)
     {
-        if (printCheck.ToLower() == "p" || printCheck.ToLower() == "print")
+        bool done = false;
+        if (doneCheck.ToLower() == "d" || doneCheck.ToLower() == "done")
         {
-            printStringLocal = PrintShoppingList(printStringLocal);
+            done = true;
         }
-        else
-        {
-            printCheck = Program.exitChecker(printCheck);
-        }
-        return printCheck;
+        return done;
     }
 }
