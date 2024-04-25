@@ -4,7 +4,7 @@ using System.Collections;
 
 using System.IO;
 
-class ShopObjects : IEnumerable<ShopObjects>
+class ShopObjects
 {
     public string brandName {get; set;}
     public string productName {get; set;}
@@ -27,13 +27,18 @@ class ShopObjects : IEnumerable<ShopObjects>
         this.stock = stock;
     }
 
-    public IEnumerator<ShopObjects> GetEnumerator()
+/*    public IEnumerator<int> GetEnumerator()
     {
-        return localInventory.GetEnumerator();
+        //for (int i = 0; i < Count; i++)
+        return new ShopObjects();
+    }
+    private IEnumerator GetEnumerator1()
+    {
+        return this.GetEnumerator();
     }
 
     IEnumerator IEnumerable.GetEnumerator()
     {
-        return this.GetEnumerator();
-    }
+        return GetEnumerator1();
+    }*/
 }

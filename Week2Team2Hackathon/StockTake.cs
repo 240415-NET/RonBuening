@@ -21,7 +21,7 @@ class StockTake// : IENumerable<ShopObjects>
         
 
         bool quit = false;
-        bool done = false;
+        bool done1 = false;
         int itemNumL = 1;
         int aisleL;
         int stockL;
@@ -29,25 +29,8 @@ class StockTake// : IENumerable<ShopObjects>
         string productNameL;
         string deptL;
         string buffer;
-        List<ShopObjects> localInventory = new List<ShopObjects>();
+        Dictionary<int,ShopObjects> localInventory = new Dictionary<int, ShopObjects>();
         
-
-        //This will set up either to exit the program completely or to add the first item to the inventory
-/*        try
-        {
-            Console.WriteLine("Please enter the first product brand name");
-            brandNameL = Program.exitChecker(Console.ReadLine());
-            Console.WriteLine("Please enter the product name");
-            productNameL = Program.exitChecker(Console.ReadLine());
-            Console.WriteLine("Please enter stock on hand");
-            stockL = Convert.ToInt32(Program.exitChecker(Console.ReadLine()));
-            localInventory.Add(new ShopObjects{itemID = itemNumL, brandName = brandNameL, productName = productNameL, stock = stockL});
-            itemNumL++;
-        }
-        catch (Exception s)
-        {
-            Console.WriteLine($"{s.Message}. Please enter valid input.");
-        }*/
 
 
         //This while loop will present the user with the option to add items to the list or print/view the entire list. Upon printing, a new method is called which gives additional options
@@ -55,29 +38,32 @@ class StockTake// : IENumerable<ShopObjects>
         {
             try
             {
-                Console.Clear();
-                Console.WriteLine("When inventory is done, enter 'd' for done");
                 Console.WriteLine("Please enter the product name");
                 buffer = Console.ReadLine().Trim();
-                done = doneChecker(buffer);
-                if (done == false)
+                productNameL = Program.exitChecker(buffer);
+                Console.WriteLine("Please enter the brand name");
+                brandNameL = Program.exitChecker(Console.ReadLine());
+                Console.WriteLine("Please enter stock on hand");
+                stockL = Convert.ToInt32(Program.exitChecker(Console.ReadLine()));
+                localInventory.Add(itemNumL,new ShopObjects{itemID=itemNumL,brandName=brandNameL,productName=productNameL,stock=stockL});
+                itemNumL++;
+
+                foreach(var item in localInventory)
                 {
-                    productNameL = Program.exitChecker(buffer);
-                    Console.WriteLine("Please enter the brand name");
-                    brandNameL = Program.exitChecker(Console.ReadLine());
-                    Console.WriteLine("Please enter stock on hand");
-                    stockL = Convert.ToInt32(Program.exitChecker(Console.ReadLine()));
-                    localInventory.Add(new ShopObjects{itemNumL,brandNameL,productNameL,stockL});
-                    itemNumL++;
+                    Console.WriteLine($"{item.Key}. {item.Value.brandName} {item.Value.productName} {item.Value.stock}");  
+                }
+                Console.WriteLine("Do you need to add additional items?");
+                Console.WriteLine("'y' for yes, 'n' for no, 'c' to change existing item");
+                buffer = Console.ReadLine().Trim();
+                if (buffer.ToLower == "no" || buffer.ToLower == "n")
+                {
+                    Console.WriteLine("Ready to save");
+                    FileHandling.SaveInventory(saveInventory);
+                    quit = true;
                 }
                 else
                 {
-                    Console.Clear();
-                    for (int i = 0; i < localInventory.Count(); i++)
-                    {
-                        localInventory[i].WriteStock();
-                    }
-                    quit = true;
+                    localInventory = editNeeded(localInventory);
                 }
             }
             catch (Exception s)
@@ -89,22 +75,55 @@ class StockTake// : IENumerable<ShopObjects>
 
     private static bool doneChecker(string doneCheck)
     {
-        bool done = false;
+        bool doneTest = false;
         if (doneCheck.ToLower() == "d" || doneCheck.ToLower() == "done")
         {
-            done = true;
+            doneTest = true;
         }
-        return done;
-    }
-/*
-    public IEnumerator<ShopObjects> GetEnumerator()
-    {
-        return localInventory.GetEnumerator();
+        return doneTest;
     }
 
-    IEnumerator IEnumerable.GetEnumerator()
+    public static Dictionary<int,object> editNeeded(string editCheck,Dictionary<int,object> printableInventory)
     {
-        return this.GetEnumerator();
+        bool editResult = false;
+        
+        Dictionary < int,< ShopObjects>> saveInventory = new Dictionary<int, ShopObjects>();
+        
+        saveInventory = printableInventory.ToDictionary(k => k.Key, k => k.Value.ToString());
+        
+        if (editCheck == "q" || editCheck == "quit")
+        {
+            Program.exitChecker(editCheck);
+        }
+        else if (editCheck == "c" || editCheck == "change")
+        {
+            saveInventory = changeInventory(saveInventory);
+        }
+        else
+        {
+            Console.WriteLine("Please enter valid selection.");
+        }
+        return saveInventory;
     }
-*/
+
+    public static Dictionary<int,object> changeInventory(Dictionary<int,object> original)
+    {
+        Dictionary<int,<ShopObjects>> originalInventory = original.ToDictionary(k => k.Key, k => k.Value.ToString());
+        int changeInv;
+        string changeInvString;
+        foreach(var item in originalInventory)
+        {
+            Console.WriteLine($"{item.Key}. {item.Value.brandName} {item.Value.productName} {item.Value.stock}");  
+        }
+        Console.WriteLine("Please enter index to change");
+        try
+        {
+            changeInv = Convert.ToInt32(Console.ReadLine());
+        }
+        catch (Exception i)
+        {
+            Console.WriteLine("Please enter integer value");
+        }
+
+    }
 }
