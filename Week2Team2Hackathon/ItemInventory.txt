@@ -1,0 +1,5 @@
+Key		Brand		Product		Stock
+1.		nikon		z9		2
+2.		Polaroid		Color i-Type Film		15
+3.		koosh		ball		320
+4.		Nikon		Nikkor Z 135mm f/1.8 S Plena		3

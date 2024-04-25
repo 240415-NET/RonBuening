@@ -64,9 +64,10 @@ class FileHandling
                 {
                     //Initial attempt showed permissions issue; may have to revise for future commits
                     StreamWriter fileList = new StreamWriter("C:\\ShoppingList.txt");
+                    fileList.WriteLine("Key\tBrand\tProduct\tStock");
                     foreach(var item in finalInventory)
                     {
-                        fileList.WriteLine($"{item.Key}.\t {item.Value.brandName}\t {item.Value.productName}\t {item.Value.stock}");  
+                        fileList.WriteLine($"{item.Key}.\t{item.Value.brandName}\t{item.Value.productName}\t{item.Value.stock}");  
                     }
                     fileList.Close();
                     Console.Clear();
@@ -76,9 +77,10 @@ class FileHandling
                 else
                 {
                     StreamWriter fileList = new StreamWriter(saveLocation2);
+                    fileList.WriteLine("Key\tBrand\tProduct\tStock");
                     foreach(var item in finalInventory)
                     {
-                        fileList.WriteLine($"{item.Key}.\t {item.Value.brandName}\t {item.Value.productName}\t {item.Value.stock}");  
+                        fileList.WriteLine($"{item.Key}.\t{item.Value.brandName}\t{item.Value.productName}\t{item.Value.stock}");  
                     }
                     fileList.Close();
                     Console.Clear();
