@@ -95,6 +95,7 @@ namespace ClassBasics.TodoList
             return $"{Description} - {DueDate}\nEstimated Time: {EstimatedTime}\nStatus: {CurrentStatus}";
         }
 
+/*
         public static void Main(string[] args){
 
             // TodoItem item1 = new TodoItem();
@@ -138,5 +139,5 @@ namespace ClassBasics.TodoList
             // etc
 
         }
-    }
+    }*/
 }
