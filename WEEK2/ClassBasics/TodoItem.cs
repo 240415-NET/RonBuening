@@ -138,6 +138,6 @@ namespace ClassBasics.TodoList
             // Adding a way to add items individually, instead of 6 at a time
             // etc
 
-        }
-    }*/
+        }*/
+    }
 }
