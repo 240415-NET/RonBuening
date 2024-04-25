@@ -104,7 +104,7 @@ namespace ClassBasics
                 this.TeethCount = TeethCount;
                 this.isDomesticated = isDomesticated;
             }
-            //overriding parent method
+            //overriding parent method, will also override for children unless overridden there
             public override void Speak()
             {
                 //below was automatically added
