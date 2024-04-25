@@ -11,10 +11,10 @@ class ListCreation
         Console.WriteLine("Hello, Shopper! We're ready to begin your shopping list.");
         Console.WriteLine("During any point, type 'q' to quit program without saving.");
         Console.WriteLine("Please enter an item for your shopping list");
-        string userInput = Console.ReadLine().Trim();
+        string userInput = "";
+        userInput = Console.ReadLine().Trim();
         bool quit = false;
         int itemNum = 1;
-        //int alterItem;
         List<string> shoppingList = new List<string>();
 
         //This will set up either to exit the program completely or to add the first item to the shopping list

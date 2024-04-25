@@ -24,7 +24,7 @@ class Program
 {
     public static void Main(string[] args)
     {
-        string userTypeSelect;
+        string userTypeSelect = "";
         bool validSelect = false;
         do
         {
