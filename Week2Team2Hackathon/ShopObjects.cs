@@ -1,7 +1,6 @@
 namespace Week2Team2Hackathon;
 using System;
 using System.Collections;
-
 using System.IO;
 
 class ShopObjects
