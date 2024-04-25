@@ -55,15 +55,15 @@ class StockTake// : IENumerable<ShopObjects>
                 Console.WriteLine("Do you need to add additional items?");
                 Console.WriteLine("'y' for yes, 'n' for no, 'c' to change existing item");
                 buffer = Console.ReadLine().Trim();
-                if (buffer.ToLower == "no" || buffer.ToLower == "n")
+                if (buffer.ToLower() == "no" || buffer.ToLower() == "n")
                 {
                     Console.WriteLine("Ready to save");
-                    FileHandling.SaveInventory(saveInventory);
+                    FileHandling.SaveInventory(localInventory);
                     quit = true;
                 }
                 else
                 {
-                    localInventory = editNeeded(localInventory);
+                    localInventory = editNeeded(buffer,localInventory);
                 }
             }
             catch (Exception s)
@@ -83,11 +83,11 @@ class StockTake// : IENumerable<ShopObjects>
         return doneTest;
     }
 
-    public static Dictionary<int,object> editNeeded(string editCheck,Dictionary<int,object> printableInventory)
+    public static Dictionary<int,ShopObjects> editNeeded(string editCheck,Dictionary<int,ShopObjects> printableInventory)
     {
         bool editResult = false;
         
-        Dictionary < int,< ShopObjects>> saveInventory = new Dictionary<int, ShopObjects>();
+        Dictionary <int,ShopObjects> saveInventory = new Dictionary<int,ShopObjects>();
         
         saveInventory = printableInventory.ToDictionary(k => k.Key, k => k.Value.ToString());
         
@@ -106,9 +106,9 @@ class StockTake// : IENumerable<ShopObjects>
         return saveInventory;
     }
 
-    public static Dictionary<int,object> changeInventory(Dictionary<int,object> original)
+    public static Dictionary<int,ShopObjects> changeInventory(Dictionary<int,ShopObjects> original)
     {
-        Dictionary<int,<ShopObjects>> originalInventory = original.ToDictionary(k => k.Key, k => k.Value.ToString());
+        Dictionary<int,ShopObjects> originalInventory = original.ToDictionary(k => k.Key, k => k.Value.ToString());
         int changeInv;
         string changeInvString;
         foreach(var item in originalInventory)

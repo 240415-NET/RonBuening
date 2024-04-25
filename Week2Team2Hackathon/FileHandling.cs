@@ -39,12 +39,12 @@ class FileHandling
        Environment.Exit(0);
     }
 
-    public static void SaveInventory (Dictionary<int ,object ShopObjects> saveableInventory)
+    public static void SaveInventory (Dictionary<int,ShopObjects> saveableInventory)
     {
         //This method will save the file, either to a default directory and file name, or a user input one.
         Console.WriteLine("Please enter a directory and file name to save or 'd' for default");
         string saveLocation2;
-        Dictionary<int,object <hopObjects> finalInventory = saveableInventory.ToDictionary(k => k.Key, k => k.Value.ToString());
+        Dictionary<int,ShopObjects> finalInventory = saveableInventory.ToDictionary(k => k.Key, k => k.Value.ToString());
 
         try
         {
