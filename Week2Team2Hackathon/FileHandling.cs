@@ -11,32 +11,40 @@ class FileHandling
         Console.WriteLine("Please enter a directory and file name to save or 'd' for default");
         string saveLocation;
         List<string> saveList = toSave.ToList();
+        bool saveSucess = false;
 
-        try
+        while (saveSucess == false)
         {
-            saveLocation = Console.ReadLine();
-            if (saveLocation.ToLower() == "d")
+            try
             {
-                //Initial attempt showed permissions issue; may have to revise for future commits
-                StreamWriter fileList = new StreamWriter("C:\\ShoppingList.txt");
-                saveList.ForEach(fileList.WriteLine);
-                fileList.Close();
-                Console.WriteLine("Your file has been saved in C:\\ShoppingList.txt");
+                saveLocation = Console.ReadLine();
+                if (saveLocation.ToLower() == "d")
+                {
+                    //Initial attempt showed permissions issue; may have to revise for future commits
+                    StreamWriter fileList = new StreamWriter("C:\\ShoppingList.txt");
+                    saveList.ForEach(fileList.WriteLine);
+                    fileList.Close();
+                    Console.Clear();
+                    saveSucess = true;
+                    Console.WriteLine("Your file has been saved in C:\\ShoppingList.txt");
+                }
+                else
+                {
+                    StreamWriter fileList = new StreamWriter(saveLocation);
+                    saveList.ForEach(fileList.WriteLine);
+                    fileList.Close();
+                    Console.Clear();
+                    saveSucess = true;
+                    Console.WriteLine("Your file has been saved in " + saveLocation);
+                }
             }
-            else
+            catch(Exception e)
             {
-                StreamWriter fileList = new StreamWriter(saveLocation);
-                saveList.ForEach(fileList.WriteLine);
-                fileList.Close();
-                Console.WriteLine("Your file has been saved in " + saveLocation);
+                    Console.WriteLine(e.Message + " Error in saving file. Please reattempt.");
             }
         }
-       catch(Exception e)
-       {
-            Console.WriteLine(e.Message + " Error in saving file. Please reattempt.");
-       }
-       Console.WriteLine("Please make sure to take your list with you!");
-       Environment.Exit(0);
+    Console.WriteLine("Please make sure to take your list with you!");
+    Environment.Exit(0);
     }
 
     public static void SaveInventory (Dictionary<int,ShopObjects> saveableInventory)
@@ -45,37 +53,47 @@ class FileHandling
         Console.WriteLine("Please enter a directory and file name to save or 'd' for default");
         string saveLocation2;
         Dictionary<int,ShopObjects> finalInventory = saveableInventory;
-
-        try
+        bool saveSuccess2 = false;
+        
+        while (saveSuccess2 == false)
         {
-            saveLocation2 = Console.ReadLine();
-            if (saveLocation2.ToLower() == "d")
+            try
             {
-                //Initial attempt showed permissions issue; may have to revise for future commits
-                StreamWriter fileList = new StreamWriter("C:\\ShoppingList.txt");
-                foreach(var item in finalInventory)
+                saveLocation2 = Console.ReadLine();
+                if (saveLocation2.ToLower() == "d")
                 {
-                    Console.WriteLine($"{item.Key}. {item.Value.brandName} {item.Value.productName} {item.Value.stock}");  
+                    //Initial attempt showed permissions issue; may have to revise for future commits
+                    StreamWriter fileList = new StreamWriter("C:\\ShoppingList.txt");
+                    foreach(var item in finalInventory)
+                    {
+                        fileList.WriteLine($"{item.Key}. {item.Value.brandName} {item.Value.productName} {item.Value.stock}");  
+                    }
+                    fileList.Close();
+                    Console.Clear();
+                    Console.WriteLine("Your file has been saved in C:\\ShoppingList.txt");
+                    saveSuccess2 = true;
                 }
-                fileList.Close();
-                Console.WriteLine("Your file has been saved in C:\\ShoppingList.txt");
+                else
+                {
+                    StreamWriter fileList = new StreamWriter(saveLocation2);
+                    foreach(var item in finalInventory)
+                    {
+                        fileList.WriteLine($"{item.Key}. {item.Value.brandName} {item.Value.productName} {item.Value.stock}");  
+                    }
+                    fileList.Close();
+                    Console.Clear();
+                    Console.WriteLine("Your file has been saved in " + saveLocation2);
+                    saveSuccess2 = true;
+                }
             }
-            else
+            catch(Exception e)
             {
-                StreamWriter fileList = new StreamWriter(saveLocation2);
-                foreach(var item in finalInventory)
-                {
-                    Console.WriteLine($"{item.Key}. {item.Value.brandName} {item.Value.productName} {item.Value.stock}");  
-                }
-                fileList.Close();
-                Console.WriteLine("Your file has been saved in " + saveLocation2);
+                Console.Clear();
+                Console.WriteLine(e.Message + " Error in saving file. Please reattempt.");
+                Console.WriteLine("Please enter a directory and file name to save or 'd' for default");
             }
-        }
-       catch(Exception e)
-       {
-            Console.WriteLine(e.Message + " Error in saving file. Please reattempt.");
-       }
-       Console.WriteLine("Thank you for conducting the monthly inventory!");
-       Environment.Exit(0);
+      }
+      Console.WriteLine("Thank you for conducting the monthly inventory!");
+      Environment.Exit(0);
     }
 }
