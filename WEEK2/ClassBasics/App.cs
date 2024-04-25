@@ -47,7 +47,24 @@ namespace ClassBasics
             pancake.Speak();
             hans.Speak();
 
+            lassie.WagTail();
+            hans.WagTail();
 
+            GermanShepherd noTail = new GermanShepherd("dog",32,false,false,0);
+
+            noTail.WagTail();
+
+            /*
+                Encapsulation is about keeping the data/attributes and the methods/behaviors that act on the data in a single unit or class
+                --Involves restricting access to some components of an object
+            */
+
+            EncapsulationExample encapsulationExample = EncapsulationExample(hans);
+            encapsulationExample.PrintAnimalName;
+
+            /*
+                Abstraction
+            */
         }
 
         public class PolymophismExample()
@@ -81,11 +98,11 @@ namespace ClassBasics
                 this.Name = Name;
                 this.speech = speech;
             }
+            //virtual indicates that the method can be overridden
             public virtual void Speak()
             {
                 Console.WriteLine($"{Name} says {speech}");
             }
-
         }
         public class Dog : Animal //Inherits from Animal, sibling class of Cat
         {
@@ -105,11 +122,17 @@ namespace ClassBasics
                 this.isDomesticated = isDomesticated;
             }
             //overriding parent method, will also override for children unless overridden there
+            //if you do not explicitly use the override key word, you are 'shadowing' inherited method
+            //it /should/ work, but you are being vague with intentions and it is not good practice
             public override void Speak()
             {
                 //below was automatically added
                 //base.Speak();
                 Console.WriteLine($"Dog with name {Name} says {speech}");
+            }
+            public virtual void WagTail()
+            {
+                Console.WriteLine($"{Name} wags tail");
             }
         }
         /*
@@ -131,6 +154,46 @@ namespace ClassBasics
             public override void Speak()
             {
                 Console.WriteLine($"German Shepherd {Name}: {speech}");
+            }
+            public virtual void WagTail()
+            {
+                if (hasFullTail=true)
+                {
+                    Console.WriteLine($"{Name} wags tail");
+                }
+                else
+                {
+                    Console.WriteLine($"{Name} has no tail");
+                }
+            }
+        }
+
+        public class EncapsulationExample
+        {
+            private Animal animal;
+            public EncapsulationExample(Animal animal)
+            {
+                this.animal = animal;
+            }
+            public EncapsulationExample(Dog animal)
+            {
+                this.animal = animal;
+            }
+            public EncapsulationExample(GermanShepherd animal)
+            {
+                this.animal = animal;
+            }
+            public void PrintAnimalStats()
+            {
+                Console.WriteLine($"This animal has the name {animal.Name} and will say the phrase {animal.speech}");
+            }
+            public void PrintAnimalName()
+            {
+                Console.WriteLine($"This animal has the name {animal.Name}");
+            }
+            public void PrintAnimalSpeech()
+            {
+                Console.WriteLine($"This animal says the phrase: {speech}");
             }
         }
     }
