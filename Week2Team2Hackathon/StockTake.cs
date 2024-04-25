@@ -89,7 +89,7 @@ class StockTake// : IENumerable<ShopObjects>
         
         Dictionary <int,ShopObjects> saveInventory = new Dictionary<int,ShopObjects>();
         
-        saveInventory = printableInventory.ToDictionary(k => k.Key, k => k.Value.ToString());
+        saveInventory = printableInventory;
         
         if (editCheck == "q" || editCheck == "quit")
         {
@@ -108,7 +108,7 @@ class StockTake// : IENumerable<ShopObjects>
 
     public static Dictionary<int,ShopObjects> changeInventory(Dictionary<int,ShopObjects> original)
     {
-        Dictionary<int,ShopObjects> originalInventory = original.ToDictionary(k => k.Key, k => k.Value.ToString());
+        Dictionary<int,ShopObjects> originalInventory = original;
         int changeInv;
         string changeInvString;
         foreach(var item in originalInventory)
@@ -124,6 +124,6 @@ class StockTake// : IENumerable<ShopObjects>
         {
             Console.WriteLine("Please enter integer value");
         }
-
+        return originalInventory;
     }
 }
