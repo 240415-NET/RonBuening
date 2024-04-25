@@ -34,7 +34,7 @@ class StockTake// : IENumerable<ShopObjects>
         
 
 
-        //This while loop will present the user with the option to add items to the list or print/view the entire list. Upon printing, a new method is called which gives additional options
+        //This while loop will present the user with the option to add items, change items, or exit the program (with and without saving)
         while (quit == false)
         {
             try
@@ -81,6 +81,7 @@ class StockTake// : IENumerable<ShopObjects>
 
     private static string doneChecker(string doneCheck,Dictionary<int,ShopObjects> doneList)
     {
+        //this method will check for exit conditions
         bool doneTest = false;
         Dictionary<int,ShopObjects> doneInventory = doneList;
         if (doneCheck.ToLower() == "d" || doneCheck.ToLower() == "done")
@@ -96,6 +97,7 @@ class StockTake// : IENumerable<ShopObjects>
 
     public static Dictionary<int,ShopObjects> editNeeded(string editCheck,Dictionary<int,ShopObjects> printableInventory)
     {
+        //this method exists to check if edits to the existing list are needed
         bool editResult = false;
         
         Dictionary <int,ShopObjects> saveInventory = new Dictionary<int,ShopObjects>();
@@ -119,6 +121,7 @@ class StockTake// : IENumerable<ShopObjects>
 
     public static Dictionary<int,ShopObjects> changeInventory(Dictionary<int,ShopObjects> original)
     {
+        //this method changes the list once needed
         Dictionary<int,ShopObjects> originalInventory = original;
         int changeInv;
         string changeInvString;

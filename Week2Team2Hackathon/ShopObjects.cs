@@ -26,19 +26,4 @@ class ShopObjects
         this.productName = productName;
         this.stock = stock;
     }
-
-/*    public IEnumerator<int> GetEnumerator()
-    {
-        //for (int i = 0; i < Count; i++)
-        return new ShopObjects();
-    }
-    private IEnumerator GetEnumerator1()
-    {
-        return this.GetEnumerator();
-    }
-
-    IEnumerator IEnumerable.GetEnumerator()
-    {
-        return GetEnumerator1();
-    }*/
 }
