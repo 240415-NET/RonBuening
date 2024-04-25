@@ -53,13 +53,17 @@ class Program
         exitCheck = exitCheck.Trim();
         if (exitCheck.ToLower() == "q" || exitCheck.ToLower() == "quit")
         {
-            Console.WriteLine("Are you sure? Data will not be saved! Confirm by typing 'g'");
-            if (Console.ReadLine().ToLower() == "g")
-            {
-            Console.WriteLine("Exiting. Goodbye!");
-            Environment.Exit(0);
-            }
+            exitConfirm();
         }
     return exitCheck;
+    }
+    public static void exitConfirm ()
+    {
+        Console.WriteLine("Are you sure? Data will not be saved! Confirm by typing 'g'");
+        if (Console.ReadLine().ToLower() == "g")
+        {
+        Console.WriteLine("Exiting. Goodbye!");
+        Environment.Exit(0);
+        }
     }
 }

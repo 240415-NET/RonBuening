@@ -40,11 +40,11 @@ class StockTake// : IENumerable<ShopObjects>
             {
                 Console.WriteLine("Please enter the product name");
                 buffer = Console.ReadLine().Trim();
-                productNameL = Program.exitChecker(buffer);
+                productNameL = doneChecker(buffer,localInventory);
                 Console.WriteLine("Please enter the brand name");
-                brandNameL = Program.exitChecker(Console.ReadLine());
+                brandNameL = doneChecker(Console.ReadLine(),localInventory);
                 Console.WriteLine("Please enter stock on hand");
-                stockL = Convert.ToInt32(Program.exitChecker(Console.ReadLine()));
+                stockL = Convert.ToInt32(Console.ReadLine());
                 localInventory.Add(itemNumL,new ShopObjects{itemID=itemNumL,brandName=brandNameL,productName=productNameL,stock=stockL});
                 itemNumL++;
 
@@ -61,9 +61,13 @@ class StockTake// : IENumerable<ShopObjects>
                     FileHandling.SaveInventory(localInventory);
                     quit = true;
                 }
-                else
+                else if (buffer.ToLower() == "c" || buffer.ToLower() == "change")
                 {
                     localInventory = editNeeded(buffer,localInventory);
+                }
+                else
+                {
+                    Console.Clear();
                 }
             }
             catch (Exception s)
@@ -73,14 +77,19 @@ class StockTake// : IENumerable<ShopObjects>
         }
     }
 
-    private static bool doneChecker(string doneCheck)
+    private static string doneChecker(string doneCheck,Dictionary<int,ShopObjects> doneList)
     {
         bool doneTest = false;
+        Dictionary<int,ShopObjects> doneInventory = doneList;
         if (doneCheck.ToLower() == "d" || doneCheck.ToLower() == "done")
         {
-            doneTest = true;
+            FileHandling.SaveInventory(doneInventory);
         }
-        return doneTest;
+        else if (doneCheck.ToLower() == "q" || doneCheck.ToLower() == "quit")
+        {
+            Program.exitConfirm();
+        }
+        return doneCheck;
     }
 
     public static Dictionary<int,ShopObjects> editNeeded(string editCheck,Dictionary<int,ShopObjects> printableInventory)
@@ -116,6 +125,8 @@ class StockTake// : IENumerable<ShopObjects>
         string deptL2;
         int stockL2;
 
+        Console.Clear();
+
         foreach(var item in originalInventory)
         {
             Console.WriteLine($"{item.Key}. {item.Value.brandName} {item.Value.productName} {item.Value.stock}");  
@@ -132,6 +143,12 @@ class StockTake// : IENumerable<ShopObjects>
             Console.WriteLine("Please enter stock on hand");
             stockL2 = Convert.ToInt32(Program.exitChecker(Console.ReadLine()));
             originalInventory[changeInv] = new ShopObjects{itemID=changeInv,brandName=brandNameL2,productName=productNameL2,stock=stockL2};
+
+            Console.Clear();
+            foreach(var item in originalInventory)
+            {
+                Console.WriteLine($"{item.Key}. {item.Value.brandName} {item.Value.productName} {item.Value.stock}");  
+            }
         }
         catch (Exception i)
         {
