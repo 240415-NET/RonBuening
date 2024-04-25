@@ -111,6 +111,11 @@ class StockTake// : IENumerable<ShopObjects>
         Dictionary<int,ShopObjects> originalInventory = original;
         int changeInv;
         string changeInvString;
+        string brandNameL2;
+        string productNameL2;
+        string deptL2;
+        int stockL2;
+
         foreach(var item in originalInventory)
         {
             Console.WriteLine($"{item.Key}. {item.Value.brandName} {item.Value.productName} {item.Value.stock}");  
@@ -119,6 +124,14 @@ class StockTake// : IENumerable<ShopObjects>
         try
         {
             changeInv = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Please enter the product name");
+            changeInvString = Console.ReadLine().Trim();
+            productNameL2 = Program.exitChecker(changeInvString);
+            Console.WriteLine("Please enter the brand name");
+            brandNameL2 = Program.exitChecker(Console.ReadLine());
+            Console.WriteLine("Please enter stock on hand");
+            stockL2 = Convert.ToInt32(Program.exitChecker(Console.ReadLine()));
+            originalInventory[changeInv] = new ShopObjects{itemID=changeInv,brandName=brandNameL2,productName=productNameL2,stock=stockL2};
         }
         catch (Exception i)
         {
