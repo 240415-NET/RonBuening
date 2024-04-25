@@ -13,16 +13,34 @@ namespace ClassBasics.TodoList
 
         private bool Status = false; // false is incomplete
 
+        //This is the default constructor that any class will use by default
+        //If you include your own constructor, there will not be a default constructor unless explicitly added
+        //When created by the developer, this can be called a No-Args constructor.
         public TodoItem(){
 
         }
 
-        public TodoItem(string Description, int EstimatedTime, string DueDate, bool Status)
+        public TodoItem(string Description, int EstimatedTime, string DueDate, bool Status) : this(Description, EstimatedTime, DueDate) //the ': this(yadayada)' passes those items to a different constructor as a short hand.
+        {
+            //this.Description = Description;
+            //this.EstimatedTime = EstimatedTime;
+            //this.DueDate = DueDate;
+            this.Status = Status;
+        }
+
+        //this is an example of constructor overloading
+        public TodoItem(string Description, int EstimatedTime, string DueDate) : this (Description,EstimatedTime)
+        {
+            //this.Description = Description;
+            //this.EstimatedTime = EstimatedTime;
+            this.DueDate = DueDate;
+        }
+
+         public TodoItem(string Description, int EstimatedTime)
         {
             this.Description = Description;
             this.EstimatedTime = EstimatedTime;
-            this.DueDate = DueDate;
-            this.Status = Status;
+            this.DueDate = $"{DateTime.Now}";
         }
 
         // My methods are how I will interact with the objects, and how the objects will interact with each other
