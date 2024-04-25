@@ -39,17 +39,17 @@ class FileHandling
        Environment.Exit(0);
     }
 
-    public static void SaveInventory (Dictionary<int ,object ShopObjects> saveableInventory)
+    public static void SaveInventory (Dictionary<int,ShopObjects> saveableInventory)
     {
         //This method will save the file, either to a default directory and file name, or a user input one.
         Console.WriteLine("Please enter a directory and file name to save or 'd' for default");
         string saveLocation2;
-        Dictionary<int,object <hopObjects> finalInventory = saveableInventory.ToDictionary(k => k.Key, k => k.Value.ToString());
+        Dictionary<int,ShopObjects> finalInventory = saveableInventory;
 
         try
         {
             saveLocation2 = Console.ReadLine();
-            if (saveLocation.ToLower() == "d")
+            if (saveLocation2.ToLower() == "d")
             {
                 //Initial attempt showed permissions issue; may have to revise for future commits
                 StreamWriter fileList = new StreamWriter("C:\\ShoppingList.txt");
@@ -68,7 +68,7 @@ class FileHandling
                     Console.WriteLine($"{item.Key}. {item.Value.brandName} {item.Value.productName} {item.Value.stock}");  
                 }
                 fileList.Close();
-                Console.WriteLine("Your file has been saved in " + saveLocation);
+                Console.WriteLine("Your file has been saved in " + saveLocation2);
             }
         }
        catch(Exception e)
