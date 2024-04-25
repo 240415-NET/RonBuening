@@ -19,7 +19,7 @@ namespace ClassBasics.TodoList
         public TodoItem(){
 
         }
-
+        //Any of these constructors can be called to create the object, but only one will be used at a time.
         public TodoItem(string Description, int EstimatedTime, string DueDate, bool Status) : this(Description, EstimatedTime, DueDate) //the ': this(yadayada)' passes those items to a different constructor as a short hand.
         {
             //this.Description = Description;
@@ -110,15 +110,15 @@ namespace ClassBasics.TodoList
 
             for (int i = 0; i < 1; i++)
             {
-                Console.WriteLine("Type Description:\n");
+                Console.WriteLine("Type Description:");
 
                 string description = Console.ReadLine();
 
-                Console.WriteLine("Estimated Time:\n");
+                Console.WriteLine("Estimated Time:");
 
                 int estimatedTime = int.Parse(Console.ReadLine());
 
-                Console.WriteLine("Due Date:\n");
+                Console.WriteLine("Due Date:");
 
                 string dueDate = Console.ReadLine();
 
