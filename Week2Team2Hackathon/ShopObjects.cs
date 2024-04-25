@@ -27,3 +27,10 @@ class ShopObjects
         this.stock = stock;
     }
 }
+/*
+class Nikon : ShopObjects
+{
+    public Nikon(){}
+    public Nikon (int itemID, string productName, int stock) : base()
+}
+*/

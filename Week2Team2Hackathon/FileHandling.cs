@@ -66,7 +66,7 @@ class FileHandling
                     StreamWriter fileList = new StreamWriter("C:\\ShoppingList.txt");
                     foreach(var item in finalInventory)
                     {
-                        fileList.WriteLine($"{item.Key}. {item.Value.brandName} {item.Value.productName} {item.Value.stock}");  
+                        fileList.WriteLine($"{item.Key}.\t {item.Value.brandName}\t {item.Value.productName}\t {item.Value.stock}");  
                     }
                     fileList.Close();
                     Console.Clear();
@@ -78,7 +78,7 @@ class FileHandling
                     StreamWriter fileList = new StreamWriter(saveLocation2);
                     foreach(var item in finalInventory)
                     {
-                        fileList.WriteLine($"{item.Key}. {item.Value.brandName} {item.Value.productName} {item.Value.stock}");  
+                        fileList.WriteLine($"{item.Key}.\t {item.Value.brandName}\t {item.Value.productName}\t {item.Value.stock}");  
                     }
                     fileList.Close();
                     Console.Clear();
