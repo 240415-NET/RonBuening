@@ -33,25 +33,19 @@ class ListCreation
         {
             Console.Clear();
             Console.WriteLine("Please enter an item for your shopping list or type 'print' to print list");
-            userInput = printCheckerSL(Console.ReadLine(),shoppingList);
-            shoppingList.Add(itemNum + ". " + userInput);
-            itemNum++;
+            userInput = Console.ReadLine().Trim();
+            if (userInput.ToLower() == "p" || userInput.ToLower() == "print")
+            {
+                shoppingList = PrintShoppingList(shoppingList);
+            }
+            else
+            {
+                userInput = Program.exitChecker(userInput);
+                shoppingList.Add(itemNum + ". " + userInput);
+                itemNum++;
+            }
         }
         
-    }
-    private static string printCheckerSL (string printCheck,List<string> printString)
-    {
-        printCheck = printCheck.Trim();
-        List<string> printStringLocal = printString.ToList();
-        if (printCheck.ToLower() == "p" || printCheck.ToLower() == "print")
-        {
-            printStringLocal = PrintShoppingList(printStringLocal);
-        }
-        else
-        {
-            printCheck = Program.exitChecker(printCheck);
-        }
-        return printCheck;
     }
 
     public static List<string> PrintShoppingList (List<string> printableList)

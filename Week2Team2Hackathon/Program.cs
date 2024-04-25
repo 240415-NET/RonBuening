@@ -65,7 +65,7 @@ class Program
         {
             exitConfirm();
         }
-    return exitCheck;
+        return exitCheck;
     }
     public static void exitConfirm ()
     {
@@ -73,8 +73,8 @@ class Program
         Console.WriteLine("Are you sure? Data will not be saved! Confirm by typing 'g'");
         if (Console.ReadLine().ToLower() == "g")
         {
-        Console.WriteLine("Exiting. Goodbye!");
-        Environment.Exit(0);
+            Console.WriteLine("Exiting. Goodbye!");
+            Environment.Exit(0);
         }
     }
 }
