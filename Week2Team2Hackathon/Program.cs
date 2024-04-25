@@ -50,6 +50,7 @@ class Program
 
     public static string exitChecker (string exitCheck)
     {  
+        //this will either return the same string or begin the exit checker process as needed
         exitCheck = exitCheck.Trim();
         if (exitCheck.ToLower() == "q" || exitCheck.ToLower() == "quit")
         {
@@ -59,6 +60,7 @@ class Program
     }
     public static void exitConfirm ()
     {
+        //This is a public method to confirm exit when processes have begun in either employee or shopper modes
         Console.WriteLine("Are you sure? Data will not be saved! Confirm by typing 'g'");
         if (Console.ReadLine().ToLower() == "g")
         {
