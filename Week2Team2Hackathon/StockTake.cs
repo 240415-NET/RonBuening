@@ -83,10 +83,14 @@ class StockTake// : IENumerable<ShopObjects>
         return doneTest;
     }
 
-    public static Dictionary<int,<ShopObjects>> editNeeded(string editCheck,Dictionary<int,<ShopObjects>> printableInventory)
+    public static Dictionary<int,object> editNeeded(string editCheck,Dictionary<int,object> printableInventory)
     {
         bool editResult = false;
-        Dictionary<int,<ShopObjects>> saveInventory = printableInventory.ToDictionary(k => k.Key, k => k.Value.ToString());
+        
+        Dictionary < int,< ShopObjects>> saveInventory = new Dictionary<int, ShopObjects>();
+        
+        saveInventory = printableInventory.ToDictionary(k => k.Key, k => k.Value.ToString());
+        
         if (editCheck == "q" || editCheck == "quit")
         {
             Program.exitChecker(editCheck);
@@ -102,7 +106,7 @@ class StockTake// : IENumerable<ShopObjects>
         return saveInventory;
     }
 
-    public static Dictionary<int,<ShopObjects>> changeInventory(Dictionary<int,<ShopObjects>> original)
+    public static Dictionary<int,object> changeInventory(Dictionary<int,object> original)
     {
         Dictionary<int,<ShopObjects>> originalInventory = original.ToDictionary(k => k.Key, k => k.Value.ToString());
         int changeInv;
