@@ -1,5 +1,0 @@
-Key	Brand	Product	Stock
-1.	nikon	z9	1
-2.	nikon	z7 ii	2
-3.	Nikkor	Z 50mm f/1.2 S	3
-4.	koosh	ball	10

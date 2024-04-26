@@ -111,7 +111,7 @@ class StockTake// : IENumerable<ShopObjects>
         return doneCheck;
     }
 
-    public static Dictionary<int,ShopObjects> editNeeded(string editCheck,Dictionary<int,ShopObjects> saveInventory)
+    private static Dictionary<int,ShopObjects> editNeeded(string editCheck,Dictionary<int,ShopObjects> saveInventory)
     {
         //this method exists to check if edits to the existing list are needed
         bool editResult = false;
@@ -131,7 +131,7 @@ class StockTake// : IENumerable<ShopObjects>
         return saveInventory;
     }
 
-    public static Dictionary<int,ShopObjects> changeInventory(Dictionary<int,ShopObjects> originalInventory)
+    private static Dictionary<int,ShopObjects> changeInventory(Dictionary<int,ShopObjects> originalInventory)
     {
         //this method changes the list once needed
 
