@@ -25,23 +25,6 @@ class StockTake// : IENumerable<ShopObjects>
         string buffer;
         Dictionary<int,ShopObjects> localInventory = new Dictionary<int, ShopObjects>();
         
-        /*
-        Console.WriteLine("Please enter the product name");
-        buffer = Console.ReadLine().Trim();
-        productNameL = doneChecker(buffer,localInventory);
-        Console.WriteLine("Please enter the brand name");
-        brandNameL = doneChecker(Console.ReadLine(),localInventory);
-        Console.WriteLine("Please enter stock on hand");
-        stockL = Convert.ToInt32(Console.ReadLine());
-        localInventory.Add(itemNumL,new ShopObjects{itemID=itemNumL,brandName=brandNameL,productName=productNameL,stock=stockL});
-        itemNumL++;
-
-        foreach(var item in localInventory)
-        {
-            Console.WriteLine($"{item.Key}. {item.Value.brandName} {item.Value.productName} {item.Value.stock}");  
-        }
-        */
-
         localInventory = addNew(itemNumL,localInventory);
         itemNumL++;
 
@@ -50,22 +33,6 @@ class StockTake// : IENumerable<ShopObjects>
         {
             try
             {
-                /*
-                Console.WriteLine("Please enter the product name");
-                buffer = Console.ReadLine().Trim();
-                productNameL = doneChecker(buffer,localInventory);
-                Console.WriteLine("Please enter the brand name");
-                brandNameL = doneChecker(Console.ReadLine(),localInventory);
-                Console.WriteLine("Please enter stock on hand");
-                stockL = Convert.ToInt32(Console.ReadLine());
-                localInventory.Add(itemNumL,new ShopObjects{itemID=itemNumL,brandName=brandNameL,productName=productNameL,stock=stockL});
-                itemNumL++;
-
-                foreach(var item in localInventory)
-                {
-                    Console.WriteLine($"{item.Key}. {item.Value.brandName} {item.Value.productName} {item.Value.stock}");  
-                }
-                */
                 Console.WriteLine("Do you need to add additional items?");
                 Console.WriteLine("'y' for yes, 'n' for no, 'c' to change existing item");
                 buffer = Console.ReadLine().Trim();
@@ -82,23 +49,6 @@ class StockTake// : IENumerable<ShopObjects>
                 }
                 else
                 {
-                    /*
-                    Console.Clear();
-                    Console.WriteLine("Please enter the product name");
-                    buffer = Console.ReadLine().Trim();
-                    productNameL = doneChecker(buffer,localInventory);
-                    Console.WriteLine("Please enter the brand name");
-                    brandNameL = doneChecker(Console.ReadLine(),localInventory);
-                    Console.WriteLine("Please enter stock on hand");
-                    stockL = Convert.ToInt32(Console.ReadLine());
-                    localInventory.Add(itemNumL,new ShopObjects{itemID=itemNumL,brandName=brandNameL,productName=productNameL,stock=stockL});
-                    itemNumL++;
-
-                    foreach(var item in localInventory)
-                    {
-                        Console.WriteLine($"{item.Key}. {item.Value.brandName} {item.Value.productName} {item.Value.stock}");  
-                    }
-                    */
                     localInventory = addNew(itemNumL,localInventory);
                     itemNumL++;
                 }
