@@ -1,0 +1,3 @@
+Key	Brand	Product	Stock
+1.	crest	whitening toothpaste	20
+2.	chiquita	banana	50
