@@ -17,11 +17,6 @@ class StockTake// : IENumerable<ShopObjects>
         bool quit = false;
         bool done1 = false;
         int itemNumL = 1;
-        int aisleL;
-        int stockL;
-        string brandNameL;
-        string productNameL;
-        string deptL;
         string buffer;
         Dictionary<int,ShopObjects> localInventory = new Dictionary<int, ShopObjects>();
         
@@ -47,10 +42,14 @@ class StockTake// : IENumerable<ShopObjects>
                 {
                     localInventory = editNeeded(buffer,localInventory);
                 }
-                else
+                else if (buffer.ToLower() == "y" || buffer.ToLower() == "yes")
                 {
                     localInventory = addNew(itemNumL,localInventory);
                     itemNumL++;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid input, please try again");
                 }
             }
             catch (Exception s)
@@ -86,9 +85,9 @@ class StockTake// : IENumerable<ShopObjects>
                 Console.WriteLine($"{item.Key}. {item.Value.brandName} {item.Value.productName} {item.Value.stock}");  
             }
         }
-        catch (Exception s)
+        catch (Exception a)
         {
-            Console.WriteLine($"{s.Message}. Please enter valid input.");
+            Console.WriteLine($"{a.Message}. Please enter valid input.");
         }
         return existingInventory;
     }
