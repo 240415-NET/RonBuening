@@ -11,7 +11,7 @@ using System.IO;
 3 - Use these values to create objects that we define (maybe use a Constructor?)
     -- Done for shopper mode, ShopObjects.cs
 4 - We want to store these objects in a List (or Array)
-    -- Done, stored in Lists for shopper mode (ListCreation.Create) and Dictionaries for employee mode (StockTake.StartStock)
+    -- Done, regular strings are stored in Lists for shopper mode (ListCreation.Create) and Dictionaries for employee mode (StockTake.StartStock)
 5 - Handles any exceptions that may arise during the running of the application (no hard crashing)
     -- Done, in multiple locations
 6 - We want to be able to manage and update the values for our objects stored in the list 

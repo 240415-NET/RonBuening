@@ -1,4 +1,0 @@
-Key	Brand	Product	Stock
-1.	nikon	z9	2
-2.	nikon	z7	10
-3.	nikkor	z6 II	15

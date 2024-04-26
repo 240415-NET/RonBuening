@@ -17,7 +17,7 @@ class FileHandling
         {
             try
             {
-                saveLocation = Console.ReadLine();
+                saveLocation = Program.exitChecker(Console.ReadLine());
                 if (saveLocation.ToLower() == "d")
                 {
                     //Initial attempt showed permissions issue; may have to revise for future commits
@@ -52,14 +52,14 @@ class FileHandling
         //This method will save the file, either to a default directory and file name, or a user input one.
         Console.WriteLine("Please enter a directory and file name to save or 'd' for default");
         string saveLocation2;
-        //Dictionary<int,ShopObjects> finalInventory = saveableInventory;
+
         bool saveSuccess2 = false;
         
         while (saveSuccess2 == false)
         {
             try
             {
-                saveLocation2 = Console.ReadLine();
+                saveLocation2 = Program.exitChecker(Console.ReadLine());
                 if (saveLocation2.ToLower() == "d")
                 {
                     //Initial attempt showed permissions issue; may have to revise for future commits

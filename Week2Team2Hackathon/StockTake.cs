@@ -17,31 +17,9 @@ class StockTake// : IENumerable<ShopObjects>
         bool quit = false;
         bool done1 = false;
         int itemNumL = 1;
-        int aisleL;
-        int stockL;
-        string brandNameL;
-        string productNameL;
-        string deptL;
         string buffer;
         Dictionary<int,ShopObjects> localInventory = new Dictionary<int, ShopObjects>();
         
-        /*
-        Console.WriteLine("Please enter the product name");
-        buffer = Console.ReadLine().Trim();
-        productNameL = doneChecker(buffer,localInventory);
-        Console.WriteLine("Please enter the brand name");
-        brandNameL = doneChecker(Console.ReadLine(),localInventory);
-        Console.WriteLine("Please enter stock on hand");
-        stockL = Convert.ToInt32(Console.ReadLine());
-        localInventory.Add(itemNumL,new ShopObjects{itemID=itemNumL,brandName=brandNameL,productName=productNameL,stock=stockL});
-        itemNumL++;
-
-        foreach(var item in localInventory)
-        {
-            Console.WriteLine($"{item.Key}. {item.Value.brandName} {item.Value.productName} {item.Value.stock}");  
-        }
-        */
-
         localInventory = addNew(itemNumL,localInventory);
         itemNumL++;
 
@@ -50,22 +28,6 @@ class StockTake// : IENumerable<ShopObjects>
         {
             try
             {
-                /*
-                Console.WriteLine("Please enter the product name");
-                buffer = Console.ReadLine().Trim();
-                productNameL = doneChecker(buffer,localInventory);
-                Console.WriteLine("Please enter the brand name");
-                brandNameL = doneChecker(Console.ReadLine(),localInventory);
-                Console.WriteLine("Please enter stock on hand");
-                stockL = Convert.ToInt32(Console.ReadLine());
-                localInventory.Add(itemNumL,new ShopObjects{itemID=itemNumL,brandName=brandNameL,productName=productNameL,stock=stockL});
-                itemNumL++;
-
-                foreach(var item in localInventory)
-                {
-                    Console.WriteLine($"{item.Key}. {item.Value.brandName} {item.Value.productName} {item.Value.stock}");  
-                }
-                */
                 Console.WriteLine("Do you need to add additional items?");
                 Console.WriteLine("'y' for yes, 'n' for no, 'c' to change existing item");
                 buffer = Console.ReadLine().Trim();
@@ -80,27 +42,14 @@ class StockTake// : IENumerable<ShopObjects>
                 {
                     localInventory = editNeeded(buffer,localInventory);
                 }
-                else
+                else if (buffer.ToLower() == "y" || buffer.ToLower() == "yes")
                 {
-                    /*
-                    Console.Clear();
-                    Console.WriteLine("Please enter the product name");
-                    buffer = Console.ReadLine().Trim();
-                    productNameL = doneChecker(buffer,localInventory);
-                    Console.WriteLine("Please enter the brand name");
-                    brandNameL = doneChecker(Console.ReadLine(),localInventory);
-                    Console.WriteLine("Please enter stock on hand");
-                    stockL = Convert.ToInt32(Console.ReadLine());
-                    localInventory.Add(itemNumL,new ShopObjects{itemID=itemNumL,brandName=brandNameL,productName=productNameL,stock=stockL});
-                    itemNumL++;
-
-                    foreach(var item in localInventory)
-                    {
-                        Console.WriteLine($"{item.Key}. {item.Value.brandName} {item.Value.productName} {item.Value.stock}");  
-                    }
-                    */
                     localInventory = addNew(itemNumL,localInventory);
                     itemNumL++;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid input, please try again");
                 }
             }
             catch (Exception s)
@@ -121,7 +70,10 @@ class StockTake// : IENumerable<ShopObjects>
 
         try
         {
-            Console.Clear();
+            if (itemNum2 != 1)
+            {
+                Console.Clear();
+            }
             Console.WriteLine("Please enter the product name");
             buffer3 = Console.ReadLine().Trim();
             productNameL3 = doneChecker(buffer3,existingInventory);
@@ -136,9 +88,9 @@ class StockTake// : IENumerable<ShopObjects>
                 Console.WriteLine($"{item.Key}. {item.Value.brandName} {item.Value.productName} {item.Value.stock}");  
             }
         }
-        catch (Exception s)
+        catch (Exception a)
         {
-            Console.WriteLine($"{s.Message}. Please enter valid input.");
+            Console.WriteLine($"{a.Message}. Please enter valid input.");
         }
         return existingInventory;
     }
@@ -147,7 +99,7 @@ class StockTake// : IENumerable<ShopObjects>
     {
         //this method will check for exit conditions
         bool doneTest = false;
-        //Dictionary<int,ShopObjects> doneInventory = doneList;
+
         if (doneCheck.ToLower() == "d" || doneCheck.ToLower() == "done")
         {
             FileHandling.SaveInventory(doneInventory);
@@ -159,14 +111,10 @@ class StockTake// : IENumerable<ShopObjects>
         return doneCheck;
     }
 
-    public static Dictionary<int,ShopObjects> editNeeded(string editCheck,Dictionary<int,ShopObjects> saveInventory)
+    private static Dictionary<int,ShopObjects> editNeeded(string editCheck,Dictionary<int,ShopObjects> saveInventory)
     {
         //this method exists to check if edits to the existing list are needed
         bool editResult = false;
-        
-        //Dictionary <int,ShopObjects> saveInventory = new Dictionary<int,ShopObjects>();
-        
-        //saveInventory = printableInventory;
         
         if (editCheck == "q" || editCheck == "quit")
         {
@@ -183,10 +131,10 @@ class StockTake// : IENumerable<ShopObjects>
         return saveInventory;
     }
 
-    public static Dictionary<int,ShopObjects> changeInventory(Dictionary<int,ShopObjects> originalInventory)
+    private static Dictionary<int,ShopObjects> changeInventory(Dictionary<int,ShopObjects> originalInventory)
     {
         //this method changes the list once needed
-        //Dictionary<int,ShopObjects> originalInventory = original;
+
         int changeInv;
         string changeInvString;
         string brandNameL2;
