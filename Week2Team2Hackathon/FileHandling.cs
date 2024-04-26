@@ -17,7 +17,7 @@ class FileHandling
         {
             try
             {
-                saveLocation = Console.ReadLine();
+                saveLocation = Program.exitChecker(Console.ReadLine());
                 if (saveLocation.ToLower() == "d")
                 {
                     //Initial attempt showed permissions issue; may have to revise for future commits
@@ -59,7 +59,7 @@ class FileHandling
         {
             try
             {
-                saveLocation2 = Console.ReadLine();
+                saveLocation2 = Program.exitChecker(Console.ReadLine());
                 if (saveLocation2.ToLower() == "d")
                 {
                     //Initial attempt showed permissions issue; may have to revise for future commits
