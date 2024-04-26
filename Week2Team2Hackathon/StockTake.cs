@@ -96,7 +96,7 @@ class StockTake// : IENumerable<ShopObjects>
     {
         //this method will check for exit conditions
         bool doneTest = false;
-        //Dictionary<int,ShopObjects> doneInventory = doneList;
+
         if (doneCheck.ToLower() == "d" || doneCheck.ToLower() == "done")
         {
             FileHandling.SaveInventory(doneInventory);
@@ -112,10 +112,6 @@ class StockTake// : IENumerable<ShopObjects>
     {
         //this method exists to check if edits to the existing list are needed
         bool editResult = false;
-        
-        //Dictionary <int,ShopObjects> saveInventory = new Dictionary<int,ShopObjects>();
-        
-        //saveInventory = printableInventory;
         
         if (editCheck == "q" || editCheck == "quit")
         {
@@ -135,7 +131,7 @@ class StockTake// : IENumerable<ShopObjects>
     public static Dictionary<int,ShopObjects> changeInventory(Dictionary<int,ShopObjects> originalInventory)
     {
         //this method changes the list once needed
-        //Dictionary<int,ShopObjects> originalInventory = original;
+
         int changeInv;
         string changeInvString;
         string brandNameL2;

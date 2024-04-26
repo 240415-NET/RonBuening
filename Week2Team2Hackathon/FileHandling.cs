@@ -52,7 +52,7 @@ class FileHandling
         //This method will save the file, either to a default directory and file name, or a user input one.
         Console.WriteLine("Please enter a directory and file name to save or 'd' for default");
         string saveLocation2;
-        //Dictionary<int,ShopObjects> finalInventory = saveableInventory;
+
         bool saveSuccess2 = false;
         
         while (saveSuccess2 == false)
