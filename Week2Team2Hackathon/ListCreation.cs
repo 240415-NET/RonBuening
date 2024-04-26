@@ -48,10 +48,10 @@ class ListCreation
         
     }
 
-    public static List<string> PrintShoppingList (List<string> printableList)
+    public static List<string> PrintShoppingList (List<string> localList)
     {
         //This method is called by Main and prints the currently compiled list
-        List<string> localList = printableList.ToList();
+        //List<string> localList = printableList.ToList();
         //int itemItt = 1;
         Console.Clear();
         
@@ -84,10 +84,10 @@ class ListCreation
         return localList;
     }
 
-    public static List<string> ChangeShoppingList (List<string> existingList2)
+    public static List<string> ChangeShoppingList (List<string> existingList)
     {
         //The ChangeShoppingList method allows for corrections and edits to the list, returning the user to main once the edit is complete
-        List<string> existingList = existingList2.ToList();
+        //List<string> existingList = existingList2.ToList();
         try
         {
             Console.WriteLine("Please enter an index to change");

@@ -72,11 +72,11 @@ class StockTake// : IENumerable<ShopObjects>
         }
     }
 
-    private static string doneChecker(string doneCheck,Dictionary<int,ShopObjects> doneList)
+    private static string doneChecker(string doneCheck,Dictionary<int,ShopObjects> doneInventory)
     {
         //this method will check for exit conditions
         bool doneTest = false;
-        Dictionary<int,ShopObjects> doneInventory = doneList;
+        //Dictionary<int,ShopObjects> doneInventory = doneList;
         if (doneCheck.ToLower() == "d" || doneCheck.ToLower() == "done")
         {
             FileHandling.SaveInventory(doneInventory);
@@ -88,14 +88,14 @@ class StockTake// : IENumerable<ShopObjects>
         return doneCheck;
     }
 
-    public static Dictionary<int,ShopObjects> editNeeded(string editCheck,Dictionary<int,ShopObjects> printableInventory)
+    public static Dictionary<int,ShopObjects> editNeeded(string editCheck,Dictionary<int,ShopObjects> saveInventory)
     {
         //this method exists to check if edits to the existing list are needed
         bool editResult = false;
         
-        Dictionary <int,ShopObjects> saveInventory = new Dictionary<int,ShopObjects>();
+        //Dictionary <int,ShopObjects> saveInventory = new Dictionary<int,ShopObjects>();
         
-        saveInventory = printableInventory;
+        //saveInventory = printableInventory;
         
         if (editCheck == "q" || editCheck == "quit")
         {
@@ -112,10 +112,10 @@ class StockTake// : IENumerable<ShopObjects>
         return saveInventory;
     }
 
-    public static Dictionary<int,ShopObjects> changeInventory(Dictionary<int,ShopObjects> original)
+    public static Dictionary<int,ShopObjects> changeInventory(Dictionary<int,ShopObjects> originalInventory)
     {
         //this method changes the list once needed
-        Dictionary<int,ShopObjects> originalInventory = original;
+        //Dictionary<int,ShopObjects> originalInventory = original;
         int changeInv;
         string changeInvString;
         string brandNameL2;

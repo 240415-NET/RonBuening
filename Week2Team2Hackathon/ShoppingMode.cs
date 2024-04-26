@@ -5,10 +5,10 @@ using System.IO;
 
 class ShoppingMode
 {
-    public static void Shop (List<string> printedList)
+    public static void Shop (List<string> checkList)
     {
         //The shopping mode method is designed to hide items from the list by marking a boolean array true in the same locations as the original list.
-        List<string> checkList = printedList.ToList();
+        //List<string> checkList = printedList.ToList();
         string userTicks;
         int itemComplete;
         int countCompleted = 0;
@@ -51,12 +51,12 @@ class ShoppingMode
         Environment.Exit(0);
     }
 
-    public static void PrintTruncatedList (List<string> TruncatedList,bool[] omittedItems)
+    public static void PrintTruncatedList (List<string> prettyPrint,bool[] omittedItems)
     {
         //This method exists solely to print out the items on the list that have not been marked complete under the ShoppingMode method
-        List<string> prettyPrint = TruncatedList.ToList();
+        //List<string> prettyPrint = TruncatedList.ToList();
         Console.Clear();
-        for (int i = 0; i < TruncatedList.Count(); i++)
+        for (int i = 0; i < prettyPrint.Count(); i++)
         {
             if (omittedItems[i] != true)
             {
