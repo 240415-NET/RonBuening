@@ -70,7 +70,10 @@ class StockTake// : IENumerable<ShopObjects>
 
         try
         {
-            Console.Clear();
+            if (itemNum2 != 1)
+            {
+                Console.Clear();
+            }
             Console.WriteLine("Please enter the product name");
             buffer3 = Console.ReadLine().Trim();
             productNameL3 = doneChecker(buffer3,existingInventory);
