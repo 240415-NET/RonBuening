@@ -2,11 +2,22 @@ namespace TrackMyStuff.Models;
 
 public class Item
 {
-    internal int itemID {get; set;}
-    internal int userID {get; set;}
-    internal string category {get; set;}
-    internal double originalCost {get; set;}
-    internal DateTime purchaseDate {get; set;}
-    internal string description {get; set;}
+    public int itemID {get; private set;}
+    public int userID {get; private set;}
+    public string category {get; set;}
+    public double originalCost {get; set;}
+    public DateTime purchaseDate {get; set;}
+    public string description {get; set;}
+
+    public Item () {}
+    public Item (int itemID, int userId, string category, double originalCost, DateTime purchaseDate, string description)
+    {
+        this.itemID = itemID;
+        this.userID = userID;
+        this.category = category;
+        this.originalCost = originalCost;
+        this.purchaseDate = purchaseDate;
+        this.description = description;
+    }
     
 }

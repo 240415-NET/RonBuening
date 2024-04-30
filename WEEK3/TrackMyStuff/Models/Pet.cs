@@ -2,8 +2,14 @@ namespace TrackMyStuff.Models;
 
 public class Pet : Item
 {
-    internal string name {get; set;}
-    internal string species {get; set;}
-    internal int age {get; set;}
+    public string name {get; set;}
+    public string species {get; set;}
+    public int age {get; set;}
 
+    public Pet (int itemID, int userId, string category, double originalCost, DateTime purchaseDate, string description, string name, string species, int age) :base Item(itemID, userId, category, originalCost, purchaseDate, description)
+    {
+        this.name = name;
+        this.species = species;
+        this.age = age;
+    }
 }
