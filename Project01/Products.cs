@@ -40,6 +40,8 @@ class Camera : Product
     public bool viewfinder {get; set;}
     public float screenResolution {get; set;}
 
+    public Camera (int itemID, string brandName, string productName)
+
 }
 
 class Lens : Product
