@@ -42,10 +42,10 @@ public class Camera : Product
     public bool? viewfinder {get; set;}
     public float? screenResolution {get; set;}
     public Camera () {}
-    public Camera (int itemID, string dept, string brandName, string productName, float resolution, bool interchangeableLens, string lensMountReceive, bool viewfinder, float screenResolution) :base Product(itemID, dept, brandName, productName)
+    public Camera (int itemID, string dept, string brandName, string productName, float resolution, bool interchangeableLens, string lensMountReceive, bool viewfinder, float screenResolution) :base (itemID, dept, brandName, productName)
     {
         this.itemID = itemID;
-        this.dept = "Camera";
+        this.dept = dept;
         this.brandName = brandName;
         this.productName = productName;
         this.resolution = resolution;
@@ -66,7 +66,7 @@ public class Lens : Product
     public int? maxAperture {get; set;}
     public string lensMount {get; set;}
     public Lens () {}
-    public Lens (int itemID, string dept, string brandName, string productName, bool zoom, int minFocalLength, int maxFocalLength, int minAperture, int maxAperture, string lensMount) :base Product (itemID, dept, brandName, productName)
+    public Lens (int itemID, string dept, string brandName, string productName, bool zoom, int minFocalLength, int maxFocalLength, int minAperture, int maxAperture, string lensMount) :base (itemID, dept, brandName, productName)
     {
         this.itemID = itemID;
         this.dept = "Lens";
@@ -88,7 +88,7 @@ public class Lighting : Product
     public int? wattSecond {get; set;}
     public string? modifierMountReceive {get; set;}
     public Lighting () {}
-    public Lighting (int itemID, string dept, string brandName, string productName, bool wallPower, bool flash, int wattSecond, string modifierMountReceive) :base Product (itemID, dept, brandName, productName)
+    public Lighting (int itemID, string dept, string brandName, string productName, bool wallPower, bool flash, int wattSecond, string modifierMountReceive) :base (itemID, dept, brandName, productName)
     {
         this.itemID = itemID;
         this.dept = "Lighting";
@@ -107,7 +107,7 @@ public class Modifiers : Product
     public int? modifierHeight {get; set;}
     public int? modifierWidth {get; set;}
     public Modifiers () {}
-    public Modifiers (int itemID, string dept, string brandName, string productName, string modifierType, string modifierMount, int modifierHeight, int modifierWidth) :base Product (itemID, dept, brandName, productName)
+    public Modifiers (int itemID, string dept, string brandName, string productName, string modifierType, string modifierMount, int modifierHeight, int modifierWidth) :base (itemID, dept, brandName, productName)
     {
         this.itemID = itemID;
         this.dept = "Modifiers";
