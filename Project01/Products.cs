@@ -25,6 +25,11 @@ class Product
 }
 class Camera : Product
 {
+    public float resolution {get; set;}
+    public bool interchangeableLens {get; set;}
+    public string lensMount {get; set;}
+    public bool viewfinder {get; set;}
+    public float screenResolution {get; set;}
 
 }
 
@@ -34,6 +39,10 @@ class Lens : Product
 }
 
 class Lighting : Product
+{
+
+}
+class Modifiers : Product
 {
 
 }
