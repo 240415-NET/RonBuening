@@ -1,2 +1,2 @@
-namespace TrackMyStuff;
+namespace TrackMyStuff.Models;
 

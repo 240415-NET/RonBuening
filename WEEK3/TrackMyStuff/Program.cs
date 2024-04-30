@@ -1,4 +1,4 @@
-﻿namespace TrackMyStuff;
+﻿namespace TrackMyStuff.App;
 
 /*
     ##Models
