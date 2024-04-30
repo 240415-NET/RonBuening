@@ -16,6 +16,7 @@ public class UserInterface
             {
                 Console.Write("=");
             }
+            Console.Write('\n');
         }
     }
     public static void menuFillHorizontal(string[] args)
