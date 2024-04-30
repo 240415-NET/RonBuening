@@ -9,7 +9,7 @@ public class AdminMenu
     {
         int wConsole = Console.WindowWidth;
         int hConsole = Console.WindowHeight;
-        string[] initialPrompt = {"Please select log-in type","1. Administrator","2. Client"};
+        string[] initialPrompt = {"Please enter your username and key","separated by a space"};
         int userSelect = 0;
 
         Console.Clear();
@@ -17,26 +17,6 @@ public class AdminMenu
         UserInterface.menuFillHorizontal(initialPrompt);
         UserInterface.menuFillVertical(initialPrompt);
 
-        try
-        {
-            userSelect = Convert.ToInt32(Console.ReadLine());
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine($"{e.Message}. Please key in valid selection");
-        }
-
-        switch (userSelect)
-        {
-            case 1:
-            AdminMenu.LogIn();
-            break;
-            case 2:
-            ClientMenu.LogIn();
-            break;
-            default:
-            Console.WriteLine("Please enter valid selection");
-            return;
-        }
+        
     }
 }
