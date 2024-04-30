@@ -1,5 +1,7 @@
 namespace Project01;
-
+using System;
+using System.Collections.Generic;
+using System.IO;
 class Product
 {
     public string brandName {get; set;}
