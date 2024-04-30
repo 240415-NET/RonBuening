@@ -9,7 +9,7 @@ public class User
     public string userName {get; set;}
 
     //Constructors
-    public User();
+    public User() {}
     public User (int _userId, string _userName)
     {
         userId = _userId;
