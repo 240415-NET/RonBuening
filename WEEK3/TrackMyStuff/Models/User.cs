@@ -2,7 +2,18 @@ namespace TrackMyStuff.Models;
 
 public class User
 {
-    int userId {get; set;}
-    string userName {get; set;}
-    
+    //Fields
+
+    //You can leverage get; set; shorthand to protect fields by putting a different access modified to the getter or setter
+    public int userId {get; private set;}
+    public string userName {get; set;}
+
+    //Constructors
+    public User();
+    public User (int _userId, string _userName)
+    {
+        userId = _userId;
+        userName = _userName;
+    }
+
 }

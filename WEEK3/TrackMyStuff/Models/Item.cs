@@ -2,11 +2,11 @@ namespace TrackMyStuff.Models;
 
 public class Item
 {
-    int itemID {get; set;}
-    int userID {get; set;}
-    string category {get; set;}
-    double originalCost {get; set;}
-    DateTime purchaseDate {get; set;}
-    string description {get; set;}
+    internal int itemID {get; set;}
+    internal int userID {get; set;}
+    internal string category {get; set;}
+    internal double originalCost {get; set;}
+    internal DateTime purchaseDate {get; set;}
+    internal string description {get; set;}
     
 }

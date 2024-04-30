@@ -1,6 +1,6 @@
 ﻿namespace TrackMyStuff.App;
 
-
+using TrackMyStuff.Models;
 
 class Program
 {

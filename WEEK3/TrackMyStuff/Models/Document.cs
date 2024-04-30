@@ -2,6 +2,6 @@ namespace TrackMyStuff.Models;
 
 public class Document : Item
 {
-    string documentType {get; set;}
-    DateTime expiration {get; set;}
+    internal string documentType {get; set;}
+    internal DateTime expiration {get; set;}
 }
