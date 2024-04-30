@@ -15,7 +15,9 @@
 - The application should allow for multiple users to log in and persist their data
     - Store "shopping carts" where customer has added products to the cart for checkout
 - The application should demonstrate good input validation
+    - Validation of customer data provide an example
 - The application should persist data to a SQL Server DB
+    - Customer or product data, shopping carts are possible stored values
 - The application should communicate to DB via ADO.NET or Entity Framework Core
 - The application should have unit tests
 
