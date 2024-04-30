@@ -4,16 +4,26 @@ class Program
 {
     static void Main(string[] args)
     {
-        System.Console.Write("Enter number of employees: ");
-        Employee.numberOfEmployees = int.Parse(System.Console.ReadLine());
+        int N = int.Parse(Console.ReadLine());
 
-        Employee e1 = new Employee();
-        System.Console.Write("Enter the name of the new employee: ");
-        e1.Name = System.Console.ReadLine();
+        // Write an answer using Console.WriteLine()
+        // To debug: Console.Error.WriteLine("Debug messages...");
+        //for (int i = 2; i <= N; i+=2)
+        //{
+        //    Console.WriteLine(i);
+        //}
 
-        System.Console.WriteLine("The employee information:");
-        System.Console.WriteLine("Employee number: {0}", e1.Counter);
-        System.Console.WriteLine("Employee name: {0}", e1.Name);
+        int i = 0;
+        int k = 0;
+
+        do
+        {
+            k+=i;
+            i+=2;
+        }
+        while (i <= N);
+
+        Console.WriteLine(k);
     }
      interface IEmployee
         {
