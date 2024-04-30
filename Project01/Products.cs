@@ -27,7 +27,7 @@ class Camera : Product
 {
     public float resolution {get; set;}
     public bool interchangeableLens {get; set;}
-    public string lensMount {get; set;}
+    public string lensMountReceive {get; set;}
     public bool viewfinder {get; set;}
     public float screenResolution {get; set;}
 
@@ -35,14 +35,26 @@ class Camera : Product
 
 class Lens : Product
 {
-
+    public bool zoom {get; set;}
+    public int minFocalLength {get; set;}
+    public int maxFocalLength {get; set;}
+    public int minAperture {get; set;}
+    public int maxAperture {get; set;}
+    public string lensMount {get; set;}
 }
 
 class Lighting : Product
 {
-
+    public bool wallPower {get; set;}
+    public bool flash {get; set;}
+    public int wattSecond {get; set;}
+    public int guideNumber {get; set;}
+    public string modifierMountReceive {get; set;}
 }
 class Modifiers : Product
 {
-
+    public string modifierType {get; set;}
+    public string modifierMount {get; set;}
+    public int modifierHeight {get; set;}
+    public int modifierWidth {get; set;}
 }
