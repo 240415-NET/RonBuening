@@ -27,6 +27,6 @@ class Program
 {
     static void Main(string[] args)
     {
-        SignOn();
+        AcctAccess.LogIn();
     }
 }

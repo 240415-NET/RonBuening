@@ -2,12 +2,12 @@ namespace Project01;
 using System;
 using System.Collections.Generic;
 using System.IO;
-class Product
+public class Product
 {
     public string brandName {get; set;}
     public string productName {get; set;}
     public string dept {get; set;}
-    public int stock {get; set;}
+    public int? stock {get; set;}
     public int itemID {get; set;}
 
     public void WriteStock()
@@ -34,7 +34,7 @@ class Product
         this.stock = 0;
     }
 }
-class Camera : Product
+public class Camera : Product
 {
     public float resolution {get; set;}
     public bool interchangeableLens {get; set;}
@@ -42,7 +42,7 @@ class Camera : Product
     public bool? viewfinder {get; set;}
     public float? screenResolution {get; set;}
     public Camera () {}
-    public Camera (int itemID, string dept, string brandName, string productName, float resolution, bool interchangeableLens, string lensMountReceive, bool viewfinder, float screenResolution) :base Product (itemID, dept, brandName, productName)
+    public Camera (int itemID, string dept, string brandName, string productName, float resolution, bool interchangeableLens, string lensMountReceive, bool viewfinder, float screenResolution) :base Product(itemID, dept, brandName, productName)
     {
         this.itemID = itemID;
         this.dept = "Camera";
@@ -57,7 +57,7 @@ class Camera : Product
 
 }
 
-class Lens : Product
+public class Lens : Product
 {
     public bool zoom {get; set;}
     public int minFocalLength {get; set;}
@@ -81,7 +81,7 @@ class Lens : Product
     }
 }
 
-class Lighting : Product
+public class Lighting : Product
 {
     public bool wallPower {get; set;}
     public bool flash {get; set;}
@@ -100,7 +100,7 @@ class Lighting : Product
         this.modifierMountReceive = modifierMountReceive;
     }
 }
-class Modifiers : Product
+public class Modifiers : Product
 {
     public string modifierType {get; set;}
     public string modifierMount {get; set;}
