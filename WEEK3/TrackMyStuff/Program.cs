@@ -3,14 +3,21 @@
 /*
     ##Models
     -User
-    -Clothes
-    -Furniture
-    -Electronics
-    -Appliances
-    -Jewelry
+        -userID (int)
+    -Common fields
+        -Owner (int)
+        -Item Category (string)
+        -Original cost (float)
+        -Purchase date (date)
+        -Description (string)
     -Pets
+        -Name (string)
+        -Species (string)
+        -Age (string)
     -Documents
-    -Misc
+        -Document Type (string)
+        -Expiration (date)
+
 
 */
 class Program
