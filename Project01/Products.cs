@@ -22,6 +22,15 @@ class Product
         this.productName = productName;
         this.stock = stock;
     }
+
+    public Product (int itemID, string dept, string brandName, string productName)
+    {
+        this.itemID = itemID;
+        this.dept = dept;
+        this.brandName = brandName;
+        this.productName = productName;
+        this.stock = 0;
+    }
 }
 class Camera : Product
 {
