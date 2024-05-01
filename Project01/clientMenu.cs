@@ -17,6 +17,11 @@ public class ClientMenu
         UserInterface.menuFillHorizontal(initialPrompt);
         UserInterface.menuFillVertical(initialPrompt);
        
-       
+
+    }
+
+    public static void RootMenu()
+    {
+        
     }
 }
