@@ -6,6 +6,7 @@ public class UserInterface
 {
     public static void menuPrintBase(string[] args)
     {
+        //calls submethods appropriately for the arguments passed
         string[] initialPrompt = args;
         UserInterface.menuFillVertical(initialPrompt);
         UserInterface.menuFillHorizontal(initialPrompt);
@@ -13,6 +14,7 @@ public class UserInterface
     }
     public static void menuFillVertical(string[] args)
     {
+        //creates vertical spacing appropriate for the number of menu items in array passed
         int wConsole = Console.WindowWidth;
         int hConsole = Console.WindowHeight;
         string[] menuPrint = args;
@@ -28,6 +30,7 @@ public class UserInterface
     }
     public static void menuFillHorizontal(string[] args)
     {
+        //prints string array for menu centered in columns
         int wConsole = Console.WindowWidth;
         int hConsole = Console.WindowHeight;
         string[] menuPrint = args;
@@ -46,6 +49,36 @@ public class UserInterface
             }
             Console.Write("===");
             Console.Write('\n');
+        }
+    }
+    public static string exitChecker(string exitCheck)
+    {  
+        //this will either return the same string or begin the exit checker process as needed
+        exitCheck = exitCheck.Trim();
+        if (exitCheck.ToLower() == "q" || exitCheck.ToLower() == "quit")
+        {
+            exitConfirm();
+        }
+        return exitCheck;
+    }
+    public static void exitConfirm()
+    {
+        //This is a public method to confirm exit when processes have begun in either employee or shopper modes
+        Console.WriteLine("Are you sure? Data will not be saved! Confirm by typing 'g'");
+        if (Console.ReadLine().ToLower() == "g")
+        {
+            Console.WriteLine("Exiting. Goodbye!");
+            Environment.Exit(0);
+        }
+    }
+    public static void exit()
+    {
+        //Simplified exit method for use when there is no data being handled
+        Console.WriteLine("Are you sure? Confirm by typing 'g'");
+        if (Console.ReadLine().ToLower() == "g")
+        {
+            Console.WriteLine("Exiting. Goodbye!");
+            Environment.Exit(0);
         }
     }
 }

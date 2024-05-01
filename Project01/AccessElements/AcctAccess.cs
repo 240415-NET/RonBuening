@@ -8,7 +8,7 @@ public class AcctAccess
     {
         int wConsole = Console.WindowWidth;
         int hConsole = Console.WindowHeight;
-        string[] initialPrompt = {"Please select log-in type","1. Administrator","2. Client"};
+        string[] initialPrompt = {"Please select log-in type","1. Administrator","2. Client","3. Exit"};
         int userSelect = 0;
         bool valid = false;
 
@@ -29,6 +29,11 @@ public class AcctAccess
                     case 2:
                     valid = true;
                     ClientMenu.LogIn();
+                    break;
+                    case 3:
+                    UserInterface.exit();
+                    Console.WriteLine("Please enter a selection to continue");
+                    userSelect = Convert.ToInt32(Console.ReadLine());
                     break;
                     default:
                     Console.WriteLine("Please enter valid selection");
