@@ -33,11 +33,9 @@ public class AcctAccess
                     case 3:
                     UserInterface.exit();
                     Console.WriteLine("Please enter a selection to continue");
-                    userSelect = Convert.ToInt32(Console.ReadLine());
                     break;
                     default:
                     Console.WriteLine("Please enter valid selection");
-                    userSelect = Convert.ToInt32(Console.ReadLine());
                     break;
                 }
             }
