@@ -13,12 +13,8 @@ public class AcctAccess
         bool valid = false;
 
         Console.Clear();
-        UserInterface.menuFillVertical(initialPrompt);
-        UserInterface.menuFillHorizontal(initialPrompt);
-        UserInterface.menuFillVertical(initialPrompt);
-
+        UserInterface.menuPrintBase(initialPrompt);
         
-
         do 
         {
             try

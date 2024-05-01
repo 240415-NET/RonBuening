@@ -13,15 +13,11 @@ public class ClientMenu
         string userSignOn;
 
         Console.Clear();
-        UserInterface.menuFillVertical(initialPrompt);
-        UserInterface.menuFillHorizontal(initialPrompt);
-        UserInterface.menuFillVertical(initialPrompt);
-       
-
+        UserInterface.menuPrintBase(initialPrompt);
     }
 
     public static void RootMenu()
     {
-        
+
     }
 }

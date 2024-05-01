@@ -4,6 +4,13 @@ using System.Collections.Generic;
 using System.IO;
 public class UserInterface
 {
+    public static void menuPrintBase(string[] args)
+    {
+        string[] initialPrompt = args;
+        UserInterface.menuFillVertical(initialPrompt);
+        UserInterface.menuFillHorizontal(initialPrompt);
+        UserInterface.menuFillVertical(initialPrompt);
+    }
     public static void menuFillVertical(string[] args)
     {
         int wConsole = Console.WindowWidth;

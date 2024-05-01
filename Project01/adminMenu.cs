@@ -13,10 +13,6 @@ public class AdminMenu
         int userSelect = 0;
 
         Console.Clear();
-        UserInterface.menuFillVertical(initialPrompt);
-        UserInterface.menuFillHorizontal(initialPrompt);
-        UserInterface.menuFillVertical(initialPrompt);
-
-        
+        UserInterface.menuPrintBase(initialPrompt);
     }
 }
