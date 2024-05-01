@@ -49,8 +49,6 @@ public class UserInterface
                 {
                     Console.Write(" ");
                 }
-                Console.Write("===");
-                Console.Write('\n');
             }
             else
             {
@@ -63,9 +61,9 @@ public class UserInterface
                 {
                     Console.Write(" ");
                 }
-                Console.Write(" ===");
-                Console.Write('\n');
             }
+            Console.Write(" ===");
+            Console.Write('\n');
         }
     }
     public static string exitChecker(string exitCheck)
