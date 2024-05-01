@@ -8,7 +8,7 @@ public class Product
     public string productName {get; set;}
     public string dept {get; set;}
     public int? stock {get; set;}
-    public int itemID {get; set;}
+    public Guid itemID {get; set;}
 
     public void WriteStock()
     {
@@ -16,18 +16,18 @@ public class Product
     }
     public Product(){}
 
-    public Product (int itemID, string dept, string brandName, string productName, int stock)
+    public Product (string dept, string brandName, string productName, int stock)
     {
-        this.itemID = itemID;
+        this.itemID = Guid.NewGuid();
         this.dept = dept;
         this.brandName = brandName;
         this.productName = productName;
         this.stock = stock;
     }
 
-    public Product (int itemID, string dept, string brandName, string productName)
+    public Product (string dept, string brandName, string productName)
     {
-        this.itemID = itemID;
+        this.itemID = Guid.NewGuid();
         this.dept = dept;
         this.brandName = brandName;
         this.productName = productName;
@@ -42,9 +42,9 @@ public class Camera : Product
     public bool? viewfinder {get; set;}
     public float? screenResolution {get; set;}
     public Camera () {}
-    public Camera (int itemID, string dept, string brandName, string productName, float resolution, bool interchangeableLens, string lensMountReceive, bool viewfinder, float screenResolution) :base (itemID, dept, brandName, productName)
+    public Camera (string dept, string brandName, string productName, float resolution, bool interchangeableLens, string lensMountReceive, bool viewfinder, float screenResolution) :base (dept, brandName, productName)
     {
-        this.itemID = itemID;
+        this.itemID = Guid.NewGuid();
         this.dept = dept;
         this.brandName = brandName;
         this.productName = productName;
@@ -66,9 +66,9 @@ public class Lens : Product
     public int? maxAperture {get; set;}
     public string lensMount {get; set;}
     public Lens () {}
-    public Lens (int itemID, string dept, string brandName, string productName, bool zoom, int minFocalLength, int maxFocalLength, int minAperture, int maxAperture, string lensMount) :base (itemID, dept, brandName, productName)
+    public Lens (string dept, string brandName, string productName, bool zoom, int minFocalLength, int maxFocalLength, int minAperture, int maxAperture, string lensMount) :base (dept, brandName, productName)
     {
-        this.itemID = itemID;
+        this.itemID = Guid.NewGuid();
         this.dept = "Lens";
         this.brandName = brandName;
         this.productName = productName;
@@ -88,9 +88,9 @@ public class Lighting : Product
     public int? wattSecond {get; set;}
     public string? modifierMountReceive {get; set;}
     public Lighting () {}
-    public Lighting (int itemID, string dept, string brandName, string productName, bool wallPower, bool flash, int wattSecond, string modifierMountReceive) :base (itemID, dept, brandName, productName)
+    public Lighting (string dept, string brandName, string productName, bool wallPower, bool flash, int wattSecond, string modifierMountReceive) :base (dept, brandName, productName)
     {
-        this.itemID = itemID;
+        this.itemID = Guid.NewGuid();
         this.dept = "Lighting";
         this.brandName = brandName;
         this.productName = productName;
@@ -107,9 +107,9 @@ public class Modifiers : Product
     public int? modifierHeight {get; set;}
     public int? modifierWidth {get; set;}
     public Modifiers () {}
-    public Modifiers (int itemID, string dept, string brandName, string productName, string modifierType, string modifierMount, int modifierHeight, int modifierWidth) :base (itemID, dept, brandName, productName)
+    public Modifiers (string dept, string brandName, string productName, string modifierType, string modifierMount, int modifierHeight, int modifierWidth) :base (dept, brandName, productName)
     {
-        this.itemID = itemID;
+        this.itemID = Guid.NewGuid();
         this.dept = "Modifiers";
         this.brandName = brandName;
         this.productName = productName;

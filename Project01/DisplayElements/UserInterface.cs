@@ -38,17 +38,34 @@ public class UserInterface
         for (int s = 0; s < menuPrint.Length; s++)
         {
             Console.Write("===");
-            for (int w = 0; w < (wConsole - (menuPrint[s].Length + 6))/2; w++)
+            if (menuPrint[s].Length % 2 == 0)
             {
-                Console.Write(" ");
+                for (int w = 0; w < (wConsole - (menuPrint[s].Length + 6))/2; w++)
+                {
+                    Console.Write(" ");
+                }
+                Console.Write(menuPrint[s]);
+                for (int w = 0; w < (wConsole - (menuPrint[s].Length + 6))/2; w++)
+                {
+                    Console.Write(" ");
+                }
+                Console.Write("===");
+                Console.Write('\n');
             }
-            Console.Write(menuPrint[s]);
-            for (int w = 0; w < (wConsole - (menuPrint[s].Length + 6))/2; w++)
+            else
             {
-                Console.Write(" ");
+                for (int w = 0; w < (wConsole - (menuPrint[s].Length + 6))/2; w++)
+                {
+                    Console.Write(" ");
+                }
+                Console.Write(menuPrint[s]);
+                for (int w = 0; w < (wConsole - (menuPrint[s].Length + 6))/2; w++)
+                {
+                    Console.Write(" ");
+                }
+                Console.Write(" ===");
+                Console.Write('\n');
             }
-            Console.Write("===");
-            Console.Write('\n');
         }
     }
     public static string exitChecker(string exitCheck)
