@@ -16,7 +16,7 @@ public class ClientMenu
         
         do
         {
-            userSignOn = Console.ReadLine();
+            userSignOn = Console.ReadLine.Trim();
             nullEmpty = String.IsNullOrEmpty(userSignOn); //will return true if string given is null or empty
             if (nullEmpty == true)
             {
