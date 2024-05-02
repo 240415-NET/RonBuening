@@ -9,6 +9,7 @@ public class AcctAccess
         string[] initialPrompt = {"1. Existing User","2. New User","3. Exit"};
         int userSelect = 0;
         bool valid = false;
+        string email;
 
         Console.Clear();
         UserInterface.menuPrintBase(initialPrompt);
@@ -22,7 +23,7 @@ public class AcctAccess
                 {
                     case 1:
                     valid = true;
-                    AdminMenu.LogIn();
+                    UserCreation.CreateUser();
                     break;
                     case 2:
                     valid = true;
@@ -44,4 +45,5 @@ public class AcctAccess
         }
         while (valid == false);
     }
+    public 
 }
