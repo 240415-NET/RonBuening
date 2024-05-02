@@ -26,6 +26,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello, World!");
+        List<User> userArchive = AccessFile.ReadUser();
+        AcctAccess.LogIn(userArchive);
     }
 }
