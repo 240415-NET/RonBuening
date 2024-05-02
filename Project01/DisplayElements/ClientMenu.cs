@@ -7,8 +7,6 @@ public class ClientMenu
 {
     public static void LogIn()
     {
-        int wConsole = Console.WindowWidth;
-        int hConsole = Console.WindowHeight;
         string[] initialPrompt = {"Please enter your email to sign in"};
         string userSignOn;
         bool nullEmpty = false;
@@ -34,6 +32,6 @@ public class ClientMenu
 
     public static void RootMenu()
     {
-        
+
     }
 }

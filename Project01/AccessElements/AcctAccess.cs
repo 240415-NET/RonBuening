@@ -6,8 +6,6 @@ public class AcctAccess
 {
     public static void LogIn()
     {
-        int wConsole = Console.WindowWidth;
-        int hConsole = Console.WindowHeight;
         string[] initialPrompt = {"Please select log-in type","1. Administrator","2. Client","3. Exit"};
         int userSelect = 0;
         bool valid = false;
