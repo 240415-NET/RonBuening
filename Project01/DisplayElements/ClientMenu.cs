@@ -11,13 +11,29 @@ public class ClientMenu
         int hConsole = Console.WindowHeight;
         string[] initialPrompt = {"Please enter your email to sign in"};
         string userSignOn;
-
+        bool nullEmpty = false;
+        
         Console.Clear();
         UserInterface.menuPrintBase(initialPrompt);
+        
+        do
+        {
+            userSignOn = Console.ReadLine();
+            nullEmpty = String.IsNullOrEmpty(userSignOn); //will return true if string given is null or empty
+            if (nullEmpty == true)
+            {
+                Console.WriteLine("Please provide a valid sign on")
+            }
+            else
+            {
+                Clients.UserCheck(userSignOn);
+            }
+        }
+        while (nullEmpty == true);
     }
 
     public static void RootMenu()
     {
-
+        
     }
 }
