@@ -12,15 +12,15 @@ public class Location
 
     public Location(string _locationName)
     {
-        speciesId = Guid.NewGuid(); 
-        speciesName = _speciesName;
+        locationID = Guid.NewGuid(); 
+        locationName = _locationName;
         county = "Pinellas";
         state = "Florida";
     }
      public Location(string _locationName, string _state, string _county)
     {
-        speciesId = Guid.NewGuid(); 
-        speciesName = _speciesName;
+        locationID = Guid.NewGuid(); 
+        locationName = _locationName;
         county = _county;
         state = _state;
     }

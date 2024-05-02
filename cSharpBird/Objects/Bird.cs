@@ -11,13 +11,13 @@ public class Bird
 
     public Bird(string _speciesName)
     {
-        speciesId = Guid.NewGuid(); 
+        speciesID = Guid.NewGuid(); 
         speciesName = _speciesName;
         rarity = "Common";
     }
     public Bird(string _speciesName, string _rarity)
     {
-        speciesId = Guid.NewGuid(); 
+        speciesID = Guid.NewGuid(); 
         speciesName = _speciesName;
         rarity = _rarity;
     }
