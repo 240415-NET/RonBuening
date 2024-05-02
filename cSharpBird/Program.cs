@@ -26,7 +26,6 @@ class Program
 {
     static void Main(string[] args)
     {
-        List<User> userArchive = AccessFile.ReadUser();
-        AcctAccess.LogIn(userArchive);
+        AcctAccess.LogIn();
     }
 }

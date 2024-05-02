@@ -6,10 +6,41 @@ public class UserCreation
 {
     public static void CreateUser()
     {
-        Console.WriteLine("Moved to method!");
+        string email;
+        bool exitLoop = false;
+
+        Console.Clear();
+        do
+        {
+            Console.WriteLine("Please enter your email to create a new account");
+            email = Console.ReadLine().Trim();
+            if (String.IsNullOrEmpty(email))
+            {
+                Console.Clear();
+                Console.WriteLine("Email cannot be blank. Please try again");
+            }
+            else if(UserCreation.UserDupe(email))
+            {
+                exitLoop = true;
+                Console.WriteLine("Email already in use. Please sign in");
+                UserMaintenance.LogIn();
+            }
+            else
+            {
+                exitLoop = true;
+                NewUser(email);
+            }
+        }
+        while (exitLoop == false);
     }
-    public static bool UserDupe (string userRequested)
+    public static bool UserDupe(string userRequested)
     {
         return false;
+    }
+    public static User NewUser(string email)
+    {
+        User newUser = new User(email);
+        AccessFile.WriteUser(newUser);
+        return newUser;
     }
 }

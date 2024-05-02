@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 public class AcctAccess
 {
-    public static void LogIn(List<User> userArchive)
+    public static void LogIn()
     {
         string[] initialPrompt = {"1. Existing User","2. New User","3. Exit"};
         int userSelect = 0;
@@ -23,11 +23,11 @@ public class AcctAccess
                 {
                     case 1:
                     valid = true;
-                    UserCreation.CreateUser();
+                    UserMaintenance.LogIn();
                     break;
                     case 2:
                     valid = true;
-                    UserMaintenance.LogIn();
+                    UserCreation.CreateUser();
                     break;
                     case 3:
                     UserInterface.exit();
