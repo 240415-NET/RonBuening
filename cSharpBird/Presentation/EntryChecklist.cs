@@ -74,6 +74,7 @@ public class EntryChecklist
         {
             Console.WriteLine($"{i+1}: {update[i].speciesName}");
         }
+        /*
         Console.Write("Do you need to ");
         Console.ForegroundColor = ConsoleColor.Red;
         Console.Write("add");
@@ -83,6 +84,8 @@ public class EntryChecklist
         Console.Write("remove");
         Console.ForegroundColor = ConsoleColor.Black;
         Console.Write(" a species?");
+        */
+        UserInterface.WriteColors("Do you need to {=Red}add{/} or {=Red}remove{/} a species?");
         do
         {
             userInput = Console.ReadLine().Trim();
@@ -98,15 +101,7 @@ public class EntryChecklist
             }
             else
             {
-                Console.WriteLine("Please choose to ");
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.Write("add");
-                Console.ForegroundColor = ConsoleColor.Black;
-                Console.Write(" or ");
-                Console.ForegroundColor = Console.Color.Red;
-                Console.Write("remove");
-                Console.ForegroundColor = ConsoleColor.Black;
-                Console.Write(" a species");
+            UserInterface.WriteColors("Please chose to {=Red}add{/} or {=Red}remove{/} a species");
             }
         }
         while (valid == false);

@@ -45,19 +45,19 @@ public class UserInterface
                     Console.Write(" ");
                 }
                 Console.Write(menuPrint[s]);
-                for (int w = 0; w < (wConsole - (menuPrint[s].Length + 6))/2; w++)
+                for (int w = 0; w < ((wConsole - (menuPrint[s].Length + 6))/2)-1; w++)
                 {
                     Console.Write(" ");
                 }
             }
             else
             {
-                for (int w = 0; w < (wConsole - (menuPrint[s].Length + 6))/2; w++)
+                for (int w = 0; w < ((wConsole - (menuPrint[s].Length + 6))/2); w++)
                 {
                     Console.Write(" ");
                 }
                 Console.Write(menuPrint[s]);
-                for (int w = 0; w < (wConsole - (menuPrint[s].Length + 6))/2; w++)
+                for (int w = 0; w < ((wConsole - (menuPrint[s].Length + 6))/2); w++)
                 {
                     Console.Write(" ");
                 }
@@ -95,5 +95,17 @@ public class UserInterface
             Console.WriteLine("Exiting. Goodbye!");
             Environment.Exit(0);
         }
+    }
+    public static void WriteColors(string msg)
+    {
+        string[] ss = msg.Split('{','}');
+        ConsoleColor c;
+        foreach(var s in ss)
+            if(s.StartsWith("/"))
+            Console.ResetColor();
+            else if(s.StartsWith("=") && Enum.TryParse(s.Substring(1), out c))
+            Console.ForegroundColor = c;
+            else
+            Console.Write(s);
     }
 }
