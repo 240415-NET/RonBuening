@@ -46,6 +46,20 @@ public class AccessFile
             File.WriteAllText(pathFile,existingUsersJSON);
         }
     }
+    public static void WriteUpdatedUser(User updatedUser)
+    {
+        //This method will write a new user to the json file, creating it if it does not exist.
+        string pathFile = "Users.json";
+        List<User> userArchive = new List<User>();
+        string existingUsersJSON;
+
+        existingUsersJSON =File.ReadAllText(pathFile);
+        userArchive = JsonSerializer.Deserialize<List<User>>(existingUsersJSON);
+        updatedUser = userArchive.FirstOrDefault(u => u.userId == updatedUser.userId);
+
+        existingUsersJSON = JsonSerializer.Serialize(userArchive);
+        File.WriteAllText(pathFile,existingUsersJSON);
+    }
     public static void WriteCurrentUser(User user)
     {
         string pathFile = "CurrentUser.json";
