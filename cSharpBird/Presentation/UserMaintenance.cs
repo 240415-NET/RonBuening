@@ -110,8 +110,54 @@ public class UserMaintenance
         }
         while (validInput == false);
     }
-    public static void UserUpdate(User user)
+    public static void UserUpdate(User currentSession)
     {
-
+        string[] menu = {"What would you like to do today?","{=Green}1. Change{/} email","{=Blue}2. Update{/} name","{=Yellow}3. Return{/} to main menu"};
+        string userInput;
+        bool validInput = false;
+        
+        Console.Clear();
+        do
+        {
+            try
+            {
+                UserInterface.menuPrintBase(menu);
+                userInput = Console.ReadLine().Trim();
+                switch (userInput.ToLower())
+                {
+                    case "1":
+                    case "1.":
+                    case "1. change":
+                    case "change":
+                    case "email":
+                    //validInput = true;
+                    User.changeEmail(currentSession);
+                    break;
+                    case "2":
+                    case "2.":
+                    case "2. update":
+                    case "update":
+                    case "name":
+                    //validInput = true;
+                    User.changeName(currentSession);
+                    break;
+                    case "3":
+                    case "3.":
+                    case "3. return":
+                    case "return":
+                    validInput = true;
+                    UserMenu(currentSession);
+                    break;
+                    default:
+                    Console.WriteLine("Please enter valid selection");
+                    break;
+                }
+            }
+            catch (Exception i)
+            {
+                Console.WriteLine($"{i.Message}: please enter a valid selection");
+            }
+        }
+        while (validInput == false);
     }
 }
