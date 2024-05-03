@@ -55,17 +55,14 @@ public class AccessFile
 
         existingUsersJSON =File.ReadAllText(pathFile);
         userArchive = JsonSerializer.Deserialize<List<User>>(existingUsersJSON);
-        updatedUser = userArchive.FirstOrDefault(u => u.userId == updatedUser.userId);
-
+        userArchive.Find(u => {if (u.userId == updatedUser.userId) {u = updatedUser;}});
+        
         existingUsersJSON = JsonSerializer.Serialize(userArchive);
         File.WriteAllText(pathFile,existingUsersJSON);
     }
     public static void WriteCurrentUser(User user)
     {
         string pathFile = "CurrentUser.json";
-        //string existingUsersJSON;
-
-        //existingUsersJSON = JsonSerializer.Serialize(user);
         File.WriteAllText(pathFile,JsonSerializer.Serialize(user));
     }
     public static User ReadCurrentUser()
