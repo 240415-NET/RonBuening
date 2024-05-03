@@ -23,3 +23,38 @@
 - dependency injection
 - The application should log errors and system events to a file or a DB table
 - Basic user authentication and authorization (admins vs normal users with passwords)
+
+## Individual Requirements
+- User Object
+    - User object should possess:
+        - Unique identifier (GUID; assigned at creation)
+        - Unique email (string; checked against database)
+        - Name (string; can be added or changed after account creation, nullable)
+    - Will be related to other objects by:
+        - Checklist:
+            - "Owner" of checklist, able to edit and print
+- Checklist Object
+    - Checklist object should possess:
+        - Unique identifier (GUID; assigned at creation)
+        - Birder (object; assigned at creation)
+        - Location (string/object; assigned at creation by user)
+        - Date (DateTime; assigned at creation by user OR system)
+        - List<Bird> (list of objects; assigned AFTER creation by Birder)
+    - Will be related to other objects by:
+        - Birder/Owner able to edit and print after log in
+        - Location, containing details of given hotspot (optional)
+        - Birds, by containing list of birds seen
+- Bird Object
+    - Bird Object should possess:
+        - Unique identifier (GUID; assigned at creation)
+        - Species name (string; assigned at creation)
+        - Rarity (string; assigned at creation by user OR system default)
+    - Will be related to other objects by:
+        - Contained within a List in checklist
+- Location Object
+    - Location Object should possess:
+        - Unique identifier (GUID; assigned at creation)
+        - Location name (string; assigned at creation)
+        - County (string; assigned at creation by user OR system default)
+        - State (string; assigned at creation by user OR system default)
+
