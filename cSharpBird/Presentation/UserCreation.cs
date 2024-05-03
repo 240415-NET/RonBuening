@@ -12,7 +12,7 @@ public class UserCreation
         Console.Clear();
         do
         {
-            UserInterface.WriteColors("Please enter your {=Green}email{/} to create a new account");
+            UserInterface.WriteColors("Please enter your {=Green}email{/} to create a new account\n");
             email = Console.ReadLine().Trim();
             if (String.IsNullOrEmpty(email))
             {

@@ -98,6 +98,7 @@ public class UserInterface
     }
     public static void WriteColors(string msg)
     {
+        //Use UserInterface.WriteColors to write colored text in the console using {=Color}Example{/} to format
         string[] ss = msg.Split('{','}');
         ConsoleColor c;
         foreach(var s in ss)
@@ -110,6 +111,7 @@ public class UserInterface
     }
     public static int ColorLength(string msg)
     {
+        //Use UserInterface.ColorLength to determine the length of colored text formatted for UserInterface.WriteColors
         string[] ss = msg.Split('{','}');
         ConsoleColor c;
         int ColorLength = 0;
