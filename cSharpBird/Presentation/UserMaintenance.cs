@@ -9,12 +9,12 @@ public class UserMaintenance
         bool logInSuccess = false;
         do
         {
-            UserInterface.WriteColors("Please enter your {=Green}email{/} to create a new account");
+            UserInterface.WriteColors("Please enter your {=Green}email{/} to sign in to your account\n");
             string email = Console.ReadLine().Trim();
             if (String.IsNullOrEmpty(email))
             {
                 Console.Clear();
-                UserInterface.WriteColors("{=Green}Email{/} cannot be blank. Please try again");
+                UserInterface.WriteColors("{=Green}Email{/} cannot be blank. Please try again\n");
             }
             else if (!string.IsNullOrEmpty(email))
             {
@@ -26,7 +26,7 @@ public class UserMaintenance
                 }
                 else
                 {
-                    UserInterface.WriteColors("Email not found. Do you need to create an account? Re-enter your {=Green}email{/} or type {=Green}create{/} to make new account");
+                    UserInterface.WriteColors("Email not found. Do you need to create an account? Re-enter your {=Green}email{/} or type {=Green}create{/} to make new account\n");
                     email = Console.ReadLine().Trim();
                     if (email.ToLower() == "create" || email.ToLower() == "c")
                         UserCreation.CreateUser();
