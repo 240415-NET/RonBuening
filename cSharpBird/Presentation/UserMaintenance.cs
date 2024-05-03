@@ -7,10 +7,12 @@ public class UserMaintenance
     public static void LogIn()
     {
         bool logInSuccess = false;
+        Console.Clear();
         do
         {
             UserInterface.WriteColors("Please enter your {=Green}email{/} to sign in to your account\n");
             string email = Console.ReadLine().Trim();
+            PassEmail:
             if (String.IsNullOrEmpty(email))
             {
                 Console.Clear();
@@ -30,6 +32,8 @@ public class UserMaintenance
                     email = Console.ReadLine().Trim();
                     if (email.ToLower() == "create" || email.ToLower() == "c")
                         UserCreation.CreateUser();
+                    else 
+                        goto PassEmail;
                 }
             }
         }
@@ -57,7 +61,12 @@ public class UserMaintenance
     public static void UserMenu(User currentSession)
     {
         AccessFile.WriteCurrentUser(currentSession);
-        string[] menu = {"Welcome back to cSharpBird!","What would you like to do today?","{=Green}1. New{/} Checklist","{=Blue}2. View{/} Checklist","{=Yellow}3. Update{/} user","{=Red}4. Exit{/} Program"};
+        string tempName;
+        if (currentSession.displayName == null)
+            tempName = currentSession.userName;
+        else
+            tempName = currentSession.displayName;
+        string[] menu = {"Welcome back to cSharpBird "+tempName+"!","What would you like to do today?","{=Green}1. New{/} Checklist","{=Blue}2. View{/} Checklist","{=Yellow}3. Update{/} user","{=Red}4. Exit{/} Program"};
         string userInput;
         bool validInput = false;
 
@@ -131,6 +140,7 @@ public class UserMaintenance
                     case "change":
                     case "email":
                     //validInput = true;
+                    Console.Clear();
                     User.changeEmail(currentSession);
                     break;
                     case "2":
@@ -139,6 +149,7 @@ public class UserMaintenance
                     case "update":
                     case "name":
                     //validInput = true;
+                    Console.Clear();
                     User.changeName(currentSession);
                     break;
                     case "3":
@@ -146,6 +157,7 @@ public class UserMaintenance
                     case "3. return":
                     case "return":
                     validInput = true;
+                    Console.Clear();
                     UserMenu(currentSession);
                     break;
                     default:
