@@ -58,6 +58,57 @@ public class UserMaintenance
     {
         AccessFile.WriteCurrentUser(currentSession);
         string[] menu = {"Welcome back to cSharpBird!","What would you like to do today?","{=Green}1. New{/} Checklist","{=Yellow}2. Edit{/} Checklist","{=Red}3. Delete{/} Checklist","{=Blue}4. Update{/} user"};
-        UserInterface.menuPrintBase(menu);
+        string userInput;
+        bool validInput = false;
+
+        Console.Clear();
+        do
+        {
+            try
+            {
+                UserInterface.menuPrintBase(menu);
+                userInput = Console.ReadLine().Trim();
+                switch (userInput.ToLower)
+                {
+                    case "1":
+                    case "1.":
+                    case "1. new":
+                    case "new":
+                    validInput = true;
+                    EntryChecklist.Create();
+                    break;
+                    case "2":
+                    case "2.":
+                    case "2. edit":
+                    case "edit":
+                    validInput = true;
+                    EntryChecklist.Edit();
+                    break;
+                    case "3":
+                    case "3.":
+                    case "3. delete":
+                    case "delete":
+                    validInput = true;
+                    EntryChecklist.Delete();
+                    break;
+                    case "4":
+                    case "4.":
+                    case "4. delete":
+                    case "delete":
+                    validInput = true;
+                    UserUpdate(currentSession);
+                    break;
+                    default:
+                    Console.WriteLine("Please enter valid selection");
+                    break;
+                }
+            }
+            catch (Exception i)
+            {
+                Console.WriteLine($"{i.Message}: please enter a valid selection");
+            }
+        }
+        while (validInput == false);
+        
     }
 }
