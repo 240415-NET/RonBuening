@@ -57,7 +57,7 @@ public class UserMaintenance
     public static void UserMenu(User currentSession)
     {
         AccessFile.WriteCurrentUser(currentSession);
-        string[] menu = {"Welcome back to cSharpBird!","What would you like to do today?","{=Green}1. New{/} Checklist","{=Yellow}2. Edit{/} Checklist","{=Red}3. Delete{/} Checklist","{=Blue}4. Update{/} user"};
+        string[] menu = {"Welcome back to cSharpBird!","What would you like to do today?","{=Green}1. New{/} Checklist","{=Blue}2. View{/} Checklist","{=Yellow}3. Update{/} user","{=Red}4. Exit{/} Program"};
         string userInput;
         bool validInput = false;
 
@@ -68,7 +68,7 @@ public class UserMaintenance
             {
                 UserInterface.menuPrintBase(menu);
                 userInput = Console.ReadLine().Trim();
-                switch (userInput.ToLower)
+                switch (userInput.ToLower())
                 {
                     case "1":
                     case "1.":
@@ -79,24 +79,24 @@ public class UserMaintenance
                     break;
                     case "2":
                     case "2.":
-                    case "2. edit":
-                    case "edit":
+                    case "2. view":
+                    case "view":
                     validInput = true;
-                    EntryChecklist.Edit();
+                    EntryChecklist.View();
                     break;
                     case "3":
                     case "3.":
-                    case "3. delete":
-                    case "delete":
+                    case "3. update":
+                    case "update":
                     validInput = true;
-                    EntryChecklist.Delete();
+                    UserUpdate(currentSession);
                     break;
                     case "4":
                     case "4.":
-                    case "4. delete":
-                    case "delete":
+                    case "4. exit":
+                    case "exit":
                     validInput = true;
-                    UserUpdate(currentSession);
+                    UserInterface.exitConfirm();
                     break;
                     default:
                     Console.WriteLine("Please enter valid selection");
@@ -109,6 +109,9 @@ public class UserMaintenance
             }
         }
         while (validInput == false);
-        
+    }
+    public static void UserUpdate(User user)
+    {
+
     }
 }

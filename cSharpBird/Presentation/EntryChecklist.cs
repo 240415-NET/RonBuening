@@ -8,6 +8,10 @@ public class EntryChecklist
     {
         
     }
+    public static void View()
+    {
+
+    }
     public static void Edit(Checklist oldChecklist)
     {
         string editRequest;
@@ -44,6 +48,10 @@ public class EntryChecklist
             }
         }
         while (valid == false);
+    }
+    public static void Delete(Checklist oldChecklist)
+    {
+        
     }
     public static List<Bird> addSpecies(List<Bird> speciesList)
     {
