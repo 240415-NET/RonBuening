@@ -12,17 +12,17 @@ public class UserCreation
         Console.Clear();
         do
         {
-            Console.WriteLine("Please enter your email to create a new account");
+            UserInterface.WriteColors("Please enter your {=Green}email{/} to create a new account");
             email = Console.ReadLine().Trim();
             if (String.IsNullOrEmpty(email))
             {
                 Console.Clear();
-                Console.WriteLine("Email cannot be blank. Please try again");
+                UserInterface.WriteColors("{=Green}Email{/} cannot be blank. Please try again");
             }
             else if(UserCreation.UserDupe(email))
             {
                 exitLoop = true;
-                Console.WriteLine("Email already in use. Please sign in");
+                UserInterface.WriteColors("{=Green}Email{/} already in use. Please sign in");
                 UserMaintenance.LogIn();
             }
             else
