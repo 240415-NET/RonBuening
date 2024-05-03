@@ -109,6 +109,20 @@ public class UserInterface
             else
                 Console.Write(s);
     }
+    public static void WriteColorsLine(string msg)
+    {
+        //Use UserInterface.WriteColors to write colored text in the console using {=Color}Example{/} to format and adds a line break
+        string[] ss = msg.Split('{','}');
+        ConsoleColor c;
+        foreach(var s in ss)
+            if(s.StartsWith("/"))
+                Console.ResetColor();
+            else if(s.StartsWith("=") && Enum.TryParse(s.Substring(1), out c))
+                Console.ForegroundColor = c;
+            else
+                Console.Write(s);
+        Console.WriteLine("\n");
+    }
     public static int ColorLength(string msg)
     {
         //Use UserInterface.ColorLength to determine the length of colored text formatted for UserInterface.WriteColors
