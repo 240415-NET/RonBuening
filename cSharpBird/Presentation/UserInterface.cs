@@ -121,7 +121,7 @@ public class UserInterface
                 Console.ForegroundColor = c;
             else
                 Console.Write(s);
-        Console.WriteLine("\n");
+        Console.Write("\n");
     }
     public static int ColorLength(string msg)
     {
