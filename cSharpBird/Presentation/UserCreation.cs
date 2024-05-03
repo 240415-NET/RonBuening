@@ -28,7 +28,8 @@ public class UserCreation
             else
             {
                 exitLoop = true;
-                NewUser(email);
+                User currentSession = NewUser(email);
+                UserMaintenance.UserMenu(currentSession);
             }
         }
         while (exitLoop == false);

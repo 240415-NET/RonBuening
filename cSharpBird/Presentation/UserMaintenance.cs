@@ -18,21 +18,20 @@ public class UserMaintenance
             }
             else if (!string.IsNullOrEmpty(email))
             {
-                User currentSession = FindUser(email);
+                if (FindUser(email) != null)
+                {
+                    logInSuccess = true;
+                    User currentSession = FindUser(email);
+                    UserMenu(currentSession);
+                }
+                else
+                {
+                    UserInterface.WriteColors("Email not found. Do you need to create an account? Re-enter your {=Green}email{/} or type {=Green}create{/} to make new account");
+                    email = Console.ReadLine().Trim();
+                    if (email.ToLower() == "create" || email.ToLower() == "c")
+                        UserCreation.CreateUser();
+                }
             }
-            /*
-            else if 
-            {
-                UserInterface.WriteColors("Email not found. Do you need to create an account? Re-enter your {=Green}email{/} or type {=Green}create{/} to make new account");
-                email = Console.ReadLine().Trim();
-                if (email.ToLower == "create" || email.ToLower == "c")
-                    UserCreation.CreateUser();
-            }
-            else if 
-            {
-                
-            }
-            */
         }
         while (logInSuccess == false);
     }
@@ -45,7 +44,7 @@ public class UserMaintenance
         {
             //Will return full user list
             List<User> userList = AccessFile.ReadUser();
-            foundUser = userList.FirstOrDefault(u => u.userName == email);
+            foundUser = userList.FirstOrDefault(u => u.userName.ToLower() == email.ToLower());
             //return foundUser;
         }
         catch (Exception e)
@@ -55,8 +54,8 @@ public class UserMaintenance
         }
         return foundUser;
     }
-    public static bool SignInSuccess (string email)
+    public static void UserMenu(User currentSession)
     {
-        return true;
+        Console.WriteLine("User found! Welcome to user menu!");
     }
 }
