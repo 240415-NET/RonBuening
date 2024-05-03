@@ -38,26 +38,26 @@ public class UserInterface
         for (int s = 0; s < menuPrint.Length; s++)
         {
             Console.Write("===");
-            if (menuPrint[s].Length % 2 == 0)
+            if (ColorLength(menuPrint[s]) % 2 == 0)
             {
-                for (int w = 0; w < (wConsole - (menuPrint[s].Length + 6))/2; w++)
+                for (int w = 0; w < (wConsole - (ColorLength(menuPrint[s]) + 6))/2; w++)
                 {
                     Console.Write(" ");
                 }
-                Console.Write(menuPrint[s]);
-                for (int w = 0; w < ((wConsole - (menuPrint[s].Length + 6))/2)-1; w++)
+                UserInterface.WriteColors(menuPrint[s]);
+                for (int w = 0; w < ((wConsole - (ColorLength(menuPrint[s]) + 6))/2)-1; w++)
                 {
                     Console.Write(" ");
                 }
             }
             else
             {
-                for (int w = 0; w < ((wConsole - (menuPrint[s].Length + 6))/2); w++)
+                for (int w = 0; w < ((wConsole - (ColorLength(menuPrint[s]) + 6))/2); w++)
                 {
                     Console.Write(" ");
                 }
-                Console.Write(menuPrint[s]);
-                for (int w = 0; w < ((wConsole - (menuPrint[s].Length + 6))/2); w++)
+                UserInterface.WriteColors(menuPrint[s]);
+                for (int w = 0; w < ((wConsole - (ColorLength(menuPrint[s]) + 6))/2); w++)
                 {
                     Console.Write(" ");
                 }
@@ -102,10 +102,24 @@ public class UserInterface
         ConsoleColor c;
         foreach(var s in ss)
             if(s.StartsWith("/"))
-            Console.ResetColor();
+                Console.ResetColor();
             else if(s.StartsWith("=") && Enum.TryParse(s.Substring(1), out c))
-            Console.ForegroundColor = c;
+                Console.ForegroundColor = c;
             else
-            Console.Write(s);
+                Console.Write(s);
+    }
+    public static int ColorLength(string msg)
+    {
+        string[] ss = msg.Split('{','}');
+        ConsoleColor c;
+        int ColorLength = 0;
+        foreach(var s in ss)
+            if(s.StartsWith("/"))
+                Console.ResetColor();
+            else if(s.StartsWith("=") && Enum.TryParse(s.Substring(1), out c))
+                Console.ForegroundColor = c;
+            else
+                ColorLength += s.Length;
+            return ColorLength;
     }
 }

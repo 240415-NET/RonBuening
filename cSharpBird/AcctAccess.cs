@@ -6,7 +6,7 @@ public class AcctAccess
 {
     public static void LogIn()
     {
-        string[] initialPrompt = {"1. Existing User","2. New User","3. Exit"};
+        string[] initialPrompt = {"In this program, actionable objects are highlighted in colors","Key the highlighted text to make a selection","{=Green}1.{/} Existing User","{=Yellow}2.{/} New User","{=Red}3.{/} Exit"};
         int userSelect = 0;
         bool valid = false;
         string email;
