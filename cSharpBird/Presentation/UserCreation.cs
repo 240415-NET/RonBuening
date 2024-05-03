@@ -29,7 +29,7 @@ public class UserCreation
             {
                 exitLoop = true;
                 User currentSession = NewUser(email);
-                UserInterface.WriteColors("{=Blue}New user created for " + email +"\n");
+                UserInterface.WriteColors("{=Blue}New user{/} created for " + email +"\n");
                 UserMaintenance.UserMenu(currentSession);
             }
         }

@@ -6,6 +6,7 @@ public class User
 {
     public Guid userId {get; set;}
     public string userName {get; set;}
+    public string displayName {get; set;}
     public User() {}
 
     public User(string _userName)
