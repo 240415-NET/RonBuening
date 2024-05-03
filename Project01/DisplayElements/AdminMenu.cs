@@ -16,15 +16,15 @@ public class AdminMenu
         UserInterface.menuPrintBase(initialPrompt);
         do
         {
-            userSignOn = Console.ReadLine();
-            nullEmpty = String.IsNullOrEmpty(userSignOn); //will return true if string given is null or empty
-            if (nullEmpty == true)
+            try
             {
-                Console.WriteLine("Please provide a valid sign on")
-            }
-            else
-            {
-                try
+                userSignOn = Console.ReadLine();
+                nullEmpty = String.IsNullOrEmpty(userSignOn); //will return true if string given is null or empty
+                if (nullEmpty == true)
+                {
+                    Console.WriteLine("Please provide a valid sign on")
+                }
+                else
                 {
                     adminSignOn = userSignOn.Split(' ').Select(str => str.Trim()).ToArray();
                     if (adminSignOn.Length() == 2)
@@ -36,14 +36,13 @@ public class AdminMenu
                         Console.WriteLine("Please provide a valid sign on");
                         nullEmpty = true;
                     }
-                }
-                catch (Exception signon)
-                {
-                    Console.WriteLine("Please provide a valid sign on");
-                }
+               }
+            }
+            catch (Exception signon)
+            {
+                Console.WriteLine("Please provide a valid sign on");
             }
         }
         while (nullEmpty == true);
-    }
     }
 }

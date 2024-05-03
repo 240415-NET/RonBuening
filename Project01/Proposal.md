@@ -1,3 +1,5 @@
+## THIS IS DEPRECATED AND WILL NOT BE DEVELOPED. Please see cSharpBird for current project.
+
 ## Proposal
 - The largest camera stores close for holidays and this can cause some inconvenience despite their warnings
 - An opportunity exists for a competitor that is open during these times
