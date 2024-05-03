@@ -46,4 +46,24 @@ public class AccessFile
             File.WriteAllText(pathFile,existingUsersJSON);
         }
     }
+    public static void WriteCurrentUser(User user)
+    {
+        string pathFile = "CurrentUser.json";
+        //string existingUsersJSON;
+
+        //existingUsersJSON = JsonSerializer.Serialize(user);
+        File.WriteAllText(pathFile,JsonSerializer.Serialize(user));
+    }
+    public static User ReadCurrentUser()
+    {
+        string pathFile = "CurrentUser.json";
+        User currentSession = JsonSerializer.Deserialize<User>(File.ReadAllText(pathFile));
+        return currentSession;
+    }
+    public static void ClearCurrentUser()
+    {
+        string pathFile = "CurrentUser.json";
+        File.WriteAllText(pathFile,"");
+    }
+
 }

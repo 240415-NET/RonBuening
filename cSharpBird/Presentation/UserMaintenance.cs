@@ -56,6 +56,7 @@ public class UserMaintenance
     }
     public static void UserMenu(User currentSession)
     {
+        AccessFile.WriteCurrentUser(currentSession);
         string[] menu = {"Welcome back to cSharpBird!","What would you like to do today?","{=Green}1. New{/} Checklist","{=Yellow}2. Edit{/} Checklist","{=Red}3. Delete{/} Checklist","{=Blue}4. Update{/} user"};
         UserInterface.menuPrintBase(menu);
     }
