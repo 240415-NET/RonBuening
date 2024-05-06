@@ -20,11 +20,10 @@ public class Checklist
         checklistDateTime = DateTime.Today;
         List<Bird> birdChecklist = new List<Bird>();
     }
-    public Checklist(Guid _userId, string _locationName, string _birder, string _checklistDateTime)
+    public Checklist(Guid _userId, string _locationName, string _checklistDateTime)
     {
         checklistID = Guid.NewGuid();
         userId = _userId;
-        birder = _birder;
         locationName = _locationName;
         checklistDateTime = DateTime.Parse(_checklistDateTime);
         List<Bird> birdChecklist = new List<Bird>();

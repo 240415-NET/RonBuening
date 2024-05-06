@@ -67,6 +67,7 @@ public class EntryChecklist
     public static void Create()
     {
         string hotspot;
+        string checklistDate;
         string[] createMenu = {"{=Magenta}NEW CHECKLIST{/}","{=Green}1. Current{/} Checklist","{=Blue}2. Historic{/} Checklist","{=Red}3. Cancel{/}"};
         bool validInput = false;
         string menuRequest;
@@ -94,6 +95,7 @@ public class EntryChecklist
                     hotspot = Console.ReadLine().Trim();
                     Checklist checklist = new Checklist (currentUser.userId,hotspot);
                     ChecklistFile.WriteChecklist(checklist);
+                    ViewAndAppend(checklist);
                     break;
                     case "2":
                     case "2.":
@@ -101,7 +103,13 @@ public class EntryChecklist
                     case "past":
                     case "historic":
                     validInput = true;
-                    //EntryChecklist.List(AccessFile.ReadCurrentUser());
+                    Console.WriteLine("When was this checklist taken?")
+                    checklistDate = Console.ReadLine().Trim();
+                    Console.WriteLine("What hotspot should be used for this checklist?");
+                    hotspot = Console.ReadLine().Trim();
+                    Checklist checklist = new Checklist (currentUser.userId,hotspot,checklistDate);
+                    ChecklistFile.WriteChecklist(checklist);
+                    ViewAndAppend(checklist);
                     break;
                     case "3":
                     case "3.":
@@ -131,9 +139,9 @@ public class EntryChecklist
         userChecklists = ChecklistFile.GetLists(user);
 
     }
-    public static void View()
+    public static void ViewAndAppend(Checklist viewList)
     {
-
+        
     }
     public static void Edit(Checklist oldChecklist)
     {
