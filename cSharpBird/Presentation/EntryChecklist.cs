@@ -8,7 +8,60 @@ public class EntryChecklist
     {
         Console.Clear();
         string[] menu = {"{=Magenta}CHECKLIST MENU{/}","{=Green}1. Create{/} New Checklist","{=Cyan}2. List{/} Existing Checklists","{=Blue}3. View{/} Existing Checklist","{=Red}4. Exit{/} to Menu."};
+        string menuRequest;
+        bool validInput = false;
         UserInterface.menuPrintBase(menu);
+        do 
+        {
+            try
+            {
+                menuRequest = Console.ReadLine();
+                switch (menuRequest.ToLower())
+                {
+                    case "1":
+                    case "1.":
+                    case "1. create":
+                    case "new":
+                    case "create new":
+                    validInput = true;
+                    //EntryChecklist.Create();
+                    break;
+                    case "2":
+                    case "2.":
+                    case "2. list":
+                    case "list":
+                    case "list all":
+                    validInput = true;
+                    //EntryChecklist.View();
+                    break;
+                    case "3":
+                    case "3.":
+                    case "3. view":
+                    case "view":
+                    case "view checklist":
+                    validInput = true;
+                    //UserUpdate(currentSession);
+                    break;
+                    case "4":
+                    case "4.":
+                    case "4. exit":
+                    case "exit":
+                    case "quit":
+                    case "back":
+                    validInput = true;
+                    UserMaintenance.UserMenu(AccessFile.ReadCurrentUser());
+                    break;
+                    default:
+                    Console.WriteLine("Please enter valid selection");
+                    break;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"{e.Message}. Please key in valid selection");
+            }
+        }
+        while (validInput == false);
     }
     public static void Create()
     {
