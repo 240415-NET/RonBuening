@@ -13,7 +13,12 @@ public class UIChecklist
     {
         User currentUser = AccessFile.ReadCurrentUser();
         string printLocation = "Location: " + xlist.locationName;
-        string printCount = "Species: " + xlist.birdChecklist.Count();
+        string printCount;
+        List<Bird> species = xlist.birdChecklist;
+        if (!(species?.Any() ?? false))
+            printCount = "Species: " + xlist.birdChecklist.Count();
+        else
+            printCount = "Species: 0";
         string printDate = "Date: "+ xlist.checklistDateTime;
         int widthConsole = Console.WindowWidth;
         int widthColumn = widthConsole / 3;
