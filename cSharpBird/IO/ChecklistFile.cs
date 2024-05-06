@@ -24,7 +24,9 @@ public class ChecklistFile
             existingChecklistJSON = JsonSerializer.Serialize(ChecklistArchive);
             File.WriteAllText(pathFile,existingChecklistJSON);
         }
-        userChecklists = ChecklistArchive.Where(i => i.userId == searchUser.userId);
+       // IEnumerable<Checklist> temp = ChecklistArchive.Where(i => i.userId == searchUser.userId);
+        //userChecklists = temp.ToList();
+        userChecklists = ChecklistArchive.Where(i => i.userId == searchUser.userId).ToList();
         return userChecklists;
     }
 }
