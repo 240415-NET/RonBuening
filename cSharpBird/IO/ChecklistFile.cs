@@ -5,11 +5,12 @@ using System.IO;
 using System.Text.Json;
 public class ChecklistFile
 {
-    public static List<Checklist> GetLists(User user)
+    public static List<Checklist> GetLists(User searchUser)
     {
-        //Will return the user list for the Users.json file, creating it and adding a defaultUser if file does not already exist
+        //Will return the checklist list for the Checklists.json file, creating it and adding a default list if file does not already exist
         string pathFile = "Checklists.json";
         List<Checklist> ChecklistArchive = new List<Checklist>();
+        List<Checklist> userChecklists = new List<Checklist>();
         string existingChecklistJSON;
 
         if (File.Exists(pathFile))
@@ -19,10 +20,53 @@ public class ChecklistFile
         }
         else if(!File.Exists(pathFile))
         {
-            ChecklistArchive.Add(new Checklist(user.userId,"defaultLocation"));
+            ChecklistArchive.Add(new Checklist(searchUser.userId,"defaultLocation"));
             existingChecklistJSON = JsonSerializer.Serialize(ChecklistArchive);
             File.WriteAllText(pathFile,existingChecklistJSON);
         }
-        return ChecklistArchive;
+        //IEnumerable<Checklist> temp = ChecklistArchive.Where(i => i.userId == searchUser.userId);
+        //userChecklists = temp.ToList();
+        userChecklists = ChecklistArchive.Where(i => i.userId == searchUser.userId).ToList();
+        return userChecklists;
+    }
+    public static void WriteChecklist(Checklist newList)
+    {
+        //This method will write a new Checklist to the json file, creating it if it does not exist.
+        string pathFile = "Checklists.json";
+        List<Checklist> ChecklistArchive = new List<Checklist>();
+        string existingChecklistJSON;
+        if (File.Exists(pathFile))
+        {
+            existingChecklistJSON =File.ReadAllText(pathFile);
+            ChecklistArchive = JsonSerializer.Deserialize<List<Checklist>>(existingChecklistJSON);
+            ChecklistArchive.Add(newList);
+            existingChecklistJSON = JsonSerializer.Serialize(ChecklistArchive);
+            File.WriteAllText(pathFile,existingChecklistJSON);
+        }
+        else if(!File.Exists(pathFile))
+        {
+            ChecklistArchive.Add(newList); //newList.checklistID,"defaultLocation"));
+            existingChecklistJSON = JsonSerializer.Serialize(ChecklistArchive);
+            File.WriteAllText(pathFile,existingChecklistJSON);
+        }
+    }
+    public static void WriteUpdatedList(Checklist updatedList)
+    {
+        //This method will write an updated checklist to the json file, creating it if it does not exist.
+        string pathFile = "Checklists.json";
+        List<Checklist> ChecklistArchive = new List<Checklist>();
+        string existingChecklistJSON;
+
+        existingChecklistJSON =File.ReadAllText(pathFile);
+        ChecklistArchive = JsonSerializer.Deserialize<List<Checklist>>(existingChecklistJSON);
+        Checklist oldChecklist = ChecklistArchive.First(i => i.checklistID == updatedList.checklistID);
+        var checklistLocation = ChecklistArchive.IndexOf(oldChecklist);
+        if (checklistLocation != -1)
+            ChecklistArchive[checklistLocation] = updatedList;
+        else
+            ChecklistArchive.Add(updatedList);
+        
+        existingChecklistJSON = JsonSerializer.Serialize(ChecklistArchive);
+        File.WriteAllText(pathFile,existingChecklistJSON);
     }
 }

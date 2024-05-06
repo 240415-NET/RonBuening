@@ -24,7 +24,7 @@ public class EntryChecklist
                     case "new":
                     case "create new":
                     validInput = true;
-                    //EntryChecklist.Create();
+                    EntryChecklist.Create();
                     break;
                     case "2":
                     case "2.":
@@ -48,6 +48,7 @@ public class EntryChecklist
                     case "exit":
                     case "quit":
                     case "back":
+                    case "cancel":
                     validInput = true;
                     UserMaintenance.UserMenu(AccessFile.ReadCurrentUser());
                     break;
@@ -65,7 +66,72 @@ public class EntryChecklist
     }
     public static void Create()
     {
-        
+        string hotspot;
+        string checklistDate;
+        string[] createMenu = {"{=Magenta}NEW CHECKLIST{/}","{=Green}1. Current{/} Checklist","{=Blue}2. Historic{/} Checklist","{=Red}3. Cancel{/}"};
+        bool validInput = false;
+        string menuRequest;
+        User currentUser = AccessFile.ReadCurrentUser();
+
+        Console.Clear();
+
+        UserInterface.menuPrintBase(createMenu);
+        do 
+        {
+            try
+            {
+                menuRequest = Console.ReadLine();
+                switch (menuRequest.ToLower())
+                {
+                    case "1":
+                    case "1.":
+                    case "1. current":
+                    case "current":
+                    case "create new":
+                    case "today":
+                    case "now":
+                    validInput = true;
+                    Console.WriteLine("What hotspot should be used for this checklist?");
+                    hotspot = Console.ReadLine().Trim();
+                    Checklist checklist = new Checklist (currentUser.userId,hotspot);
+                    ChecklistFile.WriteChecklist(checklist);
+                    ViewAndAppend(checklist);
+                    break;
+                    case "2":
+                    case "2.":
+                    case "2. historic":
+                    case "past":
+                    case "historic":
+                    validInput = true;
+                    Console.WriteLine("When was this checklist taken?")
+                    checklistDate = Console.ReadLine().Trim();
+                    Console.WriteLine("What hotspot should be used for this checklist?");
+                    hotspot = Console.ReadLine().Trim();
+                    Checklist checklist = new Checklist (currentUser.userId,hotspot,checklistDate);
+                    ChecklistFile.WriteChecklist(checklist);
+                    ViewAndAppend(checklist);
+                    break;
+                    case "3":
+                    case "3.":
+                    case "3. exit":
+                    case "exit":
+                    case "quit":
+                    case "back":
+                    case "cancel":
+                    validInput = true;
+                    Menu();
+                    break;
+                    default:
+                    Console.WriteLine("Please enter valid selection");
+                    break;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"{e.Message}. Please key in valid selection");
+            }
+        }
+        while (validInput == false);
     }
     public static void List(User user)
     {
@@ -73,9 +139,9 @@ public class EntryChecklist
         userChecklists = ChecklistFile.GetLists(user);
 
     }
-    public static void View()
+    public static void ViewAndAppend(Checklist viewList)
     {
-
+        
     }
     public static void Edit(Checklist oldChecklist)
     {
