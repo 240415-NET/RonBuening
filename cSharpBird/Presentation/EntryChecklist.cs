@@ -32,7 +32,7 @@ public class EntryChecklist
                     case "list":
                     case "list all":
                     validInput = true;
-                    //EntryChecklist.View();
+                    EntryChecklist.List(AccessFile.ReadCurrentUser());
                     break;
                     case "3":
                     case "3.":
@@ -66,6 +66,12 @@ public class EntryChecklist
     public static void Create()
     {
         
+    }
+    public static void List(User user)
+    {
+        List<Checklist> userChecklists = new List<Checklist>();
+        userChecklists = ChecklistFile.GetLists(user);
+
     }
     public static void View()
     {
