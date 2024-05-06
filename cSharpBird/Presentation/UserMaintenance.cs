@@ -51,7 +51,7 @@ public class UserMaintenance
                     case "4. exit":
                     case "exit":
                     validInput = true;
-                    UserInterface.exitConfirm();
+                    UserInterface.exit();
                     break;
                     default:
                     Console.WriteLine("Please enter valid selection");
