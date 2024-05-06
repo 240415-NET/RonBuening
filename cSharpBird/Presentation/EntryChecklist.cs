@@ -70,6 +70,7 @@ public class EntryChecklist
         string[] createMenu = {"{=Magenta}NEW CHECKLIST{/}","{=Green}1. Current{/} Checklist","{=Blue}2. Historic{/} Checklist","{=Red}3. Cancel{/}"};
         bool validInput = false;
         string menuRequest;
+        User currentUser = AccessFile.ReadCurrentUser();
 
         Console.Clear();
 
@@ -89,7 +90,10 @@ public class EntryChecklist
                     case "today":
                     case "now":
                     validInput = true;
-                    //EntryChecklist.Create();
+                    Console.WriteLine("What hotspot should be used for this checklist?");
+                    hotspot = Console.ReadLine().Trim();
+                    Checklist checklist = new Checklist (currentUser.userId,hotspot);
+                    ChecklistFile.WriteChecklist(checklist);
                     break;
                     case "2":
                     case "2.":
