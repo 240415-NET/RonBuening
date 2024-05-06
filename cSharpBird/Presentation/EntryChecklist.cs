@@ -4,6 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 public class EntryChecklist
 {
+    public static void Menu()
+    {
+        string[] menu = {"{=Magenta}CHECKLIST MENU{/}","{=Green}1. Create{/} New Checklist","{=Cyan}2. List{/} Existing Checklists","{=Blue}3. View{/} Existing Checklist","{=Red}4. Exit{/} to Menu."}
+        UserInterface.menuPrintBase(menu);
+    }
     public static void Create()
     {
         

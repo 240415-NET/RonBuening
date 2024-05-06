@@ -12,7 +12,7 @@ public class UserMaintenance
             tempName = currentSession.userName;
         else
             tempName = currentSession.displayName;
-        string[] menu = {"Welcome back to cSharpBird "+tempName+"!","What would you like to do today?","{=Green}1. New{/} Checklist","{=Blue}2. View{/} Checklist","{=Yellow}3. Update{/} user","{=Red}4. Exit{/} Program"};
+        string[] menu = {"Welcome back to cSharpBird "+tempName+"!","What would you like to do today?","{=Green}1. New{/} Checklist","{=Blue}2. View{/} Checklist Menu","{=Yellow}3. Update{/} user","{=Red}4. Exit{/} Program"};
         string userInput;
         bool validInput = false;
 
@@ -37,7 +37,7 @@ public class UserMaintenance
                     case "2. view":
                     case "view":
                     validInput = true;
-                    EntryChecklist.View();
+                    EntryChecklist.Menu();
                     break;
                     case "3":
                     case "3.":
