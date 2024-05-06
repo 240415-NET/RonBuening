@@ -25,6 +25,7 @@ public class User
         {
             user.userName = newEmail;
             Console.WriteLine($"Email updated to {newEmail}");
+            AccessFile.WriteUpdatedUser(user);
         }
         
     }
@@ -38,7 +39,8 @@ public class User
         {
             user.displayName = newName;
             Console.WriteLine($"Name updated to {newName}");
+            AccessFile.WriteUpdatedUser(user);
         }
-
+        
     }
 }
