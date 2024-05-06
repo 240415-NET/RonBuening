@@ -52,13 +52,13 @@ public class AccessFile
         string pathFile = "Users.json";
         List<User> userArchive = new List<User>();
         string existingUsersJSON;
-        int userLocation = -1;
+        //int userLocation = -1;
 
         existingUsersJSON =File.ReadAllText(pathFile);
         userArchive = JsonSerializer.Deserialize<List<User>>(existingUsersJSON);
         //userArchive.FirstOrDefault(u => {if (u.userId == updatedUser.userId) {u = updatedUser;}}); //this was too smart apparently
         User oldUser = userArchive.First(i => i.userId == updatedUser.userId);
-        userLocation = userArchive.IndexOf(oldUser);
+        var userLocation = userArchive.IndexOf(oldUser);
         if (userLocation != -1)
             userArchive[userLocation] = updatedUser;
         
