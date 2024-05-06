@@ -115,6 +115,15 @@ public class EntryChecklist
                     validInput = true;
                     //UserInterface.exitConfirm();
                     break;
+                    case "5":
+                    case "5.":
+                    case "5. cancel":
+                    case "cancel":
+                    case "exit":
+                    case "quit":
+                    validInput = true;
+                    UserInterface.exitConfirm();
+                    break;
                     default:
                     Console.WriteLine("Please enter valid selection");
                     break;
