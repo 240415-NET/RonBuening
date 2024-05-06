@@ -58,10 +58,10 @@ public class ChecklistFile
 
         existingChecklistJSON =File.ReadAllText(pathFile);
         ChecklistArchive = JsonSerializer.Deserialize<List<User>>(existingChecklistJSON);
-        User oldUser = ChecklistArchive.First(i => i.userId == updatedUser.userId);
-        var userLocation = ChecklistArchive.IndexOf(oldUser);
-        if (userLocation != -1)
-            ChecklistArchive[userLocation] = updatedUser;
+        Checklist oldChecklist = ChecklistArchive.First(i => i.userId == updatedUser.userId);
+        var checklistLocation = ChecklistArchive.IndexOf(oldUser);
+        if (checklistLocation != -1)
+            ChecklistArchive[userLocation] = updatedList;
         
         existingChecklistJSON = JsonSerializer.Serialize(ChecklistArchive);
         File.WriteAllText(pathFile,existingChecklistJSON);

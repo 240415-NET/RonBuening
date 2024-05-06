@@ -23,6 +23,7 @@ public class Checklist
     public Checklist(Guid _userId, string _locationName, string _birder, string _checklistDateTime)
     {
         checklistID = Guid.NewGuid();
+        userId = _userId;
         birder = _birder;
         locationName = _locationName;
         checklistDateTime = DateTime.Parse(_checklistDateTime);
