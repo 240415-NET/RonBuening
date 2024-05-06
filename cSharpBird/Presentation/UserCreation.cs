@@ -23,7 +23,7 @@ public class UserCreation
             {
                 exitLoop = true;
                 UserInterface.WriteColors("{=Green}Email{/} already in use. Please sign in\n");
-                UserMaintenance.LogIn();
+                AcctAccess.LogIn();
             }
             else
             {

@@ -15,43 +15,62 @@ public class EntryChecklist
     public static void Edit(Checklist oldChecklist)
     {
         string editRequest;
-        bool valid = false;
-        Console.WriteLine($"1. Birder: {oldChecklist.birder}\t2. Location: {oldChecklist.locationName}\t3. Date: {oldChecklist.checklistDateTime}\t4. Species: {oldChecklist.birdChecklist.Count}\nWhat do you need to edit?");
+        bool validInput = false;
+        UserInterface.WriteColorsLine("{=Green}1. Birder{/}: " + oldChecklist.birder + "\t" + "{=Cyan}2. Location{/}: " + oldChecklist.locationName + "\t" + "{=Blue}3. Date{/}: "+ oldChecklist.checklistDateTime + "\t" + "{=Yellow)4. Species{/}: " + oldChecklist.birdChecklist.Count + "\t" + "{=Red}5. Cancel{/}");
+        UserInterface.WriteColorsLine("What do you need to edit?");
         do 
         {
             try
             {
                 editRequest = Console.ReadLine();
-                /*
-                switch (userSelect)
+                switch (editRequest.ToLower())
                 {
-                    case 1:
-                    valid = true;
-                    changeBirder();
+                    case "1":
+                    case "1.":
+                    case "1. birder":
+                    case "birder":
+                    case "user":
+                    validInput = true;
+                    //EntryChecklist.Create();
                     break;
-                    case 2:
-                    valid = true;
-                    changeLocation();
+                    case "2":
+                    case "2.":
+                    case "2. location":
+                    case "location":
+                    validInput = true;
+                    //EntryChecklist.View();
                     break;
-                    case 3:
-                    UserInterface.exit();
-                    Console.WriteLine("Please enter a selection to continue");
+                    case "3":
+                    case "3.":
+                    case "3. date":
+                    case "date":
+                    validInput = true;
+                    //UserUpdate(currentSession);
+                    break;
+                    case "4":
+                    case "4.":
+                    case "4. species":
+                    case "species":
+                    case "birds":
+                    case "bird":
+                    validInput = true;
+                    //UserInterface.exitConfirm();
                     break;
                     default:
                     Console.WriteLine("Please enter valid selection");
                     break;
-                }*/
+                }
             }
             catch (Exception e)
             {
                 Console.WriteLine($"{e.Message}. Please key in valid selection");
             }
         }
-        while (valid == false);
+        while (validInput == false);
     }
     public static void Delete(Checklist oldChecklist)
     {
-        
+
     }
     public static List<Bird> addSpecies(List<Bird> speciesList)
     {

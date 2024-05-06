@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using System.IO;
 public class AcctAccess
 {
-    public static void LogIn()
+    public static void initMenu()
     {
         //This method prompts for sign-in or account creation and routes requests appropriately.
-        
+
         string[] initialPrompt = {"In this program, actionable objects are highlighted in colors","Key the highlighted text to make a selection","{=Green}1.{/} Existing User","{=Yellow}2.{/} New User","{=Red}3.{/} Exit"};
         int userSelect = 0;
         bool valid = false;
@@ -25,7 +25,7 @@ public class AcctAccess
                 {
                     case 1:
                     valid = true;
-                    UserMaintenance.LogIn();
+                    LogIn();
                     break;
                     case 2:
                     valid = true;
@@ -47,5 +47,39 @@ public class AcctAccess
         }
         while (valid == false);
     }
-
+    public static void LogIn()
+    {
+        bool logInSuccess = false;
+        Console.Clear();
+        do
+        {
+            UserInterface.WriteColors("Please enter your {=Green}email{/} to sign in to your account\n");
+            string email = Console.ReadLine().Trim();
+            PassEmail:
+            if (String.IsNullOrEmpty(email))
+            {
+                Console.Clear();
+                UserInterface.WriteColors("{=Green}Email{/} cannot be blank. Please try again\n");
+            }
+            else if (!string.IsNullOrEmpty(email))
+            {
+                if (User.FindUser(email) != null)
+                {
+                    logInSuccess = true;
+                    User currentSession = User.FindUser(email);
+                    UserMaintenance.UserMenu(currentSession);
+                }
+                else
+                {
+                    UserInterface.WriteColors("Email not found. Do you need to create an account? Re-enter your {=Green}email{/} or type {=Green}create{/} to make new account\n");
+                    email = Console.ReadLine().Trim();
+                    if (email.ToLower() == "create" || email.ToLower() == "c")
+                        UserCreation.CreateUser();
+                    else 
+                        goto PassEmail;
+                }
+            }
+        }
+        while (logInSuccess == false);
+    }
 }
