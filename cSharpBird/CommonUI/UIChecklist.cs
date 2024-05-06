@@ -14,7 +14,7 @@ public class UIChecklist
         User currentUser = AccessFile.ReadCurrentUser();
         string printLocation = "Location: " + xlist.locationName;
         string printCount;
-        List<Bird> species = xlist.birdChecklist;
+        List<Bird>? species = xlist.birdChecklist;
         if (!(species?.Any() ?? false))
             printCount = "Species: " + xlist.birdChecklist.Count();
         else

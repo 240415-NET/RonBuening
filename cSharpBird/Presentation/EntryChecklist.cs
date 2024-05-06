@@ -91,11 +91,7 @@ public class EntryChecklist
                     case "today":
                     case "now":
                     validInput = true;
-                    Console.WriteLine("What hotspot should be used for this checklist?");
-                    hotspot = Console.ReadLine().Trim();
-                    Checklist checklist = new Checklist (currentUser.userId,hotspot);
-                    ChecklistFile.WriteChecklist(checklist);
-                    ViewAndAppend(checklist);
+                    collectInitData();
                     break;
                     case "2":
                     case "2.":
@@ -103,13 +99,7 @@ public class EntryChecklist
                     case "past":
                     case "historic":
                     validInput = true;
-                    Console.WriteLine("When was this checklist taken?");
-                    checklistDate = Console.ReadLine().Trim();
-                    Console.WriteLine("What hotspot should be used for this checklist?");
-                    hotspot = Console.ReadLine().Trim();
-                    Checklist historicChecklist = new Checklist (currentUser.userId,hotspot,checklistDate);
-                    ChecklistFile.WriteChecklist(historicChecklist);
-                    ViewAndAppend(historicChecklist);
+                    collectInitDataHistoric();
                     break;
                     case "3":
                     case "3.":
@@ -138,6 +128,28 @@ public class EntryChecklist
         List<Checklist> userChecklists = new List<Checklist>();
         userChecklists = ChecklistFile.GetLists(user);
 
+    }
+    public static void collectInitData()
+    {
+        User currentUser = AccessFile.ReadCurrentUser();
+        Console.WriteLine("What hotspot should be used for this checklist?");
+        string hotspot = Console.ReadLine().Trim();
+        Checklist checklist = new Checklist (currentUser.userId,hotspot);
+        ChecklistFile.WriteChecklist(checklist);
+        Console.WriteLine("Enter banding code for species");
+        string birdSpecies = Console.ReadLine().Trim();
+        ViewAndAppend(checklist);
+    }
+    public static void collectInitDataHistoric()
+    {
+        User currentUser = AccessFile.ReadCurrentUser();
+        Console.WriteLine("When was this checklist taken?");
+        string checklistDate = Console.ReadLine().Trim();
+        Console.WriteLine("What hotspot should be used for this checklist?");
+        string hotspot = Console.ReadLine().Trim();
+        Checklist historicChecklist = new Checklist (currentUser.userId,hotspot,checklistDate);
+        ChecklistFile.WriteChecklist(historicChecklist);
+        ViewAndAppend(historicChecklist);
     }
     public static void ViewAndAppend(Checklist viewList)
     {
@@ -226,7 +238,7 @@ public class EntryChecklist
     }
     public static Checklist changeSpecies(Checklist oldChecklist)
     {
-        List<Bird> update = oldChecklist.birdChecklist;
+        List<Bird>? update = oldChecklist.birdChecklist;
         string userInput;
         bool valid = false;
         for (int i = 0; i < update.Count; i++)

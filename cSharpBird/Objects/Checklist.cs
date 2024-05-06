@@ -10,6 +10,7 @@ public class Checklist
     public DateTime checklistDateTime {get; set;}
     public List<Bird>? birdChecklist {get; set;}
     //public string birder {get; set;}
+    //public List<string> birds {get;set;}
     public Checklist() {}
 
     public Checklist(Guid _userId, string _locationName)
@@ -19,6 +20,7 @@ public class Checklist
         locationName = _locationName;
         checklistDateTime = DateTime.Today;
         List<Bird> birdChecklist = new List<Bird>();
+        //List<string> birds = null;
     }
     public Checklist(Guid _userId, string _locationName, string _checklistDateTime)
     {
@@ -27,5 +29,6 @@ public class Checklist
         locationName = _locationName;
         checklistDateTime = DateTime.Parse(_checklistDateTime);
         List<Bird> birdChecklist = new List<Bird>();
+        //List<string> birds = null;
     }
 }
