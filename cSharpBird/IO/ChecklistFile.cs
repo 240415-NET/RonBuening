@@ -7,7 +7,7 @@ public class ChecklistFile
 {
     public static List<Checklist> GetLists(User searchUser)
     {
-        //Will return the user list for the Users.json file, creating it and adding a defaultUser if file does not already exist
+        //Will return the checklist list for the Checklists.json file, creating it and adding a default list if file does not already exist
         string pathFile = "Checklists.json";
         List<Checklist> ChecklistArchive = new List<Checklist>();
         List<Checklist> userChecklists = new List<Checklist>();
@@ -52,7 +52,7 @@ public class ChecklistFile
     }
     public static void WriteUpdatedList(Checklist updatedList)
     {
-        //This method will write a new user to the json file, creating it if it does not exist.
+        //This method will write an updated checklist to the json file, creating it if it does not exist.
         string pathFile = "Checklists.json";
         List<Checklist> ChecklistArchive = new List<Checklist>();
         string existingChecklistJSON;
@@ -63,6 +63,8 @@ public class ChecklistFile
         var checklistLocation = ChecklistArchive.IndexOf(oldChecklist);
         if (checklistLocation != -1)
             ChecklistArchive[checklistLocation] = updatedList;
+        else
+            ChecklistArchive.Add(updatedList);
         
         existingChecklistJSON = JsonSerializer.Serialize(ChecklistArchive);
         File.WriteAllText(pathFile,existingChecklistJSON);
