@@ -59,7 +59,7 @@ public class EntryChecklist
             }
             catch (Exception e)
             {
-                Console.WriteLine($"{e.Message}. Please key in valid selection");
+                Console.WriteLine($"{e.Message}. Please key in valid selection for Checklist home menu");
             }
         }
         while (validInput == false);
@@ -103,13 +103,13 @@ public class EntryChecklist
                     case "past":
                     case "historic":
                     validInput = true;
-                    Console.WriteLine("When was this checklist taken?")
+                    Console.WriteLine("When was this checklist taken?");
                     checklistDate = Console.ReadLine().Trim();
                     Console.WriteLine("What hotspot should be used for this checklist?");
                     hotspot = Console.ReadLine().Trim();
-                    Checklist checklist = new Checklist (currentUser.userId,hotspot,checklistDate);
-                    ChecklistFile.WriteChecklist(checklist);
-                    ViewAndAppend(checklist);
+                    Checklist historicChecklist = new Checklist (currentUser.userId,hotspot,checklistDate);
+                    ChecklistFile.WriteChecklist(historicChecklist);
+                    ViewAndAppend(historicChecklist);
                     break;
                     case "3":
                     case "3.":
@@ -128,7 +128,7 @@ public class EntryChecklist
             }
             catch (Exception e)
             {
-                Console.WriteLine($"{e.Message}. Please key in valid selection");
+                Console.WriteLine($"{e.Message}. Please key in valid selection for Create menu");
             }
         }
         while (validInput == false);
@@ -141,13 +141,13 @@ public class EntryChecklist
     }
     public static void ViewAndAppend(Checklist viewList)
     {
-        
+        UIChecklist.viewList(viewList);
     }
     public static void Edit(Checklist oldChecklist)
     {
         string editRequest;
         bool validInput = false;
-        UserInterface.WriteColorsLine("{=Green}1. Birder{/}: " + oldChecklist.birder + "\t" + "{=Cyan}2. Location{/}: " + oldChecklist.locationName + "\t" + "{=Blue}3. Date{/}: "+ oldChecklist.checklistDateTime + "\t" + "{=Yellow)4. Species{/}: " + oldChecklist.birdChecklist.Count + "\t" + "{=Red}5. Cancel{/}");
+        UserInterface.WriteColorsLine("{=Green}1. Location{/}: " + oldChecklist.locationName + "\t" + "{=Blue}2. Date{/}: "+ oldChecklist.checklistDateTime + "\t" + "{=Yellow)3. Species{/}: " + oldChecklist.birdChecklist.Count + "\t" + "{=Red}5. Cancel{/}");
         UserInterface.WriteColorsLine("What do you need to edit?");
         do 
         {
@@ -158,43 +158,35 @@ public class EntryChecklist
                 {
                     case "1":
                     case "1.":
-                    case "1. birder":
-                    case "birder":
-                    case "user":
-                    validInput = true;
-                    //EntryChecklist.Create();
-                    break;
-                    case "2":
-                    case "2.":
-                    case "2. location":
+                    case "1. location":
                     case "location":
                     validInput = true;
                     //EntryChecklist.View();
                     break;
-                    case "3":
-                    case "3.":
-                    case "3. date":
+                    case "2":
+                    case "2.":
+                    case "2. date":
                     case "date":
                     validInput = true;
                     //UserUpdate(currentSession);
                     break;
-                    case "4":
-                    case "4.":
-                    case "4. species":
+                    case "3":
+                    case "3.":
+                    case "3. species":
                     case "species":
                     case "birds":
                     case "bird":
                     validInput = true;
                     //UserInterface.exitConfirm();
                     break;
-                    case "5":
-                    case "5.":
-                    case "5. cancel":
+                    case "4":
+                    case "4.":
+                    case "4. cancel":
                     case "cancel":
                     case "exit":
                     case "quit":
                     validInput = true;
-                    UserInterface.exitConfirm();
+                    ViewAndAppend(oldChecklist);
                     break;
                     default:
                     Console.WriteLine("Please enter valid selection");

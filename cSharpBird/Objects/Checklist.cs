@@ -8,8 +8,8 @@ public class Checklist
     public Guid userId {get;set;}
     public string locationName {get; set;}
     public DateTime checklistDateTime {get; set;}
-    public List<Bird> birdChecklist {get; set;}
-    public string birder {get; set;}
+    public List<Bird>? birdChecklist {get; set;}
+    //public string birder {get; set;}
     public Checklist() {}
 
     public Checklist(Guid _userId, string _locationName)
