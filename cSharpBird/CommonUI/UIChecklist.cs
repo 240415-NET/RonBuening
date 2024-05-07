@@ -12,19 +12,32 @@ public class UIChecklist
     public static void PrintHeader(Checklist xlist)
     {
         User currentUser = AccessFile.ReadCurrentUser();
-        string printLocation = "Location: " + xlist.locationName;
-        string printCount;
-        List<Bird>? species = xlist.birdChecklist;
-        if (!(species?.Any() ?? false))
-            printCount = "Species: " + xlist.birdChecklist.Count();
-        else
-            printCount = "Species: 0";
-        string printDate = "Date: "+ xlist.checklistDateTime;
-        int widthConsole = Console.WindowWidth;
-        int widthColumn = widthConsole / 3;
-        //Console.ForegroundColor 13;
-        Console.WriteLine("{0,-widthColumn}","{,widthColumn/2}","{1,-widthColumn/2}","{2,widthColumn}",printLocation,printCount,printDate);
-        Console.ResetColor();
+        try
+        {
+            string printLocation = "Location: " + xlist.locationName;
+            string printCount = "0";
+            
+            List<Bird>? species = new List<Bird>();
+            if (!(xlist.birdChecklist?.Any() ?? false))
+            {
+                printCount = "Species: " + xlist.birdChecklist.Count();
+                species = xlist.birdChecklist;
+            }
+            else
+                printCount = "Species: 0";
+            
+            string printDate = "Date: "+ xlist.checklistDateTime;
+            int widthConsole = Console.WindowWidth;
+            int widthColumn = widthConsole / 3;
+            //Console.ForegroundColor 13;
+            Console.WriteLine("{0,-widthColumn}","{1,-widthColumn}","{2,widthColumn}",printLocation,printCount,printDate);
+            Console.WriteLine("Test");
+            Console.ResetColor();
+        }
+        catch (Exception l)
+        {
+            Console.WriteLine(l.Message);
+        }
     }
     /*
     public static void menuFillVertical(string[] args)

@@ -134,10 +134,29 @@ public class EntryChecklist
         User currentUser = AccessFile.ReadCurrentUser();
         Console.WriteLine("What hotspot should be used for this checklist?");
         string hotspot = Console.ReadLine().Trim();
+
+        UserInterface.WriteColorsLine("Please enter a {=Green}band code{/} of four characters for the first species seen");
+        string bandCode;
+        int numSeen = 0;
+        bool validInput = false;
+        do
+        {
+            bandCode = Console.ReadLine().Trim();
+            if (bandCode.Length == 4)
+            {
+                validInput = true;
+                UserInterface.WriteColorsLine("How many {=Green}"+bandCode+"{/} did you see?");
+                numSeen = Convert.ToInt32(Console.ReadLine().Trim());
+            }
+            else
+                Console.WriteLine("Please enter only the band code");
+        }
+        while (validInput == false);
+        Bird firstBird = new Bird(bandCode,numSeen);
+        List<Bird> start = new List<Bird>(){firstBird};
         Checklist checklist = new Checklist (currentUser.userId,hotspot);
+        checklist.birdChecklist = start;
         ChecklistFile.WriteChecklist(checklist);
-        Console.WriteLine("Enter banding code for species");
-        string birdSpecies = Console.ReadLine().Trim();
         ViewAndAppend(checklist);
     }
     public static void collectInitDataHistoric()
