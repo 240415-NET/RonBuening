@@ -236,11 +236,11 @@ public class EntryChecklist
     {
 
     }
-    public static List<Bird> addSpecies(List<Bird> speciesList)
+    public static Dictionary<int,Bird> addSpecies(Dictionary<int,Bird> speciesList)
     {
         return speciesList;
     }
-    public static List<Bird> removeSpecies(List<Bird> speciesList)
+    public static Dictionary<int,Bird> removeSpecies(Dictionary<int,Bird> speciesList)
     {
         return speciesList;
     }
@@ -258,7 +258,7 @@ public class EntryChecklist
     }
     public static Checklist changeSpecies(Checklist oldChecklist)
     {
-        List<Bird>? update = oldChecklist.birdChecklist;
+        Dictionary<int,Bird>? update = oldChecklist.birdChecklist;
         string userInput;
         bool valid = false;
         for (int i = 0; i < update.Count; i++)

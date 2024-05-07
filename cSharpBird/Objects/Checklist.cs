@@ -18,7 +18,7 @@ public class Checklist
         checklistID = Guid.NewGuid();
         userId = _userId;
         locationName = _locationName;
-        checkDictionaryDateTime = DateTime.Today;
+        checklistDateTime = DateTime.Today;
         Dictionary<int,Bird> birdChecklist = new Dictionary<int,Bird>();
         //List<string> birds = null;
     }
