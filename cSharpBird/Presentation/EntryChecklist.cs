@@ -128,6 +128,21 @@ public class EntryChecklist
         List<Checklist> userChecklists = new List<Checklist>();
         userChecklists = ChecklistFile.GetLists(user);
 
+        int widthConsole = Console.WindowWidth;
+        int widthColumn = widthConsole / 3;
+
+        string header0 = "Checklist";
+        string header1 = "Location";
+        string header2 = "Date";
+
+        UserInterface.WriteColorsLine("Please enter the {=Blue}Checklist number{/} you'd like to view additional details for, or 0 to go back");
+        Console.WriteLine("{0,-widthColumn}","{1,-widthColumn}",header0,header1);
+
+        for (int i = 0; i < userChecklists.Count(); i++)
+        {
+            Console.WriteLine("{0,-widthColumn}","{1,-widthColumn}","{2,widthColumn}",i+1,userChecklists[i].locationName,userChecklists[i].checklistDateTime);
+        }
+        
     }
     public static void collectInitData()
     {
