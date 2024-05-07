@@ -134,7 +134,7 @@ public class EntryChecklist
         User currentUser = AccessFile.ReadCurrentUser();
         Console.WriteLine("What hotspot should be used for this checklist?");
         string hotspot = Console.ReadLine().Trim();
-
+        /*
         UserInterface.WriteColorsLine("Please enter a {=Green}band code{/} of four characters for the first species seen");
         string bandCode;
         int numSeen = 0;
@@ -154,8 +154,9 @@ public class EntryChecklist
         while (validInput == false);
         Bird firstBird = new Bird(bandCode,numSeen);
         List<Bird> start = new List<Bird>(){firstBird};
+        */
         Checklist checklist = new Checklist (currentUser.userId,hotspot);
-        checklist.birdChecklist = start;
+        //checklist.birdChecklist = start;
         ChecklistFile.WriteChecklist(checklist);
         ViewAndAppend(checklist);
     }

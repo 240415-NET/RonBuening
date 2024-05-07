@@ -17,7 +17,7 @@ public class UIChecklist
             string printLocation = "Location: " + xlist.locationName;
             string printCount = "0";
             
-            List<Bird>? species = new List<Bird>();
+            Dictionary<int,Bird>? species = new Dictionary<int, Bird>();
             if (!(xlist.birdChecklist?.Any() ?? false))
             {
                 printCount = "Species: " + xlist.birdChecklist.Count();
