@@ -136,11 +136,12 @@ public class EntryChecklist
         string header2 = "Date";
 
         UserInterface.WriteColorsLine("Please enter the {=Blue}Checklist number{/} you'd like to view additional details for, or 0 to go back");
-        Console.WriteLine("{0,-widthColumn}","{1,-widthColumn}",header0,header1);
+        //Console.WriteLine("{0,-widthColumn}","{1,-widthColumn}",header0,header1);
 
         for (int i = 0; i < userChecklists.Count(); i++)
         {
-            Console.WriteLine("{0,-widthColumn}","{1,-widthColumn}","{2,widthColumn}",i+1,userChecklists[i].locationName,userChecklists[i].checklistDateTime);
+            //Console.WriteLine("{0,-widthColumn}","{1,-widthColumn}","{2,widthColumn}",i+1,userChecklists[i].locationName,userChecklists[i].checklistDateTime);
+            Console.Write(userChecklists[i].locationName);
         }
         
     }
