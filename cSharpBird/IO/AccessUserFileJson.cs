@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
-public class AccessFile
+public class AccessFileJson : IAccessUserFile
 {
-    public static List<User> ReadUser()
+    public static List<User> GetFullUserList()
     {
         //Will return the user list for the Users.json file, creating it and adding a defaultUser if file does not already exist
         string pathFile = "Users.json";

@@ -4,29 +4,31 @@ using System.Collections.Generic;
 using System.IO;
 public class UserController
 {
+    public static IAccessUserFile AccessUser = new AccessUserFileJson();
     public static List<User> GetFullUserList()
     {
-        List<User> userList = AccessFile.ReadUser();
+        List<User> userList = AccessUser.GetFullUserList();
         return userList();
     }
     public static void WriteUser(User user)
     {
-        AccessFile.WriteUser(user);
+        AccessUser.WriteUser(user);
     }
     public static void WriteUpdatedUser(User updatedUser)
     {
-        AccessFile.WriteUpdatedUser(user);
+        AccessUser.WriteUpdatedUser(user);
     }
     public static void WriteCurrentUser(User user)
     {
-        AccessFile.WriteCurrentUser(user);
+        AccessUser.WriteCurrentUser(user);
     }
     public static User ReadCurrentUser()
     {
-        User currentSession = AccessFile.ReadCurrentUser();
+        User currentSession = AccessUser.ReadCurrentUser();
         return currentSession;
     }
     public static void ClearCurrentUser()
     {
-        AccessFile.ClearCurrentUser();
+        AccessUser.ClearCurrentUser();
     }
+}
