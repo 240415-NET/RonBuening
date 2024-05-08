@@ -53,8 +53,10 @@
 - Bird Object (Nice to have; otherwise, pull from CSV/SQL)
     - Bird Object should possess:
         - ~~Unique identifier (GUID; assigned at creation)~~
+        - Band Code (string; assigned at creation)
         - Species name (string; assigned at creation)
-        - Rarity (string; assigned at creation by user OR system default)
+        - ~~Rarity (string; assigned at creation by user OR system default)~~
+        - Count (number (int?) updated by user)
     - Will be related to other objects by:
         - Contained within a List in checklist
 - Location Object (Nice to have; otherwise, just userdata)
