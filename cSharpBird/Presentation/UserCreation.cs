@@ -41,7 +41,7 @@ public class UserCreation
         User foundUser = new User();
         //This method is used to find the user attempting to sign in and return the proper user object
         //Will return full user list
-        List<User> userList = AccessFile.ReadUser();
+        List<User> userList = UserController.GetFullUserList();
         foundUser = userList.FirstOrDefault(u => u.userName.ToLower() == email.ToLower());
         if (foundUser == null)
             return false;
@@ -51,7 +51,7 @@ public class UserCreation
     public static User NewUser(string email)
     {
         User newUser = new User(email);
-        AccessFile.WriteUser(newUser);
+        UserController.WriteUser(newUser);
         return newUser;
     }
 }
