@@ -7,19 +7,25 @@
 - The application should build and run
 - The application should interact with users, and provide some console UI
     - Single user type that has objects associated with it (checklists)
-    - Superuser that controls additional classes of objects (locations, species)
+    - ~~Superuser that controls additional classes of objects (locations, species)~~
 - The application should allow for multiple users to log in and persist their data
-    - Checklists will be saved in SQL/JSON; option to print as text file for user to refer to later
+    - Checklists will be saved in SQL~~/JSON~~; option to print as text file for user to refer to later
 - The application should demonstrate good input validation
     - Validation of locations and species
 - The application should persist data to a SQL Server DB
-    - Checlists, locations, and species will be stored here
+    - Checlists, ~~birds~~ and users will be stored here
+    - Birds will be stored in CSV file for easy update based on USGS list
 - The application should communicate to DB via ADO.NET or Entity Framework Core
 - The application should have unit tests
 
 ## Nice to Have
 
 - n-tier architecture
+    - Presentation
+    - Controller
+    - Interfaces
+    - Data Access
+    - Common UI Elements
 - dependency injection
 - The application should log errors and system events to a file or a DB table
 - Basic user authentication and authorization (admins vs normal users with passwords)
@@ -46,7 +52,7 @@
         - Birds, by containing list of birds seen
 - Bird Object (Nice to have; otherwise, pull from CSV/SQL)
     - Bird Object should possess:
-        - Unique identifier (GUID; assigned at creation)
+        - ~~Unique identifier (GUID; assigned at creation)~~
         - Species name (string; assigned at creation)
         - Rarity (string; assigned at creation by user OR system default)
     - Will be related to other objects by:
