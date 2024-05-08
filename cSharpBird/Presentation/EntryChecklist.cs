@@ -127,9 +127,14 @@ public class EntryChecklist
     {
         List<Checklist> userChecklists = new List<Checklist>();
         userChecklists = ChecklistController.GetLists(user);
+        
+        string userInput;
+        bool validInput = false;
 
         int widthConsole = Console.WindowWidth;
         int widthColumn = widthConsole / 3;
+        int userSelect = 0;
+        int listNum = 0;
 
         string header0 = "Checklist";
         string header1 = "Location";
@@ -141,11 +146,36 @@ public class EntryChecklist
         UserInterface.WriteColorsLine("{=Blue}Number{/}\tLocation\tDate");
         for (int i = 0; i < userChecklists.Count(); i++)
         {
+            listNum = i+1;
             //Console.WriteLine("{0,-widthColumn}","{1,-widthColumn}","{2,widthColumn}",i+1,userChecklists[i].locationName,userChecklists[i].checklistDateTime);
-            UserInterface.WriteColors("{=Blue}" + i+1 + ".{/}\t");
+            UserInterface.WriteColors("{=Blue}" + listNum + ".{/}\t");
             Console.Write(userChecklists[i].locationName + "\t" + userChecklists[i].checklistDateTime + "\n");
         }
-        
+        try
+        {
+            do
+            {
+                userInput = UserInterface.exitChecker(Console.ReadLine().Trim());
+                userSelect = Convert.ToInt32(userInput);
+                if (userSelect == 0)
+                {
+                    validInput = true;
+                    Menu();
+                }
+                else if (userSelect < userChecklists.Count())
+                {
+                    validInput = true;
+                    ViewAndAppend(userChecklists[userSelect-1]);
+                }
+                else
+                    Console.WriteLine("Please key in valid checklist number");
+            }
+            while (validInput == false);
+        }
+        catch (Exception o)
+        {
+            Console.WriteLine("Please enter valid checklist number");
+        }
     }
     public static void collectInitData()
     {
