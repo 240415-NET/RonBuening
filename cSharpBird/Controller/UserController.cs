@@ -31,7 +31,7 @@ public class UserController
     {
         AccessUser.ClearCurrentUser();
     }
-    public static User (string user)
+    public static User FindUser(string user)
     {
         User foundUser = User.FindUser(user);
         return foundUser;
@@ -43,6 +43,6 @@ public class UserController
     }
     public static void changeName(User user)
     {
-        user.changeName(user);
+        User.changeName(user);
     }
 }
