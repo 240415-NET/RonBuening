@@ -126,7 +126,7 @@ public class EntryChecklist
     public static void List(User user)
     {
         List<Checklist> userChecklists = new List<Checklist>();
-        userChecklists = ChecklistFile.GetLists(user);
+        userChecklists = ChecklistController.GetLists(user);
 
         int widthConsole = Console.WindowWidth;
         int widthColumn = widthConsole / 3;
@@ -173,7 +173,7 @@ public class EntryChecklist
         */
         Checklist checklist = new Checklist (currentUser.userId,hotspot);
         //checklist.birdChecklist = start;
-        ChecklistFile.WriteChecklist(checklist);
+        ChecklistController.WriteChecklist(checklist);
         ViewAndAppend(checklist);
     }
     public static void collectInitDataHistoric()
@@ -184,7 +184,7 @@ public class EntryChecklist
         Console.WriteLine("What hotspot should be used for this checklist?");
         string hotspot = Console.ReadLine().Trim();
         Checklist historicChecklist = new Checklist (currentUser.userId,hotspot,checklistDate);
-        ChecklistFile.WriteChecklist(historicChecklist);
+        ChecklistController.WriteChecklist(historicChecklist);
         ViewAndAppend(historicChecklist);
     }
     public static void ViewAndAppend(Checklist viewList)
