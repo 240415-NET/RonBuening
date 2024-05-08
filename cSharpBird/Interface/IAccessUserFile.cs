@@ -4,17 +4,15 @@ using System.Collections.Generic;
 using System.IO;
 public class IAccessUserFile
 {
-     public static List<User> GetFullUserList()
+    public List<User> GetFullUserList()
 
-    public static void WriteUser(User user)
+    public void WriteUser(User user)
 
-    public static void WriteUpdatedUser(User updatedUser)
+    public void WriteUpdatedUser(User updatedUser)
 
-    public static void WriteCurrentUser(User user)
+    public void WriteCurrentUser(User user)
 
-    public static User ReadCurrentUser()
+    public User ReadCurrentUser()
 
-    public static void ClearCurrentUser()
-
-
+    public void ClearCurrentUser()
 }

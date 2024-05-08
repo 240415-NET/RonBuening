@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
-public class ChecklistFile
+public class AccessChecklistFileJson : IAccessChecklistFile
 {
     public static List<Checklist> GetLists(User searchUser)
     {
