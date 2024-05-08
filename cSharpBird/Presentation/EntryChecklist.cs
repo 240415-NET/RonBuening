@@ -134,14 +134,16 @@ public class EntryChecklist
         string header0 = "Checklist";
         string header1 = "Location";
         string header2 = "Date";
+        
 
         UserInterface.WriteColorsLine("Please enter the {=Blue}Checklist number{/} you'd like to view additional details for, or 0 to go back");
         //Console.WriteLine("{0,-widthColumn}","{1,-widthColumn}",header0,header1);
-
+        UserInterface.WriteColorsLine("{=Blue}Number{/}\tLocation\tDate");
         for (int i = 0; i < userChecklists.Count(); i++)
         {
             //Console.WriteLine("{0,-widthColumn}","{1,-widthColumn}","{2,widthColumn}",i+1,userChecklists[i].locationName,userChecklists[i].checklistDateTime);
-            Console.Write(userChecklists[i].locationName);
+            UserInterface.WriteColors("{=Blue}" + i+1 + ".{/}\t");
+            Console.Write(userChecklists[i].locationName + "\t" + userChecklists[i].checklistDateTime + "\n");
         }
         
     }
