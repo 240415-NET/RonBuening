@@ -9,7 +9,7 @@ public class AcctAccess
         //This method prompts for sign-in or account creation and routes requests appropriately.
 
         string[] initialPrompt = {"In this program, actionable objects are highlighted in colors","Key the highlighted text to make a selection","{=Green}1. Existing{/} User","{=Yellow}2. New{/} User","{=Red}3. Exit{/}"};
-        int userSelect = 0;
+        string userSelect = "";
         bool valid = false;
         string email;
 
