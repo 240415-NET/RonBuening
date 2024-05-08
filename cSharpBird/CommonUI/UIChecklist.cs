@@ -14,25 +14,7 @@ public class UIChecklist
         User currentUser = UserController.ReadCurrentUser();
         try
         {
-            string printLocation = "Location: " + xlist.locationName;
-            string printCount = "0";
             
-            Dictionary<int,Bird>? species = new Dictionary<int, Bird>();
-            if (!(xlist.birdChecklist?.Any() ?? false))
-            {
-                printCount = "Species: " + xlist.birdChecklist.Count();
-                species = xlist.birdChecklist;
-            }
-            else
-                printCount = "Species: 0";
-            
-            string printDate = "Date: "+ xlist.checklistDateTime;
-            int widthConsole = Console.WindowWidth;
-            int widthColumn = widthConsole / 3;
-            //Console.ForegroundColor 13;
-            Console.WriteLine("{0,-widthColumn}","{1,-widthColumn}","{2,widthColumn}",printLocation,printCount,printDate);
-            Console.WriteLine("Test");
-            Console.ResetColor();
         }
         catch (Exception l)
         {

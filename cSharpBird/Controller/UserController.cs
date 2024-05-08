@@ -31,4 +31,18 @@ public class UserController
     {
         AccessUser.ClearCurrentUser();
     }
+    public static User FindUser(string user)
+    {
+        User foundUser = User.FindUser(user);
+        return foundUser;
+    }
+    public static void changeEmail(User user)
+    {
+        User.changeEmail(user);
+        
+    }
+    public static void changeName(User user)
+    {
+        User.changeName(user);
+    }
 }
