@@ -6,9 +6,9 @@ using System.Text.Json;
 
 public interface IAccessChecklistFile
 {
-    public List<Checklist> GetLists(User searchUser)
+    public List<Checklist> GetLists(User searchUser);
     
-    public void WriteChecklist(Checklist newList)
+    public void WriteChecklist(Checklist newList);
 
-    public void WriteUpdatedList(Checklist updatedList)
+    public void WriteUpdatedList(Checklist updatedList);
 }

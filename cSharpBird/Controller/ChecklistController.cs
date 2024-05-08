@@ -5,10 +5,10 @@ using System.IO;
 using System.Text.Json;
 public class ChecklistController
 {
-    public static IAccessChecklistFile AccessChecklistFile = new AccessChecklistFileJson
+    public static IAccessChecklistFile AccessChecklistFile = new AccessChecklistFileJson();
     public static List<Checklist> GetLists(User searchUser)
     {
-        AccessChecklistFile.GetLists(searchUser);
+        List<Checklist> userChecklists = AccessChecklistFile.GetLists(searchUser);
         return userChecklists;
     }
     public static void WriteChecklist(Checklist newList)

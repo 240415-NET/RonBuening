@@ -2,17 +2,17 @@ namespace cSharpBird;
 using System;
 using System.Collections.Generic;
 using System.IO;
-public class IAccessUserFile
+public interface IAccessUserFile
 {
-    public List<User> GetFullUserList()
+    public List<User> GetFullUserList();
 
-    public void WriteUser(User user)
+    public void WriteUser(User user);
 
-    public void WriteUpdatedUser(User updatedUser)
+    public void WriteUpdatedUser(User updatedUser);
 
-    public void WriteCurrentUser(User user)
+    public void WriteCurrentUser(User user);
 
-    public User ReadCurrentUser()
+    public User ReadCurrentUser();
 
-    public void ClearCurrentUser()
+    public void ClearCurrentUser();
 }

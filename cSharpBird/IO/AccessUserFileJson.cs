@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
-public class AccessFileJson : IAccessUserFile
+public class AccessUserFileJson : IAccessUserFile
 {
-    public static List<User> GetFullUserList()
+    public List<User> GetFullUserList()
     {
         //Will return the user list for the Users.json file, creating it and adding a defaultUser if file does not already exist
         string pathFile = "Users.json";
@@ -25,7 +25,7 @@ public class AccessFileJson : IAccessUserFile
         }
         return userArchive;
     }
-    public static void WriteUser(User user)
+    public void WriteUser(User user)
     {
         //This method will write a new user to the json file, creating it if it does not exist.
         string pathFile = "Users.json";
@@ -46,7 +46,7 @@ public class AccessFileJson : IAccessUserFile
             File.WriteAllText(pathFile,existingUsersJSON);
         }
     }
-    public static void WriteUpdatedUser(User updatedUser)
+    public void WriteUpdatedUser(User updatedUser)
     {
         //This method will write a new user to the json file, creating it if it does not exist.
         string pathFile = "Users.json";
@@ -65,18 +65,18 @@ public class AccessFileJson : IAccessUserFile
         existingUsersJSON = JsonSerializer.Serialize(userArchive);
         File.WriteAllText(pathFile,existingUsersJSON);
     }
-    public static void WriteCurrentUser(User user)
+    public void WriteCurrentUser(User user)
     {
         string pathFile = "CurrentUser.json";
         File.WriteAllText(pathFile,JsonSerializer.Serialize(user));
     }
-    public static User ReadCurrentUser()
+    public User ReadCurrentUser()
     {
         string pathFile = "CurrentUser.json";
         User currentSession = JsonSerializer.Deserialize<User>(File.ReadAllText(pathFile));
         return currentSession;
     }
-    public static void ClearCurrentUser()
+    public void ClearCurrentUser()
     {
         string pathFile = "CurrentUser.json";
         File.WriteAllText(pathFile,"");

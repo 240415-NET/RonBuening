@@ -8,7 +8,7 @@ public class UserController
     public static List<User> GetFullUserList()
     {
         List<User> userList = AccessUser.GetFullUserList();
-        return userList();
+        return userList;
     }
     public static void WriteUser(User user)
     {
@@ -16,7 +16,7 @@ public class UserController
     }
     public static void WriteUpdatedUser(User updatedUser)
     {
-        AccessUser.WriteUpdatedUser(user);
+        AccessUser.WriteUpdatedUser(updatedUser);
     }
     public static void WriteCurrentUser(User user)
     {
