@@ -22,7 +22,7 @@ public class User
         try
         {
             //Will return full user list
-            List<User> userList = AccessFile.ReadUser();
+            List<User> userList = UserController.GetFullUserList();
             foundUser = userList.FirstOrDefault(u => u.userName.ToLower() == email.ToLower());
             //return foundUser;
         }
@@ -43,7 +43,7 @@ public class User
         {
             user.userName = newEmail;
             Console.WriteLine($"Email updated to {newEmail}");
-            AccessFile.WriteUpdatedUser(user);
+            UserController.WriteUpdatedUser(user);
         }
         
     }
@@ -57,7 +57,7 @@ public class User
         {
             user.displayName = newName;
             Console.WriteLine($"Name updated to {newName}");
-            AccessFile.WriteUpdatedUser(user);
+            UserController.WriteUpdatedUser(user);
         }
         
     }

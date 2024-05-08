@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
-public class ChecklistFile
+public class AccessChecklistFileJson : IAccessChecklistFile
 {
-    public static List<Checklist> GetLists(User searchUser)
+    public List<Checklist> GetLists(User searchUser)
     {
         //Will return the checklist list for the Checklists.json file, creating it and adding a default list if file does not already exist
         string pathFile = "Checklists.json";
@@ -29,7 +29,7 @@ public class ChecklistFile
         userChecklists = ChecklistArchive.Where(i => i.userId == searchUser.userId).ToList();
         return userChecklists;
     }
-    public static void WriteChecklist(Checklist newList)
+    public void WriteChecklist(Checklist newList)
     {
         //This method will write a new Checklist to the json file, creating it if it does not exist.
         string pathFile = "Checklists.json";
@@ -50,7 +50,7 @@ public class ChecklistFile
             File.WriteAllText(pathFile,existingChecklistJSON);
         }
     }
-    public static void WriteUpdatedList(Checklist updatedList)
+    public void WriteUpdatedList(Checklist updatedList)
     {
         //This method will write an updated checklist to the json file, creating it if it does not exist.
         string pathFile = "Checklists.json";

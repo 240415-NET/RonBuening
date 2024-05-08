@@ -26,7 +26,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.Clear();
+        //Console.Clear();
         AcctAccess.initMenu();
     }
 }

@@ -6,7 +6,7 @@ public class UserMaintenance
 {
     public static void UserMenu(User currentSession)
     {
-        AccessFile.WriteCurrentUser(currentSession);
+        UserController.WriteCurrentUser(currentSession);
         string tempName;
         if (currentSession.displayName == null)
             tempName = currentSession.userName;
