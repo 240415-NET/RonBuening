@@ -34,10 +34,16 @@ public class Bird
         speciesName = _speciesName;
         rarity = _rarity;
     }
-    */
+
     public Bird(long _speciesNum, string _bandCode, string _speciesName)
     {
         speciesNum = _speciesNum;
+        bandCode = _bandCode;
+        speciesName = _speciesName;
+    }
+    */
+    public Bird(string _bandCode, string _speciesName)
+    {
         bandCode = _bandCode;
         speciesName = _speciesName;
     }

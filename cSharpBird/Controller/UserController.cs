@@ -31,4 +31,9 @@ public class UserController
     {
         AccessUser.ClearCurrentUser();
     }
+    public static User (string user)
+    {
+        User foundUser = User.FindUser(user);
+        return foundUser;
+    }
 }

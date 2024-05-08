@@ -67,8 +67,16 @@ public class AcctAccess
     }
     public static void LogIn()
     {
+        bool nonUserTesting = true;
         bool logInSuccess = false;
         Console.Clear();
+
+        if (nonUserTesting == true)
+        {
+            Console.WriteLine("nonUserTesting flag is enabled");
+            UserMaintenance.UserMenu(UserController.ReadCurrentUser());
+        }
+
         do
         {
             UserInterface.WriteColors("Please enter your {=Green}email{/} to sign in to your account\n");
@@ -81,10 +89,10 @@ public class AcctAccess
             }
             else if (!string.IsNullOrEmpty(email))
             {
-                if (User.FindUser(email) != null)
+                if (UserController.FindUser(email) != null)
                 {
                     logInSuccess = true;
-                    User currentSession = User.FindUser(email);
+                    User currentSession = UserController.FindUser(email);
                     UserMaintenance.UserMenu(currentSession);
                 }
                 else

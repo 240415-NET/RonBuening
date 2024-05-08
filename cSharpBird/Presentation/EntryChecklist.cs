@@ -180,32 +180,14 @@ public class EntryChecklist
     public static void collectInitData()
     {
         User currentUser = UserController.ReadCurrentUser();
+
         Console.WriteLine("What hotspot should be used for this checklist?");
         string hotspot = Console.ReadLine().Trim();
-        /*
-        UserInterface.WriteColorsLine("Please enter a {=Green}band code{/} of four characters for the first species seen");
-        string bandCode;
-        int numSeen = 0;
-        bool validInput = false;
-        do
-        {
-            bandCode = Console.ReadLine().Trim();
-            if (bandCode.Length == 4)
-            {
-                validInput = true;
-                UserInterface.WriteColorsLine("How many {=Green}"+bandCode+"{/} did you see?");
-                numSeen = Convert.ToInt32(Console.ReadLine().Trim());
-            }
-            else
-                Console.WriteLine("Please enter only the band code");
-        }
-        while (validInput == false);
-        Bird firstBird = new Bird(bandCode,numSeen);
-        List<Bird> start = new List<Bird>(){firstBird};
-        */
+
         Checklist checklist = new Checklist (currentUser.userId,hotspot);
-        //checklist.birdChecklist = start;
+        
         ChecklistController.WriteChecklist(checklist);
+
         ViewAndAppend(checklist);
     }
     public static void collectInitDataHistoric()
@@ -227,7 +209,7 @@ public class EntryChecklist
     {
         string editRequest;
         bool validInput = false;
-        UserInterface.WriteColorsLine("{=Green}1. Location{/}: " + oldChecklist.locationName + "\t" + "{=Blue}2. Date{/}: "+ oldChecklist.checklistDateTime + "\t" + "{=Yellow)3. Species{/}: " + oldChecklist.birdChecklist.Count + "\t" + "{=Red}5. Cancel{/}");
+        UserInterface.WriteColorsLine("{=Green}1. Location{/}: " + oldChecklist.locationName + "\t" + "{=Blue}2. Date{/}: "+ oldChecklist.checklistDateTime + "\t" + "{=Yellow)3. Species{/}: " + oldChecklist.birds.Count + "\t" + "{=Red}5. Cancel{/}");
         UserInterface.WriteColorsLine("What do you need to edit?");
         do 
         {
@@ -304,27 +286,17 @@ public class EntryChecklist
     {
 
     }
+    
     public static Checklist changeSpecies(Checklist oldChecklist)
     {
-        Dictionary<int,Bird>? update = oldChecklist.birdChecklist;
         string userInput;
         bool valid = false;
+        /*
         for (int i = 0; i < update.Count; i++)
         {
             Console.WriteLine($"{i+1}: {update[i].speciesName}");
         }
-        /*
-        Console.Write("Do you need to ");
-        Console.ForegroundColor = ConsoleColor.Red;
-        Console.Write("add");
-        Console.ForegroundColor = ConsoleColor.Black;
-        Console.Write(" or ");
-        Console.ForegroundColor = Console.Color.Red;
-        Console.Write("remove");
-        Console.ForegroundColor = ConsoleColor.Black;
-        Console.Write(" a species?");
-        */
-        UserInterface.WriteColors("Do you need to {=Red}add{/} or {=Red}remove{/} a species?");
+        UserInterface.WriteColors("Do you need to {=Green}add{/} or {=Red}remove{/} a species?");
         do
         {
             userInput = Console.ReadLine().Trim();
@@ -340,11 +312,12 @@ public class EntryChecklist
             }
             else
             {
-            UserInterface.WriteColors("Please chose to {=Red}add{/} or {=Red}remove{/} a species");
+            UserInterface.WriteColors("Please chose to {=Green}add{/} or {=Red}remove{/} a species");
             }
         }
         while (valid == false);
-        oldChecklist.birdChecklist = update;
+        oldChecklist.birds = update;
+        */
         return oldChecklist;
     }
 }
