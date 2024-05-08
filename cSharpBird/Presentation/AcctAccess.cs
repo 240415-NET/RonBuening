@@ -8,7 +8,7 @@ public class AcctAccess
     {
         //This method prompts for sign-in or account creation and routes requests appropriately.
 
-        string[] initialPrompt = {"In this program, actionable objects are highlighted in colors","Key the highlighted text to make a selection","{=Green}1.{/} Existing User","{=Yellow}2.{/} New User","{=Red}3.{/} Exit"};
+        string[] initialPrompt = {"In this program, actionable objects are highlighted in colors","Key the highlighted text to make a selection","{=Green}1. Existing{/} User","{=Yellow}2. New{/} User","{=Red}3. Exit{/}"};
         int userSelect = 0;
         bool valid = false;
         string email;
@@ -20,18 +20,36 @@ public class AcctAccess
         {
             try
             {
-                userSelect = Convert.ToInt32(Console.ReadLine());
+                userSelect = Console.ReadLine().Trim().ToLower();
                 switch (userSelect)
                 {
-                    case 1:
+                    case "1":
+                    case "1.":
+                    case "1. existing":
+                    case "1. exist":
+                    case "existing":
+                    case "exist":
+                    case "log in":
+                    case "login":
+                    case "sign in":
+                    case "signin":
                     valid = true;
                     LogIn();
                     break;
-                    case 2:
+                    case "2":
+                    case "2.":
+                    case "2. new":
+                    case "new":
+                    case "new user":
                     valid = true;
                     UserCreation.CreateUser();
                     break;
-                    case 3:
+                    case "3":
+                    case "3.":
+                    case "3. exit":
+                    case "3. quit":
+                    case "exit":
+                    case "quit":
                     UserInterface.exit();
                     Console.WriteLine("Please enter a selection to continue");
                     break;
