@@ -3,25 +3,24 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
-public class AccessUserFileJson : IAccessUserFile
+public class AccessBirdCSV : IAccessBird
 {
-    public List<User> GetFullUserList()
+    public List<Bird> GetFullBirdList()
     {
-        //Will return the user list for the Users.json file, creating it and adding a defaultUser if file does not already exist
-        string pathFile = "Users.json";
-        List<User> userArchive = new List<User>();
-        string existingUsersJSON;
+        long speciesNum = 0;
+        string bandCode = "";
+        string speciesName = "";
 
-        if (File.Exists(pathFile))
-        {
-            existingUsersJSON =File.ReadAllText(pathFile);
-            userArchive = JsonSerializer.Deserialize<List<User>>(existingUsersJSON);
-        }
-        else if(!File.Exists(pathFile))
-        {
-            userArchive.Add(new User ("defaultName"));
-            existingUsersJSON = JsonSerializer.Serialize(userArchive);
-            File.WriteAllText(pathFile,existingUsersJSON);
-        }
-        return userArchive;
+        //Will return the user list for the Users.json file, creating it and adding a defaultUser if file does not already exist
+        string pathFile = "USGSBBL.csv";
+        List<Bird> birdList = new List<Bird>();
+        birdList = File.ReadAllLines(pathFile)
+            .Select(line => line.Split(','))
+            .Select(x => new Bird{
+                speciesNum = long.Parse(x[0]),
+                bandCode = x[1],
+                speciesName = x[2]
+            }).ToList();
+        return birdList;
     }
+}

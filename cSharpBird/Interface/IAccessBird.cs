@@ -6,5 +6,5 @@ using System.Text.Json;
 
 public interface IAccessBird
 {
-    
+    public List<Bird> GetFullBirdList();
 }
