@@ -32,7 +32,7 @@ public class EntryChecklist
                     case "list":
                     case "list all":
                     validInput = true;
-                    EntryChecklist.List(AccessFile.ReadCurrentUser());
+                    EntryChecklist.List(UserController.ReadCurrentUser());
                     break;
                     case "3":
                     case "3.":
@@ -50,7 +50,7 @@ public class EntryChecklist
                     case "back":
                     case "cancel":
                     validInput = true;
-                    UserMaintenance.UserMenu(AccessFile.ReadCurrentUser());
+                    UserMaintenance.UserMenu(UserController.ReadCurrentUser());
                     break;
                     default:
                     Console.WriteLine("Please enter valid selection");
@@ -71,7 +71,7 @@ public class EntryChecklist
         string[] createMenu = {"{=Magenta}NEW CHECKLIST{/}","{=Green}1. Current{/} Checklist","{=Blue}2. Historic{/} Checklist","{=Red}3. Cancel{/}"};
         bool validInput = false;
         string menuRequest;
-        User currentUser = AccessFile.ReadCurrentUser();
+        User currentUser = UserController.ReadCurrentUser();
 
         Console.Clear();
 
@@ -147,7 +147,7 @@ public class EntryChecklist
     }
     public static void collectInitData()
     {
-        User currentUser = AccessFile.ReadCurrentUser();
+        User currentUser = UserController.ReadCurrentUser();
         Console.WriteLine("What hotspot should be used for this checklist?");
         string hotspot = Console.ReadLine().Trim();
         /*
@@ -178,7 +178,7 @@ public class EntryChecklist
     }
     public static void collectInitDataHistoric()
     {
-        User currentUser = AccessFile.ReadCurrentUser();
+        User currentUser = UserController.ReadCurrentUser();
         Console.WriteLine("When was this checklist taken?");
         string checklistDate = Console.ReadLine().Trim();
         Console.WriteLine("What hotspot should be used for this checklist?");

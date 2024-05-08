@@ -11,7 +11,7 @@ public class UIChecklist
     }
     public static void PrintHeader(Checklist xlist)
     {
-        User currentUser = AccessFile.ReadCurrentUser();
+        User currentUser = UserController.ReadCurrentUser();
         try
         {
             string printLocation = "Location: " + xlist.locationName;
