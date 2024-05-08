@@ -87,7 +87,7 @@ public class UserMaintenance
                     case "email":
                     //validInput = true;
                     Console.Clear();
-                    User.changeEmail(currentSession);
+                    UserController.changeEmail(currentSession);
                     break;
                     case "2":
                     case "2.":
@@ -96,7 +96,7 @@ public class UserMaintenance
                     case "name":
                     //validInput = true;
                     Console.Clear();
-                    User.changeName(currentSession);
+                    UserController.changeName(currentSession);
                     break;
                     case "3":
                     case "3.":
