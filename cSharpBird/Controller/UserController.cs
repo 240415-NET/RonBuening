@@ -36,4 +36,13 @@ public class UserController
         User foundUser = User.FindUser(user);
         return foundUser;
     }
+    public static void changeEmail(User user)
+    {
+        User.changeEmail(user);
+        
+    }
+    public static void changeName(User user)
+    {
+        user.changeName(user);
+    }
 }
