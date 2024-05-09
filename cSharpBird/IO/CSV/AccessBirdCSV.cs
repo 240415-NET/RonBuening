@@ -18,6 +18,20 @@ public class AccessBirdCSV : IAccessBird
                 bandCode = x[0],
                 speciesName = x[1]
             }).ToList();
+
+        string pathFileTemp = "Birds.json";
+        string existingBirdsJSON;
+        if (File.Exists(pathFileTemp))
+        {
+            existingBirdsJSON = JsonSerializer.Serialize(birdList);
+            File.WriteAllText(pathFileTemp,existingUsersJSON);
+        }
+        else if(!File.Exists(pathFileTemp))
+        {
+            existingBirdsJSON = JsonSerializer.Serialize(birdList);
+            File.WriteAllText(pathFileTemp,existingUsersJSON);
+        }
+
         return birdList;
     }
 }

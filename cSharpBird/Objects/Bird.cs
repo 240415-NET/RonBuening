@@ -5,7 +5,7 @@ using System.IO;
 public class Bird
 {
     //public Guid speciesID {get; set;}
-    public long speciesNum {get;set;} //replaces speciesID GUID
+    //public long speciesNum {get;set;} //replaces speciesID GUID
     public string bandCode {get; set;}
     public string speciesName {get; set;}
     //public string rarity {get; set;}
