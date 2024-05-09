@@ -8,8 +8,8 @@ public class UIChecklist
     {
         //calls submethods appropriately for the arguments passed
         UIChecklist.PrintHeader(xlist,loggedBirds);
-        //if xlist.birdList
-
+        if (loggedBirds.Count() > 0)
+            PrintLoggedBirds(loggedBirds);
     }
     public static void PrintHeader(Checklist xlist,List<Bird> loggedBirds)
     {
@@ -21,7 +21,7 @@ public class UIChecklist
                 tempName = currentUser.userName;
             else
                 tempName = currentUser.displayName;
-            UserInterface.WriteColorsLine("{=Magenta}" + tempName + "'s " + xlist.locationName + " checklist for " + xlist.checklistDateTime + "{/}");
+            UserInterface.WriteColorsLine("{=Magenta}" + tempName + "'s " + xlist.locationName + " checklist for " + xlist.checklistDateTime.ToString("d") + "{/}");
             if (loggedBirds.Count() == 0)
                 UserInterface.WriteColorsLine("{=Red}No birds logged yet{/}");
             else
@@ -33,59 +33,18 @@ public class UIChecklist
             Console.WriteLine(l.Message);
         }
     }
-    /*
-    public static void menuFillVertical(string[] args)
+    public static void PrintLoggedBirds(List<Bird> loggedBirds)
     {
-        //creates vertical spacing appropriate for the number of menu items in array passed
-        int wConsole = Console.WindowWidth;
-        int hConsole = Console.WindowHeight;
-        string[] menuPrint = args;
-
-        for (int h = 0; h < (hConsole - menuPrint.Length - 2)/2; h++)
+        int i = 0;
+        string[] headers = {"{=Green}Band Code{/}","{=Cyan}Species Name{/}","{=Blue}Number Seen{/}"};
+        string[] birdData;
+        string printLine = string.Format("{0,-10} {1,25} {2,12}",headers[0],headers[1],headers[2]);
+        UserInterface.WriteColorsLine(printLine);
+        foreach (Bird b in loggedBirds)
         {
-            for (int w = 0; w < wConsole; w++)
-            {
-                Console.Write("=");
-            }
-            Console.Write('\n');
+            printLine = string.Format("{0,-10} {1,25} {2,12}",loggedBirds[i].bandCode,loggedBirds[i].speciesName,loggedBirds[i].numSeen);
+            UserInterface.WriteColorsLine(printLine);
+            i++;
         }
     }
-    public static void menuFillHorizontal(string[] args)
-    {
-        //prints string array for menu centered in columns
-        int wConsole = Console.WindowWidth;
-        int hConsole = Console.WindowHeight;
-        string[] menuPrint = args;
-
-        for (int s = 0; s < menuPrint.Length; s++)
-        {
-            Console.Write("===");
-            if (ColorLength(menuPrint[s]) % 2 == 0)
-            {
-                for (int w = 0; w < (wConsole - (ColorLength(menuPrint[s]) + 6))/2; w++)
-                {
-                    Console.Write(" ");
-                }
-                UserInterface.WriteColors(menuPrint[s]);
-                for (int w = 0; w < ((wConsole - (ColorLength(menuPrint[s]) + 6))/2)-1; w++)
-                {
-                    Console.Write(" ");
-                }
-            }
-            else
-            {
-                for (int w = 0; w < ((wConsole - (ColorLength(menuPrint[s]) + 6))/2); w++)
-                {
-                    Console.Write(" ");
-                }
-                UserInterface.WriteColors(menuPrint[s]);
-                for (int w = 0; w < ((wConsole - (ColorLength(menuPrint[s]) + 6))/2); w++)
-                {
-                    Console.Write(" ");
-                }
-            }
-            Console.Write(" ===");
-            Console.Write('\n');
-        }
-    }*/
 }

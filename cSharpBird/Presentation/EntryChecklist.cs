@@ -203,9 +203,37 @@ public class EntryChecklist
     }
     public static void ViewAndAppend(Checklist viewList)
     {
-        //UserInterface.WriteColorsLine("{=Magenta}")
-        List<Bird> loggedBirds = ChecklistController.RetrieveLoggedBirds(viewList);
-        UIChecklist.viewList(viewList,loggedBirds);
+        List<Bird> loggedBirds = new List<Bird>();
+        bool userDone = false;
+        string userInput = "";
+        do
+        {
+            loggedBirds = ChecklistController.RetrieveLoggedBirds(viewList);
+            UIChecklist.viewList(viewList,loggedBirds);
+            UserInterface.WriteColorsLine("Please key a {=Green}band code{/} and the {=Blue}number{/} of that bird seen to log or {=Red}done{/} to finish list");
+            try
+            {
+                userInput = UserInterface.exitChecker(Console.ReadLine().Trim());
+                if (userInput.ToLower() == "done" || userInput.ToLower() == "d")
+                    userDone = true;
+                else if (ChecklistController.ValidListUpdate(userInput))
+                {
+                    ChecklistController.ListUpdate(userInput);
+                    Console.Clear();
+                }
+                else 
+                {
+                    UserInterface.WriteColorsLine("Please key a {=Green}band code{/} and the {=Blue}number{/} of that bird seen to log separated by a space or comma. Key {=Green}band code{/} and '0' to remove");
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+        while (userDone == false);
+        ChecklistController.WriteChecklist(viewList);
+        Menu();
     }
     public static void Edit(Checklist oldChecklist)
     {
