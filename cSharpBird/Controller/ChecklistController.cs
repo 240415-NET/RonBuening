@@ -14,12 +14,12 @@ public class ChecklistController
     public static void WriteChecklist(Checklist newList)
     {
         AccessChecklistFile.WriteChecklist(newList);
-        BirdController.WriteBirdsForChecklist(newList);
+        //BirdController.WriteBirdsForChecklist(newList);
     }
     public static void WriteUpdatedList(Checklist updatedList)
     {
         AccessChecklistFile.WriteUpdatedList(updatedList);
-        BirdController.WriteBirdsForChecklist(updatedList);
+        //BirdController.WriteBirdsForChecklist(updatedList);
     }
     public static List<Bird> RetrieveLoggedBirds(Checklist checklist)
     {
@@ -38,8 +38,17 @@ public class ChecklistController
             valid = false;
         return valid;
     }
-    public static void ListUpdate(string userInput)
+    public static void ListUpdate(string userInput,Checklist checklist)
     {
-
+        userInput = userInput.Trim();
+        string[] input = userInput.Split(' ',',');
+        bool valid = false;
+        Bird updatedCount = checklist.birds.First(i => i.bandCode == input[0]);
+        var checklistLocation = checklist.birds.IndexOf(updatedCount);
+        updatedCount.numSeen = int.Parse(input[1]);
+        if (checklistLocation != -1)
+            checklist.birds[checklistLocation] = updatedCount;
+        AccessChecklistFile.WriteUpdatedList(checklist);
+        //BirdController.WriteBirdsForChecklist(checklist);
     }
 }

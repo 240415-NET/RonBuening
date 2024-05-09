@@ -218,7 +218,7 @@ public class EntryChecklist
                     userDone = true;
                 else if (ChecklistController.ValidListUpdate(userInput))
                 {
-                    ChecklistController.ListUpdate(userInput);
+                    ChecklistController.ListUpdate(userInput,viewList);
                     Console.Clear();
                 }
                 else 
