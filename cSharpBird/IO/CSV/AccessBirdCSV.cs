@@ -34,4 +34,16 @@ public class AccessBirdCSV : IAccessBird
 
         return birdList;
     }
-}
+    public WriteBirdsForChecklist (Checklist checklist)
+    {
+        string pathFile = checklist.checklistID + "\\birds.json";
+        string existingChecklistJSON = JsonSerializer.Serialize(checklist.birds);
+        File.WriteAllText(pathFile,existingChecklistJSON);
+    }
+    public List<Bird> ReadBirdsForChecklist (Checklist checklist)
+    {
+        string pathFile = checklist.checklistID + "\\birds.json";
+        string existingChecklistJSON = File.ReadAllText(pathFile);
+        List<Bird> birdList = JsonSerializer.Deserialize<List<Checklist>>(existingChecklistJSON);
+        return birdList;
+    }
