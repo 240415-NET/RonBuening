@@ -22,11 +22,14 @@ public class UserInterface
         for (int h = 0; h < (hConsole - menuPrint.Length - 2)/2; h++)
         {
             for (int w = 0; w < wConsole; w++)
-            {
-                Console.Write("=");
-            }
+                menuFillHorizontalEmpty();
             Console.Write('\n');
         }
+    }
+    public static void menuFillHorizontalEmpty()
+    {
+        for (int w = 0; w < wConsole; w++)
+            Console.Write("=");
     }
     public static void menuFillHorizontal(string[] args)
     {

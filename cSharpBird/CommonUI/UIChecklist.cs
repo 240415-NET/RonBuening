@@ -21,11 +21,12 @@ public class UIChecklist
                 tempName = currentUser.userName;
             else
                 tempName = currentUser.displayName;
-            UserInterface.WriteColors("{=Magenta}" + tempName + "'s " + xlist.locationName + " checklist for " + xlist.checklistDateTime + "{/}\n");
+            UserInterface.WriteColorsLine("{=Magenta}" + tempName + "'s " + xlist.locationName + " checklist for " + xlist.checklistDateTime + "{/}");
             if (loggedBirds.Count() == 0)
                 UserInterface.WriteColorsLine("{=Red}No birds logged yet{/}");
             else
                 UserInterface.WriteColorsLine("{=Blue}Species logged: " + loggedBirds.Count() +"{/}");
+            UserInterface.menuFillHorizontalEmpty();
         }
         catch (Exception l)
         {
