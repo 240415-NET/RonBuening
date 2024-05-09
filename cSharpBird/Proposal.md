@@ -9,7 +9,7 @@
     - Single user type that has objects associated with it (checklists)
     - ~~Superuser that controls additional classes of objects (locations, species)~~
 - The application should allow for multiple users to log in and persist their data
-    - Checklists will be saved in SQL~~/JSON~~; option to print as text file for user to refer to later
+    - Checklists will be saved in SQL ~~/JSON~~; option to print as text file for user to refer to later
 - The application should demonstrate good input validation
     - Validation of locations and species
 - The application should persist data to a SQL Server DB
