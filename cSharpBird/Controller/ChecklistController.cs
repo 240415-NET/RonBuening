@@ -19,4 +19,10 @@ public class ChecklistController
     {
         AccessChecklistFile.WriteUpdatedList(updatedList);
     }
+    public static List<Bird> RetrieveLoggedBirds(Checklist checklist)
+    {
+        List<Bird> birdList = BirdController.ReadBirdsForChecklist(checklist);
+        birdList = birdList.Where(i => i.numSeen > 0).ToList();
+        return birdList;
+    }
 }

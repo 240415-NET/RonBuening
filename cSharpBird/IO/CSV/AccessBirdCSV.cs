@@ -64,7 +64,9 @@ public class AccessBirdCSV : IAccessBird
         else if (!File.Exists(pathFile))
         {
             Directory.CreateDirectory(path);
-            string existingChecklistJSON = File.ReadAllText(pathFile);
+            string existingChecklistJSON = JsonSerializer.Serialize(checklist.birds);
+            File.WriteAllText(pathFile,existingChecklistJSON);
+            existingChecklistJSON = File.ReadAllText(pathFile);
             birdList = JsonSerializer.Deserialize<List<Bird>>(existingChecklistJSON);
         }
         return birdList;

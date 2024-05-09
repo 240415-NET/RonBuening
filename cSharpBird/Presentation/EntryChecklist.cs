@@ -185,9 +185,8 @@ public class EntryChecklist
         string hotspot = Console.ReadLine().Trim();
 
         Checklist checklist = new Checklist (currentUser.userId,hotspot);
-        
+        checklist.birds = BirdController.GetFullBirdList();
         ChecklistController.WriteChecklist(checklist);
-
         ViewAndAppend(checklist);
     }
     public static void collectInitDataHistoric()
@@ -198,13 +197,15 @@ public class EntryChecklist
         Console.WriteLine("What hotspot should be used for this checklist?");
         string hotspot = Console.ReadLine().Trim();
         Checklist historicChecklist = new Checklist (currentUser.userId,hotspot,checklistDate);
+        historicChecklist.birds = BirdController.GetFullBirdList();
         ChecklistController.WriteChecklist(historicChecklist);
         ViewAndAppend(historicChecklist);
     }
     public static void ViewAndAppend(Checklist viewList)
     {
         //UserInterface.WriteColorsLine("{=Magenta}")
-        UIChecklist.viewList(viewList);
+        List<Bird> loggedBirds = ChecklistController.RetrieveLoggedBirds(viewList);
+        UIChecklist.viewList(viewList,loggedBirds);
     }
     public static void Edit(Checklist oldChecklist)
     {
