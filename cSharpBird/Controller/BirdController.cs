@@ -10,4 +10,13 @@ public class BirdController
         List<Bird> birdList = AccessBird.GetFullBirdList();
         return birdList;
     }
+    public static void WriteBirdsForChecklist (Checklist checklist)
+    {
+        AccessBird.WriteBirdsForChecklist(checklist);
+    }
+    public static List<Bird> ReadBirdsForChecklist (Checklist checklist)
+    {
+        List<Bird> birdList = AccessBird.ReadBirdsForChecklist(checklist);
+        return birdList;
+    }
 }

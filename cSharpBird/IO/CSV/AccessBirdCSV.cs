@@ -24,26 +24,48 @@ public class AccessBirdCSV : IAccessBird
         if (File.Exists(pathFileTemp))
         {
             existingBirdsJSON = JsonSerializer.Serialize(birdList);
-            File.WriteAllText(pathFileTemp,existingUsersJSON);
+            File.WriteAllText(pathFileTemp,existingBirdsJSON);
         }
         else if(!File.Exists(pathFileTemp))
         {
             existingBirdsJSON = JsonSerializer.Serialize(birdList);
-            File.WriteAllText(pathFileTemp,existingUsersJSON);
+            File.WriteAllText(pathFileTemp,existingBirdsJSON);
         }
 
         return birdList;
     }
-    public WriteBirdsForChecklist (Checklist checklist)
+    public void WriteBirdsForChecklist (Checklist checklist)
     {
-        string pathFile = checklist.checklistID + "\\birds.json";
-        string existingChecklistJSON = JsonSerializer.Serialize(checklist.birds);
-        File.WriteAllText(pathFile,existingChecklistJSON);
+        string path = "checklist\\" + checklist.checklistID;
+        string pathFile = path + "\\birds.json";
+        if (File.Exists(pathFile))
+        {
+            string existingChecklistJSON = JsonSerializer.Serialize(checklist.birds);
+            File.WriteAllText(pathFile,existingChecklistJSON);
+        }
+        else if (!File.Exists(pathFile))
+        {
+            Directory.CreateDirectory(path);
+            string existingChecklistJSON = JsonSerializer.Serialize(checklist.birds);
+            File.WriteAllText(pathFile,existingChecklistJSON);
+        }
     }
     public List<Bird> ReadBirdsForChecklist (Checklist checklist)
     {
-        string pathFile = checklist.checklistID + "\\birds.json";
-        string existingChecklistJSON = File.ReadAllText(pathFile);
-        List<Bird> birdList = JsonSerializer.Deserialize<List<Checklist>>(existingChecklistJSON);
+        string path = "checklist\\" + checklist.checklistID;
+        string pathFile = path + "\\birds.json";
+        List<Bird> birdList = new List<Bird>();
+        if (File.Exists(pathFile))
+        {
+            string existingChecklistJSON = File.ReadAllText(pathFile);
+            birdList = JsonSerializer.Deserialize<List<Bird>>(existingChecklistJSON);
+        }
+        else if (!File.Exists(pathFile))
+        {
+            Directory.CreateDirectory(path);
+            string existingChecklistJSON = File.ReadAllText(pathFile);
+            birdList = JsonSerializer.Deserialize<List<Bird>>(existingChecklistJSON);
+        }
         return birdList;
     }
+}

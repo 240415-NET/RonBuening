@@ -8,13 +8,20 @@ public class UIChecklist
     {
         //calls submethods appropriately for the arguments passed
         UIChecklist.PrintHeader(xlist);
+        //if xlist.birdList
+        BirdController.WriteBirdsForChecklist(xlist);
     }
     public static void PrintHeader(Checklist xlist)
     {
         User currentUser = UserController.ReadCurrentUser();
+        string tempName;
         try
         {
-            
+            if (currentUser.displayName == null)
+                tempName = currentUser.userName;
+            else
+                tempName = currentUser.displayName;
+            UserInterface.WriteColorsLine("{=Magenta}" + tempName + "'s " + xlist.locationName + " checklist for " + xlist.checklistDateTime);
         }
         catch (Exception l)
         {

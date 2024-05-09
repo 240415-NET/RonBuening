@@ -203,6 +203,7 @@ public class EntryChecklist
     }
     public static void ViewAndAppend(Checklist viewList)
     {
+        //UserInterface.WriteColorsLine("{=Magenta}")
         UIChecklist.viewList(viewList);
     }
     public static void Edit(Checklist oldChecklist)
