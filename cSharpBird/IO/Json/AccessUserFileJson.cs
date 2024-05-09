@@ -8,7 +8,9 @@ public class AccessUserFileJson : IAccessUserFile
     public List<User> GetFullUserList()
     {
         //Will return the user list for the Users.json file, creating it and adding a defaultUser if file does not already exist
-        string pathFile = "Users.json";
+        //string pathFile = "Users.json";
+        string path = "data\\users";
+        string pathFile = path + "\\Users.json";
         List<User> userArchive = new List<User>();
         string existingUsersJSON;
 
@@ -19,6 +21,7 @@ public class AccessUserFileJson : IAccessUserFile
         }
         else if(!File.Exists(pathFile))
         {
+            Directory.CreateDirectory(path);
             userArchive.Add(new User ("defaultName"));
             existingUsersJSON = JsonSerializer.Serialize(userArchive);
             File.WriteAllText(pathFile,existingUsersJSON);
@@ -28,7 +31,9 @@ public class AccessUserFileJson : IAccessUserFile
     public void WriteUser(User user)
     {
         //This method will write a new user to the json file, creating it if it does not exist.
-        string pathFile = "Users.json";
+        //string pathFile = "Users.json";
+        string path = "data\\users";
+        string pathFile = path + "\\Users.json";
         List<User> userArchive = new List<User>();
         string existingUsersJSON;
         if (File.Exists(pathFile))
@@ -41,6 +46,7 @@ public class AccessUserFileJson : IAccessUserFile
         }
         else if(!File.Exists(pathFile))
         {
+            Directory.CreateDirectory(path);
             userArchive.Add(new User ("defaultName"));
             existingUsersJSON = JsonSerializer.Serialize(userArchive);
             File.WriteAllText(pathFile,existingUsersJSON);
@@ -49,7 +55,9 @@ public class AccessUserFileJson : IAccessUserFile
     public void WriteUpdatedUser(User updatedUser)
     {
         //This method will write a new user to the json file, creating it if it does not exist.
-        string pathFile = "Users.json";
+        //string pathFile = "Users.json";
+        string path = "data\\users";
+        string pathFile = path + "\\Users.json";
         List<User> userArchive = new List<User>();
         string existingUsersJSON;
         //int userLocation = -1;
@@ -67,18 +75,28 @@ public class AccessUserFileJson : IAccessUserFile
     }
     public void WriteCurrentUser(User user)
     {
-        string pathFile = "CurrentUser.json";
+        //string pathFile = "CurrentUser.json";
+        string path = "data\\users";
+        string pathFile = path + "\\CurrentUser.json";
+        if (!File.Exists(pathFile))
+            Directory.CreateDirectory(path);
         File.WriteAllText(pathFile,JsonSerializer.Serialize(user));
     }
     public User ReadCurrentUser()
     {
-        string pathFile = "CurrentUser.json";
+        string path = "data\\users";
+        string pathFile = path + "\\CurrentUser.json";
+        if (!File.Exists(pathFile))
+            Directory.CreateDirectory(path);
         User currentSession = JsonSerializer.Deserialize<User>(File.ReadAllText(pathFile));
         return currentSession;
     }
     public void ClearCurrentUser()
     {
-        string pathFile = "CurrentUser.json";
+        string path = "data\\users";
+        string pathFile = path + "\\CurrentUser.json";
+        if (!File.Exists(pathFile))
+            Directory.CreateDirectory(path);
         File.WriteAllText(pathFile,"");
     }
 

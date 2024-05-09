@@ -8,7 +8,9 @@ public class AccessChecklistFileJson : IAccessChecklistFile
     public List<Checklist> GetLists(User searchUser)
     {
         //Will return the checklist list for the Checklists.json file, creating it and adding a default list if file does not already exist
-        string pathFile = "Checklists.json";
+        //string pathFile = "Checklists.json";
+        string path = "data\\checklist";
+        string pathFile = path + "\\Checklists.json";
         List<Checklist> ChecklistArchive = new List<Checklist>();
         List<Checklist> userChecklists = new List<Checklist>();
         string existingChecklistJSON;
@@ -20,6 +22,7 @@ public class AccessChecklistFileJson : IAccessChecklistFile
         }
         else if(!File.Exists(pathFile))
         {
+            Directory.CreateDirectory(path);
             ChecklistArchive.Add(new Checklist(searchUser.userId,"defaultLocation"));
             existingChecklistJSON = JsonSerializer.Serialize(ChecklistArchive);
             File.WriteAllText(pathFile,existingChecklistJSON);
@@ -32,7 +35,9 @@ public class AccessChecklistFileJson : IAccessChecklistFile
     public void WriteChecklist(Checklist newList)
     {
         //This method will write a new Checklist to the json file, creating it if it does not exist.
-        string pathFile = "Checklists.json";
+        //string pathFile = "Checklists.json";
+        string path = "data\\checklist";
+        string pathFile = path + "\\Checklists.json";
         List<Checklist> ChecklistArchive = new List<Checklist>();
         string existingChecklistJSON;
         if (File.Exists(pathFile))
@@ -45,6 +50,7 @@ public class AccessChecklistFileJson : IAccessChecklistFile
         }
         else if(!File.Exists(pathFile))
         {
+            Directory.CreateDirectory(path);
             ChecklistArchive.Add(newList); //newList.checklistID,"defaultLocation"));
             existingChecklistJSON = JsonSerializer.Serialize(ChecklistArchive);
             File.WriteAllText(pathFile,existingChecklistJSON);
@@ -53,7 +59,9 @@ public class AccessChecklistFileJson : IAccessChecklistFile
     public void WriteUpdatedList(Checklist updatedList)
     {
         //This method will write an updated checklist to the json file, creating it if it does not exist.
-        string pathFile = "Checklists.json";
+        //string pathFile = "Checklists.json";
+        string path = "data\\checklist";
+        string pathFile = path + "\\Checklists.json";
         List<Checklist> ChecklistArchive = new List<Checklist>();
         string existingChecklistJSON;
 

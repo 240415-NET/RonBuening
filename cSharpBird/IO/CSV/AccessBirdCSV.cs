@@ -18,7 +18,7 @@ public class AccessBirdCSV : IAccessBird
                 bandCode = x[0],
                 speciesName = x[1]
             }).ToList();
-
+        /*
         string pathFileTemp = "Birds.json";
         string existingBirdsJSON;
         if (File.Exists(pathFileTemp))
@@ -31,12 +31,13 @@ public class AccessBirdCSV : IAccessBird
             existingBirdsJSON = JsonSerializer.Serialize(birdList);
             File.WriteAllText(pathFileTemp,existingBirdsJSON);
         }
+        */
 
         return birdList;
     }
     public void WriteBirdsForChecklist (Checklist checklist)
     {
-        string path = "checklist\\" + checklist.checklistID;
+        string path = "data\\checklist\\" + checklist.checklistID;
         string pathFile = path + "\\birds.json";
         if (File.Exists(pathFile))
         {
@@ -52,7 +53,7 @@ public class AccessBirdCSV : IAccessBird
     }
     public List<Bird> ReadBirdsForChecklist (Checklist checklist)
     {
-        string path = "checklist\\" + checklist.checklistID;
+        string path = "data\\checklist\\" + checklist.checklistID;
         string pathFile = path + "\\birds.json";
         List<Bird> birdList = new List<Bird>();
         if (File.Exists(pathFile))
