@@ -125,6 +125,7 @@ public class EntryChecklist
     }
     public static void List(User user)
     {
+        Console.Clear();
         List<Checklist> userChecklists = new List<Checklist>();
         userChecklists = ChecklistController.GetLists(user);
         
