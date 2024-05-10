@@ -298,14 +298,6 @@ public class EntryChecklist
     {
 
     }
-    public static Dictionary<int,Bird> addSpecies(Dictionary<int,Bird> speciesList)
-    {
-        return speciesList;
-    }
-    public static Dictionary<int,Bird> removeSpecies(Dictionary<int,Bird> speciesList)
-    {
-        return speciesList;
-    }
     public static void changeBirder(Checklist oldChecklist)
     {
 
@@ -317,39 +309,5 @@ public class EntryChecklist
     public static void changeDate(Checklist oldChecklist)
     {
 
-    }
-    
-    public static Checklist changeSpecies(Checklist oldChecklist)
-    {
-        string userInput;
-        bool valid = false;
-        /*
-        for (int i = 0; i < update.Count; i++)
-        {
-            Console.WriteLine($"{i+1}: {update[i].speciesName}");
-        }
-        UserInterface.WriteColors("Do you need to {=Green}add{/} or {=Red}remove{/} a species?");
-        do
-        {
-            userInput = Console.ReadLine().Trim();
-            if (userInput.ToLower() == "a" || userInput.ToLower() == "add")
-            {
-                valid = true;
-                update = addSpecies(update);
-            }
-            else if (userInput.ToLower() == "r" || userInput.ToLower() == "remove")
-            {
-                valid = true;
-                update = removeSpecies(update);
-            }
-            else
-            {
-            UserInterface.WriteColors("Please chose to {=Green}add{/} or {=Red}remove{/} a species");
-            }
-        }
-        while (valid == false);
-        oldChecklist.birds = update;
-        */
-        return oldChecklist;
     }
 }
