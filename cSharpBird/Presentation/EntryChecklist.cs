@@ -208,8 +208,9 @@ public class EntryChecklist
         string userInput = "";
         do
         {
-            loggedBirds = ChecklistController.RetrieveLoggedBirds(viewList);
-            UIChecklist.viewList(viewList,loggedBirds);
+            //loggedBirds = ChecklistController.RetrieveLoggedBirds(viewList);
+            //BirdController.WriteBirdsForChecklist(viewList);
+            UIChecklist.viewList(viewList);
             UserInterface.WriteColorsLine("Please key a {=Green}band code{/} and the {=Blue}number{/} of that bird seen to log or {=Red}done{/} to finish list");
             try
             {
@@ -232,7 +233,7 @@ public class EntryChecklist
             }
         }
         while (userDone == false);
-        ChecklistController.WriteChecklist(viewList);
+        ChecklistController.WriteUpdatedList(viewList);
         Menu();
     }
     public static void Edit(Checklist oldChecklist)

@@ -4,12 +4,43 @@ using System.Collections.Generic;
 using System.IO;
 public class UIChecklist
 {
+    public static void viewList(Checklist xlist)
+    {
+        //calls submethods appropriately for the arguments passed
+        UIChecklist.PrintHeader(xlist);
+        List<Bird> loggedBirds = xlist.birds;
+        if (loggedBirds.Count() > 0)
+            PrintLoggedBirds(loggedBirds);
+    }
     public static void viewList(Checklist xlist,List<Bird> loggedBirds)
     {
         //calls submethods appropriately for the arguments passed
         UIChecklist.PrintHeader(xlist,loggedBirds);
         if (loggedBirds.Count() > 0)
             PrintLoggedBirds(loggedBirds);
+    }
+    public static void PrintHeader(Checklist xlist)
+    {
+        User currentUser = UserController.ReadCurrentUser();
+        List<Bird> loggedBirds = xlist.birds;
+        string tempName;
+        try
+        {
+            if (currentUser.displayName == null)
+                tempName = currentUser.userName;
+            else
+                tempName = currentUser.displayName;
+            UserInterface.WriteColorsLine("{=Magenta}" + tempName + "'s " + xlist.locationName + " checklist for " + xlist.checklistDateTime.ToString("d") + "{/}");
+            if (loggedBirds.Count() == 0)
+                UserInterface.WriteColorsLine("{=Red}No birds logged yet{/}");
+            else
+                UserInterface.WriteColorsLine("{=Blue}Species logged: " + loggedBirds.Count() +"{/}");
+            UserInterface.menuFillHorizontalEmpty();
+        }
+        catch (Exception l)
+        {
+            Console.WriteLine(l.Message);
+        }
     }
     public static void PrintHeader(Checklist xlist,List<Bird> loggedBirds)
     {
