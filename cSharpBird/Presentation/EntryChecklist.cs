@@ -7,7 +7,7 @@ public class EntryChecklist
     public static void Menu()
     {
         Console.Clear();
-        string[] menu = {"{=Magenta}CHECKLIST MENU{/}","{=Green}1. Create{/} New Checklist","{=Cyan}2. List{/} Existing Checklists","{=Blue}3. View{/} Existing Checklist","{=Red}4. Exit{/} to Menu."};
+        string[] menu = {"{=Magenta}CHECKLIST MENU{/}","{=Green}1. Create{/} New Checklist","{=Cyan}2. List{/} Existing Checklists","{=Blue}3. Edit{/} Existing Checklist Details","{=Red}4. Exit{/} to Menu."};
         string menuRequest;
         bool validInput = false;
         UserInterface.menuPrintBase(menu);
@@ -31,16 +31,19 @@ public class EntryChecklist
                     case "2. list":
                     case "list":
                     case "list all":
+                    case "view":
+                    case "view all":
                     validInput = true;
                     EntryChecklist.List(UserController.ReadCurrentUser());
                     break;
                     case "3":
                     case "3.":
-                    case "3. view":
-                    case "view":
-                    case "view checklist":
+                    case "3. edit":
+                    case "edit":
+                    case "edit checklist":
+                    case "details":
                     validInput = true;
-                    //UserUpdate(currentSession);
+                    EntryChecklist.Edit(UserController.ReadCurrentUser());
                     break;
                     case "4":
                     case "4.":
@@ -132,26 +135,11 @@ public class EntryChecklist
         string userInput;
         bool validInput = false;
 
-        int widthConsole = Console.WindowWidth;
-        int widthColumn = widthConsole / 3;
         int userSelect = 0;
         int listNum = 0;
 
-        string header0 = "Checklist";
-        string header1 = "Location";
-        string header2 = "Date";
-        
+        UIChecklist.ListLists(userChecklists);
 
-        UserInterface.WriteColorsLine("Please enter the {=Blue}Checklist number{/} you'd like to view additional details for, or 0 to go back");
-        //Console.WriteLine("{0,-widthColumn}","{1,-widthColumn}",header0,header1);
-        UserInterface.WriteColorsLine("{=Blue}Number{/}\tLocation\tDate");
-        for (int i = 0; i < userChecklists.Count(); i++)
-        {
-            listNum = i+1;
-            //Console.WriteLine("{0,-widthColumn}","{1,-widthColumn}","{2,widthColumn}",i+1,userChecklists[i].locationName,userChecklists[i].checklistDateTime);
-            UserInterface.WriteColors("{=Blue}" + listNum + ".{/}\t");
-            Console.Write(userChecklists[i].locationName + "\t" + userChecklists[i].checklistDateTime + "\n");
-        }
         try
         {
             do
@@ -163,7 +151,7 @@ public class EntryChecklist
                     validInput = true;
                     Menu();
                 }
-                else if (userSelect < userChecklists.Count())
+                else if (userSelect <= userChecklists.Count())
                 {
                     validInput = true;
                     ViewAndAppend(userChecklists[userSelect-1]);
@@ -209,8 +197,6 @@ public class EntryChecklist
         string userInput = "";
         do
         {
-            //loggedBirds = ChecklistController.RetrieveLoggedBirds(viewList);
-            //BirdController.WriteBirdsForChecklist(viewList);
             UIChecklist.viewList(viewList);
             UserInterface.WriteColorsLine("Please key a {=Green}band code{/} and the {=Blue}number{/} of that bird seen to log or {=Red}done{/} to finish list");
             try
@@ -237,12 +223,54 @@ public class EntryChecklist
         ChecklistController.WriteUpdatedList(viewList);
         Menu();
     }
-    public static void Edit(Checklist oldChecklist)
+    public static void Edit (User user)
+    {
+        Console.Clear();
+        List<Checklist> userChecklists = new List<Checklist>();
+        userChecklists = ChecklistController.GetLists(user);
+        
+        string userInput;
+        bool validInput = false;
+
+        int userSelect = 0;
+        int listNum = 0;
+
+        UIChecklist.ListEdits(userChecklists);
+
+        try
+        {
+            do
+            {
+                userInput = UserInterface.exitChecker(Console.ReadLine().Trim());
+                userSelect = Convert.ToInt32(userInput);
+                if (userSelect == 0)
+                {
+                    validInput = true;
+                    Menu();
+                }
+                else if (userSelect <= userChecklists.Count())
+                {
+                    validInput = true;
+                    SelectedEdit(userChecklists[userSelect-1]);
+                }
+                else
+                    Console.WriteLine("Please key in valid checklist number");
+            }
+            while (validInput == false);
+        }
+        catch (Exception o)
+        {
+            Console.WriteLine("Please enter valid checklist number");
+        }
+    }
+    public static void SelectedEdit(Checklist oldChecklist)
     {
         string editRequest;
         bool validInput = false;
-        UserInterface.WriteColorsLine("{=Green}1. Location{/}: " + oldChecklist.locationName + "\t" + "{=Blue}2. Date{/}: "+ oldChecklist.checklistDateTime + "\t" + "{=Yellow)3. Species{/}: " + oldChecklist.birds.Count + "\t" + "{=Red}5. Cancel{/}");
-        UserInterface.WriteColorsLine("What do you need to edit?");
+        Console.Clear();
+        string[] menu = {"What would you like to change on this list today?","{=Green}1. Location{/}: " + oldChecklist.locationName,"{=Cyan}2. Date{/}: "+ oldChecklist.checklistDateTime.ToString("d"),"{=Blue}3. Species{/}: " + ChecklistController.CountListBird(oldChecklist),"{=Red}4. Return{/}"};
+
+        UserInterface.menuPrintBase(menu);
         do 
         {
             try
@@ -271,7 +299,7 @@ public class EntryChecklist
                     case "birds":
                     case "bird":
                     validInput = true;
-                    //UserInterface.exitConfirm();
+                    ViewAndAppend(oldChecklist);
                     break;
                     case "4":
                     case "4.":
@@ -280,7 +308,7 @@ public class EntryChecklist
                     case "exit":
                     case "quit":
                     validInput = true;
-                    ViewAndAppend(oldChecklist);
+                    Edit(UserController.ReadCurrentUser());
                     break;
                     default:
                     Console.WriteLine("Please enter valid selection");
@@ -298,14 +326,6 @@ public class EntryChecklist
     {
 
     }
-    public static Dictionary<int,Bird> addSpecies(Dictionary<int,Bird> speciesList)
-    {
-        return speciesList;
-    }
-    public static Dictionary<int,Bird> removeSpecies(Dictionary<int,Bird> speciesList)
-    {
-        return speciesList;
-    }
     public static void changeBirder(Checklist oldChecklist)
     {
 
@@ -317,39 +337,5 @@ public class EntryChecklist
     public static void changeDate(Checklist oldChecklist)
     {
 
-    }
-    
-    public static Checklist changeSpecies(Checklist oldChecklist)
-    {
-        string userInput;
-        bool valid = false;
-        /*
-        for (int i = 0; i < update.Count; i++)
-        {
-            Console.WriteLine($"{i+1}: {update[i].speciesName}");
-        }
-        UserInterface.WriteColors("Do you need to {=Green}add{/} or {=Red}remove{/} a species?");
-        do
-        {
-            userInput = Console.ReadLine().Trim();
-            if (userInput.ToLower() == "a" || userInput.ToLower() == "add")
-            {
-                valid = true;
-                update = addSpecies(update);
-            }
-            else if (userInput.ToLower() == "r" || userInput.ToLower() == "remove")
-            {
-                valid = true;
-                update = removeSpecies(update);
-            }
-            else
-            {
-            UserInterface.WriteColors("Please chose to {=Green}add{/} or {=Red}remove{/} a species");
-            }
-        }
-        while (valid == false);
-        oldChecklist.birds = update;
-        */
-        return oldChecklist;
     }
 }

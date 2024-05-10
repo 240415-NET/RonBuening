@@ -67,7 +67,7 @@ public class AcctAccess
     }
     public static void LogIn()
     {
-        bool nonUserTesting = false;
+        bool nonUserTesting = true;
         bool logInSuccess = false;
         Console.Clear();
 

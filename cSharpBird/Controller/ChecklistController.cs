@@ -51,4 +51,15 @@ public class ChecklistController
         AccessChecklistFile.WriteUpdatedList(checklist);
         //BirdController.WriteBirdsForChecklist(checklist);
     }
+    public static List<Bird> PrintListBird(Checklist checklist)
+    {
+        List<Bird> birdList = checklist.birds.Where(i => i.numSeen > 0).ToList();
+        return birdList;
+    }
+    public static int CountListBird(Checklist checklist)
+    {
+        List<Bird> birdList = checklist.birds.Where(i => i.numSeen > 0).ToList();
+        int count = birdList.Count();
+        return count;
+    }
 }
