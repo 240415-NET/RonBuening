@@ -269,8 +269,10 @@ public class EntryChecklist
     {
         string editRequest;
         bool validInput = false;
-        UserInterface.WriteColorsLine("{=Green}1. Location{/}: " + oldChecklist.locationName + "\t" + "{=Blue}2. Date{/}: "+ oldChecklist.checklistDateTime + "\t" + "{=Yellow)3. Species{/}: " + oldChecklist.birds.Count + "\t" + "{=Red}3. Cancel{/}");
-        UserInterface.WriteColorsLine("What do you need to edit?");
+        Console.Clear()
+        string[] menu = {"What would you like to change on this list today?","{=Green}1. Location{/}: " + oldChecklist.locationName,"{=Cyan}2. Date{/}: "+ oldChecklist.checklistDateTime.ToString("d"),"{=Blue}3. Species{/}","{=Red}4. Return{/}"};
+
+        UserInterface.menuPrintBase(menu);
         do 
         {
             try
