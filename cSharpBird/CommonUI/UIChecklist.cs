@@ -9,14 +9,14 @@ public class UIChecklist
         //calls submethods appropriately for the arguments passed
         Console.Clear();
         UIChecklist.PrintHeader(xlist);
-        List<Bird> loggedBirds = xlist.birds.Where(i => i.numSeen > 0).ToList();
+        List<Bird> loggedBirds = ChecklistController.PrintListBird(xlist);
         if (loggedBirds.Count() > 0)
             PrintLoggedBirds(loggedBirds);
     }
     public static void PrintHeader(Checklist xlist)
     {
         User currentUser = UserController.ReadCurrentUser();
-        List<Bird> loggedBirds = xlist.birds.Where(i => i.numSeen > 0).ToList();
+        List<Bird> loggedBirds = ChecklistController.PrintListBird(xlist);
         string tempName;
         try
         {

@@ -197,8 +197,6 @@ public class EntryChecklist
         string userInput = "";
         do
         {
-            //loggedBirds = ChecklistController.RetrieveLoggedBirds(viewList);
-            //BirdController.WriteBirdsForChecklist(viewList);
             UIChecklist.viewList(viewList);
             UserInterface.WriteColorsLine("Please key a {=Green}band code{/} and the {=Blue}number{/} of that bird seen to log or {=Red}done{/} to finish list");
             try
@@ -269,8 +267,8 @@ public class EntryChecklist
     {
         string editRequest;
         bool validInput = false;
-        Console.Clear()
-        string[] menu = {"What would you like to change on this list today?","{=Green}1. Location{/}: " + oldChecklist.locationName,"{=Cyan}2. Date{/}: "+ oldChecklist.checklistDateTime.ToString("d"),"{=Blue}3. Species{/}","{=Red}4. Return{/}"};
+        Console.Clear();
+        string[] menu = {"What would you like to change on this list today?","{=Green}1. Location{/}: " + oldChecklist.locationName,"{=Cyan}2. Date{/}: "+ oldChecklist.checklistDateTime.ToString("d"),"{=Blue}3. Species{/}: " + ChecklistController.CountListBird(oldChecklist),"{=Red}4. Return{/}"};
 
         UserInterface.menuPrintBase(menu);
         do 
@@ -301,7 +299,7 @@ public class EntryChecklist
                     case "birds":
                     case "bird":
                     validInput = true;
-                    //UserInterface.exitConfirm();
+                    ViewAndAppend(oldChecklist);
                     break;
                     case "4":
                     case "4.":
