@@ -132,26 +132,11 @@ public class EntryChecklist
         string userInput;
         bool validInput = false;
 
-        int widthConsole = Console.WindowWidth;
-        int widthColumn = widthConsole / 3;
         int userSelect = 0;
         int listNum = 0;
 
-        string header0 = "Checklist";
-        string header1 = "Location";
-        string header2 = "Date";
-        
+        UIChecklist.ListLists(userChecklists);
 
-        UserInterface.WriteColorsLine("Please enter the {=Blue}Checklist number{/} you'd like to view additional details for, or 0 to go back");
-        //Console.WriteLine("{0,-widthColumn}","{1,-widthColumn}",header0,header1);
-        UserInterface.WriteColorsLine("{=Blue}Number{/}\tLocation\tDate");
-        for (int i = 0; i < userChecklists.Count(); i++)
-        {
-            listNum = i+1;
-            //Console.WriteLine("{0,-widthColumn}","{1,-widthColumn}","{2,widthColumn}",i+1,userChecklists[i].locationName,userChecklists[i].checklistDateTime);
-            UserInterface.WriteColors("{=Blue}" + listNum + ".{/}\t");
-            Console.Write(userChecklists[i].locationName + "\t" + userChecklists[i].checklistDateTime + "\n");
-        }
         try
         {
             do

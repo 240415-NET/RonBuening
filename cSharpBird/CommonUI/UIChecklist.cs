@@ -50,6 +50,27 @@ public class UIChecklist
             i++;
         }
     }
+    public static void ListLists(List<Checklist> userChecklists)
+    {
+        Console.Clear();
+        string[] headers = {"{=Blue}Number{/}","Location","Date"};
+        string headerLine = string.Format("{0,-20} {1,-35} {2,-15}",headers[0],headers[1],headers[2]);
+        string[] listDetails = new string[3];
+        string listLine = "";
+        int listNum = 0;
+
+        UserInterface.WriteColorsLine("Please enter the {=Blue}Checklist number{/} you'd like to view additional details for, or 0 to go back");
+        UserInterface.WriteColorsLine(headerLine);
+        for (int i = 0; i < userChecklists.Count(); i++)
+        {
+            listNum = i+1;
+            listDetails[0] = "{=Blue}" + listNum + "{/}";
+            listDetails[1] = userChecklists[i].locationName;
+            listDetails[2] = userChecklists[i].checklistDateTime.ToString("d");
+            listLine = string.Format("{0,-20} {1,-35} {2,-15}",listDetails[0],listDetails[1],listDetails[2]);
+            UserInterface.WriteColorsLine(listLine);
+        }
+    }
     /* Deprecated methods
     public static void viewList(Checklist xlist,List<Bird> loggedBirds)
     {
