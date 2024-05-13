@@ -268,7 +268,7 @@ public class EntryChecklist
         string editRequest;
         bool validInput = false;
         Console.Clear();
-        string[] menu = {"What would you like to change on this list today?","{=Green}1. Location{/}: " + oldChecklist.locationName,"{=Cyan}2. Date{/}: "+ oldChecklist.checklistDateTime.ToString("d"),"{=Blue}3. Species{/}: " + ChecklistController.CountListBird(oldChecklist),"{=Red}4. Return{/}"};
+        string[] menu = {"What would you like to change on this list today?","{=Green}1. Location{/}: " + oldChecklist.locationName,"{=Cyan}2. Date{/}: "+ oldChecklist.checklistDateTime.ToString("d"),"{=Blue}3. Species{/}: " + ChecklistController.CountListBird(oldChecklist),"{=Yellow}4. Return{/}","{/Red}5. Delete{/} this checklist"};
 
         UserInterface.menuPrintBase(menu);
         do 
@@ -307,8 +307,17 @@ public class EntryChecklist
                     case "cancel":
                     case "exit":
                     case "quit":
+                    case "return":
+                    case "back":
                     validInput = true;
                     Edit(UserController.ReadCurrentUser());
+                    break;
+                    case "5":
+                    case "5.":
+                    case "5. delete":
+                    case "delete":
+                    validInput = true;
+                    Delete(oldChecklist);
                     break;
                     default:
                     Console.WriteLine("Please enter valid selection");
@@ -324,7 +333,8 @@ public class EntryChecklist
     }
     public static void Delete(Checklist oldChecklist)
     {
-
+        Console.Clear();
+        
     }
     public static void changeBirder(Checklist oldChecklist)
     {
