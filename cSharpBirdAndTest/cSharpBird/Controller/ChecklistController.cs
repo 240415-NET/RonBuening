@@ -72,4 +72,8 @@ public class ChecklistController
         checklist.checklistDateTime = DateTime.Parse(userInput);
         AccessChecklistFile.WriteUpdatedList(checklist);
     }
+    public static void DeleteChecklist(Checklist checklist)
+    {
+        AccessChecklistFile.DeleteChecklist(checklist);
+    }
 }

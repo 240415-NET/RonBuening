@@ -77,4 +77,27 @@ public class AccessChecklistFileJson : IAccessChecklistFile
         existingChecklistJSON = JsonSerializer.Serialize(ChecklistArchive);
         File.WriteAllText(pathFile,existingChecklistJSON);
     }
+    public void DeleteChecklist(Checklist deleteChecklist)
+    {
+        //This method will write an updated checklist to the json file, creating it if it does not exist.
+        //string pathFile = "Checklists.json";
+        string path = "data\\checklist";
+        string pathFile = path + "\\Checklists.json";
+        List<Checklist> ChecklistArchive = new List<Checklist>();
+        string existingChecklistJSON;
+
+        existingChecklistJSON =File.ReadAllText(pathFile);
+        ChecklistArchive = JsonSerializer.Deserialize<List<Checklist>>(existingChecklistJSON);
+        /*
+        var checklistLocation = ChecklistArchive.IndexOf(deleteChecklist);
+        if (checklistLocation != -1)
+            ChecklistArchive.RemoveAt(checklistLocation);
+        */
+
+        ChecklistArchive.RemoveAll(i => i.checklistID == deleteChecklist.checklistID);
+        List<Checklist> ChecklistRemoved = ChecklistArchive;
+
+        existingChecklistJSON = JsonSerializer.Serialize(ChecklistRemoved);
+        File.WriteAllText(pathFile,existingChecklistJSON);
+    }
 }
