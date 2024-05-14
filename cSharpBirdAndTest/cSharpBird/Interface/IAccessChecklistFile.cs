@@ -11,4 +11,5 @@ public interface IAccessChecklistFile
     public void WriteChecklist(Checklist newList);
 
     public void WriteUpdatedList(Checklist updatedList);
+    public void DeleteChecklist(Checklist deleteChecklist);
 }

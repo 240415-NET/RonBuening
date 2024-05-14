@@ -7,7 +7,7 @@ public class EntryChecklist
     public static void Menu()
     {
         Console.Clear();
-        string[] menu = {"{=Magenta}CHECKLIST MENU{/}","{=Green}1. Create{/} New Checklist","{=Cyan}2. List{/} Existing Checklists","{=Blue}3. Edit{/} Existing Checklist Details","{=Red}4. Exit{/} to Menu."};
+        string[] menu = {"{=Magenta}CHECKLIST MENU{/}","{=Green}1. Create{/} New Checklist","{=Cyan}2. List{/} Existing Checklists","{=Blue}3. Edit{/} Existing Checklist Details","{=Red}4. Exit{/} to Menu"};
         string menuRequest;
         bool validInput = false;
         UserInterface.menuPrintBase(menu);
@@ -268,7 +268,7 @@ public class EntryChecklist
         string editRequest;
         bool validInput = false;
         Console.Clear();
-        string[] menu = {"What would you like to change on this list today?","{=Green}1. Location{/}: " + oldChecklist.locationName,"{=Cyan}2. Date{/}: "+ oldChecklist.checklistDateTime.ToString("d"),"{=Blue}3. Species{/}: " + ChecklistController.CountListBird(oldChecklist),"{=Yellow}4. Return{/}","{/Red}5. Delete{/} this checklist"};
+        string[] menu = {"What would you like to change on this list today?","{=Green}1. Location{/}: " + oldChecklist.locationName,"{=Cyan}2. Date{/}: "+ oldChecklist.checklistDateTime.ToString("d"),"{=Blue}3. Species{/}: " + ChecklistController.CountListBird(oldChecklist),"{=Yellow}4. Return{/}","{=Red}5. Delete{/} this checklist"};
 
         UserInterface.menuPrintBase(menu);
         do 
@@ -283,14 +283,14 @@ public class EntryChecklist
                     case "1. location":
                     case "location":
                     validInput = true;
-                    //EntryChecklist.View();
+                    changeLocation(oldChecklist);
                     break;
                     case "2":
                     case "2.":
                     case "2. date":
                     case "date":
                     validInput = true;
-                    //UserUpdate(currentSession);
+                    changeDate(oldChecklist);
                     break;
                     case "3":
                     case "3.":
@@ -334,7 +334,41 @@ public class EntryChecklist
     public static void Delete(Checklist oldChecklist)
     {
         Console.Clear();
-        
+        string prompt = "{=Red}Are you sure you wish to delete this checklist? This can NOT be undone!{/}\nKey {=Red}\"confirm\"{/} to delete or {=Green}back{/} to return to prior menu.";
+        string userInput = "";
+        bool validInput = false;
+
+        UserInterface.WriteColorsLine(prompt);
+
+        do
+        {
+            userInput = Console.ReadLine().Trim();
+            switch (userInput.ToLower())
+            {
+                case "0":
+                case "back":
+                case "done":
+                case "return":
+                case "cancel":
+                case "keep":
+                    validInput = true;
+                    SelectedEdit(oldChecklist);
+                    break;
+                case "confirm":
+                case "delete":
+                    validInput = true;
+                    ChecklistController.DeleteChecklist(oldChecklist);
+                    prompt = "{=Red}Checklist has been deleted. Press any key to continue";
+                    UserInterface.WriteColorsLine(prompt);
+                    Console.ReadKey();
+                    List(UserController.ReadCurrentUser());
+                    break;
+                default:
+                    Console.WriteLine("Please key as instructed above.");
+                    break;
+            }
+        }
+        while (validInput == false);
     }
     public static void changeBirder(Checklist oldChecklist)
     {
@@ -342,10 +376,48 @@ public class EntryChecklist
     }
     public static void changeLocation(Checklist oldChecklist)
     {
-
+        Console.Clear();
+        string descriptor = "{=Green}" + oldChecklist.locationName + "{/} is the current location. Please key a new location or 0 to return to previous menu";
+        UserInterface.WriteColorsLine(descriptor);
+        string userInput = Console.ReadLine().Trim();
+        switch (userInput.ToLower())
+        {
+            case "0":
+            case "back":
+            case "done":
+            case "return":
+                SelectedEdit(oldChecklist);
+                break;
+            default:
+                ChecklistController.LocationUpdate(userInput,oldChecklist);
+                descriptor = "Checklist location updated to {=Green}" + userInput + "{/}";
+                UserInterface.WriteColorsLine(descriptor);
+                Console.ReadKey();
+                SelectedEdit(oldChecklist);
+                break;
+        }
     }
     public static void changeDate(Checklist oldChecklist)
     {
-
+        Console.Clear();
+        string descriptor = "{=Green}" + oldChecklist.checklistDateTime + "{/} is the current date. Please key a new date or 0 to return to previous menu";
+        UserInterface.WriteColorsLine(descriptor);
+        string userInput = Console.ReadLine().Trim();
+        switch (userInput.ToLower())
+        {
+            case "0":
+            case "back":
+            case "done":
+            case "return":
+                SelectedEdit(oldChecklist);
+                break;
+            default:
+                ChecklistController.DateUpdate(userInput,oldChecklist);
+                descriptor = "Checklist date updated to {=Green}" + userInput + "{/}. Press any key to continue.";
+                UserInterface.WriteColorsLine(descriptor);
+                Console.ReadKey();
+                SelectedEdit(oldChecklist);
+                break;
+        }
     }
 }
