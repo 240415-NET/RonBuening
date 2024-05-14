@@ -334,7 +334,41 @@ public class EntryChecklist
     public static void Delete(Checklist oldChecklist)
     {
         Console.Clear();
-        
+        string prompt = "{=Red}Are you sure you wish to delete this checklist? This can NOT be undone!{/}\nKey {=Red}\"confirm\"{/} to delete or {=Green}back{/} to return to prior menu.";
+        string userInput = "";
+        bool validInput = false;
+
+        UserInterface.WriteColorsLine(prompt);
+
+        do
+        {
+            userInput = Console.ReadLine().Trim();
+            switch (userInput.ToLower())
+            {
+                case "0":
+                case "back":
+                case "done":
+                case "return":
+                case "cancel":
+                case "keep":
+                    validInput = true;
+                    SelectedEdit(oldChecklist);
+                    break;
+                case "confirm":
+                case "delete":
+                    validInput = true;
+                    //ChecklistController.DeleteChecklist(oldChecklist);
+                    prompt = "{=Red}Checklist has been deleted. Press any key to continue";
+                    UserInterface.WriteColorsLine(prompt);
+                    Console.ReadKey();
+                    List(UserController.ReadCurrentUser());
+                    break;
+                default:
+                    Console.WriteLine("Please key as instructed above.");
+                    break;
+            }
+        }
+        while (validInput == false);
     }
     public static void changeBirder(Checklist oldChecklist)
     {
