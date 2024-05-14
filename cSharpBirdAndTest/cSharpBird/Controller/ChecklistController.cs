@@ -76,4 +76,42 @@ public class ChecklistController
     {
         AccessChecklistFile.DeleteChecklist(checklist);
     }
+    public static void Print(string userInput,Checklist checklist)
+    {
+        string[] headers = {"Number","Location","Date"};
+        string headerLine = string.Format("{0,-20} {1,-35} {2,-15}",headers[0],headers[1],headers[2]);
+        string prettyPrint = "Location: " + checklist.locationName + "\nDate: " + checklist.checklistDateTime.ToString("d") +  "\n" + headerLine;
+        string pathFile = "";
+        int i = 0;
+        string printLine = "";
+
+        //gets current user for file name
+        User user = UserController.ReadCurrentUser();
+        //determines what data to use in file name
+        if (userInput == null || userInput == "")
+        {
+            if (user.displayName == null)
+                pathFile = user.userName + "_" + checklist.locationName + "_" + checklist.checklistDateTime.ToString("MMddyyyy") + ".txt";
+            else
+                pathFile = user.displayName + "_" + checklist.locationName + "_" + checklist.checklistDateTime.ToString("MMddyyyy") + ".txt";
+        }
+        else
+            pathFile = userInput; //for user-specified location and name
+
+        File.WriteAllText(pathFile,prettyPrint); //writes headers
+
+        List<Bird> loggedBirds = ChecklistController.PrintListBird(checklist);
+        if (loggedBirds.Count() > 0)
+        {
+            using (StreamWriter outputFile = new StreamWriter(pathFile))
+            {
+                foreach (Bird b in loggedBirds)
+                {
+                    printLine = string.Format("{0,-15} {1,-35} {2,15}",loggedBirds[i].bandCode,loggedBirds[i].speciesName,loggedBirds[i].numSeen);
+                    outputFile.WriteLine(printLine);
+                    i++;
+                }
+            }
+        }
+    }
 }

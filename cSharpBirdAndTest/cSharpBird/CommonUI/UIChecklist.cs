@@ -80,7 +80,7 @@ public class UIChecklist
         string listLine = "";
         int listNum = 0;
         
-        UserInterface.WriteColorsLine("Please enter the {=Blue}Checklist number{/} you'd like to change details for, or 0 to go back");
+        UserInterface.WriteColorsLine("Please enter the {=Blue}Checklist number{/} you'd like to print or change details for, or 0 to go back");
         UserInterface.WriteColorsLine(headerLine);
         for (int i = 0; i < userChecklists.Count(); i++)
         {

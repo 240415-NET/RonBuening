@@ -7,7 +7,7 @@ public class EntryChecklist
     public static void Menu()
     {
         Console.Clear();
-        string[] menu = {"{=Magenta}CHECKLIST MENU{/}","{=Green}1. Create{/} New Checklist","{=Cyan}2. List{/} Existing Checklists","{=Blue}3. Edit{/} Existing Checklist Details","{=Red}4. Exit{/} to Menu"};
+        string[] menu = {"{=Magenta}CHECKLIST MENU{/}","{=Green}1. Create{/} New Checklist","{=Cyan}2. List{/} Existing Checklists","{=Blue}3. Edit or Print{/} Existing Checklist Details","{=Red}4. Exit{/} to Menu"};
         string menuRequest;
         bool validInput = false;
         UserInterface.menuPrintBase(menu);
@@ -268,7 +268,7 @@ public class EntryChecklist
         string editRequest;
         bool validInput = false;
         Console.Clear();
-        string[] menu = {"What would you like to change on this list today?","{=Green}1. Location{/}: " + oldChecklist.locationName,"{=Cyan}2. Date{/}: "+ oldChecklist.checklistDateTime.ToString("d"),"{=Blue}3. Species{/}: " + ChecklistController.CountListBird(oldChecklist),"{=Yellow}4. Return{/}","{=Red}5. Delete{/} this checklist"};
+        string[] menu = {"What would you like to change on this list today?","{=Green}1. Location{/}: " + oldChecklist.locationName,"{=Cyan}2. Date{/}: "+ oldChecklist.checklistDateTime.ToString("d"),"{=Blue}3. Species{/}: " + ChecklistController.CountListBird(oldChecklist),"{=DarkGreen}4. Print{/}","{=Yellow}5. Return{/}","{=Red}6. Delete{/} this checklist"};
 
         UserInterface.menuPrintBase(menu);
         do 
@@ -303,7 +303,16 @@ public class EntryChecklist
                     break;
                     case "4":
                     case "4.":
-                    case "4. cancel":
+                    case "4. print":
+                    case "print":
+                    case "text":
+                    case "save":
+                    validInput = true;
+                    Print(oldChecklist);
+                    break;
+                    case "5":
+                    case "5.":
+                    case "5. cancel":
                     case "cancel":
                     case "exit":
                     case "quit":
@@ -312,9 +321,9 @@ public class EntryChecklist
                     validInput = true;
                     Edit(UserController.ReadCurrentUser());
                     break;
-                    case "5":
-                    case "5.":
-                    case "5. delete":
+                    case "6":
+                    case "6.":
+                    case "6. delete":
                     case "delete":
                     validInput = true;
                     Delete(oldChecklist);
@@ -370,9 +379,12 @@ public class EntryChecklist
         }
         while (validInput == false);
     }
-    public static void changeBirder(Checklist oldChecklist)
+    public static void Print(Checklist oldChecklist)
     {
-
+        Console.Clear();
+        UserInterface.WriteColorsLine("Please enter a filepath and name to save this checklist to, or leave blank to save to default location");
+        string userInput = Console.ReadLine().Trim();
+        ChecklistController.Print(userInput,oldChecklist);
     }
     public static void changeLocation(Checklist oldChecklist)
     {
