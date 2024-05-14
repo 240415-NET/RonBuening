@@ -385,6 +385,7 @@ public class EntryChecklist
         UserInterface.WriteColorsLine("Please enter a filepath and name to save this checklist to, or leave blank to save to default location");
         string userInput = Console.ReadLine().Trim();
         ChecklistController.Print(userInput,oldChecklist);
+        SelectedEdit(oldChecklist);
     }
     public static void changeLocation(Checklist oldChecklist)
     {
