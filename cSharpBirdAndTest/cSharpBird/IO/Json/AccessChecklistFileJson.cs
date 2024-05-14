@@ -93,10 +93,10 @@ public class AccessChecklistFileJson : IAccessChecklistFile
         if (checklistLocation != -1)
             ChecklistArchive.RemoveAt(checklistLocation);
         */
-
+        Console.WriteLine($"ChecklistArchive contains {ChecklistArchive.Count}");
         ChecklistArchive.RemoveAll(i => i.checklistID == deleteChecklist.checklistID);
         List<Checklist> ChecklistRemoved = ChecklistArchive;
-
+        Console.WriteLine($"ChecklistArchive now contains {ChecklistRemoved.Count}");
         existingChecklistJSON = JsonSerializer.Serialize(ChecklistRemoved);
         File.WriteAllText(pathFile,existingChecklistJSON);
     }

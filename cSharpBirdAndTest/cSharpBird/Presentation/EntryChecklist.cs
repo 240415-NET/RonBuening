@@ -7,7 +7,7 @@ public class EntryChecklist
     public static void Menu()
     {
         Console.Clear();
-        string[] menu = {"{=Magenta}CHECKLIST MENU{/}","{=Green}1. Create{/} New Checklist","{=Cyan}2. List{/} Existing Checklists","{=Blue}3. Edit{/} Existing Checklist Details","{=Red}4. Exit{/} to Menu."};
+        string[] menu = {"{=Magenta}CHECKLIST MENU{/}","{=Green}1. Create{/} New Checklist","{=Cyan}2. List{/} Existing Checklists","{=Blue}3. Edit{/} Existing Checklist Details","{=Red}4. Exit{/} to Menu"};
         string menuRequest;
         bool validInput = false;
         UserInterface.menuPrintBase(menu);
@@ -357,7 +357,7 @@ public class EntryChecklist
                 case "confirm":
                 case "delete":
                     validInput = true;
-                    //ChecklistController.DeleteChecklist(oldChecklist);
+                    ChecklistController.DeleteChecklist(oldChecklist);
                     prompt = "{=Red}Checklist has been deleted. Press any key to continue";
                     UserInterface.WriteColorsLine(prompt);
                     Console.ReadKey();
