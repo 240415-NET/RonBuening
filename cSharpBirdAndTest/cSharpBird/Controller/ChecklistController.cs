@@ -62,4 +62,14 @@ public class ChecklistController
         int count = birdList.Count();
         return count;
     }
+    public static void LocationUpdate(string userInput,Checklist checklist)
+    {
+        checklist.locationName = userInput;
+        AccessChecklistFile.WriteUpdatedList(checklist);
+    }
+    public static void DateUpdate(string userInput,Checklist checklist)
+    {
+        checklist.checklistDateTime = DateTime.Parse(userInput);
+        AccessChecklistFile.WriteUpdatedList(checklist);
+    }
 }

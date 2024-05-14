@@ -342,10 +342,42 @@ public class EntryChecklist
     }
     public static void changeLocation(Checklist oldChecklist)
     {
-
+        Console.Clear();
+        string descriptor = "{=Green}" + oldChecklist.locationName + "{/} is the current location. Please key a new location or 0 to return to previous menu";
+        UserInterface.WriteColorsLine(descriptor);
+        string userInput = Console.ReadLine().Trim();
+        switch (userInput.ToLower())
+        {
+            case "0":
+            case "back":
+            case "done":
+            case "return":
+                SelectedEdit(oldChecklist);
+                break;
+            default:
+                ChecklistController.LocationUpdate(userInput,oldChecklist);
+                descriptor = "Checklist location updated to {=Green}" + userInput + "{/}";
+                break;
+        }
     }
     public static void changeDate(Checklist oldChecklist)
     {
-
+        Console.Clear();
+        string descriptor = "{=Green}" + oldChecklist.checklistDateTime + "{/} is the current date. Please key a new date or 0 to return to previous menu";
+        UserInterface.WriteColorsLine(descriptor);
+        string userInput = Console.ReadLine().Trim();
+        switch (userInput.ToLower())
+        {
+            case "0":
+            case "back":
+            case "done":
+            case "return":
+                SelectedEdit(oldChecklist);
+                break;
+            default:
+                ChecklistController.DateUpdate(userInput,oldChecklist);
+                descriptor = "Checklist date updated to {=Green}" + userInput + "{/}";
+                break;
+        }
     }
 }
