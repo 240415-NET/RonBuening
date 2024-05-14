@@ -268,7 +268,7 @@ public class EntryChecklist
         string editRequest;
         bool validInput = false;
         Console.Clear();
-        string[] menu = {"What would you like to change on this list today?","{=Green}1. Location{/}: " + oldChecklist.locationName,"{=Cyan}2. Date{/}: "+ oldChecklist.checklistDateTime.ToString("d"),"{=Blue}3. Species{/}: " + ChecklistController.CountListBird(oldChecklist),"{=Yellow}4. Return{/}","{/Red}5. Delete{/} this checklist"};
+        string[] menu = {"What would you like to change on this list today?","{=Green}1. Location{/}: " + oldChecklist.locationName,"{=Cyan}2. Date{/}: "+ oldChecklist.checklistDateTime.ToString("d"),"{=Blue}3. Species{/}: " + ChecklistController.CountListBird(oldChecklist),"{=Yellow}4. Return{/}","{=Red}5. Delete{/} this checklist"};
 
         UserInterface.menuPrintBase(menu);
         do 
@@ -283,14 +283,14 @@ public class EntryChecklist
                     case "1. location":
                     case "location":
                     validInput = true;
-                    //EntryChecklist.View();
+                    changeLocation(oldChecklist);
                     break;
                     case "2":
                     case "2.":
                     case "2. date":
                     case "date":
                     validInput = true;
-                    //UserUpdate(currentSession);
+                    changeDate(oldChecklist);
                     break;
                     case "3":
                     case "3.":
@@ -357,6 +357,9 @@ public class EntryChecklist
             default:
                 ChecklistController.LocationUpdate(userInput,oldChecklist);
                 descriptor = "Checklist location updated to {=Green}" + userInput + "{/}";
+                UserInterface.WriteColorsLine(descriptor);
+                Console.ReadKey();
+                SelectedEdit(oldChecklist);
                 break;
         }
     }
@@ -376,7 +379,10 @@ public class EntryChecklist
                 break;
             default:
                 ChecklistController.DateUpdate(userInput,oldChecklist);
-                descriptor = "Checklist date updated to {=Green}" + userInput + "{/}";
+                descriptor = "Checklist date updated to {=Green}" + userInput + "{/}. Press any key to continue.";
+                UserInterface.WriteColorsLine(descriptor);
+                Console.ReadKey();
+                SelectedEdit(oldChecklist);
                 break;
         }
     }
