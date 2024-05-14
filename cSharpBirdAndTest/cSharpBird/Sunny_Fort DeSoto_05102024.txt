@@ -1,3 +1,0 @@
-BLSK            Black Skimmer                                     2
-CARW            Carolina Wren                                     5
-JAOR            Jamaican Oriole                                   3

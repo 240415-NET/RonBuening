@@ -98,13 +98,14 @@ public class ChecklistController
         else
             pathFile = userInput; //for user-specified location and name
 
-        File.WriteAllText(pathFile,prettyPrint); //writes headers
+        
 
         List<Bird> loggedBirds = ChecklistController.PrintListBird(checklist);
         if (loggedBirds.Count() > 0)
         {
             using (StreamWriter outputFile = new StreamWriter(pathFile))
             {
+                outputFile.WriteLine(prettyPrint); //writes headers
                 foreach (Bird b in loggedBirds)
                 {
                     printLine = string.Format("{0,-15} {1,-35} {2,15}",loggedBirds[i].bandCode,loggedBirds[i].speciesName,loggedBirds[i].numSeen);
