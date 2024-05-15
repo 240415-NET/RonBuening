@@ -34,7 +34,7 @@ public class AcctAccess
                     case "sign in":
                     case "signin":
                     valid = true;
-                    LogIn();
+                    ContinueSession();
                     break;
                     case "2":
                     case "2.":
@@ -65,6 +65,41 @@ public class AcctAccess
         }
         while (valid == false);
     }
+    public static void ContinueSession()
+    {
+        if (UserController.ValidUserSession())
+        {
+            User currentSession = UserController.ReadCurrentUser();
+            bool validInput = false;
+            string tempName = null;
+            if (currentSession.displayName == null)
+                tempName = currentSession.userName;
+            else
+                tempName = currentSession.displayName;
+            do
+            {
+                UserInterface.WriteColorsLine("Continue with prior session as {=Green}"+tempName+"?{/} Please key yes or no");
+                string userInput = Console.ReadLine().Trim().ToLower();
+                if (userInput == "yes" || userInput == "y" || userInput == "continue" || userInput == "c")
+                {
+                    validInput = true;
+                    UserMaintenance.UserMenu(currentSession);
+                }
+                else if (userInput == "no" || userInput == "n" || userInput == "change" || userInput == "different")
+                {
+                    validInput = true;
+                    LogIn();
+                }
+            }
+            while (validInput == false);
+        }
+        else
+        {
+            Console.WriteLine("No current user session found. Please log in again. Press any key to continue");
+            Console.ReadKey();
+            LogIn();
+        }
+    }
     public static void LogIn()
     {
         bool nonUserTesting = false;
@@ -74,12 +109,6 @@ public class AcctAccess
         if (nonUserTesting == true)
         {
             Console.WriteLine("nonUserTesting flag is enabled");
-            UserMaintenance.UserMenu(UserController.ReadCurrentUser());
-        }
-        else if (UserController.ValidUserSession())
-        {
-            Console.WriteLine("You've been logged-in automatically");
-            Console.ReadKey();
             UserMaintenance.UserMenu(UserController.ReadCurrentUser());
         }
         else
