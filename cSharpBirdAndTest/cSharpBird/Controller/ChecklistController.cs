@@ -52,7 +52,7 @@ public class ChecklistController
         string[] input = userInput.Split(' ',',');
         bool valid = false;
         //locates the specified bandcode from the user
-        Bird updatedCount = checklist.birds.First(i => i.bandCode == input[0]);
+        Bird updatedCount = checklist.birds.First(i => i.bandCode == input[0].ToUpper());
         var checklistLocation = checklist.birds.IndexOf(updatedCount);
         updatedCount.numSeen = int.Parse(input[1]);
         //if the location is valid (i.e. a valid band code), updates the proper record
