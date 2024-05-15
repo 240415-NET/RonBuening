@@ -7,6 +7,8 @@ public class AccessBirdCSV : IAccessBird
 {
     public List<Bird> GetFullBirdList()
     {
+        //pulls full bird species data from a given csv. two files are currently present; USGSBBL.csv for the USGS Bird Banding Laboratory codes and ABACL for American Birding Association codes.
+        //update line 15 to change standards
         string bandCode = "";
         string speciesName = "";
 
@@ -18,25 +20,12 @@ public class AccessBirdCSV : IAccessBird
                 bandCode = x[0],
                 speciesName = x[1]
             }).ToList();
-        /*
-        string pathFileTemp = "Birds.json";
-        string existingBirdsJSON;
-        if (File.Exists(pathFileTemp))
-        {
-            existingBirdsJSON = JsonSerializer.Serialize(birdList);
-            File.WriteAllText(pathFileTemp,existingBirdsJSON);
-        }
-        else if(!File.Exists(pathFileTemp))
-        {
-            existingBirdsJSON = JsonSerializer.Serialize(birdList);
-            File.WriteAllText(pathFileTemp,existingBirdsJSON);
-        }
-        */
 
         return birdList;
     }
     public void WriteBirdsForChecklist (Checklist checklist)
     {
+        //writes checklist to file in subdirectory
         string path = "data\\checklist\\" + checklist.checklistID;
         string pathFile = path + "\\birds.json";
         if (File.Exists(pathFile))
@@ -53,6 +42,7 @@ public class AccessBirdCSV : IAccessBird
     }
     public List<Bird> ReadBirdsForChecklist (Checklist checklist)
     {
+        //reads birds to list from subdirectory
         string path = "data\\checklist\\" + checklist.checklistID;
         string pathFile = path + "\\birds.json";
         List<Bird> birdList = new List<Bird>();

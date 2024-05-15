@@ -67,6 +67,8 @@ public class AcctAccess
     }
     public static void ContinueSession()
     {
+        //this method determines if an existing user session is still present (think of a browser cookie) and continues if available
+        //if it's not, it will route the user to log in to their account
         if (UserController.ValidUserSession())
         {
             User currentSession = UserController.ReadCurrentUser();
@@ -102,7 +104,8 @@ public class AcctAccess
     }
     public static void LogIn()
     {
-        bool nonUserTesting = false;
+        //this method signs the user in after they key their email address
+        bool nonUserTesting = false; //defunct, should be refactored out
         bool logInSuccess = false;
         Console.Clear();
 

@@ -6,6 +6,7 @@ public class EntryChecklist
 {
     public static void Menu()
     {
+        //root checklist menu to manage, edit and delete checklists
         Console.Clear();
         string[] menu = {"{=Magenta}CHECKLIST MENU{/}","{=Green}1. Create{/} New Checklist","{=Cyan}2. List{/} Existing Checklists","{=Blue}3. Edit or Print{/} Existing Checklist Details","{=Red}4. Exit{/} to Menu"};
         string menuRequest;
@@ -69,6 +70,7 @@ public class EntryChecklist
     }
     public static void Create()
     {
+        //basic method for creating new checklist
         string hotspot;
         string checklistDate;
         string[] createMenu = {"{=Magenta}NEW CHECKLIST{/}","{=Green}1. Current{/} Checklist","{=Blue}2. Historic{/} Checklist","{=Red}3. Cancel{/}"};
@@ -128,6 +130,7 @@ public class EntryChecklist
     }
     public static void List(User user)
     {
+        //lists checklists from current user
         Console.Clear();
         List<Checklist> userChecklists = new List<Checklist>();
         userChecklists = ChecklistController.GetLists(user);
@@ -168,6 +171,7 @@ public class EntryChecklist
     }
     public static void collectInitData()
     {
+        //collects initial data for checklist, calls to write object to file and routes to ViewAndAppend to add sightings
         User currentUser = UserController.ReadCurrentUser();
 
         Console.WriteLine("What hotspot should be used for this checklist?");
@@ -180,6 +184,7 @@ public class EntryChecklist
     }
     public static void collectInitDataHistoric()
     {
+        //collects initial data for historic checklist, calls to write object to file and routes to ViewAndAppend to add sightings
         User currentUser = UserController.ReadCurrentUser();
         Console.WriteLine("When was this checklist taken?");
         string checklistDate = Console.ReadLine().Trim();
@@ -192,6 +197,7 @@ public class EntryChecklist
     }
     public static void ViewAndAppend(Checklist viewList)
     {
+        //this method shows the basics of the given checklist object and allows the user to view the full species sighted list and add new ones
         List<Bird> loggedBirds = new List<Bird>();
         bool userDone = false;
         string userInput = "";
@@ -225,6 +231,7 @@ public class EntryChecklist
     }
     public static void Edit (User user)
     {
+        //shows user's checklists for editing details
         Console.Clear();
         List<Checklist> userChecklists = new List<Checklist>();
         userChecklists = ChecklistController.GetLists(user);
@@ -265,6 +272,7 @@ public class EntryChecklist
     }
     public static void SelectedEdit(Checklist oldChecklist)
     {
+        //prints and prompts for edits to selected checklist details
         string editRequest;
         bool validInput = false;
         Console.Clear();
@@ -342,6 +350,7 @@ public class EntryChecklist
     }
     public static void Delete(Checklist oldChecklist)
     {
+        //allows for deletion of a given checklist
         Console.Clear();
         string prompt = "{=Red}Are you sure you wish to delete this checklist? This can NOT be undone!{/}\nKey {=Red}\"confirm\"{/} to delete or {=Green}back{/} to return to prior menu.";
         string userInput = "";
@@ -381,6 +390,7 @@ public class EntryChecklist
     }
     public static void Print(Checklist oldChecklist)
     {
+        //prints a checklist to a text file for a portable version
         Console.Clear();
         UserInterface.WriteColorsLine("Please enter a filepath and name to save this checklist to, or leave blank to save to default location");
         string userInput = Console.ReadLine().Trim();
@@ -389,6 +399,7 @@ public class EntryChecklist
     }
     public static void changeLocation(Checklist oldChecklist)
     {
+        //allows for user to change checklist location
         Console.Clear();
         string descriptor = "{=Green}" + oldChecklist.locationName + "{/} is the current location. Please key a new location or 0 to return to previous menu";
         UserInterface.WriteColorsLine(descriptor);
@@ -412,6 +423,8 @@ public class EntryChecklist
     }
     public static void changeDate(Checklist oldChecklist)
     {
+        //allows for user ot change checklist date
+        //needs handling for invalid input still
         Console.Clear();
         string descriptor = "{=Green}" + oldChecklist.checklistDateTime + "{/} is the current date. Please key a new date or 0 to return to previous menu";
         UserInterface.WriteColorsLine(descriptor);

@@ -7,15 +7,18 @@ public class BirdController
     public static IAccessBird AccessBird = new AccessBirdCSV();
     public static List<Bird> GetFullBirdList()
     {
+        //for checklist file creation, calls interface to retrieve for csv
         List<Bird> birdList = AccessBird.GetFullBirdList();
         return birdList;
     }
     public static void WriteBirdsForChecklist (Checklist checklist)
     {
+        //currently unusued
         AccessBird.WriteBirdsForChecklist(checklist);
     }
     public static List<Bird> ReadBirdsForChecklist (Checklist checklist)
     {
+        //currently unused
         List<Bird> birdList = AccessBird.ReadBirdsForChecklist(checklist);
         return birdList;
     }
