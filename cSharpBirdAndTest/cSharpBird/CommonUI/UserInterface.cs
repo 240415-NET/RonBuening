@@ -88,6 +88,8 @@ public class UserInterface
             Console.WriteLine("Exiting. Goodbye!");
             Environment.Exit(0);
         }
+        else
+            UserMaintenance.UserMenu(UserController.ReadCurrentUser());
     }
     public static void exit()
     {
@@ -98,6 +100,8 @@ public class UserInterface
             Console.WriteLine("Exiting. Goodbye!");
             Environment.Exit(0);
         }
+        else
+            UserMaintenance.UserMenu(UserController.ReadCurrentUser());
     }
     public static void WriteColors(string msg)
     {
