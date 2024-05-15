@@ -34,7 +34,7 @@ public class AcctAccess
                     case "sign in":
                     case "signin":
                     valid = true;
-                    LogIn();
+                    ContinueSession();
                     break;
                     case "2":
                     case "2.":
@@ -65,6 +65,41 @@ public class AcctAccess
         }
         while (valid == false);
     }
+    public static void ContinueSession()
+    {
+        if (UserController.ValidUserSession())
+        {
+            User currentSession = UserController.ReadCurrentUser();
+            bool validInput = false;
+            string tempName = null;
+            if (currentSession.displayName == null)
+                tempName = currentSession.userName;
+            else
+                tempName = currentSession.displayName;
+            do
+            {
+                UserInterface.WriteColorsLine("Continue with prior session as {=Green}"+tempName+"?{/} Please key yes or no");
+                string userInput = Console.ReadLine().Trim().ToLower();
+                if (userInput == "yes" || userInput == "y" || userInput == "continue" || userInput == "c")
+                {
+                    validInput = true;
+                    UserMaintenance.UserMenu(currentSession);
+                }
+                else if (userInput == "no" || userInput == "n" || userInput == "change" || userInput == "different")
+                {
+                    validInput = true;
+                    LogIn();
+                }
+            }
+            while (validInput == false);
+        }
+        else
+        {
+            Console.WriteLine("No current user session found. Please log in again. Press any key to continue");
+            Console.ReadKey();
+            LogIn();
+        }
+    }
     public static void LogIn()
     {
         bool nonUserTesting = false;
@@ -76,36 +111,38 @@ public class AcctAccess
             Console.WriteLine("nonUserTesting flag is enabled");
             UserMaintenance.UserMenu(UserController.ReadCurrentUser());
         }
-
-        do
+        else
         {
-            UserInterface.WriteColors("Please enter your {=Green}email{/} to sign in to your account\n");
-            string email = Console.ReadLine().Trim();
-            PassEmail:
-            if (String.IsNullOrEmpty(email))
+            do
             {
-                Console.Clear();
-                UserInterface.WriteColors("{=Green}Email{/} cannot be blank. Please try again\n");
-            }
-            else if (!string.IsNullOrEmpty(email))
-            {
-                if (UserController.FindUser(email) != null)
+                UserInterface.WriteColors("Please enter your {=Green}email{/} to sign in to your account\n");
+                string email = Console.ReadLine().Trim();
+                PassEmail:
+                if (String.IsNullOrEmpty(email))
                 {
-                    logInSuccess = true;
-                    User currentSession = UserController.FindUser(email);
-                    UserMaintenance.UserMenu(currentSession);
+                    Console.Clear();
+                    UserInterface.WriteColors("{=Green}Email{/} cannot be blank. Please try again\n");
                 }
-                else
+                else if (!string.IsNullOrEmpty(email))
                 {
-                    UserInterface.WriteColors("Email not found. Do you need to create an account? Re-enter your {=Green}email{/} or type {=Green}create{/} to make new account\n");
-                    email = Console.ReadLine().Trim();
-                    if (email.ToLower() == "create" || email.ToLower() == "c")
-                        UserCreation.CreateUser();
-                    else 
-                        goto PassEmail;
+                    if (UserController.FindUser(email) != null)
+                    {
+                        logInSuccess = true;
+                        User currentSession = UserController.FindUser(email);
+                        UserMaintenance.UserMenu(currentSession);
+                    }
+                    else
+                    {
+                        UserInterface.WriteColors("Email not found. Do you need to create an account? Re-enter your {=Green}email{/} or type {=Green}create{/} to make new account\n");
+                        email = Console.ReadLine().Trim();
+                        if (email.ToLower() == "create" || email.ToLower() == "c")
+                            UserCreation.CreateUser();
+                        else 
+                            goto PassEmail;
+                    }
                 }
             }
+            while (logInSuccess == false);
         }
-        while (logInSuccess == false);
     }
 }

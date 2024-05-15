@@ -88,6 +88,8 @@ public class UserInterface
             Console.WriteLine("Exiting. Goodbye!");
             Environment.Exit(0);
         }
+        else
+            UserMaintenance.UserMenu(UserController.ReadCurrentUser());
     }
     public static void exit()
     {
@@ -98,6 +100,21 @@ public class UserInterface
             Console.WriteLine("Exiting. Goodbye!");
             Environment.Exit(0);
         }
+        else
+            UserMaintenance.UserMenu(UserController.ReadCurrentUser());
+    }
+    public static void logoff()
+    {
+        //Simplified exit method for use when there is no data being handled
+        Console.WriteLine("Are you sure? Confirm by typing 'g'");
+        if (Console.ReadLine().ToLower() == "g")
+        {
+            UserController.ClearCurrentUser();
+            Console.WriteLine("You're now logged out. Goodbye!");
+            Environment.Exit(0);
+        }
+        else
+            UserMaintenance.UserMenu(UserController.ReadCurrentUser());
     }
     public static void WriteColors(string msg)
     {
