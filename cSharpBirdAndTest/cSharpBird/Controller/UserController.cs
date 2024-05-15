@@ -45,4 +45,9 @@ public class UserController
     {
         User.changeName(user);
     }
+    public static bool ValidUserSession()
+    {
+        bool valid = AccessUser.ValidUserSession();
+        return valid;
+    }
 }

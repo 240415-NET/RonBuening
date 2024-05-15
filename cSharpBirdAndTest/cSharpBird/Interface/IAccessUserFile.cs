@@ -15,4 +15,6 @@ public interface IAccessUserFile
     public User ReadCurrentUser();
 
     public void ClearCurrentUser();
+    
+    public bool ValidUserSession();
 }

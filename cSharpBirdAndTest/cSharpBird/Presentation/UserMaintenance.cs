@@ -12,7 +12,7 @@ public class UserMaintenance
             tempName = currentSession.userName;
         else
             tempName = currentSession.displayName;
-        string[] menu = {"Welcome back to cSharpBird "+tempName+"!","What would you like to do today?","{=Green}1. New{/} Checklist","{=Blue}2. View{/} Checklist Menu","{=Yellow}3. Update{/} user","{=Red}4. Exit{/} Program"};
+        string[] menu = {"Welcome back to cSharpBird "+tempName+"!","What would you like to do today?","{=Green}1. New{/} Checklist","{=Blue}2. View{/} Checklist Menu","{=Yellow}3. Update{/} user","{=Red}4. Exit{/} Program","{=Magenta}5. Logoff{/}"};
         string userInput;
         bool validInput = false;
 
@@ -52,6 +52,13 @@ public class UserMaintenance
                     case "exit":
                     validInput = true;
                     UserInterface.exit();
+                    break;
+                    case "5":
+                    case "5.":
+                    case "5. logoff":
+                    case "logoff":
+                    validInput = true;
+                    UserInterface.logoff();
                     break;
                     default:
                     Console.WriteLine("Please enter valid selection");

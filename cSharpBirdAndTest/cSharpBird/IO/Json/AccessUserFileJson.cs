@@ -95,9 +95,19 @@ public class AccessUserFileJson : IAccessUserFile
     {
         string path = "data\\users";
         string pathFile = path + "\\CurrentUser.json";
-        if (!File.Exists(pathFile))
-            Directory.CreateDirectory(path);
-        File.WriteAllText(pathFile,"");
+        if (File.Exists(pathFile))
+            File.WriteAllText(pathFile,"");
     }
-
+    public bool ValidUserSession()
+    {
+        try
+        {
+            ReadCurrentUser();
+            return true;
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+    }
 }

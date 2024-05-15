@@ -76,36 +76,44 @@ public class AcctAccess
             Console.WriteLine("nonUserTesting flag is enabled");
             UserMaintenance.UserMenu(UserController.ReadCurrentUser());
         }
-
-        do
+        else if (UserController.ValidUserSession())
         {
-            UserInterface.WriteColors("Please enter your {=Green}email{/} to sign in to your account\n");
-            string email = Console.ReadLine().Trim();
-            PassEmail:
-            if (String.IsNullOrEmpty(email))
-            {
-                Console.Clear();
-                UserInterface.WriteColors("{=Green}Email{/} cannot be blank. Please try again\n");
-            }
-            else if (!string.IsNullOrEmpty(email))
-            {
-                if (UserController.FindUser(email) != null)
-                {
-                    logInSuccess = true;
-                    User currentSession = UserController.FindUser(email);
-                    UserMaintenance.UserMenu(currentSession);
-                }
-                else
-                {
-                    UserInterface.WriteColors("Email not found. Do you need to create an account? Re-enter your {=Green}email{/} or type {=Green}create{/} to make new account\n");
-                    email = Console.ReadLine().Trim();
-                    if (email.ToLower() == "create" || email.ToLower() == "c")
-                        UserCreation.CreateUser();
-                    else 
-                        goto PassEmail;
-                }
-            }
+            Console.WriteLine("You've been logged-in automatically");
+            Console.ReadKey();
+            UserMaintenance.UserMenu(UserController.ReadCurrentUser());
         }
-        while (logInSuccess == false);
+        else
+        {
+            do
+            {
+                UserInterface.WriteColors("Please enter your {=Green}email{/} to sign in to your account\n");
+                string email = Console.ReadLine().Trim();
+                PassEmail:
+                if (String.IsNullOrEmpty(email))
+                {
+                    Console.Clear();
+                    UserInterface.WriteColors("{=Green}Email{/} cannot be blank. Please try again\n");
+                }
+                else if (!string.IsNullOrEmpty(email))
+                {
+                    if (UserController.FindUser(email) != null)
+                    {
+                        logInSuccess = true;
+                        User currentSession = UserController.FindUser(email);
+                        UserMaintenance.UserMenu(currentSession);
+                    }
+                    else
+                    {
+                        UserInterface.WriteColors("Email not found. Do you need to create an account? Re-enter your {=Green}email{/} or type {=Green}create{/} to make new account\n");
+                        email = Console.ReadLine().Trim();
+                        if (email.ToLower() == "create" || email.ToLower() == "c")
+                            UserCreation.CreateUser();
+                        else 
+                            goto PassEmail;
+                    }
+                }
+            }
+            while (logInSuccess == false);
+        }
     }
 }
