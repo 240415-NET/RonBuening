@@ -6,6 +6,7 @@ public class UserMaintenance
 {
     public static void UserMenu(User currentSession)
     {
+        //This method prints and accepts selection to call more specific methods to create and manage checklists or user data
         UserController.WriteCurrentUser(currentSession);
         string tempName;
         if (currentSession.displayName == null)
@@ -74,6 +75,7 @@ public class UserMaintenance
     }
     public static void UserUpdate(User currentSession)
     {
+        //presentation for updating user data
         string[] menu = {"What would you like to do today?","{=Green}1. Change{/} email","{=Blue}2. Update{/} name","{=Yellow}3. Return{/} to main menu"};
         string userInput;
         bool validInput = false;

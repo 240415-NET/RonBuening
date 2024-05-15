@@ -6,6 +6,7 @@ public class UserCreation
 {
     public static void CreateUser()
     {
+        //collects email for user creation, validates it is not a duplicate, and confirms user creation
         string email;
         bool exitLoop = false;
 
@@ -50,6 +51,7 @@ public class UserCreation
     }
     public static User NewUser(string email)
     {
+        //creates user object and calls to write to file
         User newUser = new User(email);
         UserController.WriteUser(newUser);
         return newUser;
