@@ -22,7 +22,7 @@ public class AccessUserFileJson : IAccessUserFile
         else if(!File.Exists(pathFile))
         {
             Directory.CreateDirectory(path);
-            userArchive.Add(new User ("defaultName"));
+            userArchive.Add(new User ("defaultName","password"));
             existingUsersJSON = JsonSerializer.Serialize(userArchive);
             File.WriteAllText(pathFile,existingUsersJSON);
         }
@@ -47,7 +47,7 @@ public class AccessUserFileJson : IAccessUserFile
         else if(!File.Exists(pathFile))
         {
             Directory.CreateDirectory(path);
-            userArchive.Add(new User ("defaultName"));
+            userArchive.Add(new User ("defaultName","password"));
             existingUsersJSON = JsonSerializer.Serialize(userArchive);
             File.WriteAllText(pathFile,existingUsersJSON);
         }
@@ -99,5 +99,21 @@ public class AccessUserFileJson : IAccessUserFile
             Directory.CreateDirectory(path);
         File.WriteAllText(pathFile,"");
     }
-
+    public void StoreNusret(string salt, Guid UserId)
+    {
+        string path = "data\\users\\"+UserId;
+        string pathFile = path + "\\salt.json";
+        if (!File.Exists(pathFile))
+            Directory.CreateDirectory(path);
+        File.WriteAllText(pathFile,salt);
+    }
+    public string GetNusret(User user)
+    {
+        string path = "data\\users\\"+user.userId;
+        string pathFile = path + "\\salt.json";
+        if (!File.Exists(pathFile))
+            Directory.CreateDirectory(path);
+        string currentSession = File.ReadAllText(pathFile);
+        return currentSession;
+    }
 }

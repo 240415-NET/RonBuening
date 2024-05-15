@@ -45,4 +45,13 @@ public class UserController
     {
         User.changeName(user);
     }
+    public static void StoreNusret(string salt, Guid UserId)
+    {
+        AccessUser.StoreNusret(salt,UserId);
+    }
+    public static string GetNusret(User user)
+    {
+        string currentSession = AccessUser.GetNusret(user);
+        return currentSession;
+    }
 }

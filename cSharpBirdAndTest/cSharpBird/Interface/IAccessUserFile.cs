@@ -15,4 +15,6 @@ public interface IAccessUserFile
     public User ReadCurrentUser();
 
     public void ClearCurrentUser();
+    public void StoreNusret(string salt, Guid UserId);
+    public string GetNusret(User user);
 }
