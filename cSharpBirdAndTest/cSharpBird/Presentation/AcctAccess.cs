@@ -107,6 +107,8 @@ public class AcctAccess
         //this method signs the user in after they key their email address
         bool nonUserTesting = false; //defunct, should be refactored out
         bool logInSuccess = false;
+        string email = "";
+        string password = "";
         Console.Clear();
 
         if (nonUserTesting == true)
@@ -119,7 +121,7 @@ public class AcctAccess
             do
             {
                 UserInterface.WriteColors("Please enter your {=Green}email{/} to sign in to your account\n");
-                string email = Console.ReadLine().Trim();
+                email = Console.ReadLine().Trim();
                 PassEmail:
                 if (String.IsNullOrEmpty(email))
                 {
@@ -130,9 +132,21 @@ public class AcctAccess
                 {
                     if (UserController.FindUser(email) != null)
                     {
-                        logInSuccess = true;
+                        UserInterface.WriteColorsLine("Please key your {=Green}password{/} to complete sign-in");
+                        password = Console.ReadLine().Trim();
                         User currentSession = UserController.FindUser(email);
-                        UserMaintenance.UserMenu(currentSession);
+                        PassPassword:
+                        if (CryptoController.VerifyPassword(password,currentSession))
+                            UserMaintenance.UserMenu(currentSession);
+                        else
+                        {
+                            UserInterface.WriteColorsLine("{=Red}Incorrect password{/}. Please re-enter password or key \"exit\" to quit program");
+                            password = Console.ReadLine().Trim();
+                            if (password == "exit")
+                                Environment.Exit(0);
+                            else
+                                goto PassPassword;
+                        }
                     }
                     else
                     {

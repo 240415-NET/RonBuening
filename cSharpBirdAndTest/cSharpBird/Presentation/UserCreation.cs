@@ -7,7 +7,8 @@ public class UserCreation
     public static void CreateUser()
     {
         //collects email for user creation, validates it is not a duplicate, and confirms user creation
-        string email;
+        string email = "";
+        string password = "";
         bool exitLoop = false;
 
         Console.Clear();
@@ -29,7 +30,9 @@ public class UserCreation
             else
             {
                 exitLoop = true;
-                User currentSession = NewUser(email);
+                UserInterface.WriteColorsLine("Please enter your desired {=Green}password{/}");
+                password = Console.ReadLine().Trim();
+                User currentSession = NewUser(email,password);
                 UserInterface.WriteColors("{=Blue}New user{/} created for " + email +"\n");
                 UserMaintenance.UserMenu(currentSession);
             }
@@ -49,10 +52,10 @@ public class UserCreation
         else
             return true;
     }
-    public static User NewUser(string email)
+    public static User NewUser(string email, string password)
     {
         //creates user object and calls to write to file
-        User newUser = new User(email);
+        User newUser = new User(email, password);
         UserController.WriteUser(newUser);
         return newUser;
     }
