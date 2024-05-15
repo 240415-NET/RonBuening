@@ -38,8 +38,7 @@ public class UserController
     }
     public static void changeEmail(User user)
     {
-        User.changeEmail(user);
-        
+        User.changeEmail(user);        
     }
     public static void changeName(User user)
     {
@@ -49,5 +48,14 @@ public class UserController
     {
         bool valid = AccessUser.ValidUserSession();
         return valid;
+    }
+    public static void StoreNusret(string salt, Guid UserId)
+    {
+        AccessUser.StoreNusret(salt,UserId);
+    }
+    public static string GetNusret(User user)
+    {
+        string currentSession = AccessUser.GetNusret(user);
+        return currentSession;
     }
 }

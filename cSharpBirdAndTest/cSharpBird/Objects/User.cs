@@ -2,17 +2,21 @@ namespace cSharpBird;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Security.Cryptography;
 public class User
 {
     public Guid userId {get; set;}
     public string userName {get; set;}
     public string displayName {get; set;}
+    public string hashedPW {get; set;}
+    //public string nusret {get; set;}
     public User() {}
 
-    public User(string _userName)
+    public User(string _userName,string password)
     {
         userId = Guid.NewGuid(); 
         userName = _userName;
+        hashedPW = CryptoController.InitHashPassword(userId,password);
     }
     public static User FindUser(string entry)
     {
