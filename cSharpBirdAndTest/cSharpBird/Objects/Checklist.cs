@@ -11,6 +11,8 @@ public class Checklist
     //public Dictionary<int,Bird>? birdChecklist {get; set;}
     //public string birder {get; set;}
     public List<Bird> birds {get;set;}
+    public float distance {get;set;}
+    public int duration {get;set;}
     public Checklist() {}
 
     public Checklist(Guid _userId, string _locationName)
