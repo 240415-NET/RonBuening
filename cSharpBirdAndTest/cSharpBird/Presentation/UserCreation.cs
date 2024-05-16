@@ -21,11 +21,16 @@ public class UserCreation
                 Console.Clear();
                 UserInterface.WriteColors("{=Green}Email{/} cannot be blank. Please try again\n");
             }
-            else if(UserCreation.UserDupe(email))
+            else if(UserCreation.UserDupe(email)) //prevents duplicate sign-ons
             {
                 exitLoop = true;
                 UserInterface.WriteColors("{=Green}Email{/} already in use. Please sign in\n");
                 AcctAccess.LogIn();
+            }
+            else if (!UserController.ValidEmail(email)) //since this returns true for a valid email, needs to be inverted
+            {
+                Console.Clear();
+                UserInterface.WriteColorsLine("{=Red}"+email+"{/} is not a valid email. Please try again");
             }
             else
             {

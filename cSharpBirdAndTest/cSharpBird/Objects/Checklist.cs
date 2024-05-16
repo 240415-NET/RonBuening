@@ -11,6 +11,9 @@ public class Checklist
     //public Dictionary<int,Bird>? birdChecklist {get; set;}
     //public string birder {get; set;}
     public List<Bird> birds {get;set;}
+    public float distance {get;set;}
+    public int duration {get;set;}
+    public bool stationary {get;set;}
     public Checklist() {}
 
     public Checklist(Guid _userId, string _locationName)
@@ -21,6 +24,7 @@ public class Checklist
         checklistDateTime = DateTime.Today;
         //Dictionary<int,Bird> birdChecklist = new Dictionary<int,Bird>();
         List<Bird> birds = BirdController.GetFullBirdList();
+        stationary = false;
     }
     public Checklist(Guid _userId, string _locationName, string _checklistDateTime)
     {
@@ -30,5 +34,6 @@ public class Checklist
         checklistDateTime = DateTime.Parse(_checklistDateTime);
         //Dictionary<int,Bird> birdChecklist = new Dictionary<int,Bird>();
         List<Bird> birds = BirdController.GetFullBirdList();
+        stationary = false;
     }
 }

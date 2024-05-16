@@ -173,7 +173,7 @@ public class EntryChecklist
     {
         //collects initial data for checklist, calls to write object to file and routes to ViewAndAppend to add sightings
         User currentUser = UserController.ReadCurrentUser();
-
+        Console.Clear();
         Console.WriteLine("What hotspot should be used for this checklist?");
         string hotspot = Console.ReadLine().Trim();
 
@@ -186,6 +186,7 @@ public class EntryChecklist
     {
         //collects initial data for historic checklist, calls to write object to file and routes to ViewAndAppend to add sightings
         User currentUser = UserController.ReadCurrentUser();
+        Console.Clear();
         Console.WriteLine("When was this checklist taken?");
         string checklistDate = Console.ReadLine().Trim();
         Console.WriteLine("What hotspot should be used for this checklist?");
@@ -209,7 +210,45 @@ public class EntryChecklist
             {
                 userInput = UserInterface.exitChecker(Console.ReadLine().Trim());
                 if (userInput.ToLower() == "done" || userInput.ToLower() == "d")
+                {
                     userDone = true;
+                    if (viewList.duration == 0)
+                    {
+                        bool validDuration = false;
+                        UserInterface.WriteColorsLine("What was the {=Green}duration in minutes{/} for this checklist?");
+                        do
+                        {
+                            try
+                            {
+                                viewList.duration = int.Parse(Console.ReadLine().Trim());
+                                validDuration = true;
+                            }
+                            catch (System.Exception)
+                            {
+                                UserInterface.WriteColorsLine("{=Red}Not a valid input.{/} Please key a duration in minutes for this checklist");
+                            }
+                        } while (validDuration == false);
+                    }
+                    if (viewList.distance == 0 && viewList.stationary == false)
+                    {
+                        bool validDistance = false;
+                        UserInterface.WriteColorsLine("What was the {=Green}distance in miles{/} travelled for this checklist?");
+                        do
+                        {
+                            try
+                            {
+                                viewList.distance = float.Parse(Console.ReadLine().Trim());
+                                if (viewList.distance == 0)
+                                    viewList.stationary = true;
+                                validDistance = true;
+                            }
+                            catch (System.Exception)
+                            {
+                                UserInterface.WriteColorsLine("{=Red}Not a valid input.{/} Please key a distance in miles for this checklist");
+                            }
+                        } while (validDistance == false);
+                    }
+                }
                 else if (ChecklistController.ValidListUpdate(userInput))
                 {
                     ChecklistController.ListUpdate(userInput,viewList);
