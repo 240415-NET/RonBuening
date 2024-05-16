@@ -75,7 +75,7 @@ public class AccessUserFileJson : IAccessUserFile
     }
     public void WriteCurrentUser(User user)
     {
-        //string pathFile = "CurrentUser.json";
+        //This will write the current user during the session and it may persist depending on the user sign-out selection
         string path = "data\\users";
         string pathFile = path + "\\CurrentUser.json";
         if (!File.Exists(pathFile))
@@ -84,6 +84,7 @@ public class AccessUserFileJson : IAccessUserFile
     }
     public User ReadCurrentUser()
     {
+        //Used at various times to get the current user session data
         string path = "data\\users";
         string pathFile = path + "\\CurrentUser.json";
         if (!File.Exists(pathFile))
@@ -93,6 +94,7 @@ public class AccessUserFileJson : IAccessUserFile
     }
     public void ClearCurrentUser()
     {
+        //Used on exit and log out to clear user session to prevent log-on without password
         string path = "data\\users";
         string pathFile = path + "\\CurrentUser.json";
         if (File.Exists(pathFile))
@@ -100,6 +102,7 @@ public class AccessUserFileJson : IAccessUserFile
     }
     public bool ValidUserSession()
     {
+        //determines if a valid user session exists to continue
         try
         {
             ReadCurrentUser();
@@ -112,6 +115,7 @@ public class AccessUserFileJson : IAccessUserFile
     }
     public void StoreNusret(string salt, Guid UserId)
     {
+        //stores salts
         string path = "data\\users\\"+UserId;
         string pathFile = path + "\\salt.json";
         if (!File.Exists(pathFile))
@@ -120,6 +124,7 @@ public class AccessUserFileJson : IAccessUserFile
     }
     public string GetNusret(User user)
     {
+        //gets salts
         string path = "data\\users\\"+user.userId;
         string pathFile = path + "\\salt.json";
         if (!File.Exists(pathFile))
