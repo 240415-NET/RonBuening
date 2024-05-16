@@ -156,12 +156,15 @@ public class UserMaintenance
                 validInput = true;
                 do
                 {
+                    Console.Clear();
                     UserInterface.WriteColorsLine("Please enter your {=Green}new password{/}");
                     password1 = Console.ReadLine().Trim();
+                    Console.Clear();
                     UserInterface.WriteColorsLine("Please reenter your {=Green}new password{/}");
                     password2 = Console.ReadLine().Trim();
                     if (password1 == password2)
                     {
+                        Console.Clear();
                         validPW = true;
                         UserController.UpdatePassword(password1,user);
                         UserInterface.WriteColorsLine("{=Blue}Password has been updated{/}\nPress any key to continue");
