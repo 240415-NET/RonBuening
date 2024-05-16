@@ -229,7 +229,7 @@ public class EntryChecklist
                             }
                         } while (validDuration == false);
                     }
-                    if (viewList.distance == 0)
+                    if (viewList.distance == 0 && viewList.stationary == false)
                     {
                         bool validDistance = false;
                         UserInterface.WriteColorsLine("What was the {=Green}distance in miles{/} travelled for this checklist?");
@@ -238,6 +238,8 @@ public class EntryChecklist
                             try
                             {
                                 viewList.distance = float.Parse(Console.ReadLine().Trim());
+                                if (viewList.distance == 0)
+                                    viewList.stationary = true;
                                 validDistance = true;
                             }
                             catch (System.Exception)
