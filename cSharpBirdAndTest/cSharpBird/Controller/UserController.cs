@@ -2,7 +2,7 @@ namespace cSharpBird;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Net.Mail;
+using System.Text.RegularExpressions;
 public class UserController
 {
     public static IAccessUserFile AccessUser = new AccessUserFileJson();
@@ -75,8 +75,8 @@ public class UserController
             return false;
         try
         {
-            var addr = new System.Net.Mail.MailAddress(email);
-            return true;
+            string pattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
+            return Regex.IsMatch(email, pattern);
         }
         catch
         {
