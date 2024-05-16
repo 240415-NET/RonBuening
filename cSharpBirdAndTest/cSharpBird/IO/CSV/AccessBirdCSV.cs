@@ -11,8 +11,8 @@ public class AccessBirdCSV : IAccessBird
         //update line 15 to change standards
         string bandCode = "";
         string speciesName = "";
-
-        string pathFile = "USGSBBL.csv";
+        string path = "data\\BirdCSV\\";
+        string pathFile = path + "USGSBBL.csv";
         List<Bird> birdList = new List<Bird>();
         birdList = File.ReadAllLines(pathFile)
             .Select(line => line.Split(','))
