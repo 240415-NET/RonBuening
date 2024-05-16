@@ -76,7 +76,7 @@ public class UserMaintenance
     public static void UserUpdate(User currentSession)
     {
         //presentation for updating user data
-        string[] menu = {"What would you like to do today?","{=Green}1. Change{/} email","{=Blue}2. Update{/} name","{=Yellow}3. Return{/} to main menu"};
+        string[] menu = {"What would you like to do today?","{=Green}1. Change{/} email","{=Cyan}2. Update{/} name","{=Blue}3. Change Password{/}","{=Yellow}4. Return{/} to main menu"};
         string userInput;
         bool validInput = false;
         
@@ -109,7 +109,17 @@ public class UserMaintenance
                     break;
                     case "3":
                     case "3.":
-                    case "3. return":
+                    case "3. change password":
+                    case "3. password":
+                    case "change password":
+                    case "password":
+                    validInput = true;
+                    Console.Clear();
+                    ChangePassword(currentSession);
+                    break;
+                    case "4":
+                    case "4.":
+                    case "4. return":
                     case "return":
                     validInput = true;
                     Console.Clear();
@@ -126,5 +136,55 @@ public class UserMaintenance
             }
         }
         while (validInput == false);
+    }
+    public static void ChangePassword(User user)
+    {
+        bool validInput = false;
+        bool validPW = false;
+        string password0 = "";
+        string password1 = "";
+        string password2 = "";
+
+        do
+        {
+            
+            UserInterface.WriteColorsLine("Please key your {=Red}current password{/}");
+            password0 = Console.ReadLine().Trim();
+            
+            if(CryptoController.VerifyPassword(password0,user))
+            {
+                validInput = true;
+                do
+                {
+                    Console.Clear();
+                    UserInterface.WriteColorsLine("Please enter your {=Green}new password{/}");
+                    password1 = Console.ReadLine().Trim();
+                    Console.Clear();
+                    UserInterface.WriteColorsLine("Please reenter your {=Green}new password{/}");
+                    password2 = Console.ReadLine().Trim();
+                    if (password1 == password2)
+                    {
+                        Console.Clear();
+                        validPW = true;
+                        UserController.UpdatePassword(password1,user);
+                        UserInterface.WriteColorsLine("{=Blue}Password has been updated{/}\nPress any key to continue");
+                        Console.ReadKey();
+                        UserUpdate(user);
+                    }
+                    else
+                    {
+                        Console.Clear();
+                        UserInterface.WriteColorsLine("{=Red}Passwords do not match{/}");
+                    }
+                }
+                while (validPW == false);
+            }
+            else
+            {
+                Console.Clear();
+                UserInterface.WriteColorsLine("{=Red}Entry does not match existing password.{/}");
+            }
+        }
+        while(validInput == false);
     }
 }

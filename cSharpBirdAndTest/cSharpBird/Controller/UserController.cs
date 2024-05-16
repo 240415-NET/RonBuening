@@ -59,4 +59,11 @@ public class UserController
         string currentSession = AccessUser.GetSalt(user);
         return currentSession;
     }
+    public static void UpdatePassword(string password1,User user)
+    {
+        string hashedPW = "";
+        hashedPW = CryptoController.InitHashPassword(user.userId,password1);
+        user.hashedPW = hashedPW;
+        WriteUpdatedUser(user);
+    }
 }
