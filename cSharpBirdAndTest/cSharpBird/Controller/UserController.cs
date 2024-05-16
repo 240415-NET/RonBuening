@@ -76,7 +76,7 @@ public class UserController
         try
         {
             var addr = new System.Net.Mail.MailAddress(email);
-            return addr.Address == email;
+            return true;
         }
         catch
         {
