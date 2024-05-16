@@ -41,7 +41,7 @@ public class User
     {
         Console.WriteLine("What would you like to change your email to?");
         string newEmail = Console.ReadLine().Trim();
-        if (String.IsNullOrEmpty(newEmail))
+        if (!UserController.ValidEmail(newEmail))
             Console.WriteLine("Email not updated");
         else
         {

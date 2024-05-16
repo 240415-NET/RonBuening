@@ -27,6 +27,11 @@ public class UserCreation
                 UserInterface.WriteColors("{=Green}Email{/} already in use. Please sign in\n");
                 AcctAccess.LogIn();
             }
+            else if (!UserController.ValidEmail(email))
+            {
+                Console.Clear();
+                UserInterface.WriteColorsLine("{=Red}"+email+"{/} is not a valid email. Please try again");
+            }
             else
             {
                 exitLoop = true;

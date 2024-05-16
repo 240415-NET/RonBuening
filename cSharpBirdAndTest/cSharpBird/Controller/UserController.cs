@@ -2,6 +2,7 @@ namespace cSharpBird;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Net.Mail;
 public class UserController
 {
     public static IAccessUserFile AccessUser = new AccessUserFileJson();
@@ -65,5 +66,21 @@ public class UserController
         hashedPW = CryptoController.InitHashPassword(user.userId,password1);
         user.hashedPW = hashedPW;
         WriteUpdatedUser(user);
+    }
+    public static bool ValidEmail(string email)
+    {
+        if (string.IsNullOrWhiteSpace(email))
+            return false;
+        if (email.EndsWith("."))
+            return false;
+        try
+        {
+            var addr = new System.Net.Mail.MailAddress(email);
+            return addr.Address == email;
+        }
+        catch
+        {
+            return false;
+        }
     }
 }
