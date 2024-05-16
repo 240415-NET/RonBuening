@@ -34,7 +34,7 @@ public class AcctAccess
                     case "sign in":
                     case "signin":
                     valid = true;
-                    ContinueSession();
+                    ContinueSession(); //verifies if user is still signed in and gives option to continue session; otherwise routes to LogIn()
                     break;
                     case "2":
                     case "2.":
@@ -142,10 +142,10 @@ public class AcctAccess
                         {
                             UserInterface.WriteColorsLine("{=Red}Incorrect password{/}. Please re-enter password or key \"exit\" to quit program");
                             password = Console.ReadLine().Trim();
-                            if (password == "exit")
+                            if (password.ToLower() == "exit")
                                 Environment.Exit(0);
                             else
-                                goto PassPassword;
+                                goto PassPassword; //routes the user input back to the check for password validation
                         }
                     }
                     else
@@ -155,7 +155,7 @@ public class AcctAccess
                         if (email.ToLower() == "create" || email.ToLower() == "c")
                             UserCreation.CreateUser();
                         else 
-                            goto PassEmail;
+                            goto PassEmail; //routes the user input back to the email check
                     }
                 }
             }
