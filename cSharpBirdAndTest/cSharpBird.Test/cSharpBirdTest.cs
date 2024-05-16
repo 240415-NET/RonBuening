@@ -25,4 +25,41 @@ public class cSharpBirdTest
 
         Assert.True(result);
     }
+    [Theory]
+    [InlineData("whoops")]
+    [InlineData("Nothing but text")]
+    [InlineData("BLSK45")]
+    public void ValidListUpdate_False(string testString)
+    {
+        bool result = ChecklistController.ValidListUpdate(testString);
+
+        Assert.False(result);
+    }
+    [Theory]
+    [InlineData("BLSK 45")]
+    [InlineData("sora 1")]
+    public void ValidListUpdate_True(string testString)
+    {
+        bool result = ChecklistController.ValidListUpdate(testString);
+
+        Assert.True(result);
+    }
+    [Theory]
+    [InlineData("defaultName","notPassword")]
+    public void VerifyPassword_False(string testName,string testPW)
+    {
+        User testUser = User.FindUser(testName);
+        bool result = CryptoController.VerifyPassword(testPW,testUser);
+
+        Assert.False(result);
+    }
+    [Theory]
+    [InlineData("defaultName","password")]
+    public void VerifyPassword_True(string testName,string testPW)
+    {
+        User testUser = User.FindUser(testName);
+        bool result = CryptoController.VerifyPassword(testPW,testUser);
+
+        Assert.True(result);
+    }
 }
