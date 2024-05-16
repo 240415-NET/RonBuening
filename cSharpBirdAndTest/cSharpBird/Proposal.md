@@ -3,16 +3,16 @@
 
 ## Requirements
 
-- The application should be a C# Console Application
-- The application should build and run
-- The application should interact with users, and provide some console UI
-    - Single user type that has objects associated with it (checklists): DONE
+- The application should be a C# Console Application: **DONE**
+- The application should build and run: **DONE**
+- The application should interact with users, and provide some console UI: **DONE** Common UI elements are defined to streamline implementation too.
+    - Single user type that has objects associated with it (checklists): **DONE**
     - ~~Superuser that controls additional classes of objects (locations, species)~~
-- The application should allow for multiple users to log in and persist their data
-    - Checklists will be saved in SQL ~~/JSON~~; option to print as text file for user to refer to later: DONE (JSON version, optional print to text file)
-- The application should demonstrate good input validation
-    - Validation of ~~locations and~~ species: DONE
-    - Validation of email format: IN PROGRESS
+- The application should allow for multiple users to log in and persist their data: Mostly DONE
+    - Checklists will be saved in SQL ~~/JSON~~; option to print as text file for user to refer to later: **DONE** (JSON version, optional print to text file)
+- The application should demonstrate good input validation: **DONE**
+    - Validation of ~~locations and~~ species: **DONE**
+    - Validation of email format: **DONE**
 - The application should persist data to a SQL Server DB
     - Checlists, ~~birds~~ and users will be stored here
     - Birds will be stored in CSV file for easy update based on USGS list
@@ -21,7 +21,7 @@
 
 ## Nice to Have
 
-- n-tier architecture: DONE
+- n-tier architecture: **DONE**
     - Presentation
     - Controller
     - Interfaces
@@ -29,8 +29,8 @@
     - Common UI Elements
 - dependency injection
 - The application should log errors and system events to a file or a DB table
-- Basic user authentication and authorization (admins vs normal users with passwords): DONE
-- The application should have unit tests
+- Basic user authentication and authorization (admins vs normal users with passwords): **DONE**
+- The application should have unit tests: **DONE**
 
 ## Individual Requirements
 - User Object

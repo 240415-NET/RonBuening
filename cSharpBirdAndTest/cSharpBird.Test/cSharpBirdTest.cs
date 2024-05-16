@@ -2,6 +2,8 @@ namespace cSharpBird.Test;
 
 public class cSharpBirdTest
 {
+
+    //Remember this command! dotnet add ./cSharpBird.Test/cSharpBird.Test.csproj reference ./cSharpBird/cSharpBird.csproj
     [Theory]
     [InlineData("invalid@address")]
     [InlineData("whoopsnoat.com")]
