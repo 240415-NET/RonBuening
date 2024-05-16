@@ -113,7 +113,7 @@ public class AccessUserFileJson : IAccessUserFile
             return false;
         }
     }
-    public void StoreNusret(string salt, Guid UserId)
+    public void StoreSalt(string salt, Guid UserId)
     {
         //stores salts
         string path = "data\\users\\"+UserId;
@@ -122,7 +122,7 @@ public class AccessUserFileJson : IAccessUserFile
             Directory.CreateDirectory(path);
         File.WriteAllText(pathFile,salt);
     }
-    public string GetNusret(User user)
+    public string GetSalt(User user)
     {
         //gets salts
         string path = "data\\users\\"+user.userId;

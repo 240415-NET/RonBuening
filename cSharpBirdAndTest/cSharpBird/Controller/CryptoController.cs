@@ -12,7 +12,7 @@ public class CryptoController
     {
         //salts and hashes given password
         byte[] salt = RandomNumberGenerator.GetBytes(keySize);
-        StoreNusret(salt,UserId);
+        StoreSalt(salt,UserId);
 
         var hash = Rfc2898DeriveBytes.Pbkdf2(
             Encoding.UTF8.GetBytes(password),
@@ -23,16 +23,16 @@ public class CryptoController
         );
         return Convert.ToHexString(hash);
     }
-    public static void StoreNusret(byte[] salt, Guid UserId)
+    public static void StoreSalt(byte[] salt, Guid UserId)
     {
         //stores user salt as a hex value separate from hashed passwords
         string hexSalt = Convert.ToHexString(salt);
-        UserController.StoreNusret(hexSalt,UserId);
+        UserController.StoreSalt(hexSalt,UserId);
     }
     public static bool VerifyPassword(string password, User user)
     {
         //retrieves salt and compares hashes
-        string salt = UserController.GetNusret(user);
+        string salt = UserController.GetSalt(user);
 
         var comparisonHash = Rfc2898DeriveBytes.Pbkdf2(
             Encoding.UTF8.GetBytes(password),

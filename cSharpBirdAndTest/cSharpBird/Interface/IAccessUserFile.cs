@@ -18,7 +18,7 @@ public interface IAccessUserFile
     
     public bool ValidUserSession();
 
-    public void StoreNusret(string salt, Guid UserId);
+    public void StoreSalt(string salt, Guid UserId);
     
-    public string GetNusret(User user);
+    public string GetSalt(User user);
 }

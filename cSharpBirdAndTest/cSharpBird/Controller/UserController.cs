@@ -49,13 +49,14 @@ public class UserController
         bool valid = AccessUser.ValidUserSession();
         return valid;
     }
-    public static void StoreNusret(string salt, Guid UserId)
+    public static void StoreSalt(string salt, Guid UserId)
     {
-        AccessUser.StoreNusret(salt,UserId);
+        
+        AccessUser.StoreSalt(salt,UserId);
     }
-    public static string GetNusret(User user)
+    public static string GetSalt(User user)
     {
-        string currentSession = AccessUser.GetNusret(user);
+        string currentSession = AccessUser.GetSalt(user);
         return currentSession;
     }
 }
