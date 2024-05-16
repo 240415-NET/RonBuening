@@ -48,7 +48,7 @@
         - Birder (object; assigned at creation)
         - Location (string/object; assigned at creation by user)
         - Date (DateTime; assigned at creation by user OR system)
-        - ~~List<Bird> (list of objects; assigned AFTER creation by Birder) ||~~ List<List <string>>> (list of banding codes, number as string)
+        - List<Bird> (list of objects; assigned AFTER creation by Birder) || ~~List<List <string>>> (list of banding codes, number as string)~~
         - Checklist Duration (float; assigned at creation)
         - Checklist Distance (float; assigned at creation)
     - Will be related to other objects by:
