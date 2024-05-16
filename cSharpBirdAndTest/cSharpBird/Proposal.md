@@ -48,7 +48,9 @@
         - Birder (object; assigned at creation)
         - Location (string/object; assigned at creation by user)
         - Date (DateTime; assigned at creation by user OR system)
-        - List<Bird> (list of objects; assigned AFTER creation by Birder) || List<List <string>>> (list of banding codes, number as string)
+        - ~~List<Bird> (list of objects; assigned AFTER creation by Birder) ||~~ List<List <string>>> (list of banding codes, number as string)
+        - Checklist Duration (float; assigned at creation)
+        - Checklist Distance (float; assigned at creation)
     - Will be related to other objects by:
         - Birder/Owner able to edit and print after log in
         - Location, containing details of given hotspot (optional)
@@ -62,10 +64,10 @@
         - Count (number (int?) updated by user)
     - Will be related to other objects by:
         - Contained within a List in checklist
-- Location Object (Nice to have; otherwise, just userdata)
-    - Location Object should possess:
-        - Unique identifier (GUID; assigned at creation)
-        - Location name (string; assigned at creation)
-        - County (string; assigned at creation by user OR system default)
-        - State (string; assigned at creation by user OR system default)
+- ~~Location Object (Nice to have; otherwise, just userdata)~~
+    - ~~Location Object should possess:~~
+        - ~~Unique identifier (GUID; assigned at creation)~~
+        - ~~Location name (string; assigned at creation)~~
+        - ~~County (string; assigned at creation by user OR system default)~~
+        - ~~State (string; assigned at creation by user OR system default)~~
 
