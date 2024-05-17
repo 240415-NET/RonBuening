@@ -111,25 +111,27 @@ public class UserSQL : IAccessUserFile
 
     public User ReadCurrentUser()
     {
-        Console.WriteLine("Call to US RCU");
+        //Console.WriteLine("Call to US RCU");
         string _connectionstring = File.ReadAllText("C:\\Users\\U0LA19\\Documents\\cSharpBird_DataSource.txt");
         User currentUser = new User();
         using SqlConnection connection = new SqlConnection(_connectionstring);
         connection.Open();
 
-        string cmdText = "SELECT userId, userName, displayName, hashedPW FROM users;";
+        string cmdText = "SELECT userId, userName, displayName, hashedPW FROM currentUser;";
 
         using SqlCommand cmd = new SqlCommand(cmdText,connection);
         using SqlDataReader reader = cmd.ExecuteReader();
-        Console.WriteLine("Reading Current User");
+        //Console.WriteLine("Reading Current User");
         while(reader.Read())
         {
-            Console.WriteLine("Reading SQL DB");
-            if (reader.GetString(2) != "NULL")
+            //Console.WriteLine("Reading SQL DB");
+            if (reader.GetString(2) != null)
                 currentUser = new User(reader.GetGuid(0),reader.GetString(1),reader.GetString(2),reader.GetString(3));
             else
                 currentUser = new User(reader.GetGuid(0),reader.GetString(1),null,reader.GetString(3));
         }
+
+        //Console.WriteLine($"Current user is {currentUser.userId}");
 
         connection.Close();
 
@@ -154,20 +156,26 @@ public class UserSQL : IAccessUserFile
     
     public bool ValidUserSession()
     {
-        Console.WriteLine("Call to USQL VUS");
+        //Console.WriteLine("Call to USQL VUS");
+        User user = new User();
         try
         {
-            User user = UserController.ReadCurrentUser();
-            Console.WriteLine("Call to read user complete");
-            if (user.userId == null){
-                Console.WriteLine("Determined userId is null");
+            user = UserController.ReadCurrentUser();
+            //Console.WriteLine("Call to read user complete");
+            Guid badUID = new Guid("00000000-0000-0000-0000-000000000000");
+            if (user.userId == badUID){
+                //Console.WriteLine("Determined userId is null");
                 return false;
             }
-
-            else
+            else{
+                //Console.WriteLine("Valid user session!");
                 return true;
+            }
+                
         }
         catch (Exception e){
+            Console.WriteLine("Exception!!!");
+            Console.WriteLine(e.StackTrace);
             return false;
         }
     }

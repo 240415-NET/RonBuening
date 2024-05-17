@@ -25,7 +25,7 @@ public class UserController
     }
     public static User ReadCurrentUser()
     {
-        Console.WriteLine("Call to UC RCU");
+        //Console.WriteLine("Call to UC RCU");
         User currentSession = AccessUser.ReadCurrentUser();
         return currentSession;
     }
@@ -48,7 +48,7 @@ public class UserController
     }
     public static bool ValidUserSession()
     {
-        Console.WriteLine("Call to UC VUS");
+        //Console.WriteLine("Call to UC VUS");
         bool valid = AccessUser.ValidUserSession();
         return valid;
     }
