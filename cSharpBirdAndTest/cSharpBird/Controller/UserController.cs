@@ -62,6 +62,7 @@ public class UserController
     }
     public static void UpdatePassword(string password1,User user)
     {
+        //overwrites the old password and salt with a new one as given by a verified user
         string hashedPW = "";
         hashedPW = CryptoController.InitHashPassword(user.userId,password1);
         user.hashedPW = hashedPW;
@@ -69,6 +70,8 @@ public class UserController
     }
     public static bool ValidEmail(string email)
     {
+        //validates email to see if it is correctly formatted and return boolean
+        //credit to Josh Lee for providing the regex
         if (string.IsNullOrWhiteSpace(email))
             return false;
         if (email.EndsWith("."))
