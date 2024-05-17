@@ -14,6 +14,7 @@ public class Checklist
     public float distance {get;set;}
     public int duration {get;set;}
     public bool stationary {get;set;}
+    public string cNotes {get;set;}
     public Checklist() {}
 
     public Checklist(Guid _userId, string _locationName)

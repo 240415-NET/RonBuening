@@ -11,6 +11,7 @@ public class Bird
     //public string rarity {get; set;}
 
     public int numSeen {get; set;}
+    public string bNotes {get;set;}
     public Bird() {}
     /*
     public Bird(string _bandCode, int _numSeen)
