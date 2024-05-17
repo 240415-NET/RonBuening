@@ -19,14 +19,17 @@ public class UserSQL //: IAccessUserFile
         using SqlConnection connection = new SqlConnection(_connectionstring);
         connection.Open();
 
-        string cmdText = "SELECT checklistID, userId, locationName, checklistDateTime, birds, distance, duration, stationary, cNotes FROM checklists;";
+        string cmdText = "SELECT userId, userName, displayName, hashedPW FROM checklists;";
 
         using SqlCommand cmd = new SqlCommand(cmdText,connection);
         using SqlDataReader reader = cmd.ExecuteReader();
 
         while(reader.Read())
         {
-            userArchive.Add(new User(reader.GetString(0),reader.GetString(1),reader.GetString(2),reader.GetString(3)));
+            if (reader.GetString(2) != "NULL")
+                userArchive.Add(new User(reader.GetString(0),reader.GetString(1),reader.GetString(2),reader.GetString(3)));
+            else
+                userArchive.Add(new User(reader.GetString(0),reader.GetString(1),null,reader.GetString(3)));
         }
         connection.Close();
 
@@ -47,7 +50,10 @@ public class UserSQL //: IAccessUserFile
 
         cmd.Parameters.AddWithValue("@userId",user.userId);
         cmd.Parameters.AddWithValue("@userName",user.userName);
-        cmd.Parameters.AddWithValue("@displayName",user.displayName);
+        if (user.displayName != null)
+            cmd.Parameters.AddWithValue("@displayName",user.displayName);
+        else
+            cmd.Parameters.AddWithValue("@displayName","NULL");
         cmd.Parameters.AddWithValue("@hashedPW",user.hashedPW);
 
         cmd.ExecuteNonQuery();
@@ -68,7 +74,10 @@ public class UserSQL //: IAccessUserFile
 
         cmd.Parameters.AddWithValue("@userId",user.userId);
         cmd.Parameters.AddWithValue("@userName",user.userName);
-        cmd.Parameters.AddWithValue("@displayName",user.displayName);
+        if (user.displayName != null)
+            cmd.Parameters.AddWithValue("@displayName",user.displayName);
+        else
+            cmd.Parameters.AddWithValue("@displayName","NULL");
         cmd.Parameters.AddWithValue("@hashedPW",user.hashedPW);
 
         cmd.ExecuteNonQuery();
@@ -83,13 +92,18 @@ public class UserSQL //: IAccessUserFile
 
         connection.Open();
 
+        ClearCurrentUser();
+
         string cmdText = "INSERT INTO currentUser (userId,userName,displayName,hashedPW) VALUES (@userId,@userName,@displayName,@hashedPW);";
 
         using SqlCommand cmd = new SqlCommand(cmdText,connection);
 
         cmd.Parameters.AddWithValue("@userId",user.userId);
         cmd.Parameters.AddWithValue("@userName",user.userName);
-        cmd.Parameters.AddWithValue("@displayName",user.displayName);
+        if (user.displayName != null)
+            cmd.Parameters.AddWithValue("@displayName",user.displayName);
+        else
+            cmd.Parameters.AddWithValue("@displayName","NULL");
         cmd.Parameters.AddWithValue("@hashedPW",user.hashedPW);
 
         cmd.ExecuteNonQuery();
@@ -112,7 +126,10 @@ public class UserSQL //: IAccessUserFile
 
         while(reader.Read())
         {
-            userArchive.Add(new User(reader.GetString(0),reader.GetString(1),reader.GetString(2),reader.GetString(3)));
+            if (reader.GetString(2) != "NULL")
+                userArchive.Add(new User(reader.GetString(0),reader.GetString(1),reader.GetString(2),reader.GetString(3)));
+            else
+                userArchive.Add(new User(reader.GetString(0),reader.GetString(1),null,reader.GetString(3)));
         }
 
         connection.Close();
@@ -138,21 +155,75 @@ public class UserSQL //: IAccessUserFile
     
     public bool ValidUserSession()
     {
-        return false;
+        try
+        {
+            User user = ReadCurrentUser();
+            if (user.userId == null)
+                return false;
+            else
+                return true;
+        }
+        catch (Exception e){
+            return false;
+        }
     }
 
     public void StoreSalt(string salt, Guid UserId)
     {
+        string _connectionstring = File.ReadAllText("C:\\Users\\U0LA19\\Documents\\cSharpBird_DataSource.txt");
+        using SqlConnection connection = new SqlConnection (_connectionstring);
 
+        connection.Open();
+        
+        string cmdText = "INSERT INTO salt (userId,salt) VALUES (@userId,@salt);";
+        using SqlCommand cmd = new SqlCommand(cmdText,connection);
+
+        cmd.Parameters.AddWithValue("@userId",UserId);
+        cmd.Parameters.AddWithValue("@salt",salt);
+
+        cmd.ExecuteNonQuery();
+        connection.Close();
     }
     
     public string GetSalt(User user)
     {
-        string nonsenseNull = "";
-        return nonsenseNull;
+        string _connectionstring = File.ReadAllText("C:\\Users\\U0LA19\\Documents\\cSharpBird_DataSource.txt");
+        using SqlConnection connection = new SqlConnection (_connectionstring);
+        string salt = "";
+
+        connection.Open();
+        
+        string cmdText = "Select salt FROM salt WHERE userId = @userId;";
+        using SqlCommand cmd = new SqlCommand(cmdText,connection);
+
+        cmd.Parameters.AddWithValue("@userId",user.userId);
+        cmd.Parameters.AddWithValue("@salt",salt);
+
+        using SqlDataReader reader = cmd.ExecuteReader();
+
+        while(reader.Read())
+        {
+           salt = reader.GetString(0);
+        }
+
+        connection.Close();
+
+        return salt;
     }
     public void UpdateSalt(string salt, Guid UserId)
     {
+        string _connectionstring = File.ReadAllText("C:\\Users\\U0LA19\\Documents\\cSharpBird_DataSource.txt");
+        using SqlConnection connection = new SqlConnection (_connectionstring);
 
+        connection.Open();
+
+        string cmdText = "UPDATE salt SET (salt=@salt) WHERE userId = @userId;";
+        using SqlCommand cmd = new SqlCommand(cmdText,connection);
+
+        cmd.Parameters.AddWithValue("@userId",UserId);
+        cmd.Parameters.AddWithValue("@salt",salt);
+
+        cmd.ExecuteNonQuery();
+        connection.Close();
     }
 }

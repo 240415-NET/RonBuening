@@ -8,7 +8,7 @@ public class ChecklistSQL //: IAccessChecklistFile
 {
     /*
     public List<Checklist> GetLists(User searchUser);
-    
+    string cmdText = "SELECT checklistID, userId, locationName, checklistDateTime, birds, distance, duration, stationary, cNotes FROM checklists;";
     public void WriteChecklist(Checklist newList);
 
     public void WriteUpdatedList(Checklist updatedList);

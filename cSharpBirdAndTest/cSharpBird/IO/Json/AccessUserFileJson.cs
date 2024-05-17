@@ -134,11 +134,6 @@ public class AccessUserFileJson : IAccessUserFile
     }
     public void UpdateSalt(string salt, Guid UserId)
     {
-        //updates salts
-        string path = "data\\users\\"+UserId;
-        string pathFile = path + "\\salt.json";
-        if (!File.Exists(pathFile))
-            Directory.CreateDirectory(path);
-        File.WriteAllText(pathFile,salt);
+        StoreSalt(salt,UserId);
     }
 }
