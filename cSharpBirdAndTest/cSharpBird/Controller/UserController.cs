@@ -5,7 +5,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 public class UserController
 {
-    public static IAccessUserFile AccessUser = new AccessUserFileJson();
+    public static IAccessUserFile AccessUser = new UserSQL();
     public static List<User> GetFullUserList()
     {
         List<User> userList = AccessUser.GetFullUserList();

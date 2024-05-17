@@ -19,9 +19,9 @@ public class User
         displayName = "";
         hashedPW = CryptoController.InitHashPassword(userId,password);
     }
-    public User(string _userId, string _userName, string _displayName, string _hashedPW)
+    public User(Guid _userId, string _userName, string _displayName, string _hashedPW)
     {
-        userId = new Guid(_userId);
+        userId = _userId;
         userName = _userName;
         displayName = _displayName;
         hashedPW = _hashedPW;

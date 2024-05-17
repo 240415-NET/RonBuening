@@ -47,11 +47,10 @@ public class UserCreation
     public static bool UserDupe(string userRequested)
     {
         string email = userRequested;
-        User foundUser = new User();
         //This method is used to find the user attempting to sign in and return the proper user object
         //Will return full user list
         List<User> userList = UserController.GetFullUserList();
-        foundUser = userList.FirstOrDefault(u => u.userName.ToLower() == email.ToLower());
+        User foundUser = userList.FirstOrDefault(u => u.userName.ToLower() == email.ToLower());
         if (foundUser == null)
             return false;
         else
@@ -62,7 +61,6 @@ public class UserCreation
         //creates user object and calls to write to file
         User newUser = new User(email, password);
         UserController.WriteUser(newUser);
-        UserSQL.WriteUser(newUser);
         return newUser;
     }
 }
