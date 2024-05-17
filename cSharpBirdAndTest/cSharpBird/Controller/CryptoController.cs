@@ -29,6 +29,27 @@ public class CryptoController
         string hexSalt = Convert.ToHexString(salt);
         UserController.StoreSalt(hexSalt,UserId);
     }
+    public static string HashPassword(Guid UserId, string password)
+    {
+        //salts and hashes given password
+        byte[] salt = RandomNumberGenerator.GetBytes(keySize);
+        StoreSalt(salt,UserId);
+
+        var hash = Rfc2898DeriveBytes.Pbkdf2(
+            Encoding.UTF8.GetBytes(password),
+            salt,
+            iterations,
+            HashAlgorithmName.SHA512,
+            keySize
+        );
+        return Convert.ToHexString(hash);
+    }
+    public static void UpdateSalt(byte[] salt, Guid UserId)
+    {
+        //stores user salt as a hex value separate from hashed passwords
+        string hexSalt = Convert.ToHexString(salt);
+        UserController.UpdateSalt(hexSalt,UserId);
+    }
     public static bool VerifyPassword(string password, User user)
     {
         //retrieves salt and compares hashes

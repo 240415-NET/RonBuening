@@ -52,7 +52,6 @@ public class UserController
     }
     public static void StoreSalt(string salt, Guid UserId)
     {
-        
         AccessUser.StoreSalt(salt,UserId);
     }
     public static string GetSalt(User user)
@@ -60,11 +59,15 @@ public class UserController
         string currentSession = AccessUser.GetSalt(user);
         return currentSession;
     }
+    public static void UpdateSalt(string salt, Guid UserId)
+    {
+        AccessUser.UpdateSalt(salt,UserId);
+    }
     public static void UpdatePassword(string password1,User user)
     {
         //overwrites the old password and salt with a new one as given by a verified user
         string hashedPW = "";
-        hashedPW = CryptoController.InitHashPassword(user.userId,password1);
+        hashedPW = CryptoController.HashPassword(user.userId,password1);
         user.hashedPW = hashedPW;
         WriteUpdatedUser(user);
     }
