@@ -111,29 +111,29 @@ public class UserSQL : IAccessUserFile
 
     public User ReadCurrentUser()
     {
+        Console.WriteLine("Call to US RCU");
         string _connectionstring = File.ReadAllText("C:\\Users\\U0LA19\\Documents\\cSharpBird_DataSource.txt");
-
-        List<User> userArchive = new List<User>();
-
+        User currentUser = new User();
         using SqlConnection connection = new SqlConnection(_connectionstring);
         connection.Open();
 
-        string cmdText = "SELECT userId, userName, displayName, hashedPW FROM checklists;";
+        string cmdText = "SELECT userId, userName, displayName, hashedPW FROM users;";
 
         using SqlCommand cmd = new SqlCommand(cmdText,connection);
         using SqlDataReader reader = cmd.ExecuteReader();
-
+        Console.WriteLine("Reading Current User");
         while(reader.Read())
         {
+            Console.WriteLine("Reading SQL DB");
             if (reader.GetString(2) != "NULL")
-                userArchive.Add(new User(reader.GetGuid(0),reader.GetString(1),reader.GetString(2),reader.GetString(3)));
+                currentUser = new User(reader.GetGuid(0),reader.GetString(1),reader.GetString(2),reader.GetString(3));
             else
-                userArchive.Add(new User(reader.GetGuid(0),reader.GetString(1),null,reader.GetString(3)));
+                currentUser = new User(reader.GetGuid(0),reader.GetString(1),null,reader.GetString(3));
         }
 
         connection.Close();
 
-        return userArchive[1];
+        return currentUser;
     }
 
     public void ClearCurrentUser()
@@ -154,11 +154,16 @@ public class UserSQL : IAccessUserFile
     
     public bool ValidUserSession()
     {
+        Console.WriteLine("Call to USQL VUS");
         try
         {
-            User user = ReadCurrentUser();
-            if (user.userId == null)
+            User user = UserController.ReadCurrentUser();
+            Console.WriteLine("Call to read user complete");
+            if (user.userId == null){
+                Console.WriteLine("Determined userId is null");
                 return false;
+            }
+
             else
                 return true;
         }
