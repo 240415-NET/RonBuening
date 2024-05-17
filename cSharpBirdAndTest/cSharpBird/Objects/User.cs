@@ -18,6 +18,13 @@ public class User
         userName = _userName;
         hashedPW = CryptoController.InitHashPassword(userId,password);
     }
+    public User(string _userId, string _userName, string _displayName, string _hashedPW)
+    {
+        userId = new Guid(_userId);
+        userName = _userName;
+        displayName = _displayName;
+        hashedPW = _hashedPW;
+    }
     public static User FindUser(string entry)
     {
         string email = entry;
