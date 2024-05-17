@@ -72,7 +72,7 @@ public class cSharpBirdTest
     }
     [Theory]
     [InlineData("defaultName2")]
-    public void UserDupe_True(string testName)
+    public void UserDupe_False(string testName)
     {
         bool result = UserCreation.UserDupe(testName);
         
