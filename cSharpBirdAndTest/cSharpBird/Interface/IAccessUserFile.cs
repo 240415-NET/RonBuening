@@ -21,4 +21,5 @@ public interface IAccessUserFile
     public void StoreSalt(string salt, Guid UserId);
     
     public string GetSalt(User user);
+    public void UpdateSalt(string salt, Guid UserId);
 }
