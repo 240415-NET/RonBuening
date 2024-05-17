@@ -62,6 +62,7 @@ public class UserCreation
         //creates user object and calls to write to file
         User newUser = new User(email, password);
         UserController.WriteUser(newUser);
+        UserSQL.WriteUser(newUser);
         return newUser;
     }
 }

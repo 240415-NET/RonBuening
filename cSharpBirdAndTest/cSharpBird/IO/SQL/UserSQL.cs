@@ -8,8 +8,10 @@ using System.Data.SqlClient;
 public class UserSQL //: IAccessUserFile
 {
     string _connectionstring = File.ReadAllText("C:\\Users\\U0LA19\\Documents\\cSharpBird_DataSource.txt");
-    public List<User> GetFullUserList()
+    public static List<User> GetFullUserList()
     {
+            string _connectionstring = File.ReadAllText("C:\\Users\\U0LA19\\Documents\\cSharpBird_DataSource.txt");
+
         //Credit to the Team2 for troubleshooting the SQL Data connection
 
         List<User> userArchive = new List<User>();
@@ -17,7 +19,7 @@ public class UserSQL //: IAccessUserFile
         using SqlConnection connection = new SqlConnection(_connectionstring);
         connection.Open();
 
-        string cmdText = "SELECT * FROM cSharpBird.checklists;";
+        string cmdText = "SELECT checklistID, userId, locationName, checklistDateTime, birds, distance, duration, stationary, cNotes FROM checklists;";
 
         using SqlCommand cmd = new SqlCommand(cmdText,connection);
         using SqlDataReader reader = cmd.ExecuteReader();
@@ -31,13 +33,15 @@ public class UserSQL //: IAccessUserFile
         return userArchive;
     }
 
-    public void WriteUser(User user)
+    public static void WriteUser(User user)
     {
+        string _connectionstring = File.ReadAllText("C:\\Users\\U0LA19\\Documents\\cSharpBird_DataSource.txt");
+
         using SqlConnection connection = new SqlConnection (_connectionstring);
 
         connection.Open();
 
-        string cmdText = "INSERT INTO cSharpBird.users (userId,userName,displayName,hashedPW) VALUES (@userId,@userName,@displayName,@hashedPW)";
+        string cmdText = "INSERT INTO users (userId,userName,displayName,hashedPW) VALUES (@userId,@userName,@displayName,@hashedPW)";
 
         using SqlCommand cmd = new SqlCommand(cmdText,connection);
 
