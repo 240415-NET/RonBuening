@@ -62,4 +62,20 @@ public class cSharpBirdTest
 
         Assert.True(result);
     }
+    [Theory]
+    [InlineData("defaultName")]
+    public void UserDupe_True(string testName)
+    {
+        bool result = UserCreation.UserDupe(testName);
+        
+        Assert.True(result);
+    }
+    [Theory]
+    [InlineData("defaultName2")]
+    public void UserDupe_True(string testName)
+    {
+        bool result = UserCreation.UserDupe(testName);
+        
+        Assert.False(result);
+    }
 }
