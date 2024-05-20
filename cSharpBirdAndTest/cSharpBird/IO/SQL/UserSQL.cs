@@ -162,6 +162,7 @@ public class UserSQL : IAccessUserFile
         {
             user = UserController.ReadCurrentUser();
             //Console.WriteLine("Call to read user complete");
+            //Guid from user table does not return null, so must set badGuid to compensate. Fixes #74
             Guid badUID = new Guid("00000000-0000-0000-0000-000000000000");
             if (user.userId == badUID){
                 //Console.WriteLine("Determined userId is null");
