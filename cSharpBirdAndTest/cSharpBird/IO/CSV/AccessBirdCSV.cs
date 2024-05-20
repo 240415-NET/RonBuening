@@ -40,7 +40,7 @@ public class AccessBirdCSV : IAccessBird
             File.WriteAllText(pathFile,existingChecklistJSON);
         }
     }
-    public void WriteBirdsForChecklist (Checklist checklist)
+    public void UpdateBirdsForChecklist (Checklist checklist)
     {
         WriteBirdsForChecklist(checklist);
     }
@@ -64,5 +64,9 @@ public class AccessBirdCSV : IAccessBird
             birdList = JsonSerializer.Deserialize<List<Bird>>(existingChecklistJSON);
         }
         return birdList;
+    }
+    public void DeleteBirdsForChecklist(Checklist deleteChecklist)
+    {
+        
     }
 }

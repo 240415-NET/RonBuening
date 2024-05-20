@@ -36,7 +36,7 @@ public class ChecklistSQL : IAccessChecklistFile
                 string tempBirds = JsonSerializer.Serialize(reader.GetString(4));
                 //Console.WriteLine(tempBirds);
                 //Console.ReadKey();
-                List<Bird> _birds = BirdController.ReadBirdsForChecklist()
+                List<Bird> _birds = BirdController.ReadBirdsForChecklist(_checklistID);
                 float _distance = reader.GetFloat(5);
                 int _duration = reader.GetInt32(6);
                 bool _stationary = reader.GetBoolean(7);
@@ -82,6 +82,8 @@ public class ChecklistSQL : IAccessChecklistFile
         */
         cmd.ExecuteNonQuery();
         connection.Close();
+
+        BirdController.WriteBirdsForChecklist(newList);
     }
 
     public void WriteUpdatedList(Checklist updatedList)
@@ -106,6 +108,8 @@ public class ChecklistSQL : IAccessChecklistFile
 
         cmd.ExecuteNonQuery();
         connection.Close();
+
+        BirdController.UpdateBirdsForChecklist(updatedList);
     }
     public void DeleteChecklist(Checklist deleteChecklist)
     {
@@ -119,5 +123,7 @@ public class ChecklistSQL : IAccessChecklistFile
 
         cmd.ExecuteNonQuery();
         connection.Close();
+
+        BirdController.DeleteBirdsForChecklist(deleteChecklist);
     }
 }

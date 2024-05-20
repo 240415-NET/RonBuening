@@ -31,7 +31,7 @@ public class BirdSQL : IAccessBird
         List<Bird> bird = checklist.birds;
         connection.Open();
 
-        for (int i =0; i < bird.Length; i++)
+        for (int i =0; i < bird.Count; i++)
         {
             string cmdText = "INSERT INTO birds (checklistID, bandCode, speciesName, numSeen, bbc, bnotes) VALUES (@checklistID, @bandCode, @speciesName, @numSeen, @bbc, @bnotes);";
 
@@ -54,18 +54,18 @@ public class BirdSQL : IAccessBird
         List<Bird> bird = checklist.birds;
         connection.Open();
 
-        for (int i =0; i < bird.Length; i++)
+        for (int i =0; i < bird.Count; i++)
         {
             string cmdText = "UPDATE birds SET checklistID = @checklistID, bandCode = @bandCode, speciesName = @speciesName, numSeen = @numSeen, bbc = @bbc, bnotes = @bNotes WHERE checklistID = @checklistID AND bandCode = @bandCode;";
 
             using SqlCommand cmd = new SqlCommand(cmdText,connection);
 
             cmd.Parameters.AddWithValue("@checklistID",checklist.checklistID);
-            cmd.Parameters.AddWithValue("@bandCode",bird.bandCode[i]);
-            cmd.Parameters.AddWithValue("@speciesName",bird.speciesName[i]);
-            cmd.Parameters.AddWithValue("@numSeen",bird.numSeen[i]);
-            cmd.Parameters.AddWithValue("@bbc",bird.bbc[i]);
-            cmd.Parameters.AddWithValue("@bNotes",bird.bNotes[i]);
+            cmd.Parameters.AddWithValue("@bandCode",bird[i].bandCode);
+            cmd.Parameters.AddWithValue("@speciesName",bird[i].speciesName);
+            cmd.Parameters.AddWithValue("@numSeen",bird[i].numSeen);
+            cmd.Parameters.AddWithValue("@bbc",bird[i].bbc);
+            cmd.Parameters.AddWithValue("@bNotes",bird[i].bNotes);
 
             cmd.ExecuteNonQuery();
         }
@@ -97,7 +97,8 @@ public class BirdSQL : IAccessBird
                 numSeen = reader.GetInt32(2);
                 bbc = reader.GetString(3);
                 bNotes = reader.GetString(4);
-                checklistBirds.Add(new Bird(bandCode,speciesName,numSeen,bbc,bNotes));
+                Bird temp = new Bird(bandCode,speciesName,numSeen,bbc,bNotes);
+                checklistBirds.Add(temp);
             }
         }
         catch(Exception e){
@@ -109,5 +110,18 @@ public class BirdSQL : IAccessBird
        
         connection.Close();
         return checklistBirds;
+    }
+    public void DeleteBirdsForChecklist(Checklist deleteChecklist)
+    {
+        using SqlConnection connection = new SqlConnection(_connectionstring);
+        connection.Open();
+
+        string cmdText = "DELETE * FROM birds WHERE checklistID = @checklistID;";
+
+        using SqlCommand cmd = new SqlCommand(cmdText,connection);
+        cmd.Parameters.AddWithValue("@checklistID",deleteChecklist.checklistID);
+
+        cmd.ExecuteNonQuery();
+        connection.Close();
     }
 }

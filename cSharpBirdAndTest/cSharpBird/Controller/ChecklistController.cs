@@ -27,7 +27,7 @@ public class ChecklistController
     public static List<Bird> RetrieveLoggedBirds(Checklist checklist)
     {
         //calls interface in BirdController to return just to list of species from checklist
-        List<Bird> birdList = BirdController.ReadBirdsForChecklist(checklist);
+        List<Bird> birdList = BirdController.ReadBirdsForChecklist(checklist.checklistID);
         //this lambda expression resaves list of species as just those that have a number greater than 0
         birdList = birdList.Where(i => i.numSeen > 0).ToList();
         return birdList;
