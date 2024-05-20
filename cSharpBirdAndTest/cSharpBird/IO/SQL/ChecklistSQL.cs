@@ -15,16 +15,17 @@ public class ChecklistSQL : IAccessChecklistFile
         Guid badUID = new Guid("00000000-0000-0000-0000-000000000000");
         using SqlConnection connection = new SqlConnection(_connectionstring);
         connection.Open();
-
+        
         string cmdText = "SELECT checklistID, userId, locationName, checklistDateTime, birds, distance, duration, stationary, cNotes FROM checklists WHERE userId = @userId;";
 
         using SqlCommand cmd = new SqlCommand(cmdText,connection);
         cmd.Parameters.AddWithValue("@userId",searchUser.userId);
         using SqlDataReader reader = cmd.ExecuteReader();
+        int i = 0;
         try{
              while(reader.Read())
             {
-                Console.WriteLine("Reading...");
+
                 //if (reader.GetString(0) != null || reader.GetGuid(0) != badUID)
                 //    userChecklists.Add(new Checklist(reader.GetGuid(0),reader.GetGuid(1),reader.GetString(2),reader.GetDateTime(3),JsonSerializer.Deserialize<List<Bird>>(reader.GetString(4)),reader.GetFloat(5),reader.GetInt32(6),reader.GetBoolean(7),reader.GetString(8)));
                 
@@ -32,12 +33,15 @@ public class ChecklistSQL : IAccessChecklistFile
                 Guid _userId = reader.GetGuid(1);
                 string _locationName = reader.GetString(2);
                 DateTime _checklistDateTime = reader.GetDateTime(3);
-                List<Bird> _birds = JsonSerializer.Deserialize<List<Bird>>(reader.GetString(4));
+                string tempBirds = JsonSerializer.Serialize(reader.GetString(4));
+                //Console.WriteLine(tempBirds);
+                //Console.ReadKey();
+                List<Bird> _birds = BirdController.ReadBirdsForChecklist()
                 float _distance = reader.GetFloat(5);
                 int _duration = reader.GetInt32(6);
                 bool _stationary = reader.GetBoolean(7);
                 string _cNotes = reader.GetString(8);
-                userChecklists.Add(new Checklist(_checklistID,_userId,_locationName,_checklistDateTime,_birds,_distance,_duration,_stationary,_cNotes));                
+                userChecklists.Add(new Checklist(_checklistID,_userId,_locationName,_checklistDateTime,_birds,_distance,_duration,_stationary,_cNotes));   
             }
         }
         catch(Exception e){
@@ -45,6 +49,7 @@ public class ChecklistSQL : IAccessChecklistFile
             Console.WriteLine(e.Message);
             Console.ReadKey();
         }
+        
        
         connection.Close();
         return userChecklists;

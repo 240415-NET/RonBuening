@@ -40,7 +40,8 @@ public class Checklist
         userId = _userId;
         locationName = _locationName;
         checklistDateTime = _checklistDateTime;
-        List<Bird> birds = _birds;
+        List<Bird> birds = BirdController.GetFullBirdList();
+        birds = _birds;
         distance = _distance;
         duration = _duration;
         stationary = _stationary;

@@ -40,10 +40,10 @@ public class AccessBirdCSV : IAccessBird
             File.WriteAllText(pathFile,existingChecklistJSON);
         }
     }
-    public List<Bird> ReadBirdsForChecklist (Checklist checklist)
+    public List<Bird> ReadBirdsForChecklist (Guid checklistID)
     {
         //reads birds to list from subdirectory
-        string path = "data\\checklist\\" + checklist.checklistID;
+        string path = "data\\checklist\\" + checklistID;
         string pathFile = path + "\\birds.json";
         List<Bird> birdList = new List<Bird>();
         if (File.Exists(pathFile))
@@ -54,7 +54,7 @@ public class AccessBirdCSV : IAccessBird
         else if (!File.Exists(pathFile))
         {
             Directory.CreateDirectory(path);
-            string existingChecklistJSON = JsonSerializer.Serialize(checklist.birds);
+            string existingChecklistJSON = JsonSerializer.Serialize(GetFullBirdList);
             File.WriteAllText(pathFile,existingChecklistJSON);
             existingChecklistJSON = File.ReadAllText(pathFile);
             birdList = JsonSerializer.Deserialize<List<Bird>>(existingChecklistJSON);

@@ -65,8 +65,6 @@ public class ChecklistController
     {
         //simply gives the list of birds sighted for printing
         List<Bird> birdList = checklist.birds.Where(i => i.numSeen > 0).ToList();
-        Console.WriteLine(birdList.Count());
-        Console.ReadKey();
         return birdList;
     }
     public static int CountListBird(Checklist checklist)

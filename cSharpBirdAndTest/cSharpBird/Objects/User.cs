@@ -9,7 +9,6 @@ public class User
     public string userName {get; set;}
     public string displayName {get; set;}
     public string hashedPW {get; set;}
-    //public string Salt {get; set;}
     public User() {}
 
     public User(string _userName,string password)
@@ -71,6 +70,5 @@ public class User
             Console.WriteLine($"Name updated to {newName}");
             UserController.WriteUpdatedUser(user);
         }
-        
     }
 }
