@@ -5,7 +5,7 @@ using System.IO;
 using System.Data.SqlClient;
 using System.Text.Json;
 
-public class ChecklistSQL //: IAccessChecklistFile
+public class ChecklistSQL : IAccessChecklistFile
 {
     string _connectionstring = File.ReadAllText("C:\\Users\\U0LA19\\Documents\\cSharpBird_DataSource.txt");
     
@@ -13,7 +13,6 @@ public class ChecklistSQL //: IAccessChecklistFile
     {
         List<Checklist> userChecklists = new List<Checklist>();
         Guid badUID = new Guid("00000000-0000-0000-0000-000000000000");
-
         using SqlConnection connection = new SqlConnection(_connectionstring);
         connection.Open();
 
@@ -21,14 +20,32 @@ public class ChecklistSQL //: IAccessChecklistFile
 
         using SqlCommand cmd = new SqlCommand(cmdText,connection);
         cmd.Parameters.AddWithValue("@userId",searchUser.userId);
-
         using SqlDataReader reader = cmd.ExecuteReader();
-     
-        while(reader.Read())
-        {
-            if (reader.GetString(0) != null || reader.GetGuid(0) != badUID)
-                userChecklists.Add(new Checklist(reader.GetGuid(0),reader.GetGuid(1),reader.GetString(2),reader.GetDateTime(3),JsonSerializer.Deserialize<List<Bird>>(reader.GetString(4)),reader.GetFloat(5),reader.GetInt32(6),reader.GetBoolean(7),reader.GetString(8)));
+        try{
+             while(reader.Read())
+            {
+                Console.WriteLine("Reading...");
+                //if (reader.GetString(0) != null || reader.GetGuid(0) != badUID)
+                //    userChecklists.Add(new Checklist(reader.GetGuid(0),reader.GetGuid(1),reader.GetString(2),reader.GetDateTime(3),JsonSerializer.Deserialize<List<Bird>>(reader.GetString(4)),reader.GetFloat(5),reader.GetInt32(6),reader.GetBoolean(7),reader.GetString(8)));
+                
+                Guid _checklistID = reader.GetGuid(0);
+                Guid _userId = reader.GetGuid(1);
+                string _locationName = reader.GetString(2);
+                DateTime _checklistDateTime = reader.GetDateTime(3);
+                List<Bird> _birds = JsonSerializer.Deserialize<List<Bird>>(reader.GetString(4));
+                float _distance = reader.GetFloat(5);
+                int _duration = reader.GetInt32(6);
+                bool _stationary = reader.GetBoolean(7);
+                string _cNotes = reader.GetString(8);
+                userChecklists.Add(new Checklist(_checklistID,_userId,_locationName,_checklistDateTime,_birds,_distance,_duration,_stationary,_cNotes));                
+            }
         }
+        catch(Exception e){
+            Console.WriteLine(e.StackTrace);
+            Console.WriteLine(e.Message);
+            Console.ReadKey();
+        }
+       
         connection.Close();
         return userChecklists;
     }

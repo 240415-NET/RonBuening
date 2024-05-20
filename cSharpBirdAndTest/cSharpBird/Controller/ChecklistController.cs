@@ -5,7 +5,7 @@ using System.IO;
 using System.Text.Json;
 public class ChecklistController
 {
-    public static IAccessChecklistFile AccessChecklistFile = new AccessChecklistFileJson();
+    public static IAccessChecklistFile AccessChecklistFile = new ChecklistSQL();
     public static List<Checklist> GetLists(User searchUser)
     {
         //calls interface to get lists for current user
@@ -65,6 +65,8 @@ public class ChecklistController
     {
         //simply gives the list of birds sighted for printing
         List<Bird> birdList = checklist.birds.Where(i => i.numSeen > 0).ToList();
+        Console.WriteLine(birdList.Count());
+        Console.ReadKey();
         return birdList;
     }
     public static int CountListBird(Checklist checklist)
