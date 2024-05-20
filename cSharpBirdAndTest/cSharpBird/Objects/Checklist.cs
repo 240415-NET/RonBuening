@@ -37,4 +37,16 @@ public class Checklist
         List<Bird> birds = BirdController.GetFullBirdList();
         stationary = false;
     }
+        public Checklist(Guid _checklistID, Guid _userId, string _locationName, DateTime _checklistDateTime, List<Bird> _birds, float _distance, int _duration, bool _stationary, string _cNotes)
+    {
+        checklistID = _checklistID;
+        userId = _userId;
+        locationName = _locationName;
+        checklistDateTime = _checklistDateTime;
+        List<Bird> birds = _birds;
+        distance = _distance;
+        duration = _duration;
+        stationary = _stationary;
+        cNotes = _cNotes;
+    }
 }
