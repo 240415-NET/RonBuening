@@ -16,7 +16,15 @@ public class User
     {
         userId = Guid.NewGuid(); 
         userName = _userName;
+        displayName = "";
         hashedPW = CryptoController.InitHashPassword(userId,password);
+    }
+    public User(Guid _userId, string _userName, string _displayName, string _hashedPW)
+    {
+        userId = _userId;
+        userName = _userName;
+        displayName = _displayName;
+        hashedPW = _hashedPW;
     }
     public static User FindUser(string entry)
     {

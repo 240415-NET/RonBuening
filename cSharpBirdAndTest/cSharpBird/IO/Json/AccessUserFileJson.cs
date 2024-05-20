@@ -132,4 +132,8 @@ public class AccessUserFileJson : IAccessUserFile
         string currentSession = File.ReadAllText(pathFile);
         return currentSession;
     }
+    public void UpdateSalt(string salt, Guid UserId)
+    {
+        StoreSalt(salt,UserId);
+    }
 }
