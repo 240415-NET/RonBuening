@@ -40,6 +40,10 @@ public class AccessBirdCSV : IAccessBird
             File.WriteAllText(pathFile,existingChecklistJSON);
         }
     }
+    public void WriteBirdsForChecklist (Checklist checklist)
+    {
+        WriteBirdsForChecklist(checklist);
+    }
     public List<Bird> ReadBirdsForChecklist (Guid checklistID)
     {
         //reads birds to list from subdirectory

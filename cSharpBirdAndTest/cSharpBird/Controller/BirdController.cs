@@ -16,6 +16,11 @@ public class BirdController
         //currently unusued
         AccessBird.WriteBirdsForChecklist(checklist);
     }
+    public static void UpdateBirdsForChecklist (Checklist checklist)
+    {
+        //currently unusued
+        AccessBird.UpdateBirdsForChecklist(checklist);
+    }
     public static List<Bird> ReadBirdsForChecklist (Guid checklistID)
     {
         //currently unused

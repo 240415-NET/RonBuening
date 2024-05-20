@@ -8,5 +8,6 @@ public interface IAccessBird
 {
     public List<Bird> GetFullBirdList();
     public void WriteBirdsForChecklist(Checklist checklist);
-    public List<Bird> ReadBirdsForChecklist(Checklist checklist);
+    public void UpdateBirdsForChecklist(Checklist checklist);
+    public List<Bird> ReadBirdsForChecklist(Guid checklistID);
 }
