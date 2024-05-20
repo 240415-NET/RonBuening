@@ -29,6 +29,8 @@ public class BirdSQL : IAccessBird
     {
         using SqlConnection connection = new SqlConnection (_connectionstring);
         List<Bird> bird = checklist.birds;
+        Bird temp = new Bird();
+
         connection.Open();
 
         for (int i =0; i < bird.Count; i++)
@@ -36,13 +38,22 @@ public class BirdSQL : IAccessBird
             string cmdText = "INSERT INTO birds (checklistID, bandCode, speciesName, numSeen, bbc, bnotes) VALUES (@checklistID, @bandCode, @speciesName, @numSeen, @bbc, @bnotes);";
 
             using SqlCommand cmd = new SqlCommand(cmdText,connection);
-
+            temp = bird[i];
             cmd.Parameters.AddWithValue("@checklistID",checklist.checklistID);
-            cmd.Parameters.AddWithValue("@bandCode",bird.bandCode[i]);
-            cmd.Parameters.AddWithValue("@bandCode",bird.speciesName[i]);
-            cmd.Parameters.AddWithValue("@bandCode",bird.numSeen[i]);
-            cmd.Parameters.AddWithValue("@bandCode",bird.bbc[i]);
-            cmd.Parameters.AddWithValue("@bandCode",bird.bandCode[i]);
+            cmd.Parameters.AddWithValue("@bandCode",temp.bandCode);
+            cmd.Parameters.AddWithValue("@speciesName",temp.speciesName);
+            if (temp.numSeen < 1)
+                 cmd.Parameters.AddWithValue("@numSeen",0);
+            else
+                cmd.Parameters.AddWithValue("@numSeen",temp.numSeen);
+            if (String.IsNullOrEmpty(temp.bbc))
+                cmd.Parameters.AddWithValue("@bbc","");
+            else
+                cmd.Parameters.AddWithValue("@bbc",temp.bbc);
+            if (String.IsNullOrEmpty(temp.bNotes))
+                cmd.Parameters.AddWithValue("@bNotes","");
+            else
+                cmd.Parameters.AddWithValue("@bNotes",temp.bbc);
 
             cmd.ExecuteNonQuery();
         }
@@ -52,6 +63,7 @@ public class BirdSQL : IAccessBird
     {
         using SqlConnection connection = new SqlConnection (_connectionstring);
         List<Bird> bird = checklist.birds;
+        Bird temp = new Bird();
         connection.Open();
 
         for (int i =0; i < bird.Count; i++)
@@ -59,13 +71,22 @@ public class BirdSQL : IAccessBird
             string cmdText = "UPDATE birds SET checklistID = @checklistID, bandCode = @bandCode, speciesName = @speciesName, numSeen = @numSeen, bbc = @bbc, bnotes = @bNotes WHERE checklistID = @checklistID AND bandCode = @bandCode;";
 
             using SqlCommand cmd = new SqlCommand(cmdText,connection);
-
+            temp = bird[i];
             cmd.Parameters.AddWithValue("@checklistID",checklist.checklistID);
-            cmd.Parameters.AddWithValue("@bandCode",bird[i].bandCode);
-            cmd.Parameters.AddWithValue("@speciesName",bird[i].speciesName);
-            cmd.Parameters.AddWithValue("@numSeen",bird[i].numSeen);
-            cmd.Parameters.AddWithValue("@bbc",bird[i].bbc);
-            cmd.Parameters.AddWithValue("@bNotes",bird[i].bNotes);
+            cmd.Parameters.AddWithValue("@bandCode",temp.bandCode);
+            cmd.Parameters.AddWithValue("@speciesName",temp.speciesName);
+            if (temp.numSeen < 1)
+                 cmd.Parameters.AddWithValue("@numSeen",0);
+            else
+                cmd.Parameters.AddWithValue("@numSeen",temp.numSeen);
+            if (String.IsNullOrEmpty(temp.bbc))
+                cmd.Parameters.AddWithValue("@bbc","");
+            else
+                cmd.Parameters.AddWithValue("@bbc",temp.bbc);
+            if (String.IsNullOrEmpty(temp.bNotes))
+                cmd.Parameters.AddWithValue("@bNotes","");
+            else
+                cmd.Parameters.AddWithValue("@bNotes",temp.bbc);
 
             cmd.ExecuteNonQuery();
         }
@@ -82,7 +103,7 @@ public class BirdSQL : IAccessBird
         int numSeen = 0;
         string bbc = "";
         string bNotes = "";
-        string cmdText = "SELECT checklistID, bandCode, speciesName, numSeen, bbc, bnotes FROM birds WHERE checklistID = @checklistID;";
+        string cmdText = "SELECT bandCode, speciesName, numSeen, bbc, bnotes FROM birds WHERE checklistID = @checklistID;";
 
         using SqlCommand cmd = new SqlCommand(cmdText,connection);
         cmd.Parameters.AddWithValue("@checklistID",checklistID);
@@ -116,7 +137,7 @@ public class BirdSQL : IAccessBird
         using SqlConnection connection = new SqlConnection(_connectionstring);
         connection.Open();
 
-        string cmdText = "DELETE * FROM birds WHERE checklistID = @checklistID;";
+        string cmdText = "DELETE FROM birds WHERE checklistID = @checklistID;";
 
         using SqlCommand cmd = new SqlCommand(cmdText,connection);
         cmd.Parameters.AddWithValue("@checklistID",deleteChecklist.checklistID);

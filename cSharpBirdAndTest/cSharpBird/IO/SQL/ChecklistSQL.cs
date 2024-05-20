@@ -116,7 +116,7 @@ public class ChecklistSQL : IAccessChecklistFile
         using SqlConnection connection = new SqlConnection(_connectionstring);
         connection.Open();
 
-        string cmdText = "DELETE * FROM checklists WHERE checklistID = @checklistID;";
+        string cmdText = "DELETE FROM checklists WHERE checklistID = @checklistID;";
 
         using SqlCommand cmd = new SqlCommand(cmdText,connection);
         cmd.Parameters.AddWithValue("@checklistID",deleteChecklist.checklistID);
