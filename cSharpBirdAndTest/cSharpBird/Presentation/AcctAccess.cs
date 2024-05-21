@@ -98,7 +98,7 @@ public class AcctAccess
         else
         {
             Console.WriteLine("No current user session found. Please log in again. Press any key to continue");
-            Console.ReadKey();
+            //Console.ReadKey();
             LogIn();
         }
     }

@@ -33,7 +33,7 @@ public class CryptoController
     {
         //salts and hashes given password
         byte[] salt = RandomNumberGenerator.GetBytes(keySize);
-        StoreSalt(salt,UserId);
+        UpdateSalt(salt,UserId);
 
         var hash = Rfc2898DeriveBytes.Pbkdf2(
             Encoding.UTF8.GetBytes(password),

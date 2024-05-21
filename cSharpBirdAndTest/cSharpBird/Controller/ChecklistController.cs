@@ -5,7 +5,7 @@ using System.IO;
 using System.Text.Json;
 public class ChecklistController
 {
-    public static IAccessChecklistFile AccessChecklistFile = new AccessChecklistFileJson();
+    public static IAccessChecklistFile AccessChecklistFile = new ChecklistSQL();
     public static List<Checklist> GetLists(User searchUser)
     {
         //calls interface to get lists for current user
@@ -27,7 +27,7 @@ public class ChecklistController
     public static List<Bird> RetrieveLoggedBirds(Checklist checklist)
     {
         //calls interface in BirdController to return just to list of species from checklist
-        List<Bird> birdList = BirdController.ReadBirdsForChecklist(checklist);
+        List<Bird> birdList = BirdController.ReadBirdsForChecklist(checklist.checklistID);
         //this lambda expression resaves list of species as just those that have a number greater than 0
         birdList = birdList.Where(i => i.numSeen > 0).ToList();
         return birdList;
@@ -64,13 +64,15 @@ public class ChecklistController
     public static List<Bird> PrintListBird(Checklist checklist)
     {
         //simply gives the list of birds sighted for printing
-        List<Bird> birdList = checklist.birds.Where(i => i.numSeen > 0).ToList();
+        List<Bird> birdList = BirdController.ReadBirdsForChecklist(checklist.checklistID);
+        birdList = birdList.Where(i => i.numSeen > 0).ToList();
         return birdList;
     }
     public static int CountListBird(Checklist checklist)
     {
         //returns the count of total species seen
-        List<Bird> birdList = checklist.birds.Where(i => i.numSeen > 0).ToList();
+        List<Bird> birdList = BirdController.ReadBirdsForChecklist(checklist.checklistID);
+        birdList = birdList.Where(i => i.numSeen > 0).ToList();
         int count = birdList.Count();
         return count;
     }

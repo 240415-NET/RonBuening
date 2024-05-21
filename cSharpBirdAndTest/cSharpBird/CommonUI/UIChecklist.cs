@@ -22,7 +22,7 @@ public class UIChecklist
         string tempName;
         try
         {
-            if (currentUser.displayName == null)
+            if (currentUser.displayName == null || currentUser.displayName == "" || currentUser.displayName == "NULL")
                 tempName = currentUser.userName;
             else
                 tempName = currentUser.displayName;
@@ -45,13 +45,23 @@ public class UIChecklist
         string[] headers = {"{=Green}Band Code{/}","{=Cyan}Species Name{/}","{=Blue}Number Seen{/}"};
         string[] birdData;
         string printLine = string.Format("{0,-20}\t{1,-35}\t{2,15}",headers[0],headers[1],headers[2]);
-        UserInterface.WriteColorsLine(printLine);
-        foreach (Bird b in loggedBirds)
+        try
         {
-            printLine = string.Format("{0,-20}{1,-35}{2,15}",loggedBirds[i].bandCode,loggedBirds[i].speciesName,loggedBirds[i].numSeen);
             UserInterface.WriteColorsLine(printLine);
-            i++;
+            foreach (Bird b in loggedBirds)
+            {
+                printLine = string.Format("{0,-20}{1,-35}{2,15}",loggedBirds[i].bandCode,loggedBirds[i].speciesName,loggedBirds[i].numSeen);
+                UserInterface.WriteColorsLine(printLine);
+                i++;
+            }
         }
+        catch (Exception p)
+        {
+            Console.WriteLine(p.StackTrace);
+            Console.WriteLine(p.Message);
+            Console.ReadKey();
+        }
+
     }
     public static void ListLists(List<Checklist> userChecklists)
     {

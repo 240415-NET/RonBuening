@@ -167,6 +167,8 @@ public class EntryChecklist
         catch (Exception o)
         {
             Console.WriteLine("Please enter valid checklist number");
+            Console.WriteLine(o.StackTrace);
+            Console.WriteLine(o.Message);
         }
     }
     public static void collectInitData()
@@ -176,11 +178,18 @@ public class EntryChecklist
         Console.Clear();
         Console.WriteLine("What hotspot should be used for this checklist?");
         string hotspot = Console.ReadLine().Trim();
-
+        try
+        {
         Checklist checklist = new Checklist (currentUser.userId,hotspot);
         checklist.birds = BirdController.GetFullBirdList();
         ChecklistController.WriteChecklist(checklist);
         ViewAndAppend(checklist);
+        }
+        catch (Exception i)
+        {
+            Console.WriteLine(i.StackTrace);
+            Console.WriteLine(i.Message);
+        }
     }
     public static void collectInitDataHistoric()
     {
@@ -199,7 +208,8 @@ public class EntryChecklist
     public static void ViewAndAppend(Checklist viewList)
     {
         //this method shows the basics of the given checklist object and allows the user to view the full species sighted list and add new ones
-        List<Bird> loggedBirds = new List<Bird>();
+        List<Bird> loggedBirds = BirdController.ReadBirdsForChecklist(viewList.checklistID);
+        viewList.birds = loggedBirds.ToList();
         bool userDone = false;
         string userInput = "";
         do
@@ -261,6 +271,7 @@ public class EntryChecklist
             }
             catch (Exception e)
             {
+                Console.WriteLine(e.StackTrace);
                 Console.WriteLine(e.Message);
             }
         }
@@ -443,21 +454,30 @@ public class EntryChecklist
         string descriptor = "{=Green}" + oldChecklist.locationName + "{/} is the current location. Please key a new location or 0 to return to previous menu";
         UserInterface.WriteColorsLine(descriptor);
         string userInput = Console.ReadLine().Trim();
-        switch (userInput.ToLower())
+        try{
+            switch (userInput.ToLower())
+            {
+                case "0":
+                case "back":
+                case "done":
+                case "return":
+                    SelectedEdit(oldChecklist);
+                    break;
+                default:
+                    List<Bird> loggedBirds = BirdController.ReadBirdsForChecklist(oldChecklist.checklistID);
+                    oldChecklist.birds = loggedBirds.ToList();
+                    ChecklistController.LocationUpdate(userInput,oldChecklist);
+                    descriptor = "Checklist location updated to {=Green}" + userInput + "{/}";
+                    UserInterface.WriteColorsLine(descriptor);
+                    Console.ReadKey();
+                    SelectedEdit(oldChecklist);
+                    break;
+            }
+        }
+        catch (Exception cl)
         {
-            case "0":
-            case "back":
-            case "done":
-            case "return":
-                SelectedEdit(oldChecklist);
-                break;
-            default:
-                ChecklistController.LocationUpdate(userInput,oldChecklist);
-                descriptor = "Checklist location updated to {=Green}" + userInput + "{/}";
-                UserInterface.WriteColorsLine(descriptor);
-                Console.ReadKey();
-                SelectedEdit(oldChecklist);
-                break;
+            Console.WriteLine(cl.StackTrace);
+            Console.WriteLine(cl.Message);
         }
     }
     public static void changeDate(Checklist oldChecklist)
@@ -477,6 +497,8 @@ public class EntryChecklist
                 SelectedEdit(oldChecklist);
                 break;
             default:
+                List<Bird> loggedBirds = BirdController.ReadBirdsForChecklist(oldChecklist.checklistID);
+                oldChecklist.birds = loggedBirds.ToList();
                 ChecklistController.DateUpdate(userInput,oldChecklist);
                 descriptor = "Checklist date updated to {=Green}" + userInput + "{/}. Press any key to continue.";
                 UserInterface.WriteColorsLine(descriptor);
