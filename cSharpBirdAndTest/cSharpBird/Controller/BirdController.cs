@@ -13,17 +13,17 @@ public class BirdController
     }
     public static void WriteBirdsForChecklist (Checklist checklist)
     {
-        //currently unusued
+        //Needed for SQL
         AccessBird.WriteBirdsForChecklist(checklist);
     }
     public static void UpdateBirdsForChecklist (Checklist checklist)
     {
-        //currently unusued
+        //Needed for SQL
         AccessBird.UpdateBirdsForChecklist(checklist);
     }
     public static List<Bird> ReadBirdsForChecklist (Guid checklistID)
     {
-        //currently unused
+        //Needed for SQL
         List<Bird> birdList = AccessBird.ReadBirdsForChecklist(checklistID);
         return birdList;
     }
