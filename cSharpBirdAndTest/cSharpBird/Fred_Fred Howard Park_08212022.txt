@@ -1,0 +1,9 @@
+Location: Fred Howard Park
+Date: 8/21/2022
+Number               Location                            Date           
+FOTE            Forsters Tern                                     1
+SBDO            Short-billed Dowitcher                            3
+WILL            Willet                                            2
+SEPL            Semipalmated Plover                               2
+WIPL            Wilsons Plover                                    1
+DCCO            Double-crested Cormorant                          1

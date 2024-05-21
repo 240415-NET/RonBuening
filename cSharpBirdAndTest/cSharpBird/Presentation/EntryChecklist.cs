@@ -429,7 +429,7 @@ public class EntryChecklist
                     prompt = "{=Red}Checklist has been deleted. Press any key to continue";
                     UserInterface.WriteColorsLine(prompt);
                     Console.ReadKey();
-                    List(UserController.ReadCurrentUser());
+                    Edit(UserController.ReadCurrentUser());
                     break;
                 default:
                     Console.WriteLine("Please key as instructed above.");
