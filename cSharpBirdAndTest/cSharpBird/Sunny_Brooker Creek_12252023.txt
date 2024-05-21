@@ -1,6 +1,0 @@
-Location: Brooker Creek
-Date: 12/25/2023
-Number               Location                            Date           
-SACR            Sandhill Crane                                    1
-PIWO            Pileated Woodpecker                               2
-EABL            Eastern Bluebird                                  3

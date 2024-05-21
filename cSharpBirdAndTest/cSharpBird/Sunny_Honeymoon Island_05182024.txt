@@ -1,8 +1,0 @@
-Location: Honeymoon Island
-Date: 5/18/2024
-Number               Location                            Date           
-REEG            Reddish Egret                                     1
-AMOY            American Oystercatcher                            1
-LAGU            Laughing Gull                                    86
-ROYT            Royal Tern                                        5
-SATE            Sandwich Tern                                     4

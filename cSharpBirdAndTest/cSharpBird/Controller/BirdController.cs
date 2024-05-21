@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 public class BirdController
 {
-    public static IAccessBird AccessBird = new AccessBirdCSV();
+    public static IAccessBird AccessBird = new BirdSQL();
     public static List<Bird> GetFullBirdList()
     {
         //for checklist file creation, calls interface to retrieve for csv
