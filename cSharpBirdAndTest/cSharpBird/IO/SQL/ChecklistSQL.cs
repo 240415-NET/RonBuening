@@ -24,18 +24,13 @@ public class ChecklistSQL : IAccessChecklistFile
         int i = 0;
         try{
              while(reader.Read())
-            {
-
-                //if (reader.GetString(0) != null || reader.GetGuid(0) != badUID)
-                //    userChecklists.Add(new Checklist(reader.GetGuid(0),reader.GetGuid(1),reader.GetString(2),reader.GetDateTime(3),JsonSerializer.Deserialize<List<Bird>>(reader.GetString(4)),reader.GetFloat(5),reader.GetInt32(6),reader.GetBoolean(7),reader.GetString(8)));
-                
+            {            
                 Guid _checklistID = reader.GetGuid(0);
                 Guid _userId = reader.GetGuid(1);
                 string _locationName = reader.GetString(2);
                 DateTime _checklistDateTime = reader.GetDateTime(3);
                 string tempBirds = JsonSerializer.Serialize(reader.GetString(4));
-                //Console.WriteLine(tempBirds);
-                //Console.ReadKey();
+
                 List<Bird> _birds = BirdController.ReadBirdsForChecklist(_checklistID);
                 float _distance = reader.GetFloat(5);
                 int _duration = reader.GetInt32(6);
@@ -48,9 +43,7 @@ public class ChecklistSQL : IAccessChecklistFile
             Console.WriteLine(e.StackTrace);
             Console.WriteLine(e.Message);
             Console.ReadKey();
-        }
-        
-       
+        }       
         connection.Close();
         return userChecklists;
     }
@@ -73,13 +66,7 @@ public class ChecklistSQL : IAccessChecklistFile
         cmd.Parameters.AddWithValue("@duration",0);
         cmd.Parameters.AddWithValue("@stationary",0);
         cmd.Parameters.AddWithValue("@cNotes",newList.cNotes);
-        /*
-        if (user.displayName != null)
-            cmd.Parameters.AddWithValue("@displayName",user.displayName);
-        else
-            cmd.Parameters.AddWithValue("@displayName","NULL");
-        cmd.Parameters.AddWithValue("@hashedPW",user.hashedPW);
-        */
+
         cmd.ExecuteNonQuery();
         connection.Close();
 
