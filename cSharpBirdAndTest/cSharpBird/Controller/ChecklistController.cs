@@ -64,13 +64,15 @@ public class ChecklistController
     public static List<Bird> PrintListBird(Checklist checklist)
     {
         //simply gives the list of birds sighted for printing
-        List<Bird> birdList = checklist.birds.Where(i => i.numSeen > 0).ToList();
+        List<Bird> birdList = BirdController.ReadBirdsForChecklist(checklist.checklistID);
+        birdList = birdList.Where(i => i.numSeen > 0).ToList();
         return birdList;
     }
     public static int CountListBird(Checklist checklist)
     {
         //returns the count of total species seen
-        List<Bird> birdList = checklist.birds.Where(i => i.numSeen > 0).ToList();
+        List<Bird> birdList = BirdController.ReadBirdsForChecklist(checklist.checklistID);
+        birdList = birdList.Where(i => i.numSeen > 0).ToList();
         int count = birdList.Count();
         return count;
     }

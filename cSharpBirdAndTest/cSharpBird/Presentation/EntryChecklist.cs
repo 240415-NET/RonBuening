@@ -167,6 +167,8 @@ public class EntryChecklist
         catch (Exception o)
         {
             Console.WriteLine("Please enter valid checklist number");
+            Console.WriteLine(o.StackTrace);
+            Console.WriteLine(o.Message);
         }
     }
     public static void collectInitData()
@@ -199,7 +201,8 @@ public class EntryChecklist
     public static void ViewAndAppend(Checklist viewList)
     {
         //this method shows the basics of the given checklist object and allows the user to view the full species sighted list and add new ones
-        List<Bird> loggedBirds = new List<Bird>();
+        List<Bird> loggedBirds = BirdController.ReadBirdsForChecklist(viewList.checklistID);
+        viewList.birds = loggedBirds.ToList();
         bool userDone = false;
         string userInput = "";
         do
