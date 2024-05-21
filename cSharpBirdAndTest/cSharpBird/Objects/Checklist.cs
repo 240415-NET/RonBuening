@@ -33,6 +33,7 @@ public class Checklist
         checklistDateTime = DateTime.Parse(_checklistDateTime);
         List<Bird> birds = BirdController.GetFullBirdList();
         stationary = false;
+        cNotes = "";
     }
     public Checklist(Guid _checklistID, Guid _userId, string _locationName, DateTime _checklistDateTime, List<Bird> _birds, float _distance, int _duration, bool _stationary, string _cNotes)
     {
