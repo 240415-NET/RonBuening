@@ -264,6 +264,7 @@ public class EntryChecklist
             }
             catch (Exception e)
             {
+                Console.WriteLine(e.StackTrace);
                 Console.WriteLine(e.Message);
             }
         }
@@ -446,21 +447,30 @@ public class EntryChecklist
         string descriptor = "{=Green}" + oldChecklist.locationName + "{/} is the current location. Please key a new location or 0 to return to previous menu";
         UserInterface.WriteColorsLine(descriptor);
         string userInput = Console.ReadLine().Trim();
-        switch (userInput.ToLower())
+        try{
+            switch (userInput.ToLower())
+            {
+                case "0":
+                case "back":
+                case "done":
+                case "return":
+                    SelectedEdit(oldChecklist);
+                    break;
+                default:
+                    List<Bird> loggedBirds = BirdController.ReadBirdsForChecklist(oldChecklist.checklistID);
+                    oldChecklist.birds = loggedBirds.ToList();
+                    ChecklistController.LocationUpdate(userInput,oldChecklist);
+                    descriptor = "Checklist location updated to {=Green}" + userInput + "{/}";
+                    UserInterface.WriteColorsLine(descriptor);
+                    Console.ReadKey();
+                    SelectedEdit(oldChecklist);
+                    break;
+            }
+        }
+        catch (Exception cl)
         {
-            case "0":
-            case "back":
-            case "done":
-            case "return":
-                SelectedEdit(oldChecklist);
-                break;
-            default:
-                ChecklistController.LocationUpdate(userInput,oldChecklist);
-                descriptor = "Checklist location updated to {=Green}" + userInput + "{/}";
-                UserInterface.WriteColorsLine(descriptor);
-                Console.ReadKey();
-                SelectedEdit(oldChecklist);
-                break;
+            Console.WriteLine(cl.StackTrace);
+            Console.WriteLine(cl.Message);
         }
     }
     public static void changeDate(Checklist oldChecklist)
@@ -480,6 +490,8 @@ public class EntryChecklist
                 SelectedEdit(oldChecklist);
                 break;
             default:
+                List<Bird> loggedBirds = BirdController.ReadBirdsForChecklist(oldChecklist.checklistID);
+                oldChecklist.birds = loggedBirds.ToList();
                 ChecklistController.DateUpdate(userInput,oldChecklist);
                 descriptor = "Checklist date updated to {=Green}" + userInput + "{/}. Press any key to continue.";
                 UserInterface.WriteColorsLine(descriptor);

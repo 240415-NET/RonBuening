@@ -89,27 +89,33 @@ public class ChecklistSQL : IAccessChecklistFile
     public void WriteUpdatedList(Checklist updatedList)
     {
         using SqlConnection connection = new SqlConnection (_connectionstring);
+        try{
+            connection.Open();
 
-        connection.Open();
+            string cmdText = "UPDATE checklists SET checklistID=@checklistID, userId=@userId, locationName=@locationName, checklistDateTime=@checklistDateTime, birds=@birds, distance=@distance, duration=@duration, stationary=@stationary, cNotes=@cNotes WHERE checklistID = @checklistID;";
 
-        string cmdText = "UPDATE checklists SET checklistID=@checklistID, userId=@userId, locationName=@locationName, checklistDateTime=@checklistDateTime, birds=@birds, distance=@distance, duration=@duration, stationary=@stationary, cNotes=@cNotes WHERE checklistID = @checklistID;";
+            using SqlCommand cmd = new SqlCommand(cmdText,connection);
 
-        using SqlCommand cmd = new SqlCommand(cmdText,connection);
+            cmd.Parameters.AddWithValue("@checklistID",updatedList.checklistID);
+            cmd.Parameters.AddWithValue("@userId",updatedList.userId);
+            cmd.Parameters.AddWithValue("@locationName",updatedList.locationName);
+            cmd.Parameters.AddWithValue("@checklistDateTime",updatedList.checklistDateTime);
+            cmd.Parameters.AddWithValue("@birds",JsonSerializer.Serialize(updatedList.birds));
+            cmd.Parameters.AddWithValue("@distance",updatedList.distance);
+            cmd.Parameters.AddWithValue("@duration",updatedList.duration);
+            cmd.Parameters.AddWithValue("@stationary",updatedList.stationary);
+            cmd.Parameters.AddWithValue("@cNotes",updatedList.cNotes);
 
-        cmd.Parameters.AddWithValue("@checklistID",updatedList.checklistID);
-        cmd.Parameters.AddWithValue("@userId",updatedList.userId);
-        cmd.Parameters.AddWithValue("@locationName",updatedList.locationName);
-        cmd.Parameters.AddWithValue("@checklistDateTime",updatedList.checklistDateTime);
-        cmd.Parameters.AddWithValue("@birds",JsonSerializer.Serialize(updatedList.birds));
-        cmd.Parameters.AddWithValue("@distance",updatedList.distance);
-        cmd.Parameters.AddWithValue("@duration",updatedList.duration);
-        cmd.Parameters.AddWithValue("@stationary",updatedList.stationary);
-        cmd.Parameters.AddWithValue("@cNotes",updatedList.cNotes);
+            cmd.ExecuteNonQuery();
+            connection.Close();
 
-        cmd.ExecuteNonQuery();
-        connection.Close();
-
-        BirdController.UpdateBirdsForChecklist(updatedList);
+            BirdController.UpdateBirdsForChecklist(updatedList);
+        }
+        catch (Exception e){
+            Console.WriteLine(e.StackTrace);
+            Console.WriteLine(e.Message);
+        }
+        
     }
     public void DeleteChecklist(Checklist deleteChecklist)
     {
