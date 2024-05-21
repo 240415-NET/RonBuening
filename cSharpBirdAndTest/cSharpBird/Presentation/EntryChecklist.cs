@@ -178,11 +178,18 @@ public class EntryChecklist
         Console.Clear();
         Console.WriteLine("What hotspot should be used for this checklist?");
         string hotspot = Console.ReadLine().Trim();
-
+        try
+        {
         Checklist checklist = new Checklist (currentUser.userId,hotspot);
         checklist.birds = BirdController.GetFullBirdList();
         ChecklistController.WriteChecklist(checklist);
         ViewAndAppend(checklist);
+        }
+        catch (Exception i)
+        {
+            Console.WriteLine(i.StackTrace);
+            Console.WriteLine(i.Message);
+        }
     }
     public static void collectInitDataHistoric()
     {

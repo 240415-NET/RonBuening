@@ -5,7 +5,7 @@ using System.IO;
 using System.Text.Json;
 public class ChecklistController
 {
-    public static IAccessChecklistFile AccessChecklistFile = new ChecklistSQL();
+    public static IAccessChecklistFile AccessChecklistFile = new AccessChecklistFileJson();
     public static List<Checklist> GetLists(User searchUser)
     {
         //calls interface to get lists for current user

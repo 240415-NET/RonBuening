@@ -13,13 +13,22 @@ public class AccessBirdCSV : IAccessBird
         string speciesName = "";
         string path = "data\\BirdCSV\\";
         string pathFile = path + "USGSBBL.csv";
+
         List<Bird> birdList = new List<Bird>();
-        birdList = File.ReadAllLines(pathFile)
-            .Select(line => line.Split(','))
-            .Select(x => new Bird{
-                bandCode = x[0],
-                speciesName = x[1]
-            }).ToList();
+        try
+        {
+            birdList = File.ReadAllLines(pathFile)
+                .Select(line => line.Split(','))
+                .Select(x => new Bird{
+                    bandCode = x[0],
+                    speciesName = x[1]
+                }).ToList();
+        }
+        catch (Exception b)
+        {
+            Console.WriteLine(b.StackTrace);
+            Console.WriteLine(b.Message);
+        }
 
         return birdList;
     }
@@ -58,7 +67,7 @@ public class AccessBirdCSV : IAccessBird
         else if (!File.Exists(pathFile))
         {
             Directory.CreateDirectory(path);
-            string existingChecklistJSON = JsonSerializer.Serialize(GetFullBirdList);
+            string existingChecklistJSON = JsonSerializer.Serialize(GetFullBirdList());
             File.WriteAllText(pathFile,existingChecklistJSON);
             existingChecklistJSON = File.ReadAllText(pathFile);
             birdList = JsonSerializer.Deserialize<List<Bird>>(existingChecklistJSON);
@@ -67,6 +76,15 @@ public class AccessBirdCSV : IAccessBird
     }
     public void DeleteBirdsForChecklist(Checklist deleteChecklist)
     {
-        
+        string path = "data\\checklist\\" + deleteChecklist.checklistID;
+        string pathFile = path + "\\birds.json";
+        System.IO.DirectoryInfo dPath = new System.IO.DirectoryInfo(path);
+        if (File.Exists(pathFile))
+        {
+            foreach (FileInfo file in dPath.GetFiles())
+                file.Delete();
+            foreach (DirectoryInfo dir in dPath.GetDirectories())
+                dir.Delete();
+        }
     }
 }

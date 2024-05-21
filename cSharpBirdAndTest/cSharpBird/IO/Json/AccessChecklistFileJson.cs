@@ -76,6 +76,7 @@ public class AccessChecklistFileJson : IAccessChecklistFile
         
         existingChecklistJSON = JsonSerializer.Serialize(ChecklistArchive);
         File.WriteAllText(pathFile,existingChecklistJSON);
+        BirdController.UpdateBirdsForChecklist(updatedList);
     }
     public void DeleteChecklist(Checklist deleteChecklist)
     {
@@ -99,5 +100,6 @@ public class AccessChecklistFileJson : IAccessChecklistFile
         Console.WriteLine($"ChecklistArchive now contains {ChecklistRemoved.Count}");
         existingChecklistJSON = JsonSerializer.Serialize(ChecklistRemoved);
         File.WriteAllText(pathFile,existingChecklistJSON);
+        BirdController.DeleteBirdsForChecklist(deleteChecklist);
     }
 }
