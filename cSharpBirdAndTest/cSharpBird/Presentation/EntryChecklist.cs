@@ -180,10 +180,10 @@ public class EntryChecklist
         string hotspot = Console.ReadLine().Trim();
         try
         {
-        Checklist checklist = new Checklist (currentUser.userId,hotspot);
-        checklist.birds = BirdController.GetFullBirdList();
-        ChecklistController.WriteChecklist(checklist);
-        ViewAndAppend(checklist);
+            Checklist checklist = new Checklist (currentUser.userId,hotspot);
+            checklist.birds = BirdController.GetFullBirdList();
+            ChecklistController.WriteChecklist(checklist);
+            ViewAndAppend(checklist);
         }
         catch (Exception i)
         {
@@ -200,10 +200,18 @@ public class EntryChecklist
         string checklistDate = Console.ReadLine().Trim();
         Console.WriteLine("What hotspot should be used for this checklist?");
         string hotspot = Console.ReadLine().Trim();
-        Checklist historicChecklist = new Checklist (currentUser.userId,hotspot,checklistDate);
-        historicChecklist.birds = BirdController.GetFullBirdList();
-        ChecklistController.WriteChecklist(historicChecklist);
-        ViewAndAppend(historicChecklist);
+        try
+        {
+            Checklist historicChecklist = new Checklist (currentUser.userId,hotspot,checklistDate);
+            historicChecklist.birds = BirdController.GetFullBirdList();
+            ChecklistController.WriteChecklist(historicChecklist);
+            ViewAndAppend(historicChecklist);
+        }
+        catch (Exception ih)
+        {
+            Console.WriteLine(ih.StackTrace);
+            Console.WriteLine(ih.Message);            
+        }
     }
     public static void ViewAndAppend(Checklist viewList)
     {
