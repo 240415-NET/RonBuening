@@ -8,11 +8,11 @@ public class EntryChecklist
     {
         //root checklist menu to manage, edit and delete checklists
         Console.Clear();
-        string[] menu = {"{=Magenta}CHECKLIST MENU{/}","{=Green}1. Create{/} New Checklist","{=Cyan}2. List{/} Existing Checklists","{=Blue}3. Edit or Print{/} Existing Checklist Details","{=Red}4. Exit{/} to Menu"};
+        string[] menu = { "{=Magenta}CHECKLIST MENU{/}", "{=Green}1. Create{/} New Checklist", "{=Cyan}2. List{/} Existing Checklists", "{=Blue}3. Edit or Print{/} Existing Checklist Details", "{=Red}4. Exit{/} to Menu" };
         string menuRequest;
         bool validInput = false;
         UserInterface.menuPrintBase(menu);
-        do 
+        do
         {
             try
             {
@@ -24,9 +24,9 @@ public class EntryChecklist
                     case "1. create":
                     case "new":
                     case "create new":
-                    validInput = true;
-                    EntryChecklist.Create();
-                    break;
+                        validInput = true;
+                        EntryChecklist.Create();
+                        break;
                     case "2":
                     case "2.":
                     case "2. list":
@@ -34,18 +34,18 @@ public class EntryChecklist
                     case "list all":
                     case "view":
                     case "view all":
-                    validInput = true;
-                    EntryChecklist.List(UserController.ReadCurrentUser());
-                    break;
+                        validInput = true;
+                        EntryChecklist.List(UserController.ReadCurrentUser());
+                        break;
                     case "3":
                     case "3.":
                     case "3. edit":
                     case "edit":
                     case "edit checklist":
                     case "details":
-                    validInput = true;
-                    EntryChecklist.Edit(UserController.ReadCurrentUser());
-                    break;
+                        validInput = true;
+                        EntryChecklist.Edit(UserController.ReadCurrentUser());
+                        break;
                     case "4":
                     case "4.":
                     case "4. exit":
@@ -53,12 +53,12 @@ public class EntryChecklist
                     case "quit":
                     case "back":
                     case "cancel":
-                    validInput = true;
-                    UserMaintenance.UserMenu(UserController.ReadCurrentUser());
-                    break;
+                        validInput = true;
+                        UserMaintenance.UserMenu(UserController.ReadCurrentUser());
+                        break;
                     default:
-                    Console.WriteLine("Please enter valid selection");
-                    break;
+                        Console.WriteLine("Please enter valid selection");
+                        break;
                 }
             }
             catch (Exception e)
@@ -73,7 +73,7 @@ public class EntryChecklist
         //basic method for creating new checklist
         string hotspot;
         string checklistDate;
-        string[] createMenu = {"{=Magenta}NEW CHECKLIST{/}","{=Green}1. Current{/} Checklist","{=Blue}2. Historic{/} Checklist","{=Red}3. Cancel{/}"};
+        string[] createMenu = { "{=Magenta}NEW CHECKLIST{/}", "{=Green}1. Current{/} Checklist", "{=Blue}2. Historic{/} Checklist", "{=Red}3. Cancel{/}" };
         bool validInput = false;
         string menuRequest;
         User currentUser = UserController.ReadCurrentUser();
@@ -81,7 +81,7 @@ public class EntryChecklist
         Console.Clear();
 
         UserInterface.menuPrintBase(createMenu);
-        do 
+        do
         {
             try
             {
@@ -95,17 +95,17 @@ public class EntryChecklist
                     case "create new":
                     case "today":
                     case "now":
-                    validInput = true;
-                    collectInitData();
-                    break;
+                        validInput = true;
+                        collectInitData();
+                        break;
                     case "2":
                     case "2.":
                     case "2. historic":
                     case "past":
                     case "historic":
-                    validInput = true;
-                    collectInitDataHistoric();
-                    break;
+                        validInput = true;
+                        collectInitDataHistoric();
+                        break;
                     case "3":
                     case "3.":
                     case "3. exit":
@@ -113,12 +113,12 @@ public class EntryChecklist
                     case "quit":
                     case "back":
                     case "cancel":
-                    validInput = true;
-                    Menu();
-                    break;
+                        validInput = true;
+                        Menu();
+                        break;
                     default:
-                    Console.WriteLine("Please enter valid selection");
-                    break;
+                        Console.WriteLine("Please enter valid selection");
+                        break;
                 }
             }
             catch (Exception e)
@@ -134,7 +134,7 @@ public class EntryChecklist
         Console.Clear();
         List<Checklist> userChecklists = new List<Checklist>();
         userChecklists = ChecklistController.GetLists(user);
-        
+
         string userInput;
         bool validInput = false;
 
@@ -157,7 +157,7 @@ public class EntryChecklist
                 else if (userSelect <= userChecklists.Count())
                 {
                     validInput = true;
-                    ViewAndAppend(userChecklists[userSelect-1]);
+                    ViewAndAppend(userChecklists[userSelect - 1]);
                 }
                 else
                     Console.WriteLine("Please key in valid checklist number");
@@ -180,7 +180,7 @@ public class EntryChecklist
         string hotspot = Console.ReadLine().Trim();
         try
         {
-            Checklist checklist = new Checklist (currentUser.userId,hotspot);
+            Checklist checklist = new Checklist(currentUser.userId, hotspot);
             checklist.birds = BirdController.GetFullBirdList();
             ChecklistController.WriteChecklist(checklist);
             ViewAndAppend(checklist);
@@ -202,7 +202,7 @@ public class EntryChecklist
         string hotspot = Console.ReadLine().Trim();
         try
         {
-            Checklist historicChecklist = new Checklist (currentUser.userId,hotspot,checklistDate);
+            Checklist historicChecklist = new Checklist(currentUser.userId, hotspot, checklistDate);
             historicChecklist.birds = BirdController.GetFullBirdList();
             ChecklistController.WriteChecklist(historicChecklist);
             ViewAndAppend(historicChecklist);
@@ -210,7 +210,7 @@ public class EntryChecklist
         catch (Exception ih)
         {
             Console.WriteLine(ih.StackTrace);
-            Console.WriteLine(ih.Message);            
+            Console.WriteLine(ih.Message);
         }
     }
     public static void ViewAndAppend(Checklist viewList)
@@ -269,10 +269,10 @@ public class EntryChecklist
                 }
                 else if (ChecklistController.ValidListUpdate(userInput))
                 {
-                    ChecklistController.ListUpdate(userInput,viewList);
+                    ChecklistController.ListUpdate(userInput, viewList);
                     Console.Clear();
                 }
-                else 
+                else
                 {
                     UserInterface.WriteColorsLine("Please key a {=Green}band code{/} and the {=Blue}number{/} of that bird seen to log separated by a space or comma. Key {=Green}band code{/} and '0' to remove");
                 }
@@ -287,13 +287,13 @@ public class EntryChecklist
         ChecklistController.WriteUpdatedList(viewList);
         Menu();
     }
-    public static void Edit (User user)
+    public static void Edit(User user)
     {
         //shows user's checklists for editing details
         Console.Clear();
         List<Checklist> userChecklists = new List<Checklist>();
         userChecklists = ChecklistController.GetLists(user);
-        
+
         string userInput;
         bool validInput = false;
 
@@ -301,10 +301,9 @@ public class EntryChecklist
         int listNum = 0;
 
         UIChecklist.ListEdits(userChecklists);
-
-        try
+        do
         {
-            do
+            try
             {
                 userInput = UserInterface.exitChecker(Console.ReadLine().Trim());
                 userSelect = Convert.ToInt32(userInput);
@@ -316,17 +315,17 @@ public class EntryChecklist
                 else if (userSelect <= userChecklists.Count())
                 {
                     validInput = true;
-                    SelectedEdit(userChecklists[userSelect-1]);
+                    SelectedEdit(userChecklists[userSelect - 1]);
                 }
                 else
                     Console.WriteLine("Please key in valid checklist number");
             }
-            while (validInput == false);
+            catch (Exception o)
+            {
+                Console.WriteLine("Please enter valid checklist number");
+            }
         }
-        catch (Exception o)
-        {
-            Console.WriteLine("Please enter valid checklist number");
-        }
+        while (validInput == false);
     }
     public static void SelectedEdit(Checklist oldChecklist)
     {
@@ -334,10 +333,10 @@ public class EntryChecklist
         string editRequest;
         bool validInput = false;
         Console.Clear();
-        string[] menu = {"What would you like to change on this list today?","{=Green}1. Location{/}: " + oldChecklist.locationName,"{=Cyan}2. Date{/}: "+ oldChecklist.checklistDateTime.ToString("d"),"{=Blue}3. Species{/}: " + ChecklistController.CountListBird(oldChecklist),"{=DarkGreen}4. Print{/}","{=Yellow}5. Return{/}","{=Red}6. Delete{/} this checklist"};
+        string[] menu = { "What would you like to change on this list today?", "{=Green}1. Location{/}: " + oldChecklist.locationName, "{=Cyan}2. Date{/}: " + oldChecklist.checklistDateTime.ToString("d"), "{=Blue}3. Species{/}: " + ChecklistController.CountListBird(oldChecklist), "{=DarkGreen}4. Print{/}", "{=Yellow}5. Return{/}", "{=Red}6. Delete{/} this checklist" };
 
         UserInterface.menuPrintBase(menu);
-        do 
+        do
         {
             try
             {
@@ -348,34 +347,34 @@ public class EntryChecklist
                     case "1.":
                     case "1. location":
                     case "location":
-                    validInput = true;
-                    changeLocation(oldChecklist);
-                    break;
+                        validInput = true;
+                        changeLocation(oldChecklist);
+                        break;
                     case "2":
                     case "2.":
                     case "2. date":
                     case "date":
-                    validInput = true;
-                    changeDate(oldChecklist);
-                    break;
+                        validInput = true;
+                        changeDate(oldChecklist);
+                        break;
                     case "3":
                     case "3.":
                     case "3. species":
                     case "species":
                     case "birds":
                     case "bird":
-                    validInput = true;
-                    ViewAndAppend(oldChecklist);
-                    break;
+                        validInput = true;
+                        ViewAndAppend(oldChecklist);
+                        break;
                     case "4":
                     case "4.":
                     case "4. print":
                     case "print":
                     case "text":
                     case "save":
-                    validInput = true;
-                    Print(oldChecklist);
-                    break;
+                        validInput = true;
+                        Print(oldChecklist);
+                        break;
                     case "5":
                     case "5.":
                     case "5. cancel":
@@ -384,19 +383,19 @@ public class EntryChecklist
                     case "quit":
                     case "return":
                     case "back":
-                    validInput = true;
-                    Edit(UserController.ReadCurrentUser());
-                    break;
+                        validInput = true;
+                        Edit(UserController.ReadCurrentUser());
+                        break;
                     case "6":
                     case "6.":
                     case "6. delete":
                     case "delete":
-                    validInput = true;
-                    Delete(oldChecklist);
-                    break;
+                        validInput = true;
+                        Delete(oldChecklist);
+                        break;
                     default:
-                    Console.WriteLine("Please enter valid selection");
-                    break;
+                        Console.WriteLine("Please enter valid selection");
+                        break;
                 }
             }
             catch (Exception e)
@@ -452,7 +451,7 @@ public class EntryChecklist
         Console.Clear();
         UserInterface.WriteColorsLine("Please enter a filepath and name to save this checklist to, or leave blank to save to default location");
         string userInput = Console.ReadLine().Trim();
-        ChecklistController.Print(userInput,oldChecklist);
+        ChecklistController.Print(userInput, oldChecklist);
         SelectedEdit(oldChecklist);
     }
     public static void changeLocation(Checklist oldChecklist)
@@ -462,7 +461,8 @@ public class EntryChecklist
         string descriptor = "{=Green}" + oldChecklist.locationName + "{/} is the current location. Please key a new location or 0 to return to previous menu";
         UserInterface.WriteColorsLine(descriptor);
         string userInput = Console.ReadLine().Trim();
-        try{
+        try
+        {
             switch (userInput.ToLower())
             {
                 case "0":
@@ -474,7 +474,7 @@ public class EntryChecklist
                 default:
                     List<Bird> loggedBirds = BirdController.ReadBirdsForChecklist(oldChecklist.checklistID);
                     oldChecklist.birds = loggedBirds.ToList();
-                    ChecklistController.LocationUpdate(userInput,oldChecklist);
+                    ChecklistController.LocationUpdate(userInput, oldChecklist);
                     descriptor = "Checklist location updated to {=Green}" + userInput + "{/}";
                     UserInterface.WriteColorsLine(descriptor);
                     Console.ReadKey();
@@ -507,7 +507,7 @@ public class EntryChecklist
             default:
                 List<Bird> loggedBirds = BirdController.ReadBirdsForChecklist(oldChecklist.checklistID);
                 oldChecklist.birds = loggedBirds.ToList();
-                ChecklistController.DateUpdate(userInput,oldChecklist);
+                ChecklistController.DateUpdate(userInput, oldChecklist);
                 descriptor = "Checklist date updated to {=Green}" + userInput + "{/}. Press any key to continue.";
                 UserInterface.WriteColorsLine(descriptor);
                 Console.ReadKey();
