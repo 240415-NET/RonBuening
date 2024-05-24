@@ -96,7 +96,7 @@ public class ChecklistController
     public static void Print(string userInput,Checklist checklist)
     {
         //called to print checklist ot a text file
-        string[] headers = {"Number","Location","Date"};
+        string[] headers = {"Number","Location","Count"};
         string headerLine = string.Format("{0,-20} {1,-35} {2,-15}",headers[0],headers[1],headers[2]);
         string prettyPrint = "Location: " + checklist.locationName + "\nDate: " + checklist.checklistDateTime.ToString("d") +  "\n" + headerLine;
         string pathFile = "";
