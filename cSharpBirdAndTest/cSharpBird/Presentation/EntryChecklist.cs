@@ -274,7 +274,8 @@ public class EntryChecklist
                 }
                 else
                 {
-                    UserInterface.WriteColorsLine("Please key a {=Green}band code{/} and the {=Blue}number{/} of that bird seen to log separated by a space or comma. Key {=Green}band code{/} and '0' to remove");
+                    UserInterface.WriteColorsLine("Please key a {=Green}band code{/} and the {=Blue}number{/} of that bird seen to log separated by a space. Key {=Green}band code{/} and '0' to remove\nPress any key to continue");
+                    Console.ReadKey();
                 }
             }
             catch (Exception e)
