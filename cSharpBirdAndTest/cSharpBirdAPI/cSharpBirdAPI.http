@@ -1,0 +1,6 @@
+@cSharpBirdAPI_HostAddress = http://localhost:5124
+
+GET {{cSharpBirdAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
