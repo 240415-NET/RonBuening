@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace cSharpBirdAPI.Controllers;
+namespace cSharpBird.API.Controllers;
 
 [ApiController]
 [Route("[controller]")]

@@ -1,4 +1,4 @@
-namespace cSharpBirdAPI;
+namespace cSharpBird.API;
 
 public class WeatherForecast
 {
