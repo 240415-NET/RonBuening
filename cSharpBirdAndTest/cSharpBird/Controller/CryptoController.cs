@@ -10,7 +10,7 @@ public class CryptoController
     const int iterations = 250000;
     public static string InitHashPassword(Guid UserId, string password)
     {
-        //salts and hashes given password
+        //salts and hashes given password on user creation
         byte[] salt = RandomNumberGenerator.GetBytes(keySize);
         StoreSalt(salt,UserId);
 
@@ -31,7 +31,7 @@ public class CryptoController
     }
     public static string HashPassword(Guid UserId, string password)
     {
-        //salts and hashes given password
+        //salts and hashes given password for an existing user
         byte[] salt = RandomNumberGenerator.GetBytes(keySize);
         UpdateSalt(salt,UserId);
 

@@ -27,6 +27,8 @@ public class BirdSQL : IAccessBird
     }
     public void WriteBirdsForChecklist(Checklist checklist)
     {
+        //inserts new birds into sql table with proper checklist id
+        //for optimization, this could be adjusted to only write those with new numbers, but is retained this way for compatibility with JSON version
         using SqlConnection connection = new SqlConnection (_connectionstring);
         List<Bird> bird = checklist.birds;
         Bird temp = new Bird();
@@ -61,6 +63,8 @@ public class BirdSQL : IAccessBird
     }
     public void UpdateBirdsForChecklist(Checklist checklist)
     {
+        //updates birds into sql table with proper checklist id
+        //for optimization, this could be adjusted to only write those with new numbers, but is retained this way for compatibility with JSON version
         using SqlConnection connection = new SqlConnection (_connectionstring);
         List<Bird> bird = checklist.birds;
         Bird temp = new Bird();
@@ -94,6 +98,7 @@ public class BirdSQL : IAccessBird
     }
     public List<Bird> ReadBirdsForChecklist(Guid checklistID)
     {
+        //reads each bird for a given checklist GUID
         List<Bird> checklistBirds = new List<Bird>();
         Guid badUID = new Guid("00000000-0000-0000-0000-000000000000");
         using SqlConnection connection = new SqlConnection(_connectionstring);
@@ -134,6 +139,7 @@ public class BirdSQL : IAccessBird
     }
     public void DeleteBirdsForChecklist(Checklist deleteChecklist)
     {
+        //used to delete no longer needed records when a checklist is deleted
         using SqlConnection connection = new SqlConnection(_connectionstring);
         connection.Open();
 

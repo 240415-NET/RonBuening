@@ -11,6 +11,7 @@ public class ChecklistSQL : IAccessChecklistFile
     
     public List<Checklist> GetLists(User searchUser)
     {
+        //retrieves all lists for a given userID
         List<Checklist> userChecklists = new List<Checklist>();
         Guid badUID = new Guid("00000000-0000-0000-0000-000000000000");
         using SqlConnection connection = new SqlConnection(_connectionstring);
@@ -49,6 +50,7 @@ public class ChecklistSQL : IAccessChecklistFile
     }
     public void WriteChecklist(Checklist newList)
     {
+        //creates new checklist for the current user
         using SqlConnection connection = new SqlConnection (_connectionstring);
 
         connection.Open();
@@ -75,6 +77,7 @@ public class ChecklistSQL : IAccessChecklistFile
 
     public void WriteUpdatedList(Checklist updatedList)
     {
+        //updates the selected checklist
         using SqlConnection connection = new SqlConnection (_connectionstring);
         try{
             connection.Open();
@@ -106,6 +109,7 @@ public class ChecklistSQL : IAccessChecklistFile
     }
     public void DeleteChecklist(Checklist deleteChecklist)
     {
+        //deletes the checklist, then calls for the matching birds to be removed from that table
         using SqlConnection connection = new SqlConnection(_connectionstring);
         connection.Open();
 

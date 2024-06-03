@@ -51,6 +51,7 @@ public class AccessBirdCSV : IAccessBird
     }
     public void UpdateBirdsForChecklist (Checklist checklist)
     {
+        //writes birds updated in checklist
         WriteBirdsForChecklist(checklist);
     }
     public List<Bird> ReadBirdsForChecklist (Guid checklistID)

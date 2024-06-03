@@ -9,6 +9,7 @@ public class UserSQL : IAccessUserFile
     string _connectionstring = File.ReadAllText("C:\\Users\\U0LA19\\Documents\\cSharpBird_DataSource.txt");
     public List<User> GetFullUserList()
     {
+        //retrieves full list of users to check valid userids for sign-in
         string _connectionstring = File.ReadAllText("C:\\Users\\U0LA19\\Documents\\cSharpBird_DataSource.txt");
 
         //Credit to the Team2 for troubleshooting the SQL Data connection
@@ -36,6 +37,7 @@ public class UserSQL : IAccessUserFile
 
     public void WriteUser(User user)
     {
+        //used in user creation to create new record
         string _connectionstring = File.ReadAllText("C:\\Users\\U0LA19\\Documents\\cSharpBird_DataSource.txt");
 
         using SqlConnection connection = new SqlConnection (_connectionstring);
@@ -60,6 +62,7 @@ public class UserSQL : IAccessUserFile
 
     public void WriteUpdatedUser(User user)
     {
+        //updates user record when changed from the user update menu
         string _connectionstring = File.ReadAllText("C:\\Users\\U0LA19\\Documents\\cSharpBird_DataSource.txt");
 
         using SqlConnection connection = new SqlConnection (_connectionstring);
@@ -84,6 +87,7 @@ public class UserSQL : IAccessUserFile
 
     public void WriteCurrentUser(User user)
     {
+        //writes the current user in the proper table for retrieval at multiple steps or to retain for future sign-ins
         string _connectionstring = File.ReadAllText("C:\\Users\\U0LA19\\Documents\\cSharpBird_DataSource.txt");
 
         using SqlConnection connection = new SqlConnection (_connectionstring);
@@ -110,6 +114,7 @@ public class UserSQL : IAccessUserFile
 
     public User ReadCurrentUser()
     {
+        //reads current user either to continue session or at various stages to ensure items are passed around correctly.
         string _connectionstring = File.ReadAllText("C:\\Users\\U0LA19\\Documents\\cSharpBird_DataSource.txt");
         User currentUser = new User();
         using SqlConnection connection = new SqlConnection(_connectionstring);
@@ -134,6 +139,7 @@ public class UserSQL : IAccessUserFile
 
     public void ClearCurrentUser()
     {
+        //clears all records from current user table
         string _connectionstring = File.ReadAllText("C:\\Users\\U0LA19\\Documents\\cSharpBird_DataSource.txt");
 
         using SqlConnection connection = new SqlConnection (_connectionstring);
@@ -150,6 +156,7 @@ public class UserSQL : IAccessUserFile
     
     public bool ValidUserSession()
     {
+        //checks to see if valid session exists
         User user = new User();
         try
         {
@@ -173,6 +180,7 @@ public class UserSQL : IAccessUserFile
 
     public void StoreSalt(string salt, Guid UserId)
     {
+        //used to initially store salt at user creation
         using SqlConnection connection = new SqlConnection (_connectionstring);
 
         connection.Open();
@@ -189,6 +197,7 @@ public class UserSQL : IAccessUserFile
     
     public string GetSalt(User user)
     {
+        //retrieves salt to compare against sign-in
         using SqlConnection connection = new SqlConnection (_connectionstring);
         string salt = "";
 
@@ -213,6 +222,7 @@ public class UserSQL : IAccessUserFile
     }
     public void UpdateSalt(string salt, Guid UserId)
     {
+        //updates salt for a given user at password change
         using SqlConnection connection = new SqlConnection (_connectionstring);
 
         connection.Open();
